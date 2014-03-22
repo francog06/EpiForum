@@ -1,6 +1,9 @@
 package com.epiforum.server.logic.builder;
 
+import com.epiforum.common.ro.MyProfileRO;
 import com.epiforum.common.ro.RandomPasswordRO;
+import com.epiforum.server.data.entity.Profile;
+import com.epiforum.server.data.entity.Session;
 
 public class ROBuilder {
 
@@ -10,5 +13,10 @@ public class ROBuilder {
 		RandomPasswordRO passwordRo = new RandomPasswordRO();
 		passwordRo.setPassword(pass);
 		return passwordRo;
+	}
+
+	public static MyProfileRO createRO(Profile pro, Session se) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -3,6 +3,7 @@ package com.epiforum.server.logic.manager;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import com.epiforum.common.ro.MyProfileRO;
 import com.epiforum.common.ro.SignupRO;
 import com.epiforum.server.data.entity.Account;
 import com.epiforum.server.data.entity.Profile;
@@ -32,5 +33,10 @@ public class ProfileManager {
 
 	public Profile				getProfileFromId(Long profileId) {
 		return this.profileDao.getProfile(profileId);
+	}
+
+	public Profile updateProfile(MyProfileRO proRo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

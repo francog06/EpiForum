@@ -205,19 +205,19 @@ public class OperationFacade {
 		}
 		Session se = this.sessionManager.getSession(token);
 		Profile pro = this.profileManager.getProfileFromId(profileId);
-		ProfileInfoRO user = null;
+		MyProfileRO user = null;
 		if (!se.getProfile().equals(pro)) {
 			// profil d'un membre
-			user = ROBuilder.createRO(pro);
+			user = ROBuilder.createRO(pro, null);
 		} else {
 			// mon profil
-			user = ROBuilder.createRO(pro);
+			user = ROBuilder.createRO(pro, se);
 		}
 		se.setLastActivity("getProfileFromId");
 		return user;
 	}
 
-	public boolean				updateMyProfile(HttpServletRequest request, String token, ProfileRO proRo) throws BadCredentialException, TechnicalException, BadParametersException {
+	public boolean				updateMyProfile(HttpServletRequest request, String token, MyProfileRO proRo) throws BadCredentialException, TechnicalException, BadParametersException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException("Veuillez vous connecter");
 		}
@@ -225,7 +225,7 @@ public class OperationFacade {
 		Profile pro = this.profileManager.getProfileFromId(proRo.getId());
 		boolean match = false;
 		if (pro != null && se.getProfile().equals(pro)) {
-			pro = this.profileManager.updateUser(proRo);
+			pro = this.profileManager.updateProfile(proRo);
 			match = true;
 		}
 		se.setLastActivity("updateMyProfile");
