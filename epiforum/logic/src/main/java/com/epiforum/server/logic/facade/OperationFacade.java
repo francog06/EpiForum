@@ -10,6 +10,7 @@ import javax.xml.registry.infomodel.User;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+import com.epiforum.common.ro.AccountRO;
 import com.epiforum.common.ro.LoginRO;
 import com.epiforum.common.ro.RandomPasswordRO;
 import com.epiforum.common.ro.SignupRO;
@@ -74,14 +75,17 @@ public class OperationFacade {
 
 	public Account				subscribe(HttpServletRequest request, SignupRO signup) throws BadCredentialException, TechnicalException, BadParametersException {
 		if (signup.getEmail() == null || signup.getEmail().trim().isEmpty()) {
-			throw new BadCredentialException("Your email is empty");
+			throw new BadCredentialException("Votre email est vide");
+		}
+		if (signup.getNickName() == null || signup.getNickName().trim().isEmpty()) {
+			throw new BadCredentialException("Votre pseudo est vide");
 		}
 		if (signup.getPassword() == null || signup.getPassword().trim().isEmpty()) {
-			throw new BadCredentialException("Your password is empty");
+			throw new BadCredentialException("Votre mot de passe est vide");
 		}
 		Account ac = this.accountManager.createAccount(request, signup);
 		Profile pro = this.profileManager.createProfile(ac, signup);
-		Application appli;
+		Application appli = new Application();
 		if (appli != null) {
 			System.out.println("Application name: " + appli.getName());
 			this.mailManager.sendActivationMail(ac.getEmail(), ac.getActivationCode(), appli);
@@ -89,12 +93,12 @@ public class OperationFacade {
 		return ac;
 	}
 
-	public boolean				unsubscribe(HttpServletRequest request, String token, Long accountId) throws BadCredentialException {
+	public boolean				unsubscribe(HttpServletRequest request, String token, String email) throws BadCredentialException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException("please login first");
 		}
 		Session se = this.sessionManager.getSession(token);
-		Account ac = this.accountManager.getAccountFromId(accountId);
+		Account ac = this.accountManager.getAccountFromEMail(email);
 		if (!se.getProfile().equals(ac.getProfile())) {
 			return false;
 		}
@@ -125,7 +129,7 @@ public class OperationFacade {
 		Account ac = this.accountManager.getAccountFromEMail(userEmail);
 		if (ac != null && ac.getStatus() == Account.Status.ACTIVATED) {
 			String newPassword = this.accountManager.forgotEmail(ac);
-			Application appli;
+			Application appli = new Application();
 			this.mailManager.sendForgotPasswordEmail(ac.getEmail(), newPassword, appli);
 			return true;
 		} else {
@@ -133,7 +137,7 @@ public class OperationFacade {
 		}
 	}
 
-	public AccountRO			login(HttpServletRequest request, String token, LoginRO loginData) throws TechnicalException, BadCredentialException {
+	public AccountRO			login(HttpServletRequest request, String token, LoginRO loginData, Account.Type type) throws TechnicalException, BadCredentialException {
 		if (loginData.getEmail() == null || loginData.getEmail().trim().isEmpty()) {
 			throw new BadCredentialException("Your email is empty");
 		} else if (loginData.getPassword() == null || loginData.getPassword().trim().isEmpty()) {
@@ -141,7 +145,7 @@ public class OperationFacade {
 		} else if (token != null && this.checkSession(token)) {
 			throw new BadCredentialException("You are already logged in");
 		}
-		Account ac = this.accountManager.loginWithEmailAndPassword(loginData.getEmail(), loginData.getPassword());
+		Account ac = this.accountManager.loginWithEmailAndPassword(loginData.getEmail(), loginData.getPassword(), type);
 		if (!ac.getIpAddress().trim().equals(request.getRemoteAddr())) {
 			ac.setIpAddress(request.getRemoteAddr());
 		}
@@ -192,22 +196,5 @@ public class OperationFacade {
 		}
 		se.setLastActivity("updateMyProfile");
 		return match;
-	}
-
-	public List<ProfileRO>		getAllProfiles(HttpServletRequest request, String token) throws BadCredentialException {
-		if (!this.checkSession(token)) {
-			throw new BadCredentialException("please login first");
-		}
-		Session se = this.sessionManager.getSession(token);
-		List<User> users = this.profileManager.getAllProfiles();
-		List<UserRO> usRos = null;
-		if (users != null && !users.isEmpty()) {
-			usRos = new ArrayList<UserRO>();
-			for (User us : users) {
-				usRos.add(ROBuilder.createRO(us, null));
-			}
-		}
-		se.setLastActivity("getAllProfiles");
-		return usRos;
 	}
 }

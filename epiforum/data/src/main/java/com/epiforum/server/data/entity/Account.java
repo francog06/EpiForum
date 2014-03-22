@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -26,6 +28,21 @@ import com.epiforum.server.data.listener.IUpdateListener;
  */
 @Entity
 @Table(name = "account", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@NamedQueries({
+	@NamedQuery(
+			name = "Account.findAll",
+			query = "SELECT ac FROM Account ac WHERE ac.status = :status"),
+	@NamedQuery(
+			name = "Account.getAccountFromEmail", 
+			query = "SELECT ac FROM Account ac WHERE ac.email = :email"),
+	@NamedQuery(
+			name = "Account.getAccountFromEmailAndPassword", 
+			query = "SELECT ac FROM Account ac WHERE ac.email = :email AND ac.password = :password AND" +
+					" ac.status = :status AND ac.type >= :type"),
+	@NamedQuery(
+			name = "Account.emailIsUsed",
+			query = "SELECT 1 FROM Account ac WHERE ac.email = :email")
+})
 public class Account implements Serializable, ICreateListener, IUpdateListener {
 
 	/**

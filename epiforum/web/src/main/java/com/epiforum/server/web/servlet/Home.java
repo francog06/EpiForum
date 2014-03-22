@@ -1,7 +1,6 @@
 package com.epiforum.server.web.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.epiforum.common.ro.AccountRO;
 import com.epiforum.server.web.beanresource.OperationResource;
 
 /**
@@ -34,16 +34,16 @@ public class Home extends OperationResource {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<CourseRO> coRos = this.operationFacade.getAllCourses();
+		//List<CourseRO> coRos = this.operationFacade.getAllCourses();
 		String url="/home.jsp";
 	    ServletContext sc = getServletContext();
 	    RequestDispatcher rd = sc.getRequestDispatcher(url);
 	    HttpSession session = request.getSession();
 	    AccountRO acr = (AccountRO)session.getAttribute("acr");
 	    if (acr != null) {
-	    	request.setAttribute("token", acr.getToken());
+	    	//request.setAttribute("token", acr.getToken());
 	    }
-	    request.setAttribute("coRos", coRos);
+	    //request.setAttribute("coRos", coRos);
 	    rd.forward(request, response);
 	}
 

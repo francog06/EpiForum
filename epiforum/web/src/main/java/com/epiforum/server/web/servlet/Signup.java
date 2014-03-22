@@ -48,11 +48,11 @@ public class Signup extends OperationResource {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SignupRO sign = new SignupRO();
 		sign.setEmail(request.getParameter("email"));
-		sign.setFirstname(request.getParameter("firstname"));
-		sign.setLastname(request.getParameter("lastname"));
+		sign.setFirstName(request.getParameter("firstname"));
+		sign.setLastName(request.getParameter("lastname"));
 		sign.setPassword(request.getParameter("password"));
 		try {
-			this.operationFacade.signup(sign);
+			this.operationFacade.subscribe(request, sign);
 			response.sendRedirect("/web/Login");
 		} catch (BadCredentialException e) {
 			String url="/signup.jsp";

@@ -1,7 +1,6 @@
 package com.epiforum.server.web.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.epiforum.common.ro.AccountRO;
 import com.epiforum.server.web.beanresource.OperationResource;
 
 /**
@@ -46,10 +46,10 @@ public class Account extends OperationResource {
 				acr = (AccountRO) session.getAttribute("acr");
 				}
 			 if (acr != null) {
-				 request.setAttribute("token", acr.getToken());
+				 //request.setAttribute("token", acr.getToken());
 				 request.setAttribute("acr", acr);
-				 List<ExamRO> exams = this.operationFacade.getAllExamsFromAccountId(acr.getId());
-				 request.setAttribute("exams", exams);
+				 //List<ExamRO> exams = this.operationFacade.getAllExamsFromAccountId(acr.getId());
+				 //request.setAttribute("exams", exams);
 				 }
 			 rd.forward(request, response);
 		}
