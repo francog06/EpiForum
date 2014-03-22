@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.epiforum.common.ro.AccountRO;
 import com.epiforum.common.ro.LoginRO;
+import com.epiforum.server.data.entity.Account.Type;
 import com.epiforum.server.logic.exception.BadCredentialException;
 import com.epiforum.server.logic.exception.TechnicalException;
 import com.epiforum.server.web.beanresource.OperationResource;
@@ -52,10 +52,9 @@ public class Login extends OperationResource {
 		log.setPassword(request.getParameter("password"));
 		
 		try {
-			AccountRO acr = this.operationFacade.login(request, request.getHeader("Authorization"), log);
+			String token = this.operationFacade.login(request, request.getHeader("Authorization"), log, Type.MEMBER);
 			HttpSession session = request.getSession(true);
-			//response.setHeader("Authorization", acr.getToken());
-			session.setAttribute("acr", acr);
+			response.setHeader("Authorization", token);
 			response.sendRedirect("/web/Home");
 		} catch (TechnicalException e) {
 			String url="/login.jsp";

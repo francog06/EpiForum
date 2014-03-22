@@ -14,7 +14,7 @@ public class ProfileDao {
 	@PersistenceContext(unitName="epiforum")
 	protected EntityManager	em;
 	
-	public Profile		getProfile(Long profileId) {
+	public Profile		getProfile(Integer profileId) {
 		return this.em.find(Profile.class, profileId);
 	}
 

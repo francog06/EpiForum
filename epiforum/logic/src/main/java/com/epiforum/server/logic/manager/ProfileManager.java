@@ -31,7 +31,7 @@ public class ProfileManager {
 		return this.profileDao.getProfileFromNickname(nickname);
 	}
 
-	public Profile				getProfileFromId(Long profileId) {
+	public Profile				getProfileFromId(Integer profileId) {
 		return this.profileDao.getProfile(profileId);
 	}
 

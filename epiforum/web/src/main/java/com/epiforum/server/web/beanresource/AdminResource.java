@@ -1,0 +1,19 @@
+package com.epiforum.server.web.beanresource;
+
+import javax.ejb.EJB;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+
+import com.epiforum.server.logic.facade.AdminstrationFacade;
+
+/**
+ * Servlet implementation class AdminResource
+ */
+@WebServlet("/admin")
+public abstract class AdminResource extends HttpServlet {
+
+	private static final long		serialVersionUID = -2846518367098535070L;
+	
+	@EJB
+	private AdminstrationFacade		adminFacade;
+}

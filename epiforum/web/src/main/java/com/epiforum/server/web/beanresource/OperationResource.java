@@ -7,7 +7,7 @@ import com.epiforum.server.logic.facade.OperationFacade;
 
 public abstract class OperationResource extends HttpServlet {
 
-	private static final long serialVersionUID = -2268430199067367626L;
+	private static final long		serialVersionUID = -2268430199067367626L;
 
 	@EJB
 	protected OperationFacade		operationFacade;

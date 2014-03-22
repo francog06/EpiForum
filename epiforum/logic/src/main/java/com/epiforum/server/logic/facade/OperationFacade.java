@@ -1,16 +1,11 @@
 package com.epiforum.server.logic.facade;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.registry.infomodel.User;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
-import com.epiforum.common.ro.AccountRO;
 import com.epiforum.common.ro.ChangeInfo;
 import com.epiforum.common.ro.LoginRO;
 import com.epiforum.common.ro.MyProfileRO;
@@ -199,7 +194,7 @@ public class OperationFacade {
 
 								/*	PROFILE STUFF	*/
 
-	public ProfileInfoRO		getProfileFromId(HttpServletRequest request, String token, Long profileId) throws BadCredentialException, BadParametersException {
+	public ProfileInfoRO		getProfileFromId(HttpServletRequest request, String token, Integer profileId) throws BadCredentialException, BadParametersException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException("Veuillez vous connecter");
 		}
