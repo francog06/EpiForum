@@ -1,0 +1,366 @@
+package com.beepeers.common.ro;
+
+import java.util.Date;
+
+public class MyProfileDataRO {
+
+	private LocationRO location;
+
+	private String email;
+	
+	private String nickname;
+
+	private String firstname;
+
+	private String lastname;
+
+	private String companyName;
+
+	private String description;
+	
+	// Only for iPhone
+	private String profileDescription;
+
+	private String description2;
+
+	// Only for iPhone	
+	private String profileDescription2;
+	
+	private String name;
+	
+	private String name2;
+	
+	private Date birthDate;
+	
+	private Date startDate;
+	
+	private Date endDate;
+	
+	private String phone;
+	
+	private String phone2;
+	
+	private String fax;
+
+	private String website;
+	
+	private String blog;
+
+	private String picture;
+	
+	private Long parentId;
+	
+	private String status;
+	
+	private String key;
+	
+	private String profileTypeKey;
+	
+	private String profileListKey;
+
+	private boolean deletePicture = false;
+
+	private Boolean talkPublic;
+	
+	private boolean generateFeed = true;
+	
+	public MyProfileDataRO() {
+		this.setTalkPublic(true);
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+
+	public String getProfileListKey() {
+		return profileListKey;
+	}
+
+	public void setProfileListKey(String profileListKey) {
+		this.profileListKey = profileListKey;
+	}
+
+	public void setProfileTypeKey(String keyType) {
+		this.profileTypeKey = keyType;
+	}
+	
+	public String getProfileTypeKey() {
+		return profileTypeKey;
+	}
+	
+	public Long getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Long parent) {
+		this.parentId = parent;
+	}
+
+	public LocationRO getLocation() {
+		return location;
+	}
+
+	public void setLocation(LocationRO location) {
+		this.location = location;
+	}
+
+	public String getEmail() {
+		if (this.email == null) {
+			return null;
+		} else {
+			return this.email.trim();
+		}
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getNickname() {
+		if (this.nickname == null) {
+			return null;
+		} else {
+			return this.nickname.trim();
+		}
+	}
+
+	 public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getFirstname() {
+		if (this.firstname == null) {
+			return null;
+		} else {
+			return this.firstname.trim();
+		}
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		if (this.lastname == null) {
+			return null;
+		} else {
+			return this.lastname.trim();
+		}
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getCompanyName() {
+		if (companyName == null) {
+			return null;
+		} else {
+			return this.companyName.trim();
+		}
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public String getDescription() {
+		if (this.description == null) {
+			if (this.profileDescription != null) {
+				return this.profileDescription.trim();
+			}
+			return null;
+		} else {
+			return this.description.trim();
+		}
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getName() {
+		if (this.name == null) {
+			return null;
+		} else {
+			return this.name.trim();
+		}
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getName2() {
+		if (this.name2 == null) {
+			return null;
+		} else {
+			return this.name2.trim();
+		}
+	}
+
+	public void setName2(String name2) {
+		this.name2 = name2;
+	}
+
+	public String getDescription2() {
+		if (this.description2 == null) {
+			if (this.profileDescription2 != null) {
+				return this.profileDescription2.trim();
+			}
+			return null;
+		} else {
+			return this.description2.trim();
+		}
+	}
+
+	public void setDescription2(String description2) {
+		this.description2 = description2;
+	}
+	
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+	
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public String getPhone() {
+		if (this.phone == null) {
+			return null; 
+		} else {
+			return this.phone.trim();
+		}
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getPhone2() {
+		if (this.phone2 == null) {
+			return null; 
+		} else {
+			return this.phone2.trim();
+		}
+	}
+
+	public void setPhone2(String phone2) {
+		this.phone2 = phone2;
+	}
+
+	public String getFax() {
+		if (this.fax == null) {
+			return null; 
+		} else {
+			return this.fax.trim();
+		}
+	}
+
+	public void setFax(String fax) {
+		this.fax = fax;
+	}
+
+	public String getWebsite() {
+		if (this.website == null) {
+			return null; 
+		} else {
+			return this.website.trim();
+		}
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	public String getBlog() {
+		if (this.blog == null) {
+			return null; 
+		} else {
+			return this.blog.trim();
+		}
+	}
+
+	public void setBlog(String blog) {
+		this.blog = blog;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	public boolean isDeletePicture() {
+		return deletePicture;
+	}
+
+	public void setDeletePicture(boolean deletePicture) {
+		this.deletePicture = deletePicture;
+	}
+
+	public Boolean isTalkPublic() {
+		return talkPublic;
+	}
+
+	public void setTalkPublic(Boolean talkPublic) {
+		this.talkPublic = talkPublic;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public boolean isGenerateFeed() {
+		return generateFeed;
+	}
+
+	public void setGenerateFeed(boolean generateFeed) {
+		this.generateFeed = generateFeed;
+	}
+
+	public String getProfileDescription() {
+		return profileDescription;
+	}
+
+	public void setProfileDescription(String profileDescription) {
+		this.profileDescription = profileDescription;
+		this.setDescription(profileDescription);
+	}
+
+	public String getProfileDescription2() {
+		return profileDescription2;
+	}
+
+	public void setProfileDescription2(String profileDescription2) {
+		this.profileDescription2 = profileDescription2;
+		this.setDescription2(profileDescription2);
+	}
+}

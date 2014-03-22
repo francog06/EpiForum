@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<!-- Errors -->
+	<entry key="error.request.exception.default">Requête invalide</entry>
+	<entry key="error.server">Erreur interne</entry>
+	<entry key="error.technical.exception.default">Erreur technique</entry>
+	<entry key="error.parameter.exception.default">Paramètre invalide.</entry>
+	<entry key="error.no.contact.send">Aucun contact envoyé</entry>
+
+	<entry key="error.credential.exception.default">Identifiant ou mot de passe invalide.</entry>
+	<entry key="error.credential.exception.empty">Identification requise.</entry>
+	<entry key="error.credential.exception.locale">Il faut s'authentifier pour voir ce profil.</entry>
+	
+	<!-- Errors RestServices -->
+	<entry key="error.restservice.parameter.required">%s obligatoire.</entry>
+	<entry key="error.restservice.parameter.emptyfield">Ce champ doit être renseigné.</entry>
+	<entry key="error.restservice.parameter.badstartindex">L'index de départ est incorrect.</entry>
+	<entry key="error.restservice.parameter.badterms">La recherche ne comporte aucun texte.</entry>
+	<entry key="error.restservice.parameter.badlocale">La locale est incorrecte.</entry>
+	<entry key="error.restservice.parameter.baddevicetype">Le type de client est incorrect.</entry>
+	<entry key="error.restservice.parameter.badusername">Utilisateur incorrect.</entry>
+	<entry key="error.restservice.parameter.badpassword">Mot de passe incorrect.</entry>
+	<entry key="error.restservice.parameter.bademail">L'email est incorrect.</entry>
+	<entry key="error.restservice.parameter.badforgotpassword">Nous n'avons pas trouvé de compte correspondant à ces identifiants.</entry>
+	<entry key="error.restservice.parameter.badnewpassword">Nouveau mot de passe incorrect.</entry>
+	<entry key="error.restservice.parameter.emailalreadyexist">L'email existe déja.</entry>
+	<entry key="error.restservice.parameter.badprofilename">Le libellé du profil est invalide.</entry>
+	<entry key="error.restservice.parameter.badextension">L'extension du fichier est incorrecte.</entry>
+	<entry key="error.restservice.parameter.badfilename">Le nom du fichier est incorrect.</entry>
+	<entry key="error.restservice.parameter.nofile">Aucun fichier.</entry>
+
+	
+	<entry key="email.signature">Cordialement,&lt;br/&gt;L'équipe %s&lt;br/&gt;%s</entry>
+	
+	<!-- Validation email  -->
+	<entry key="email.activation.confirmation.content.subject"><![CDATA[Bienvenue sur %s - Confirmation d'inscription]]></entry>
+	<entry key="email.activation.confirmation.content.title"><![CDATA[Bienvenue sur %s]]></entry>
+	<entry key="email.activation.confirmation.content.message"><![CDATA[Bonjour <span style="font-weight:bold;">%s</span>,<br /><br />Toute l'équipe de %s vous remercie pour votre inscription et vous souhaite la bienvenue !<br/><br/>Veuillez garder cet email précieusement, il vous servira a réactiver votre compte en cas de besoin<br/><br/>]]></entry>
+	<entry key="email.activation.confirmation.content.validate">Activez votre compte</entry>
+	
+	<!--  Validation inscription -->
+	<entry key="email.activation.validation.title">%s - Validation de votre inscription</entry>
+	<entry key="email.activation.validation.message"><![CDATA[Bonjour,<br /><br /><b>%s</b>]]></entry>
+	<entry key="email.activation.validation.notfound">Aucun compte ne correspond à cet email.</entry>
+	<entry key="email.activation.validation.activated">Votre compte a été activé.</entry>
+	<entry key="email.activation.validation.disabled">Votre compte a été désactivé.</entry>
+	<entry key="email.activation.validation.pending">Code erroné. Veuillez réessayer.</entry>
+	
+	<!-- Forgot password email -->
+	<entry key="email.forgot.password.content.subject">Important - %s - Oubli de mot de passe</entry>
+	<entry key="email.forgot.password.content.title">%s - Oubli de mot de passe</entry>
+	<entry key="email.forgot.password.content.message"><![CDATA[Bonjour <span style="font-weight:bold;">%s</span>,<br/><br/>Vous recevez cet email car vous avez fait une demande de réinitialisation de votre mot de passe. Nous vous conseillons de modifier ce mot de passe après votre authentification. <br/><br/>Identifiant : %s<br/>Nouveau mot de passe : %s<br/><br/>]]></entry>
+
+	<!-- Friendship -->
+	<entry key="friendship.create.message">a été ajouté à vos contacts</entry>
+	
+	<!-- Notifications -->
+	<entry key="notification.account.activation">Votre compte a été activé.</entry>
+	
+	<!--  Text -->
+	<entry key="text.you">Vous</entry>	
+</properties>

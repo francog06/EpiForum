@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.epiforum.server</groupId>
+		<artifactId>server</artifactId>
+		<version>1.0</version>
+	</parent>
+
+	<artifactId>ear</artifactId>
+	<packaging>ear</packaging>
+	<name>Ear package</name>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<configuration>
+					<version>6</version>
+					<skinnyWars>true</skinnyWars>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<!-- Generating application.xml here helps us support deployment in 
+						Eclipse. -->
+					<!-- This generated file should be ignored in a source control system -->
+					<!-- <generatedDescriptorLocation>src/main/application/META-INF/</generatedDescriptorLocation> -->
+					<modules>
+						<ejbModule>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>logic</artifactId>
+							<bundleFileName>logic.jar</bundleFileName>
+						</ejbModule>
+						<webModule>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>web</artifactId>
+							<contextRoot>web</contextRoot>
+							<bundleFileName>web.war</bundleFileName>
+						</webModule>
+					</modules>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>ro</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>config</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>data</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>logic</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>web</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+	</dependencies>
+</project>

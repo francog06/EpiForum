@@ -1,0 +1,17 @@
+package com.beepeers.common.ro;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SegmentSubSegmentRO extends SegmentRO {
+
+	private List<SegmentRO> subSegments = new ArrayList<SegmentRO>();
+
+	public List<SegmentRO> getSubSegments() {
+		return subSegments;
+	}
+
+	public void setSubSegments(List<SegmentRO> subSegments) {
+		this.subSegments = subSegments;
+	}
+}

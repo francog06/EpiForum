@@ -1,0 +1,209 @@
+package com.beepeers.common.ro;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class FeedWebRO implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public enum FeedWebTypeRO {
+		PROFILE_CREATED, PROFILE_MODIFIED, RECOMMENDATION, SUBSCRIPTION, POST_SENT, MEDIA_ADDED
+	}
+
+	private String type;
+	private String content;
+	private String thumbnailUrl;
+	private String profileType;
+	private String action;
+	private String groupName;
+	private String groupAction;
+	private String deleteAction;
+	private String reportAction;
+	private Date date;
+	private Date dateNext;
+	@Deprecated
+	private Integer likesCount;
+	@Deprecated
+	private Boolean isProfileLike;
+	@Deprecated
+	private String likeAction;
+	@Deprecated
+	private Integer commentsCount;
+	@Deprecated
+	private String commentAction;
+	private Long feedId;
+	private List<FeedWebItemRO> items = new ArrayList<FeedWebItemRO>();
+	private List<ActionRO> actions = new ArrayList<ActionRO>();
+
+	public Long getFeedId() {
+		return feedId;
+	}
+
+	public void setFeedId(Long feedId) {
+		this.feedId = feedId;
+	}
+	
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		if (content != null) {
+			content = content.replace("\n", "<br/>");
+		}
+		this.content = content;
+	}
+
+	public String getThumbnailUrl() {
+		return thumbnailUrl;
+	}
+
+	public void setThumbnailUrl(String thumbnailUrl) {
+		this.thumbnailUrl = thumbnailUrl;
+	}
+
+	public String getAction() {
+		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
+	}
+	
+	public String getDeleteAction() {
+		return deleteAction;
+	}
+	
+	public String getGroupName() {
+		return groupName;
+	}
+
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
+	}
+
+	public String getGroupAction() {
+		return groupAction;
+	}
+
+	public void setGroupAction(String groupAction) {
+		this.groupAction = groupAction;
+	}
+
+	public void setDeleteAction(String deleteAction) {
+		this.deleteAction = deleteAction;
+	}
+	
+	public String getReportAction() {
+		return reportAction;
+	}
+
+	public void setReportAction(String reportAction) {
+		this.reportAction = reportAction;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	public String getProfileType() {
+		return profileType;
+	}
+
+	public void setProfileType(String profileType) {
+		this.profileType = profileType;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
+	public Date getDateNext() {
+		return dateNext;
+	}
+
+	public void setDateNext(Date dateNext) {
+		this.dateNext = dateNext;
+	}
+
+	@Deprecated
+	public Integer getLikesCount() {
+		return likesCount;
+	}
+
+	@Deprecated
+	public void setLikesCount(Integer likesCount) {
+		this.likesCount = likesCount;
+	}
+
+	@Deprecated
+	public Boolean getIsProfileLike() {
+		return isProfileLike;
+	}
+
+	@Deprecated
+	public void setIsProfileLike(Boolean isProfileLike) {
+		this.isProfileLike = isProfileLike;
+	}
+
+	@Deprecated
+	public String getLikeAction() {
+		return likeAction;
+	}
+
+	@Deprecated
+	public void setLikeAction(String likeAction) {
+		this.likeAction = likeAction;
+	}
+	
+	@Deprecated
+	public Integer getCommentsCount() {
+		return commentsCount;
+	}
+
+	@Deprecated
+	public void setCommentsCount(Integer commentsCount) {
+		this.commentsCount = commentsCount;
+	}
+	
+	@Deprecated
+	public String getCommentAction() {
+		return commentAction;
+	}
+
+	@Deprecated
+	public void setCommentAction(String commentAction) {
+		this.commentAction = commentAction;
+	}
+
+	public List<FeedWebItemRO> getItems() {
+		return items;
+	}
+
+	public void setItems(List<FeedWebItemRO> items) {
+		this.items = items;
+	}
+
+	public List<ActionRO> getActions() {
+		return actions;
+	}
+
+	public void setActions(List<ActionRO> actions) {
+		this.actions = actions;
+	}
+	
+}

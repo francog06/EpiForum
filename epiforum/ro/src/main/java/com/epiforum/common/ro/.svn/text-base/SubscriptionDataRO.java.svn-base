@@ -1,0 +1,206 @@
+package com.beepeers.common.ro;
+
+import java.util.Date;
+
+public class SubscriptionDataRO {
+
+	private String phone;
+	private String nickname;
+	private String email;
+	private String firstname;
+	private String lastname;
+	private Date birthDate;
+	private String profileName;
+	private String profileName2;
+	private String profilePhone;
+	private String profileEmail;
+	private Boolean talkPublic;
+	private String picture;
+	private LocationRO location;
+	private String password;
+	private String activationCode;
+	private String applicationKey;
+	private String countryCode;
+	private String locale;
+	
+	public String getPhone() {
+		if (this.phone == null) {
+			return null;
+		} else {
+			return this.phone.trim();
+		}
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
+	public String getNickname() {
+		if (this.nickname == null) {
+			return null;
+		} else {
+			return this.nickname.trim();
+		}
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getEmail() {
+		if (this.email == null) {
+			return null;
+		} else {
+			return this.email.trim();
+		}
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getFirstname() {
+		if (this.firstname == null) {
+			return null;
+		} else {
+			return this.firstname.trim();
+		}
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		if (this.lastname == null) {
+			return null;
+		} else {
+			return this.lastname.trim();
+		}
+		
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getProfileName() {
+		if (this.profileName == null) {
+			return null;
+		} else {
+			return this.profileName.trim();
+		}
+	}
+
+	public void setProfileName(String profileName) {
+		this.profileName = profileName;
+	}
+	
+	public String getProfileName2() {
+		if (this.profileName2 == null) {
+			return null;
+		} else {
+			return this.profileName2.trim();
+		}
+	}
+
+	public void setProfileName2(String profileName2) {
+		this.profileName2 = profileName2;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public String getProfilePhone() {
+		if (this.profilePhone == null) {
+			return null;
+		} else {
+			return this.profilePhone.trim();
+		}
+	}
+
+	public void setProfilePhone(String profilePhone) {
+		this.profilePhone = profilePhone;
+	}
+
+	public String getProfileEmail() {
+		if (this.profileEmail == null) {
+			return null;
+		} else {
+			return this.profileEmail.trim();
+		}
+	}
+
+	public void setProfileEmail(String profileEmail) {
+		this.profileEmail = profileEmail;
+	}
+
+	public Boolean getTalkPublic() {
+		return talkPublic;
+	}
+
+	public void setTalkPublic(Boolean talkPublic) {
+		this.talkPublic = talkPublic;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	public LocationRO getLocation() {
+		return location;
+	}
+
+	public void setLocation(LocationRO location) {
+		this.location = location;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getActivationCode() {
+		return activationCode;
+	}
+
+	public void setActivationCode(String activationCode) {
+		this.activationCode = activationCode;
+	}
+
+	public String getApplicationKey() {
+		return applicationKey;
+	}
+
+	public void setApplicationKey(String applicationKey) {
+		this.applicationKey = applicationKey;
+	}
+
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
+
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
+	}
+}

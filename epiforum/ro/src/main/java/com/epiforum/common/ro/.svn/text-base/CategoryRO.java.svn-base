@@ -1,0 +1,59 @@
+package com.beepeers.common.ro;
+
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class CategoryRO {
+
+	private List<MyFunctionRO> functionList;
+
+	private String pictureUrl;
+
+	private String name;
+
+	private String description;
+
+	private Integer orderNum;
+
+	public List<MyFunctionRO> getFunctionList() {
+		return functionList;
+	}
+
+	public void setFunctionList(List<MyFunctionRO> functionList) {
+		this.functionList = functionList;
+	}
+
+	public String getPictureUrl() {
+		return pictureUrl;
+	}
+
+	public void setPictureUrl(String pictureUrl) {
+		this.pictureUrl = pictureUrl;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Integer getOrderNum() {
+		return orderNum;
+	}
+
+	public void setOrderNum(Integer orderNum) {
+		this.orderNum = orderNum;
+	}
+}

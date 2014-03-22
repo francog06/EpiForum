@@ -1,0 +1,31 @@
+package com.beepeers.common.ro;
+
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class SyncRequestRO {
+
+	private List<ContactRO> contactData;
+
+	private String countryCode;
+
+	public List<ContactRO> getContactData() {
+		return contactData;
+	}
+
+	public void setContactData(List<ContactRO> contactData) {
+		this.contactData = contactData;
+	}
+
+	// TODO : remove country code and move it to refreshSession method
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
+
+}

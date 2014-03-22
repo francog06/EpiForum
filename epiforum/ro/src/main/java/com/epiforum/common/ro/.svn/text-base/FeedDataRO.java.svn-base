@@ -1,0 +1,131 @@
+package com.beepeers.common.ro;
+
+import java.util.Date;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.beepeers.common.ro.ActionRO.ActionTypeRO;
+
+@XmlRootElement
+public class FeedDataRO {
+	// Last feed date
+	private Date date = null;
+
+	// Start index for pagination
+	private Long startIndex;
+
+	// Number of results for pagination
+	private Long nbResult;
+
+	// Show comments
+	private boolean comment = false;
+
+	// Generate HTML in content
+	private boolean html = false;
+
+	// Show only feeds from group
+	private boolean group = false;
+	
+	// Show only feeds from group with this profile type key
+	private String groupKey;
+	
+	// Show only post feeds with this post_type_key
+	private String postKey;
+
+	// Show only POST feeds
+	private boolean post = false;
+
+	// Show only feeds from profiles I subscribed (friendship)
+	private boolean subscribers = false;
+	
+	// Order feeds by count of action type
+	private ActionTypeRO scoringType;
+
+	public boolean isHtml() {
+		return html;
+	}
+
+	public void setHtml(boolean html) {
+		this.html = html;
+	}
+
+	public boolean isComment() {
+		return comment;
+	}
+
+	public void setComment(boolean comment) {
+		this.comment = comment;
+	}
+
+	public Long getStartIndex() {
+		return startIndex;
+	}
+
+	public void setStartIndex(Long startIndex) {
+		this.startIndex = startIndex;
+	}
+
+	public Long getNbResult() {
+		return nbResult;
+	}
+
+	public void setNbResult(Long nbResult) {
+		this.nbResult = nbResult;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public boolean isGroup() {
+		return group;
+	}
+
+	public void setGroup(boolean isGroup) {
+		this.group = isGroup;
+	}
+	
+	public String getGroupKey() {
+		return groupKey;
+	}
+
+	public void setGroupKey(String groupKey) {
+		this.groupKey = groupKey;
+	}
+	
+	public String getPostKey() {
+		return postKey;
+	}
+
+	public void setPostKey(String postKey) {
+		this.postKey = postKey;
+	}
+
+	public boolean isPost() {
+		return post;
+	}
+
+	public void setPost(boolean post) {
+		this.post = post;
+	}
+
+	public boolean isSubscribers() {
+		return subscribers;
+	}
+
+	public void setSubscribers(boolean subscribers) {
+		this.subscribers = subscribers;
+	}
+
+	public ActionTypeRO getScoringType() {
+		return scoringType;
+	}
+
+	public void setScoringType(ActionTypeRO scoringType) {
+		this.scoringType = scoringType;
+	}
+}

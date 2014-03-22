@@ -1,0 +1,92 @@
+package com.beepeers.common.ro;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.beepeers.common.ro.FriendshipRO.SubscriptionStatusRO;
+
+@XmlRootElement
+public class ProfileRO extends CommonProfileRO {
+
+	private List<FunctionRO> functionList;
+
+	@Deprecated
+	private boolean subscribed;
+	private SubscriptionStatusRO subscriptionStatus;
+	private boolean notification;
+	private Integer publicSubscribersCount;
+	private Integer mediasCount;
+	private List<Long> publicFriendIds;
+
+	public ProfileRO() {
+		this.functionList = new ArrayList<FunctionRO>();
+	}
+
+	public List<FunctionRO> getFunctionList() {
+		return functionList;
+	}
+
+	public void setFunctionList(List<FunctionRO> functionList) {
+		this.functionList = functionList;
+	}
+	
+	public void setFriendshipRO(FriendshipRO friendshipRO) {
+		if (friendshipRO != null) {
+			this.setSubscribed(friendshipRO.getSubscribed());
+			this.setSubscriptionStatus(friendshipRO.getSubscriptionStatus());
+			this.setNotification(friendshipRO.getNotification());
+		}
+	}
+	
+	@Deprecated
+	public boolean isSubscribed() {
+		return subscribed;
+	}
+
+	@Deprecated
+	public void setSubscribed(boolean subscribed) {
+		this.subscribed = subscribed;
+	}
+
+	public SubscriptionStatusRO getSubscriptionStatus() {
+		return subscriptionStatus;
+	}
+
+	public void setSubscriptionStatus(SubscriptionStatusRO subscriptionStatus) {
+		this.subscriptionStatus = subscriptionStatus;
+	}
+
+	public boolean isNotification() {
+		return notification;
+	}
+
+	public void setNotification(boolean notification) {
+		this.notification = notification;
+	}
+
+	public Integer getPublicSubscribersCount() {
+		return publicSubscribersCount;
+	}
+
+	public void setPublicSubscribersCount(Integer publicSubscribersCount) {
+		this.publicSubscribersCount = publicSubscribersCount;
+	}
+	
+	public Integer getMediasCount() {
+		return mediasCount;
+	}
+
+	public void setMediasCount(Integer mediasCount) {
+		this.mediasCount = mediasCount;
+	}
+
+	public List<Long> getPublicFriendIds() {
+		return publicFriendIds;
+	}
+
+	public void setPublicFriendIds(List<Long> publicFriendIds) {
+		this.publicFriendIds = publicFriendIds;
+	}
+}

@@ -1,0 +1,104 @@
+package com.beepeers.common.ro;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class MyProfileRO extends CommonProfileRO {
+
+	private List<MyFunctionRO>	functionList;
+	
+	private List<MyProfileListRO> profileList;
+
+	private Boolean talkPublic;
+	
+	private String activationCode;
+	
+	private String accountEmail;
+	
+	private String accountNickname;
+	
+	private String accountPhone;
+	
+	private String status;
+	
+	private Integer profileTypeId;
+
+	public Integer getProfileTypeId() {
+		return profileTypeId;
+	}
+
+	public void setProfileTypeId(Integer profileTypeId) {
+		this.profileTypeId = profileTypeId;
+	}
+
+	public List<MyProfileListRO> getProfileList() {
+		return profileList;
+	}
+
+	public void setProfileList(List<MyProfileListRO> profileList) {
+		this.profileList = profileList;
+	}
+
+	public MyProfileRO() {
+		this.functionList = new ArrayList<MyFunctionRO>();
+	}
+
+	public List<MyFunctionRO> getFunctionList() {
+		return functionList;
+	}
+
+	public void setFunctionList(List<MyFunctionRO> functionList) {
+		this.functionList = functionList;
+	}
+	
+	public String getAccountEmail() {
+		return accountEmail;
+	}
+
+	public void setAccountEmail(String accountEmail) {
+		this.accountEmail = accountEmail;
+	}
+
+	public String getAccountNickname() {
+		return accountNickname;
+	}
+
+	public void setAccountNickname(String accountNickname) {
+		this.accountNickname = accountNickname;
+	}
+
+	public String getAccountPhone() {
+		return accountPhone;
+	}
+
+	public void setAccountPhone(String accountPhone) {
+		this.accountPhone = accountPhone;
+	}
+
+	public Boolean isTalkPublic() {
+		return talkPublic;
+	}
+
+	public void setTalkPublic(Boolean talkPublic) {
+		this.talkPublic = talkPublic;
+	}
+
+	public String getActivationCode() {
+		return activationCode;
+	}
+
+	public void setActivationCode(String activationCode) {
+		this.activationCode = activationCode;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+}

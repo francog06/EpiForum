@@ -1,0 +1,71 @@
+package com.beepeers.common.ro;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class MyProfileListRO {
+	private Integer id;
+	private boolean	alphabeticSort;
+	private boolean displaySections;
+	private String key;
+	private String name;
+	private String description;
+	private boolean displayFastScroll;
+	
+	public boolean isDisplaySections() {
+		return displaySections;
+	}
+
+	public void setDisplaySections(boolean displaySections) {
+		this.displaySections = displaySections;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public boolean isAlphabeticSort() {
+		return alphabeticSort;
+	}
+
+	public void setAlphabeticSort(boolean alphabeticSort) {
+		this.alphabeticSort = alphabeticSort;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public boolean isDisplayFastScroll() {
+		return displayFastScroll;
+	}
+
+	public void setDisplayFastScroll(boolean displayFastScroll) {
+		this.displayFastScroll = displayFastScroll;
+	}
+
+}

@@ -1,0 +1,137 @@
+package com.beepeers.common.ro;
+
+import java.util.List;
+
+public class MyProfileTypeRO {
+
+	private Integer id;
+	private Long catalogId;
+
+	private String name;
+	private String nameFr;
+	private String nameEn;
+	private String key;
+
+	private boolean isPublic;
+	private boolean isUserType;
+	private boolean isGroup;
+	private boolean isEvent;
+	private boolean displayLastPost;
+	
+	private boolean nicknameRegistration;
+	private boolean phoneRegistration;
+
+	private List<FieldRO> fields;
+
+	public Long getCatalogId() {
+		return catalogId;
+	}
+
+	public void setCatalogId(Long catalogId) {
+		this.catalogId = catalogId;
+	}
+
+	public boolean isUserType() {
+		return isUserType;
+	}
+
+	public void setUserType(boolean isUserType) {
+		this.isUserType = isUserType;
+	}
+
+	public boolean isGroup() {
+		return isGroup;
+	}
+
+	public void setGroup(boolean isGroup) {
+		this.isGroup = isGroup;
+	}
+	
+	public boolean isEvent() {
+		return isEvent;
+	}
+
+	public void setEvent(boolean isEvent) {
+		this.isEvent = isEvent;
+	}
+
+	public boolean isDisplayLastPost() {
+		return displayLastPost;
+	}
+
+	public void setDisplayLastPost(boolean displayLastPost) {
+		this.displayLastPost = displayLastPost;
+	}
+	
+	public boolean isNicknameRegistration() {
+		return nicknameRegistration;
+	}
+
+	public void setNicknameRegistration(boolean nicknameRegistration) {
+		this.nicknameRegistration = nicknameRegistration;
+	}
+
+	public boolean isPhoneRegistration() {
+		return phoneRegistration;
+	}
+
+	public void setPhoneRegistration(boolean phoneRegistration) {
+		this.phoneRegistration = phoneRegistration;
+	}
+
+	public List<FieldRO> getFields() {
+		return fields;
+	}
+
+	public void setFields(List<FieldRO> fields) {
+		this.fields = fields;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getNameFr() {
+		return nameFr;
+	}
+
+	public void setNameFr(String nameFr) {
+		this.nameFr = nameFr;
+	}
+
+	public String getNameEn() {
+		return nameEn;
+	}
+
+	public void setNameEn(String nameEn) {
+		this.nameEn = nameEn;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+
+	public boolean isPublic() {
+		return isPublic;
+	}
+
+	public void setPublic(boolean isPublic) {
+		this.isPublic = isPublic;
+	}
+}

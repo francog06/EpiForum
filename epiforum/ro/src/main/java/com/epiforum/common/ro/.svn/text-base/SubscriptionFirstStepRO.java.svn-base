@@ -1,0 +1,71 @@
+package com.beepeers.common.ro;
+
+public class SubscriptionFirstStepRO {
+
+	private String phone;
+	private String nickname;
+	private String email;
+	private String applicationKey;
+	private String locale;
+	private String countryCode;
+
+	public String getPhone() {
+		if (this.phone == null) {
+			return null;
+		} else {
+			return this.phone.trim();
+		}
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
+	public String getNickname() {
+		if (this.nickname == null) {
+			return null;
+		} else {
+			return this.nickname.trim();
+		}
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getEmail() {
+		if (this.email == null) {
+			return null;
+		} else {
+			return this.email.trim();
+		}
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getApplicationKey() {
+		return applicationKey;
+	}
+
+	public void setApplicationKey(String applicationKey) {
+		this.applicationKey = applicationKey;
+	}
+
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
+	}
+
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
+}

@@ -1,0 +1,53 @@
+package com.beepeers.common.ro;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class ServiceDataRO {
+
+	public enum TokenTypeRO {
+		FACEBOOK
+	}
+	
+	private TokenTypeRO type;
+	
+	private String token;
+	
+	private String identifier;
+	
+	private String name;
+
+	public TokenTypeRO getType() {
+		return type;
+	}
+
+	public void setType(TokenTypeRO type) {
+		this.type = type;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	
+}

@@ -1,0 +1,156 @@
+package com.beepeers.common.ro;
+
+public class CompanyRO {
+
+	private String phone;
+	
+	private String email;
+
+	private String companyName;
+	
+	private String companyDescription;
+	
+	private int subcategory;
+	
+	private String picture;
+	
+	private LocationRO location;
+	
+	private String web;
+	
+	private String contact_form;
+	
+	private String schedule;
+	
+	private String album;
+	
+	private String facebook;
+	
+	private String gplus;
+	
+	private String linkedin;
+	
+	private String twitter;
+	
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public String getCompanyDescription() {
+		return companyDescription;
+	}
+
+	public void setCompanyDescription(String companyDescription) {
+		this.companyDescription = companyDescription;
+	}
+
+	public int getSubcategory() {
+		return subcategory;
+	}
+
+	public void setSubcategory(int subcategory) {
+		this.subcategory = subcategory;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	public LocationRO getLocation() {
+		return location;
+	}
+
+	public void setLocation(LocationRO location) {
+		this.location = location;
+	}
+
+	public String getWeb() {
+		return web;
+	}
+
+	public void setWeb(String web) {
+		this.web = web;
+	}
+
+	public String getContact_form() {
+		return contact_form;
+	}
+
+	public void setContact_form(String contact_form) {
+		this.contact_form = contact_form;
+	}
+
+	public String getSchedule() {
+		return schedule;
+	}
+
+	public void setSchedule(String schedule) {
+		this.schedule = schedule;
+	}
+
+	public String getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(String album) {
+		this.album = album;
+	}
+
+	public String getFacebook() {
+		return facebook;
+	}
+
+	public void setFacebook(String facebook) {
+		this.facebook = facebook;
+	}
+
+	public String getGplus() {
+		return gplus;
+	}
+
+	public void setGplus(String gplus) {
+		this.gplus = gplus;
+	}
+
+	public String getLinkedin() {
+		return linkedin;
+	}
+
+	public void setLinkedin(String linkedin) {
+		this.linkedin = linkedin;
+	}
+
+	public String getTwitter() {
+		return twitter;
+	}
+
+	public void setTwitter(String twitter) {
+		this.twitter = twitter;
+	}
+
+}
+

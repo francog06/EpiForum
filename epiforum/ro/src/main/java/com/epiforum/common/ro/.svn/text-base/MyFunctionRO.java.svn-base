@@ -1,0 +1,133 @@
+package com.beepeers.common.ro;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class MyFunctionRO implements Comparable<MyFunctionRO> {
+
+	private String pictureUrl;
+
+	private String name;
+
+	private String description;
+
+	private List<MyParameterRO> parameterList;
+
+	private Long functionInstanceId;
+
+	private Long functionId;
+
+	private Integer orderNum;
+	
+	// Configurable sur le device
+	private Boolean configurable;
+	
+	// Label et photo modifiable
+	private Boolean customizable;
+
+	public MyFunctionRO() {
+		this.parameterList = new ArrayList<MyParameterRO>();
+	}
+
+	public String getPictureUrl() {
+		return pictureUrl;
+	}
+
+	public void setPictureUrl(String pictureUrl) {
+		this.pictureUrl = pictureUrl;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public List<MyParameterRO> getParameterList() {
+		return parameterList;
+	}
+	
+	public Map<String, MyParameterRO> getParameterMap() {
+		Map<String, MyParameterRO> parameterMap = new HashMap<String, MyParameterRO>();
+		
+		for (MyParameterRO ro : this.getParameterList())
+			parameterMap.put(ro.getName(), ro);
+		
+		return parameterMap;
+	}
+
+	public void setParameterList(List<MyParameterRO> parameterList) {
+		this.parameterList = parameterList;
+	}
+	
+	public void setParameterMap(Map<String, MyParameterRO> parameterMap) {
+		if (parameterMap != null)
+			this.parameterList = new ArrayList<MyParameterRO>(parameterMap.values());
+	}
+
+	public Long getFunctionInstanceId() {
+		return functionInstanceId;
+	}
+
+	public void setFunctionInstanceId(Long functionInstanceId) {
+		this.functionInstanceId = functionInstanceId;
+	}
+
+	public Long getFunctionId() {
+		return functionId;
+	}
+
+	public void setFunctionId(Long functionId) {
+		this.functionId = functionId;
+	}
+
+	public Integer getOrderNum() {
+		return orderNum;
+	}
+
+	public void setOrderNum(Integer orderNum) {
+		this.orderNum = orderNum;
+	}
+
+	public Boolean isConfigurable() {
+		if (configurable == null)
+			return false;
+		else
+			return configurable;
+	}
+
+	public void setConfigurable(Boolean configurable) {
+		this.configurable = configurable;
+	}
+
+	public Boolean isCustomizable() {
+		if (customizable == null)
+			return false;
+		else
+			return customizable;
+	}
+
+	public void setCustomizable(Boolean customizable) {
+		this.customizable = customizable;
+	}
+
+	@Override
+	public int compareTo(MyFunctionRO other) {
+		return this.getOrderNum().compareTo(other.getOrderNum());
+	}
+}

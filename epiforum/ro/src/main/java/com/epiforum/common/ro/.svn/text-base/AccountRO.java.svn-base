@@ -1,0 +1,129 @@
+package com.beepeers.common.ro;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class AccountRO {
+	
+	public enum AccountStatusRO {
+		PENDING, PENDING_1_ATTEMPT, PENDING_2_ATTEMPTS, ACTIVATED, DISABLED, DELETED
+	}
+
+	private Long accountId;
+	
+	private String talkId;
+	
+	private String phone;
+	
+	private String email;
+	
+	private String nickname;
+	
+	private String firstname;
+	
+	private String lastname;
+	
+	private AccountStatusRO status;
+	
+	private List<MyProfileRO> profiles;
+	
+	private List<ServiceDataRO> services;
+	
+	private MessageRO lastMessage;
+		
+	public AccountRO() {
+		this.profiles = new ArrayList<MyProfileRO>();
+		this.services = new ArrayList<ServiceDataRO>();
+	}
+
+	public Long getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
+	}
+
+	public String getTalkId() {
+		return talkId;
+	}
+
+	public void setTalkId(String talkId) {
+		this.talkId = talkId;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public AccountStatusRO getStatus() {
+		return status;
+	}
+
+	public void setStatus(AccountStatusRO status) {
+		this.status = status;
+	}
+
+	public List<MyProfileRO> getProfiles() {
+		return profiles;
+	}
+
+	public void setProfiles(List<MyProfileRO> profiles) {
+		this.profiles = profiles;
+	}
+
+	public List<ServiceDataRO> getServices() {
+		return services;
+	}
+
+	public void setServices(List<ServiceDataRO> services) {
+		this.services = services;
+	}
+
+	public MessageRO getLastMessage() {
+		return lastMessage;
+	}
+
+	public void setLastMessage(MessageRO lastMessage) {
+		this.lastMessage = lastMessage;
+	}
+}

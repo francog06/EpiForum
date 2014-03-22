@@ -1,0 +1,41 @@
+package com.beepeers.common.ro;
+
+public class FieldRO {
+
+	private String	field;
+	private String	label;
+	private String	label2;
+	private boolean	required;
+
+	public String getField() {
+		return field;
+	}
+
+	public void setField(String field) {
+		this.field = field;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public String getLabel2() {
+		return label2;
+	}
+
+	public void setLabel2(String label2) {
+		this.label2 = label2;
+	}
+
+	public boolean isRequired() {
+		return required;
+	}
+
+	public void setRequired(boolean required) {
+		this.required = required;
+	}
+}

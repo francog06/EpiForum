@@ -1,0 +1,143 @@
+package com.beepeers.common.ro;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class FeedWebItemRO implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	public enum FeedWebItemTypeRO {
+		PROFILE, FUNCTION, PICTURE, POST, COMMENT
+	}
+
+	private FeedWebItemTypeRO type;
+	private String content;
+	private String title;
+	private String profileType;
+	private String thumbnailUrl;
+	private String originalUrl;
+	private String thumbnailUrl2;
+	private String action;
+	private String deleteAction;
+	private String reportAction;
+	private String detail;
+	private String detail2;
+	private Long commentId;
+	private Date date;
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public Long getCommentId() {
+		return commentId;
+	}
+
+	public void setCommentId(Long commentId) {
+		this.commentId = commentId;
+	}
+
+	public FeedWebItemRO(FeedWebItemTypeRO type) {
+		this.type = type;
+	}
+
+	public FeedWebItemTypeRO getType() {
+		return type;
+	}
+
+	public void setType(FeedWebItemTypeRO type) {
+		this.type = type;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getProfileType() {
+		return profileType;
+	}
+
+	public void setProfileType(String profileType) {
+		this.profileType = profileType;
+	}
+
+	public String getThumbnailUrl() {
+		return thumbnailUrl;
+	}
+
+	public void setThumbnailUrl(String thumbnailUrl) {
+		this.thumbnailUrl = thumbnailUrl;
+	}
+
+	public String getOriginalUrl() {
+		return originalUrl;
+	}
+
+	public void setOriginalUrl(String originalUrl) {
+		this.originalUrl = originalUrl;
+	}
+
+	public String getThumbnailUrl2() {
+		return thumbnailUrl2;
+	}
+
+	public void setThumbnailUrl2(String thumbnailUrl2) {
+		this.thumbnailUrl2 = thumbnailUrl2;
+	}
+
+	public String getAction() {
+		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
+	}
+
+	public String getDeleteAction() {
+		return deleteAction;
+	}
+
+	public void setDeleteAction(String deleteAction) {
+		this.deleteAction = deleteAction;
+	}
+	
+	public String getReportAction() {
+		return reportAction;
+	}
+
+	public void setReportAction(String reportAction) {
+		this.reportAction = reportAction;
+	}
+
+	public String getDetail() {
+		return detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+
+	public String getDetail2() {
+		return detail2;
+	}
+
+	public void setDetail2(String detail2) {
+		this.detail2 = detail2;
+	}
+}
