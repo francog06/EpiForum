@@ -25,7 +25,7 @@ public class AccountManager {
 	private AccountDao			accountDao;
 
 	@SuppressWarnings("restriction")
-	private String			encodePassword(String clearedPassword) throws TechnicalException {
+	public String				encodePassword(String clearedPassword) throws TechnicalException {
 		if (clearedPassword == null || clearedPassword.trim().isEmpty()) {
 			return null;
 		}
@@ -40,12 +40,12 @@ public class AccountManager {
 		}
 	}
 
-	private boolean			emailIsValid(final String email) {
+	private boolean				emailIsValid(final String email) {
 		EmailValidator ev = new EmailValidator();
 		return ev.validate(email);
 	}
 	
-	private boolean			emailIsUsed(final String email) {
+	private boolean				emailIsUsed(final String email) {
 		return this.accountDao.emailIsUsed(email);
 	}
 
@@ -65,23 +65,23 @@ public class AccountManager {
 		return ac;
 	}
 
-	public Account loginWithEmailAndPassword(String email, String password,
-			Type type) {
+	public Account				loginWithEmailAndPassword(String email, String password, Type type) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Account getAccountFromEMail(String userEmail) {
+	public Account				getAccountFromEMail(String userEmail) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public String forgotEmail(Account ac) {
-		// TODO Auto-generated method stub
-		return null;
+	public String				forgotPassword(Account ac) throws TechnicalException {
+		String newPass = RandomStringUtils.randomAlphanumeric(16);
+		ac.setPassword(this.encodePassword(newPass));
+		return newPass;
 	}
 
-	public boolean deleteAccount(Account ac) {
+	public boolean				deleteAccount(Account ac) {
 		ac.setStatus(Account.Status.DISABLED);
 		return false;
 	}	

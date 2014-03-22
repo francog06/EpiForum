@@ -125,7 +125,7 @@ public class MailManager {
 		return mainTemplate;
 	}
 
-	public void sendActivationMail(String email, String activationCode, Application application) throws TechnicalException {
+	public void sendActivationMail(String email, String nickname, String activationCode, Application application) throws TechnicalException {
 		try {
 			InputStream activateAccountInputStream = getClass().getResourceAsStream("/com/epiforum/server/logic/mail/template/activateAccount.html");
 			StringWriter activateAccountWriter = new StringWriter();
@@ -133,7 +133,7 @@ public class MailManager {
 			String activateAccountTemplate = activateAccountWriter.toString();
 			
 			// Set the activation url, title and body for email
-			String activationUrl = String.format(Configuration.getActivationUrl(), email, activationCode);
+			String activationUrl = String.format(Configuration.getActivationUrl(), nickname, activationCode);
 			activateAccountTemplate = activateAccountTemplate.replace("{activationUrl}", activationUrl);
 
 			String welcomeText = I18n.getMessage(MessageKey.EMAIL_ACTIVATION_CONFIRMATION_CONTENT_TITLE, application.getLocale());
@@ -141,7 +141,7 @@ public class MailManager {
 			activateAccountTemplate = activateAccountTemplate.replace("{welcomeText}", welcomeText);
 
 			String contentText = I18n.getMessage(MessageKey.EMAIL_ACTIVATION_CONFIRMATION_CONTENT_MESSAGE, application.getLocale());
-			contentText = String.format(contentText, email, application);
+			contentText = String.format(contentText, nickname, application);
 
 			activateAccountTemplate = activateAccountTemplate.replace("{contentText}", contentText);
 			
@@ -170,7 +170,7 @@ public class MailManager {
 		}
 	}
 
-	public void sendForgotPasswordEmail(String email, String password, Application application) throws TechnicalException {
+	public void sendForgotPasswordEmail(String email, String nickname, String password, Application application) throws TechnicalException {
 		try {
 			InputStream forgotPasswordInputStream = getClass().getResourceAsStream("/com/cubbyhole/server/logic/mail/template/forgotPassword.html");
 			StringWriter forgotPasswordAccountWriter = new StringWriter();
@@ -184,7 +184,7 @@ public class MailManager {
 			String contentText = I18n.getMessage(MessageKey.EMAIL_FORGOT_PASSWORD_CONTENT_MESSAGE, application.getLocale());
 			String login = "<b>" + email + "</b>";
 			password = "<b>" + password + "</b>";
-			contentText = String.format(contentText, email, login, password);
+			contentText = String.format(contentText, nickname, login, password);
 			forgotPasswordTemplate = forgotPasswordTemplate.replace("{contentText}", contentText);
 			
 			String signatureText = I18n.getMessage(MessageKey.EMAIL_SIGNATURE, application.getLocale());
