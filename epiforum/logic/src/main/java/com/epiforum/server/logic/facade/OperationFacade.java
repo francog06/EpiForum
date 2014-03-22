@@ -13,6 +13,8 @@ import org.apache.commons.lang3.RandomStringUtils;
 import com.epiforum.common.ro.AccountRO;
 import com.epiforum.common.ro.ChangeInfo;
 import com.epiforum.common.ro.LoginRO;
+import com.epiforum.common.ro.MyProfileRO;
+import com.epiforum.common.ro.ProfileInfoRO;
 import com.epiforum.common.ro.RandomPasswordRO;
 import com.epiforum.common.ro.SignupRO;
 import com.epiforum.server.data.entity.Account;
@@ -197,17 +199,21 @@ public class OperationFacade {
 
 								/*	PROFILE STUFF	*/
 
-	public UserRO				getProfileFromId(HttpServletRequest request, String token, Long profileId) throws BadCredentialException, BadParametersException {
+	public ProfileInfoRO		getProfileFromId(HttpServletRequest request, String token, Long profileId) throws BadCredentialException, BadParametersException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException("Veuillez vous connecter");
 		}
 		Session se = this.sessionManager.getSession(token);
 		Profile pro = this.profileManager.getProfileFromId(profileId);
+		ProfileInfoRO user = null;
 		if (!se.getProfile().equals(pro)) {
-			return null;
+			// profil d'un membre
+			user = ROBuilder.createRO(pro);
+		} else {
+			// mon profil
+			user = ROBuilder.createRO(pro);
 		}
 		se.setLastActivity("getProfileFromId");
-		ProfileRO user = ROBuilder.createRO(pro, se);
 		return user;
 	}
 
