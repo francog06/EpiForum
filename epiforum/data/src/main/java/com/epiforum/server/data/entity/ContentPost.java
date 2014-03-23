@@ -26,44 +26,44 @@ public class ContentPost implements Serializable {
 	 */
 	private static final long serialVersionUID = -5589025369197669863L;
 
-	private int				postId;
+	private Integer			postId;
 	private Post			post;
 	private String			content;
 
-	public ContentPost() {
+	public 					ContentPost() {
 	}
 
-	public ContentPost(Post post, String content) {
+	public 					ContentPost(Post post, String content) {
 		this.post = post;
 		this.content = content;
 	}
 
 	@Id
 	@Column(name = "postId", unique = true, nullable = false)
-	public int getPostId() {
+	public Integer 			getPostId() {
 		return this.postId;
 	}
 
-	public void setPostId(int postId) {
+	public void 			setPostId(Integer postId) {
 		this.postId = postId;
 	}
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
-	public Post getPost() {
+	public Post 			getPost() {
 		return this.post;
 	}
 
-	public void setPost(Post post) {
+	public void 			setPost(Post post) {
 		this.post = post;
 	}
 
 	@Column(name = "content", nullable = false, columnDefinition = "TEXT")
-	public String getContent() {
+	public String 			getContent() {
 		return this.content;
 	}
 
-	public void setContent(String content) {
+	public void 			setContent(String content) {
 		this.content = content;
 	}
 }

@@ -48,8 +48,8 @@ public class Signup extends OperationResource {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SignupRO sign = new SignupRO();
 		sign.setEmail(request.getParameter("email"));
-		sign.setFirstName(request.getParameter("firstname"));
-		sign.setLastName(request.getParameter("lastname"));
+		sign.setFirstname(request.getParameter("firstname"));
+		sign.setLastname(request.getParameter("lastname"));
 		sign.setPassword(request.getParameter("password"));
 		try {
 			this.operationFacade.subscribe(request, sign);

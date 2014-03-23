@@ -15,6 +15,7 @@ import com.epiforum.server.data.entity.Account;
 import com.epiforum.server.data.entity.Account.Type;
 import com.epiforum.server.logic.application.Application;
 import com.epiforum.server.logic.dao.AccountDao;
+import com.epiforum.server.logic.exception.BadCredentialException;
 import com.epiforum.server.logic.exception.BadParametersException;
 import com.epiforum.server.logic.exception.TechnicalException;
 import com.epiforum.server.logic.utils.EmailValidator;
@@ -53,29 +54,34 @@ public class AccountManager {
 	}
 
 	public Account				createAccount(HttpServletRequest request, SignupRO signup) throws BadParametersException, TechnicalException {
-		if (emailIsValid(signup.getEmail()) == false) {
+		if (emailIsValid(signup.getEmail().trim()) == false) {
 			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_BADEMAIL, Application.getLocale()));
-		} else if (emailIsUsed(signup.getEmail()) == true) {
+		} else if (emailIsUsed(signup.getEmail().trim()) == true) {
 			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_EMAILALREADYUSED, Application.getLocale()));
 		}
 		Account ac = new Account();
-		ac.setEmail(signup.getEmail());
-		ac.setPassword(this.encodePassword(signup.getPassword()));
+		ac.setEmail(signup.getEmail().trim());
+		ac.setPassword(this.encodePassword(signup.getPassword().trim()));
 		ac.setStatus(Account.Status.PENDING);
 		ac.setActivationCode(RandomStringUtils.randomAlphanumeric(16));
-		ac.setIpAddress(request.getRemoteAddr());
+		ac.setIpAddress(request.getRemoteAddr().trim());
 		this.accountDao.saveAccount(ac);
 		return ac;
 	}
 
-	public Account				loginWithEmailAndPassword(String email, String password, Type type) {
-		// TODO Auto-generated method stub
-		return null;
+	public Account				getAccountFromEMail(String email) {
+		return this.accountDao.getAccountFromEmail(email);
 	}
 
-	public Account				getAccountFromEMail(String userEmail) {
-		// TODO Auto-generated method stub
-		return null;
+	public Account				loginWithEmailAndPassword(String email, String password, Type type) throws BadCredentialException {
+		Account ac = this.accountDao.getAccountFromEmailAndPassword(email, password, type);
+		if (ac == null) {
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_DEFAULT, Application.getLocale()));
+		} else if (ac.getStatus() != Account.Status.ACTIVATED) {
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_ACCOUNT, Application.getLocale()));
+		}
+		System.out.println(email + " logged in !");
+		return ac;
 	}
 
 	public String				forgotPassword(Account ac) throws TechnicalException {

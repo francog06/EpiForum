@@ -44,16 +44,16 @@ public class Category implements Serializable, ICreateListener, IUpdateListener 
 
 	private List<Board>		boards = new ArrayList<Board>(0);
 
-	public Category() {
+	public 					Category() {
 	}
 
-	public Category(Date created, Date modified, String title) {
+	public 					Category(Date created, Date modified, String title) {
 		this.created = created;
 		this.modified = modified;
 		this.title = title;
 	}
 
-	public Category(Date created, Date modified, String title,
+	public 					Category(Date created, Date modified, String title,
 			String description, List<Board> boards) {
 		this.created = created;
 		this.modified = modified;
@@ -65,7 +65,7 @@ public class Category implements Serializable, ICreateListener, IUpdateListener 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
-	public Integer getId() {
+	public Integer 			getId() {
 		return this.id;
 	}
 
@@ -75,7 +75,7 @@ public class Category implements Serializable, ICreateListener, IUpdateListener 
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created", nullable = false, length = 19)
-	public Date getCreated() {
+	public Date 			getCreated() {
 		return this.created;
 	}
 
@@ -85,38 +85,38 @@ public class Category implements Serializable, ICreateListener, IUpdateListener 
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "modified", nullable = false, length = 19)
-	public Date getModified() {
+	public Date 			getModified() {
 		return this.modified;
 	}
 
-	public void setModified(Date modified) {
+	public void 			setModified(Date modified) {
 		this.modified = modified;
 	}
 
 	@Column(name = "title", nullable = false, length = 64)
-	public String getTitle() {
+	public String 			getTitle() {
 		return this.title;
 	}
 
-	public void setTitle(String title) {
+	public void 			setTitle(String title) {
 		this.title = title;
 	}
 
 	@Column(name = "description", length = 256)
-	public String getDescription() {
+	public String 			getDescription() {
 		return this.description;
 	}
 
-	public void setDescription(String description) {
+	public void 			setDescription(String description) {
 		this.description = description;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
-	public List<Board> getBoards() {
+	public List<Board> 		getBoards() {
 		return this.boards;
 	}
 
-	public void setBoards(List<Board> boards) {
+	public void 			setBoards(List<Board> boards) {
 		this.boards = boards;
 	}
 }

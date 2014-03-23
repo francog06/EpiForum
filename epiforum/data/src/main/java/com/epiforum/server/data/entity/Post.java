@@ -42,107 +42,94 @@ public class Post implements Serializable, ICreateListener, IUpdateListener {
 	private Topic			topic;
 	private Profile			profile;
 	private String			tag;
-	private boolean			deleted;
+	private Boolean			deleted;
 	private ContentPost		contentPost;
 
-	public Post() {
+	public 					Post() {
 	}
 
-	public Post(Topic topic, Profile profile, Date created, Date modified,
-			boolean deleted) {
+	public 					Post(Topic topic, Profile profile, ContentPost contentPost) {
 		this.topic = topic;
 		this.profile = profile;
-		this.created = created;
-		this.modified = modified;
-		this.deleted = deleted;
-	}
-
-	public Post(Topic topic, Profile profile, Date created, Date modified,
-			String tag, boolean deleted, ContentPost contentPost) {
-		this.topic = topic;
-		this.profile = profile;
-		this.created = created;
-		this.modified = modified;
-		this.tag = tag;
-		this.deleted = deleted;
 		this.contentPost = contentPost;
+		this.deleted = false;
 	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
-	public Integer getId() {
+	public Integer 			getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void				setId(Integer id) {
 		this.id = id;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "topicId", nullable = false)
-	public Topic getTopic() {
+	public Topic 			getTopic() {
 		return this.topic;
 	}
 
-	public void setTopic(Topic topic) {
+	public void 			setTopic(Topic topic) {
 		this.topic = topic;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "profileId", nullable = false)
-	public Profile getProfile() {
+	public Profile 			getProfile() {
 		return this.profile;
 	}
 
-	public void setProfile(Profile profile) {
+	public void 			setProfile(Profile profile) {
 		this.profile = profile;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created", nullable = false, length = 19)
-	public Date getCreated() {
+	public Date 			getCreated() {
 		return this.created;
 	}
 
-	public void setCreated(Date created) {
+	public void 			setCreated(Date created) {
 		this.created = created;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "modified", nullable = false, length = 19)
-	public Date getModified() {
+	public Date 			getModified() {
 		return this.modified;
 	}
 
-	public void setModified(Date modified) {
+	public void 			setModified(Date modified) {
 		this.modified = modified;
 	}
 
 	@Column(name = "tag", length = 64)
-	public String getTag() {
+	public String 			getTag() {
 		return this.tag;
 	}
 
-	public void setTag(String tag) {
+	public void 			setTag(String tag) {
 		this.tag = tag;
 	}
 
 	@Column(name = "deleted", nullable = false, columnDefinition = "BIT")
-	public boolean isDeleted() {
+	public boolean 			isDeleted() {
 		return this.deleted;
 	}
 
-	public void setDeleted(boolean deleted) {
+	public void 			setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
 
 	@OneToOne(fetch = FetchType.EAGER, mappedBy = "post")
-	public ContentPost getContentPost() {
+	public ContentPost 		getContentPost() {
 		return this.contentPost;
 	}
 
-	public void setContentPost(ContentPost contentPost) {
+	public void 			setContentPost(ContentPost contentPost) {
 		this.contentPost = contentPost;
 	}
 }

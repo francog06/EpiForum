@@ -45,7 +45,7 @@ public class Session implements Serializable, ICreateListener, IUpdateListener {
 	private Date			modified;
 	private String			lastActivity;
 
-	public Session() {
+	public 					Session() {
 	}
 
 	public Session(String id, Profile profile, String lastActivity) {
@@ -56,50 +56,50 @@ public class Session implements Serializable, ICreateListener, IUpdateListener {
 
 	@Id
 	@Column(name = "id", unique = true, nullable = false, length = 16)
-	public String getId() {
+	public String 			getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void 			setId(String id) {
 		this.id = id;
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "profileId", nullable = false)
-	public Profile getProfile() {
+	public Profile 			getProfile() {
 		return this.profile;
 	}
 
-	public void setProfile(Profile profile) {
+	public void 			setProfile(Profile profile) {
 		this.profile = profile;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created", nullable = false, length = 19)
-	public Date getCreated() {
+	public Date 			getCreated() {
 		return this.created;
 	}
 
-	public void setCreated(Date created) {
+	public void 			setCreated(Date created) {
 		this.created = created;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "modified", nullable = false, length = 19)
-	public Date getModified() {
+	public Date 			getModified() {
 		return this.modified;
 	}
 
-	public void setModified(Date modified) {
+	public void 			setModified(Date modified) {
 		this.modified = modified;
 	}
 
 	@Column(name = "lastActivity", nullable = false, length = 64)
-	public String getLastActivity() {
+	public String 			getLastActivity() {
 		return this.lastActivity;
 	}
 
-	public void setLastActivity(String lastActivity) {
+	public void 			setLastActivity(String lastActivity) {
 		this.lastActivity = lastActivity;
 	}
 }

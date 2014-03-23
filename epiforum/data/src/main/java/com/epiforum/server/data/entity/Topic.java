@@ -44,106 +44,93 @@ public class Topic implements Serializable, ICreateListener, IUpdateListener {
 	private Board			board;
 	private String			title;
 	private String			description;
-	private boolean			locked;
+	private Boolean			locked;
 	private List<Post>		posts = new ArrayList<Post>(0);
 
-	public Topic() {
+	public 					Topic() {
 	}
 
-	public Topic(Board board, Date created, Date modified, String title,
-			boolean locked) {
+	public 					Topic(Board board, String title, String description, Boolean locked) {
 		this.board = board;
-		this.created = created;
-		this.modified = modified;
-		this.title = title;
-		this.locked = locked;
-	}
-
-	public Topic(Board board, Date created, Date modified, String title,
-			String description, boolean locked, List<Post> posts) {
-		this.board = board;
-		this.created = created;
-		this.modified = modified;
 		this.title = title;
 		this.description = description;
 		this.locked = locked;
-		this.posts = posts;
 	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
-	public Integer getId() {
+	public Integer 			getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void 			setId(Integer id) {
 		this.id = id;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "boardId", nullable = false)
-	public Board getBoard() {
+	public Board 			getBoard() {
 		return this.board;
 	}
 
-	public void setBoard(Board board) {
+	public void 			setBoard(Board board) {
 		this.board = board;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created", nullable = false, length = 19)
-	public Date getCreated() {
+	public Date 			getCreated() {
 		return this.created;
 	}
 
-	public void setCreated(Date created) {
+	public void 			setCreated(Date created) {
 		this.created = created;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "modified", nullable = false, length = 19)
-	public Date getModified() {
+	public Date 			getModified() {
 		return this.modified;
 	}
 
-	public void setModified(Date modified) {
+	public void 			setModified(Date modified) {
 		this.modified = modified;
 	}
 
 	@Column(name = "title", nullable = false, length = 64)
-	public String getTitle() {
+	public String 			getTitle() {
 		return this.title;
 	}
 
-	public void setTitle(String title) {
+	public void 			setTitle(String title) {
 		this.title = title;
 	}
 
 	@Column(name = "description", length = 256)
-	public String getDescription() {
+	public String 			getDescription() {
 		return this.description;
 	}
 
-	public void setDescription(String description) {
+	public void 			setDescription(String description) {
 		this.description = description;
 	}
 
 	@Column(name = "locked", nullable = false, columnDefinition = "BIT")
-	public boolean isLocked() {
+	public boolean 			isLocked() {
 		return this.locked;
 	}
 
-	public void setLocked(boolean locked) {
+	public void 			setLocked(boolean locked) {
 		this.locked = locked;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "topic")
-	public List<Post> getPosts() {
+	public List<Post> 		getPosts() {
 		return this.posts;
 	}
 
-	public void setPosts(List<Post> posts) {
+	public void 			setPosts(List<Post> posts) {
 		this.posts = posts;
 	}
 }

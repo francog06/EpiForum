@@ -73,10 +73,10 @@ public class Account implements Serializable, ICreateListener, IUpdateListener {
 	private String			ipAddress;
 	private Profile			profile;
 
-	public Account() {
+	public 					Account() {
 	}
 
-	public Account(Status status, Type type, String email, String password, String activationCode, String ipAddress) {
+	public 					Account(Status status, Type type, String email, String password, String activationCode, String ipAddress) {
 		this.status = status;
 		this.type = type;
 		this.email = email;
@@ -85,7 +85,7 @@ public class Account implements Serializable, ICreateListener, IUpdateListener {
 		this.ipAddress = ipAddress;
 	}
 
-	public Account(Status status, Type type, String email, String password, String activationCode, String ipAddress, Profile profile) {
+	public 					Account(Status status, Type type, String email, String password, String activationCode, String ipAddress, Profile profile) {
 		this.status = status;
 		this.type = type;
 		this.email = email;
@@ -98,94 +98,94 @@ public class Account implements Serializable, ICreateListener, IUpdateListener {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
-	public Integer getId() {
+	public Integer			getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void				setId(Integer id) {
 		this.id = id;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created", nullable = false, length = 19)
-	public Date getCreated() {
+	public Date				getCreated() {
 		return this.created;
 	}
 
-	public void setCreated(Date created) {
+	public void				setCreated(Date created) {
 		this.created = created;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "modified", nullable = false, length = 19)
-	public Date getModified() {
+	public Date				getModified() {
 		return this.modified;
 	}
 
-	public void setModified(Date modified) {
+	public void				setModified(Date modified) {
 		this.modified = modified;
 	}
 
 	@Column(name = "status", nullable = false)
-	public Status getStatus() {
+	public Status			getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(Status status) {
+	public void				setStatus(Status status) {
 		this.status = status;
 	}
 
 	@Column(name = "type", nullable = false)
-	public Type getType() {
+	public Type				getType() {
 		return this.type;
 	}
 
-	public void setType(Type type) {
+	public void				setType(Type type) {
 		this.type = type;
 	}
 
 	@Column(name = "email", unique = true, nullable = false, length = 128)
-	public String getEmail() {
+	public String			getEmail() {
 		return this.email;
 	}
 
-	public void setEmail(String email) {
+	public void				setEmail(String email) {
 		this.email = email;
 	}
 
 	@Column(name = "password", nullable = false, length = 64)
-	public String getPassword() {
+	public String			getPassword() {
 		return this.password;
 	}
 
-	public void setPassword(String password) {
+	public void				setPassword(String password) {
 		this.password = password;
 	}
 
 	@Column(name = "activationCode", nullable = false, length = 16)
-	public String getActivationCode() {
+	public String			getActivationCode() {
 		return this.activationCode;
 	}
 
-	public void setActivationCode(String activationCode) {
+	public void				setActivationCode(String activationCode) {
 		this.activationCode = activationCode;
 	}
 
 	@Column(name = "ipAddress", nullable = false, length = 16)
-	public String getIpAddress() {
+	public String			getIpAddress() {
 		return this.ipAddress;
 	}
 
-	public void setIpAddress(String ipAddress) {
+	public void				setIpAddress(String ipAddress) {
 		this.ipAddress = ipAddress;
 	}
 
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "account")
-	public Profile getProfile() {
+	public Profile			getProfile() {
 		return this.profile;
 	}
 
-	public void setProfile(Profile profile) {
+	public void				setProfile(Profile profile) {
 		this.profile = profile;
 	}
 }

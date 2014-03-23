@@ -5,11 +5,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class SignupRO {
 
-	private String		nickName;
+	private String		nickname;
 	
-	private String		firstName;
+	private String		firstname;
 	
-	private String		lastName;
+	private String		lastname;
 
 	private String		email;
 	
@@ -18,43 +18,43 @@ public class SignupRO {
 	/**
 	 * @return the nickName
 	 */
-	public String getNickName() {
-		return nickName;
+	public String getNickname() {
+		return nickname;
 	}
 
 	/**
 	 * @param nickName the nickName to set
 	 */
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
+	public void setNickname(String nickName) {
+		this.nickname = nickName;
 	}
 
 	/**
 	 * @return the firstName
 	 */
-	public String getFirstName() {
-		return firstName;
+	public String getFirstname() {
+		return firstname;
 	}
 
 	/**
 	 * @param firstName the firstName to set
 	 */
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstname(String firstName) {
+		this.firstname = firstName;
 	}
 
 	/**
 	 * @return the lastName
 	 */
-	public String getLastName() {
-		return lastName;
+	public String getLastname() {
+		return lastname;
 	}
 
 	/**
 	 * @param lastName the lastName to set
 	 */
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastname(String lastName) {
+		this.lastname = lastName;
 	}
 
 	/**

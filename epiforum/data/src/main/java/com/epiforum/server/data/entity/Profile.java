@@ -66,18 +66,18 @@ public class Profile implements Serializable, ICreateListener, IUpdateListener {
 	private List<Post>		posts = new ArrayList<Post>(0);
 	private List<Session>	sessions = new ArrayList<Session>(0);
 
-	public Profile() {
+	public 					Profile() {
 		super();
 	}
 
-	public Profile(Account account, String nickname) {
+	public 					Profile(Account account, String nickname) {
 		this.account = account;
 		this.nickname = nickname;
 		this.nbPost = 0;
 		this.nbThank = 0;
 	}
 
-	public Profile(Account account,	String firstname, String lastname, String nickname, String phone,
+	public 					Profile(Account account,	String firstname, String lastname, String nickname, String phone,
 			String facebookPage, String twitterPage, String skypeContact, String city, String description, String signature,
 			Boolean gender, Date birthdate) {
 		this.account = account;
@@ -100,186 +100,196 @@ public class Profile implements Serializable, ICreateListener, IUpdateListener {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
-	public Integer getId() {
+	public Integer			getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void				setId(Integer id) {
 		this.id = id;
 	}
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "accountId", nullable = false)
-	public Account getAccount() {
+	public Account			getAccount() {
 		return this.account;
 	}
 
-	public void setAccount(Account account) {
+	public void				setAccount(Account account) {
 		this.account = account;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created", nullable = false, length = 19)
-	public Date getCreated() {
+	public Date				getCreated() {
 		return this.created;
 	}
 
-	public void setCreated(Date created) {
+	public void				setCreated(Date created) {
 		this.created = created;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "modified", nullable = false, length = 19)
-	public Date getModified() {
+	public Date				getModified() {
 		return this.modified;
 	}
 
-	public void setModified(Date modified) {
+	public void				setModified(Date modified) {
 		this.modified = modified;
 	}
 
 	@Column(name = "firstname", length = 64)
-	public String getFirstname() {
+	public String			getFirstname() {
 		return this.firstname;
 	}
 
-	public void setFirstname(String firstname) {
+	public void				setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
 
 	@Column(name = "lastname", length = 64)
-	public String getLastname() {
+	public String			getLastname() {
 		return this.lastname;
 	}
 
-	public void setLastname(String lastname) {
+	public void				setLastname(String lastname) {
 		this.lastname = lastname;
 	}
 
 	@Column(name = "nickname", unique = true, nullable = false, length = 128)
-	public String getNickname() {
+	public String			getNickname() {
 		return this.nickname;
 	}
 
-	public void setNickname(String nickname) {
+	public void				setNickname(String nickname) {
 		this.nickname = nickname;
 	}
 
 	@Column(name = "phone", length = 16)
-	public String getPhone() {
+	public String			getPhone() {
 		return this.phone;
 	}
 
-	public void setPhone(String phone) {
+	public void				setPhone(String phone) {
 		this.phone = phone;
 	}
 
 	@Column(name = "facebookPage", length = 64)
-	public String getFacebookPage() {
+	public String			getFacebookPage() {
 		return this.facebookPage;
 	}
 
-	public void setFacebookPage(String facebookPage) {
+	public void				setFacebookPage(String facebookPage) {
 		this.facebookPage = facebookPage;
 	}
 
 	@Column(name = "twitterPage", length = 64)
-	public String getTwitterPage() {
+	public String			getTwitterPage() {
 		return this.twitterPage;
 	}
 
-	public void setTwitterPage(String twitterPage) {
+	public void				setTwitterPage(String twitterPage) {
 		this.twitterPage = twitterPage;
 	}
 
 	@Column(name = "skypeContact", length = 64)
-	public String getSkypeContact() {
+	public String			getSkypeContact() {
 		return this.skypeContact;
 	}
 
-	public void setSkypeContact(String skypeContact) {
+	public void				setSkypeContact(String skypeContact) {
 		this.skypeContact = skypeContact;
 	}
 
 	@Column(name = "city", length = 128)
-	public String getCity() {
+	public String			getCity() {
 		return this.city;
 	}
 
-	public void setCity(String city) {
+	public void				setCity(String city) {
 		this.city = city;
 	}
 
 	@Column(name = "description", length = 256)
-	public String getDescription() {
+	public String			getDescription() {
 		return this.description;
 	}
 
-	public void setDescription(String description) {
+	public void				setDescription(String description) {
 		this.description = description;
 	}
 
 	@Column(name = "signature", length = 256)
-	public String getSignature() {
+	public String			getSignature() {
 		return this.signature;
 	}
 
-	public void setSignature(String signature) {
+	public void				setSignature(String signature) {
 		this.signature = signature;
 	}
 
 	@Column(name = "gender")
-	public Boolean getGender() {
+	public Boolean			getGender() {
 		return this.gender;
 	}
 
-	public void setGender(Boolean gender) {
+	public void				setGender(Boolean gender) {
 		this.gender = gender;
 	}
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "birthdate", length = 10)
-	public Date getBirthdate() {
+	public Date				getBirthdate() {
 		return this.birthdate;
 	}
 
-	public void setBirthdate(Date birthdate) {
+	public void				setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
 
 	@Column(name = "posts", nullable = false)
-	public int getPosts() {
+	public Integer			getNbPosts() {
 		return this.nbPost;
 	}
 
-	public void setPosts(int posts) {
+	public void				setNbPosts(Integer posts) {
 		this.nbPost = posts;
 	}
 
 	@Column(name = "thanks", nullable = false)
-	public int getThanks() {
+	public Integer			getThanks() {
 		return this.nbThank;
 	}
 
-	public void setThanks(int thanks) {
+	public void				setThanks(Integer thanks) {
 		this.nbThank = thanks;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "profile")
-	public List<Post> getPosts_1() {
+	public List<Post>		getPosts() {
 		return this.posts;
 	}
 
-	public void setPosts_1(List<Post> posts) {
+	public void				setPosts(List<Post> posts) {
 		this.posts = posts;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "profile")
-	public List<Session> getSessions() {
+	public List<Session>	getSessions() {
 		return this.sessions;
 	}
 
-	public void setSessions(List<Session> sessions) {
+	public void				setSessions(List<Session> sessions) {
 		this.sessions = sessions;
+	}
+	
+	public Integer			addNbThank() {
+		this.nbThank +=1;
+		return this.nbThank;
+	}
+	
+	public Integer			addNbPost() {
+		this.nbPost +=1;
+		return this.nbPost;
 	}
 }
