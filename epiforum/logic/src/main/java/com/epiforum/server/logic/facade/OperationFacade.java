@@ -10,8 +10,9 @@ import com.epiforum.common.ro.ChangeInfo;
 import com.epiforum.common.ro.LoginRO;
 import com.epiforum.common.ro.MyProfileRO;
 import com.epiforum.common.ro.ProfileInfoRO;
-import com.epiforum.common.ro.RandomPasswordRO;
 import com.epiforum.common.ro.SignupRO;
+import com.epiforum.server.config.i18n.I18n;
+import com.epiforum.server.config.i18n.I18n.MessageKey;
 import com.epiforum.server.data.entity.Account;
 import com.epiforum.server.data.entity.Profile;
 import com.epiforum.server.data.entity.Session;
@@ -58,9 +59,9 @@ public class OperationFacade {
 
 								/*	MISC STUFF	*/
 
-	public RandomPasswordRO		generatePassword() {
-		RandomPasswordRO pass = ROBuilder.createRO(RandomStringUtils.randomAlphanumeric(16));
-		return pass;
+	public String				generateStrongString() {
+		String strong = RandomStringUtils.randomAlphanumeric(16);
+		return strong;
 	}
 
 	public boolean				checkSession(String token) {
@@ -73,24 +74,23 @@ public class OperationFacade {
 
 	public Account				subscribe(HttpServletRequest request, SignupRO signup) throws BadCredentialException, TechnicalException, BadParametersException {
 		if (signup.getEmail() == null || signup.getEmail().trim().isEmpty()) {
-			throw new BadCredentialException("Votre email est invalide");
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_EMAIL, Application.getLocale()));
 		}
 		if (signup.getNickName() == null || signup.getNickName().trim().isEmpty()) {
-			throw new BadCredentialException("Votre pseudo est invalide");
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_NICKNAME, Application.getLocale()));
 		}
 		if (signup.getPassword() == null || signup.getPassword().trim().isEmpty()) {
-			throw new BadCredentialException("Votre mot de passe est invalide");
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_PASSWORD, Application.getLocale()));
 		}
 		Account ac = this.accountManager.createAccount(request, signup);
 		Profile pro = this.profileManager.createProfile(ac, signup);
-		Application appli = new Application();
-		this.mailManager.sendActivationMail(ac.getEmail(), pro.getNickname(), ac.getActivationCode(), appli);
+		this.mailManager.sendActivationMail(ac.getEmail(), pro.getNickname(), ac.getActivationCode());
 		return ac;
 	}
 
 	public boolean				unsubscribe(HttpServletRequest request, String token, String email) throws BadCredentialException {
 		if (!this.checkSession(token)) {
-			throw new BadCredentialException("Veuillez vous connecter");
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
 		}
 		Session se = this.sessionManager.getSession(token);
 		Account ac = this.accountManager.getAccountFromEMail(email);
@@ -102,9 +102,9 @@ public class OperationFacade {
 
 	public boolean				activateAccount(HttpServletRequest request, String userEmail, String activationCode) throws TechnicalException, BadParametersException, BadCredentialException {
 		if (userEmail == null || userEmail.trim().isEmpty()) {
-			throw new BadCredentialException("Votre email est invalide");
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_BADEMAIL, Application.getLocale()));
 		} else if (activationCode == null || activationCode.trim().isEmpty()) {
-			throw new BadParametersException("Le code d'activation est invalide");
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_BADACTIVATIONCODE, Application.getLocale()));
 		}
 		Account ac = this.accountManager.getAccountFromEMail(userEmail);
 		if (ac != null && ac.getActivationCode().equals(activationCode) && ac.getStatus() == Account.Status.PENDING) {
@@ -119,40 +119,39 @@ public class OperationFacade {
 	
 	public boolean				forgotPassword(HttpServletRequest request, String email) throws TechnicalException, BadParametersException, BadCredentialException {
 		if (email == null || email.trim().isEmpty()) {
-			throw new BadCredentialException("Votre email est invalide");
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_BADEMAIL, Application.getLocale()));
 		}
 		Account ac = this.accountManager.getAccountFromEMail(email);
 		if (ac != null && ac.getStatus() == Account.Status.ACTIVATED) {
 			String nickname = ac.getProfile().getNickname();
 			String newPassword = this.accountManager.forgotPassword(ac);
-			Application appli = new Application();
-			this.mailManager.sendForgotPasswordEmail(ac.getEmail(), nickname, newPassword, appli);
+			this.mailManager.sendForgotPasswordEmail(ac.getEmail(), nickname, newPassword);
 			return true;
 		} else {
-			throw new BadParametersException("Ce membre n'existe pas");
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_BADACCOUNT, Application.getLocale()));
 		}
 	}
 
 	public String				login(HttpServletRequest request, String token, LoginRO loginData, Account.Type type) throws TechnicalException, BadCredentialException {
 		if (loginData.getEmail() == null || loginData.getEmail().trim().isEmpty()) {
-			throw new BadCredentialException("Votre email est invalide");
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_EMAIL, Application.getLocale()));
 		} else if (loginData.getPassword() == null || loginData.getPassword().trim().isEmpty()) {
-			throw new BadCredentialException("Votre mot de passe est invalide");
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_PASSWORD, Application.getLocale()));
 		} else if (token != null && this.checkSession(token)) {
-			throw new BadCredentialException("Vous etes deja connecté");
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGED, Application.getLocale()));
 		}
 		Account ac = this.accountManager.loginWithEmailAndPassword(loginData.getEmail(), loginData.getPassword(), type);
 		if (!ac.getIpAddress().trim().equals(request.getRemoteAddr())) {
 			ac.setIpAddress(request.getRemoteAddr());
 		}
-		Session se= new Session(RandomStringUtils.randomAlphanumeric(16), ac.getProfile(), "login");
+		Session se= new Session(this.generateStrongString(), ac.getProfile(), "login");
 		this.sessionManager.createSession(se);
 		return se.getId();
 	}
 
 	public boolean				logout(String token) throws BadCredentialException {
 		if (!this.checkSession(token)) {
-			throw new BadCredentialException("Veuillez vous connecter");
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_NOLOGIN, Application.getLocale()));
 		}
 		Session session = this.sessionManager.getSession(token);
 		if (session != null) {
@@ -164,7 +163,7 @@ public class OperationFacade {
 
 	public boolean				changeEmail(HttpServletRequest request, String token, ChangeInfo info) throws BadCredentialException {
 		if (!this.checkSession(token)) {
-			throw new BadCredentialException("Veuillez vous connecter");
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
 		}
 		Account ac = this.accountManager.getAccountFromEMail(info.getEmail());
 		Session se = this.sessionManager.getSession(token);
@@ -179,7 +178,7 @@ public class OperationFacade {
 	
 	public boolean				changePassword(HttpServletRequest request, String token, ChangeInfo info) throws BadCredentialException, TechnicalException {
 		if (!this.checkSession(token)) {
-			throw new BadCredentialException("Veuillez vous connecter");
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
 		}
 		Account ac = this.accountManager.getAccountFromEMail(info.getEmail());
 		Session se = this.sessionManager.getSession(token);
@@ -196,7 +195,7 @@ public class OperationFacade {
 
 	public ProfileInfoRO		getProfileFromId(HttpServletRequest request, String token, Integer profileId) throws BadCredentialException, BadParametersException {
 		if (!this.checkSession(token)) {
-			throw new BadCredentialException("Veuillez vous connecter");
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
 		}
 		Session se = this.sessionManager.getSession(token);
 		Profile pro = this.profileManager.getProfileFromId(profileId);
@@ -214,7 +213,7 @@ public class OperationFacade {
 
 	public boolean				updateMyProfile(HttpServletRequest request, String token, MyProfileRO proRo) throws BadCredentialException, TechnicalException, BadParametersException {
 		if (!this.checkSession(token)) {
-			throw new BadCredentialException("Veuillez vous connecter");
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
 		}
 		Session se = this.sessionManager.getSession(token);
 		Profile pro = this.profileManager.getProfileFromId(proRo.getId());

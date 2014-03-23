@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import com.epiforum.common.ro.SignupRO;
+import com.epiforum.server.config.i18n.I18n;
+import com.epiforum.server.config.i18n.I18n.MessageKey;
 import com.epiforum.server.data.entity.Account;
 import com.epiforum.server.data.entity.Account.Type;
+import com.epiforum.server.logic.application.Application;
 import com.epiforum.server.logic.dao.AccountDao;
 import com.epiforum.server.logic.exception.BadParametersException;
 import com.epiforum.server.logic.exception.TechnicalException;
@@ -36,7 +39,7 @@ public class AccountManager {
 			md.digest(hash, 0, PASSWORD_LEN);
 			return new sun.misc.BASE64Encoder().encode(hash);
 		} catch (Exception exc) {
-			throw new TechnicalException("Something went wrong during password encoding.");
+			throw new TechnicalException(I18n.getMessage(MessageKey.ERROR_SERVER_DEFAULT, Application.getLocale()));
 		}
 	}
 
@@ -51,9 +54,9 @@ public class AccountManager {
 
 	public Account				createAccount(HttpServletRequest request, SignupRO signup) throws BadParametersException, TechnicalException {
 		if (emailIsValid(signup.getEmail()) == false) {
-			throw new BadParametersException("Votre email n'est pas valide");
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_BADEMAIL, Application.getLocale()));
 		} else if (emailIsUsed(signup.getEmail()) == true) {
-			throw new BadParametersException("Cet email est en cours d'utilisation");
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_EMAILALREADYUSED, Application.getLocale()));
 		}
 		Account ac = new Account();
 		ac.setEmail(signup.getEmail());

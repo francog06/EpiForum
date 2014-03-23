@@ -2,36 +2,41 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-	<!-- Errors -->
-	<entry key="error.request.exception.default">Requête invalide</entry>
-	<entry key="error.server">Erreur interne</entry>
-	<entry key="error.technical.exception.default">Erreur technique</entry>
-	<entry key="error.parameter.exception.default">Paramètre invalide.</entry>
-	<entry key="error.no.contact.send">Aucun contact envoyé</entry>
+	<!-- Default errors -->
+	<entry key="error.request.default">Requête invalide</entry>
+	<entry key="error.server.default">Erreur interne</entry>
+	<entry key="error.technical.default">Erreur technique</entry>
+	<entry key="error.parameter.default">Paramètre invalide.</entry>
 
-	<entry key="error.credential.exception.default">Identifiant ou mot de passe invalide.</entry>
-	<entry key="error.credential.exception.empty">Identification requise.</entry>
-	<entry key="error.credential.exception.locale">Il faut s'authentifier pour voir ce profil.</entry>
+	<!-- Credential errors -->
+	<entry key="error.credential.email">Email invalide.</entry>
+	<entry key="error.credential.nickname">Pseudo invalide.</entry>
+	<entry key="error.credential.password">Mot de passe invalide.</entry>
+	<entry key="error.credential.login">Veuillez vous authentifier.</entry>
+	<entry key="error.credential.nologin">Vous n'êtes pas authentifié.</entry>
+	<entry key="error.credential.loged">Vous êtes déjà connecté.</entry>
 	
-	<!-- Errors RestServices -->
-	<entry key="error.restservice.parameter.required">%s obligatoire.</entry>
-	<entry key="error.restservice.parameter.emptyfield">Ce champ doit être renseigné.</entry>
-	<entry key="error.restservice.parameter.badstartindex">L'index de départ est incorrect.</entry>
-	<entry key="error.restservice.parameter.badterms">La recherche ne comporte aucun texte.</entry>
-	<entry key="error.restservice.parameter.badlocale">La locale est incorrecte.</entry>
-	<entry key="error.restservice.parameter.baddevicetype">Le type de client est incorrect.</entry>
-	<entry key="error.restservice.parameter.badusername">Utilisateur incorrect.</entry>
-	<entry key="error.restservice.parameter.badpassword">Mot de passe incorrect.</entry>
-	<entry key="error.restservice.parameter.bademail">L'email est incorrect.</entry>
-	<entry key="error.restservice.parameter.badforgotpassword">Nous n'avons pas trouvé de compte correspondant à ces identifiants.</entry>
-	<entry key="error.restservice.parameter.badnewpassword">Nouveau mot de passe incorrect.</entry>
-	<entry key="error.restservice.parameter.emailalreadyexist">L'email existe déja.</entry>
-	<entry key="error.restservice.parameter.badprofilename">Le libellé du profil est invalide.</entry>
-	<entry key="error.restservice.parameter.badextension">L'extension du fichier est incorrecte.</entry>
-	<entry key="error.restservice.parameter.badfilename">Le nom du fichier est incorrect.</entry>
-	<entry key="error.restservice.parameter.nofile">Aucun fichier.</entry>
+	<!-- Parameter errors -->
+	<entry key="error.parameter.required">%s obligatoire.</entry>
+	<entry key="error.parameter.emptyfield">Ce champ doit être renseigné.</entry>
+	<entry key="error.parameter.badstartindex">L'index de départ est incorrect.</entry>
+	<entry key="error.parameter.badterms">La recherche ne comporte aucun texte.</entry>
+	<entry key="error.parameter.badlocale">La locale est incorrecte.</entry>
+	<entry key="error.parameter.badtype">Le type de client est incorrect.</entry>
+	<entry key="error.parameter.badnickname">Le pseudo est incorrect.</entry>
+	<entry key="error.parameter.badpassword">Le mot de passe incorrect.</entry>
+	<entry key="error.parameter.bademail">L'email est incorrect.</entry>
+	<entry key="error.parameter.badactivationcode">Le code d'activation est invalide.</entry>
+	<entry key="error.parameter.badforgotpassword">Nous n'avons pas trouvé de compte correspondant à ces identifiants.</entry>
+	<entry key="error.parameter.badnewpassword">Le nouveau mot de passe est incorrect.</entry>
+	<entry key="error.parameter.badnewemail">Le nouveau email est incorrect.</entry>
+	<entry key="error.parameter.emailalreadyused">Cet email est en cours d'utilisation.</entry>
+	<entry key="error.parameter.badaccount">Ce compte n'éxiste pas ou n'est pas actif.</entry>
+	<entry key="error.parameter.badextension">L'extension du fichier est incorrecte.</entry>
+	<entry key="error.parameter.badfilename">Le nom du fichier est incorrect.</entry>
+	<entry key="error.parameter.nofile">Aucun fichier.</entry>
 
-	
+	<!-- Common email -->
 	<entry key="email.signature">Cordialement,&lt;br/&gt;L'équipe %s&lt;br/&gt;%s</entry>
 	
 	<!-- Validation email  -->
@@ -54,7 +59,7 @@
 	<entry key="email.forgot.password.content.message"><![CDATA[Bonjour <span style="font-weight:bold;">%s</span>,<br/><br/>Vous recevez cet email car vous avez fait une demande de réinitialisation de votre mot de passe. Nous vous conseillons de modifier ce mot de passe après votre authentification. <br/><br/>Identifiant : %s<br/>Nouveau mot de passe : %s<br/><br/>]]></entry>
 
 	<!-- Friendship -->
-	<entry key="friendship.create.message">a été ajouté à vos contacts</entry>
+	<entry key="friendship.create.message">%s a été ajouté à vos contacts</entry>
 	
 	<!-- Notifications -->
 	<entry key="notification.account.activation">Votre compte a été activé.</entry>

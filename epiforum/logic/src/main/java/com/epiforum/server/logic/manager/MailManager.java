@@ -32,9 +32,9 @@ public class MailManager {
 
 	private static final String MAIL_CONTENT_TYPE = "text/html; charset=utf-8";
 	
-	private String getNoReplyEmail(Application application) {
-		String applicationName = Normalizer.normalize(application.getName(), Normalizer.Form.NFD) .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
-		return String.format("%s<%s>", applicationName, application.getEmailNoreplyAddress());
+	private String getNoReplyEmail() {
+		String applicationName = Normalizer.normalize(Application.getName(), Normalizer.Form.NFD) .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+		return String.format("%s<%s>", applicationName, Application.getEmailNoreplyAddress());
 	}
 
 	public void sendMail(MailProperties mailProperties) throws AddressException, MessagingException {
@@ -111,21 +111,21 @@ public class MailManager {
 		}
 	}
 	
-	private String getMainTemplate(Application application, String subject) throws IOException {
+	private String getMainTemplate(String subject) throws IOException {
 		InputStream mainInputStream = getClass().getResourceAsStream("/com/epiforum/server/logic/mail/template/main.html");
 		StringWriter mainWriter = new StringWriter();
 		IOUtils.copy(mainInputStream, mainWriter);
 		String mainTemplate = mainWriter.toString();
 		
 		mainTemplate = mainTemplate.replace("{subjectText}", subject);
-		mainTemplate = mainTemplate.replace("{textColor}", application.getColor());
-		mainTemplate = mainTemplate.replace("{backgroundColor}", application.getBackground());
+		mainTemplate = mainTemplate.replace("{textColor}", Application.getColor());
+		mainTemplate = mainTemplate.replace("{backgroundColor}", Application.getBackground());
 		//mainTemplate = mainTemplate.replace("{pictureUrl}", String.format("%simg/logo/%s-email.jpg", Configuration.getWebServerUrl(), application));
 		
 		return mainTemplate;
 	}
 
-	public void sendActivationMail(String email, String nickname, String activationCode, Application application) throws TechnicalException {
+	public void sendActivationMail(String email, String nickname, String activationCode) throws TechnicalException {
 		try {
 			InputStream activateAccountInputStream = getClass().getResourceAsStream("/com/epiforum/server/logic/mail/template/activateAccount.html");
 			StringWriter activateAccountWriter = new StringWriter();
@@ -136,29 +136,29 @@ public class MailManager {
 			String activationUrl = String.format(Configuration.getActivationUrl(), nickname, activationCode);
 			activateAccountTemplate = activateAccountTemplate.replace("{activationUrl}", activationUrl);
 
-			String welcomeText = I18n.getMessage(MessageKey.EMAIL_ACTIVATION_CONFIRMATION_CONTENT_TITLE, application.getLocale());
-			welcomeText = String.format(welcomeText, application);
+			String welcomeText = I18n.getMessage(MessageKey.EMAIL_ACTIVATION_CONFIRMATION_CONTENT_TITLE, Application.getLocale());
+			welcomeText = String.format(welcomeText, Application.getName());
 			activateAccountTemplate = activateAccountTemplate.replace("{welcomeText}", welcomeText);
 
-			String contentText = I18n.getMessage(MessageKey.EMAIL_ACTIVATION_CONFIRMATION_CONTENT_MESSAGE, application.getLocale());
-			contentText = String.format(contentText, nickname, application);
+			String contentText = I18n.getMessage(MessageKey.EMAIL_ACTIVATION_CONFIRMATION_CONTENT_MESSAGE, Application.getLocale());
+			contentText = String.format(contentText, nickname, Application.getName());
 
 			activateAccountTemplate = activateAccountTemplate.replace("{contentText}", contentText);
 			
-			String validateText = I18n.getMessage(MessageKey.EMAIL_ACTIVATION_CONFIRMATION_CONTENT_VALIDATE, application.getLocale());
+			String validateText = I18n.getMessage(MessageKey.EMAIL_ACTIVATION_CONFIRMATION_CONTENT_VALIDATE, Application.getLocale());
 			activateAccountTemplate = activateAccountTemplate.replace("{validateText}", validateText);
 			
-			String signatureText = I18n.getMessage(MessageKey.EMAIL_SIGNATURE, application.getLocale());
-			signatureText = String.format(signatureText, application, Configuration.getWebServerUrl());
+			String signatureText = I18n.getMessage(MessageKey.EMAIL_SIGNATURE, Application.getLocale());
+			signatureText = String.format(signatureText, Application.getName(), Configuration.getWebServerUrl());
 			activateAccountTemplate = activateAccountTemplate.replace("{signatureText}", signatureText);
 			
-			String mainTemplate = this.getMainTemplate(application, welcomeText);
+			String mainTemplate = this.getMainTemplate(welcomeText);
 			mainTemplate = mainTemplate.replace("{body}", activateAccountTemplate);
-			String subject = I18n.getMessage(MessageKey.EMAIL_ACTIVATION_CONFIRMATION_CONTENT_SUBJECT, application.getLocale());
-			subject = String.format(subject, application);
+			String subject = I18n.getMessage(MessageKey.EMAIL_ACTIVATION_CONFIRMATION_CONTENT_SUBJECT, Application.getLocale());
+			subject = String.format(subject, Application.getName());
 
 			MailProperties mailProperties = new MailProperties();
-			mailProperties.setFrom(this.getNoReplyEmail(application));
+			mailProperties.setFrom(this.getNoReplyEmail());
 			mailProperties.getTo().add(email);
 			mailProperties.setSubject(subject);
 			mailProperties.setContent(mainTemplate);
@@ -170,34 +170,34 @@ public class MailManager {
 		}
 	}
 
-	public void sendForgotPasswordEmail(String email, String nickname, String password, Application application) throws TechnicalException {
+	public void sendForgotPasswordEmail(String email, String nickname, String password) throws TechnicalException {
 		try {
 			InputStream forgotPasswordInputStream = getClass().getResourceAsStream("/com/cubbyhole/server/logic/mail/template/forgotPassword.html");
 			StringWriter forgotPasswordAccountWriter = new StringWriter();
 			IOUtils.copy(forgotPasswordInputStream, forgotPasswordAccountWriter);
 			String forgotPasswordTemplate = forgotPasswordAccountWriter.toString();
 
-			String titleText = I18n.getMessage(MessageKey.EMAIL_FORGOT_PASSWORD_CONTENT_TITLE, application.getLocale());
-			titleText = String.format(titleText, application);
+			String titleText = I18n.getMessage(MessageKey.EMAIL_FORGOT_PASSWORD_CONTENT_TITLE, Application.getLocale());
+			titleText = String.format(titleText, Application.getName());
 			forgotPasswordTemplate = forgotPasswordTemplate.replace("{titleText}", titleText);
 
-			String contentText = I18n.getMessage(MessageKey.EMAIL_FORGOT_PASSWORD_CONTENT_MESSAGE, application.getLocale());
+			String contentText = I18n.getMessage(MessageKey.EMAIL_FORGOT_PASSWORD_CONTENT_MESSAGE, Application.getLocale());
 			String login = "<b>" + email + "</b>";
 			password = "<b>" + password + "</b>";
 			contentText = String.format(contentText, nickname, login, password);
 			forgotPasswordTemplate = forgotPasswordTemplate.replace("{contentText}", contentText);
 			
-			String signatureText = I18n.getMessage(MessageKey.EMAIL_SIGNATURE, application.getLocale());
-			signatureText = String.format(signatureText, application, Configuration.getWebServerUrl());
+			String signatureText = I18n.getMessage(MessageKey.EMAIL_SIGNATURE, Application.getLocale());
+			signatureText = String.format(signatureText, Application.getName(), Configuration.getWebServerUrl());
 			forgotPasswordTemplate = forgotPasswordTemplate.replace("{signatureText}", signatureText);
 			
-			String mainTemplate = this.getMainTemplate(application, titleText);
+			String mainTemplate = this.getMainTemplate(titleText);
 			mainTemplate = mainTemplate.replace("{body}", forgotPasswordTemplate);
-			String subject = I18n.getMessage(MessageKey.EMAIL_FORGOT_PASSWORD_CONTENT_SUBJECT, application.getLocale());
-			subject = String.format(subject, application);
+			String subject = I18n.getMessage(MessageKey.EMAIL_FORGOT_PASSWORD_CONTENT_SUBJECT, Application.getLocale());
+			subject = String.format(subject, Application.getName());
 
 			MailProperties mailProperties = new MailProperties();
-			mailProperties.setFrom(this.getNoReplyEmail(application));
+			mailProperties.setFrom(this.getNoReplyEmail());
 			mailProperties.getTo().add(email);
 			mailProperties.setSubject(subject);
 			mailProperties.setContent(mainTemplate);
@@ -209,26 +209,26 @@ public class MailManager {
 		}
 	}
 	
-	public String getActivatedAccountHtmlContent(String message, Application application) throws TechnicalException {
+	public String getActivatedAccountHtmlContent(String message) throws TechnicalException {
 		try {
 			InputStream activatedAccountInputStream = getClass().getResourceAsStream("/com/epiforum/server/logic/mail/template/activatedAccount.html");
 			StringWriter activatedAccountWriter = new StringWriter();
 			IOUtils.copy(activatedAccountInputStream, activatedAccountWriter);
 			String activatedAccountTemplate = activatedAccountWriter.toString();
 
-			String titleText = I18n.getMessage(MessageKey.EMAIL_ACTIVATION_VALIDATION_TITLE, application.getLocale());
-			titleText = String.format(titleText, application);
+			String titleText = I18n.getMessage(MessageKey.EMAIL_ACTIVATION_VALIDATION_TITLE, Application.getLocale());
+			titleText = String.format(titleText, Application.getName());
 			activatedAccountTemplate = activatedAccountTemplate.replace("{titleText}", titleText);
 
-			String contentText = I18n.getMessage(MessageKey.EMAIL_ACTIVATION_VALIDATION_MESSAGE, application.getLocale());
+			String contentText = I18n.getMessage(MessageKey.EMAIL_ACTIVATION_VALIDATION_MESSAGE, Application.getLocale());
 			contentText = String.format(contentText, message);
 			activatedAccountTemplate = activatedAccountTemplate.replace("{contentText}", contentText);
 			
-			String signatureText = I18n.getMessage(MessageKey.EMAIL_SIGNATURE, application.getLocale());
-			signatureText = String.format(signatureText, application, Configuration.getWebServerUrl());
+			String signatureText = I18n.getMessage(MessageKey.EMAIL_SIGNATURE, Application.getLocale());
+			signatureText = String.format(signatureText, Application.getName(), Configuration.getWebServerUrl());
 			activatedAccountTemplate = activatedAccountTemplate.replace("{signatureText}", signatureText);
 			
-			String mainTemplate = this.getMainTemplate(application, titleText);
+			String mainTemplate = this.getMainTemplate(titleText);
 			mainTemplate = mainTemplate.replace("{body}", activatedAccountTemplate);
 			
 			return mainTemplate;
