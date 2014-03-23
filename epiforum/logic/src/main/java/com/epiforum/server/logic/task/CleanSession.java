@@ -1,4 +1,4 @@
-package com.epiforum.server.logic.tasks;
+package com.epiforum.server.logic.task;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ import com.epiforum.server.logic.manager.SessionManager;
 public class CleanSession {
 
 	private final long		MINUTES = 10;
+
 	@EJB
 	private SessionManager	sessionManager;
 

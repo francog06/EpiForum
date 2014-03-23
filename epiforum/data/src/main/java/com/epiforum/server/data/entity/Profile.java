@@ -228,7 +228,7 @@ public class Profile implements Serializable, ICreateListener, IUpdateListener {
 		this.signature = signature;
 	}
 
-	@Column(name = "gender")
+	@Column(name = "gender", columnDefinition = "BIT")
 	public Boolean			getGender() {
 		return this.gender;
 	}
