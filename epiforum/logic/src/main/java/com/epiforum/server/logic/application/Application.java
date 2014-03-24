@@ -18,8 +18,9 @@ import com.epiforum.server.config.properties.Configuration;
 
 	private static String	systemPathFile = Configuration.getFileSystemPathFile();
 
-	private static String	emailNoreplyAddress = Configuration.getMailNoReplyAddress();
+	private static String	emailNoReplyAddress = Configuration.getMailNoReplyAddress();
 	private static String	emailActivationAddress = Configuration.getMailActivationAddress();
+	private static String	emailContactAddress = Configuration.getMailContactAddress();
 
 	/**
 	 * @return the name
@@ -72,13 +73,19 @@ import com.epiforum.server.config.properties.Configuration;
 	/**
 	 * @return the emailNoreplyAddress
 	 */
-	 public static String getEmailNoreplyAddress() {
-		return emailNoreplyAddress;
+	 public static String getEmailNoReplyAddress() {
+		return emailNoReplyAddress;
 	}
 	/**
 	 * @return the emailActivationAddress
 	 */
 	 public static String getEmailActivationAddress() {
 		return emailActivationAddress;
+	}
+	/**
+	 * @return the emailContactAddress
+	 */
+	public static String getEmailContactAddress() {
+		return emailContactAddress;
 	}
 }

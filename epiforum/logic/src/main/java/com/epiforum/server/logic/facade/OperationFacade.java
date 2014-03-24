@@ -12,11 +12,13 @@ import org.apache.commons.lang3.RandomStringUtils;
 import com.epiforum.common.ro.ChangeInfo;
 import com.epiforum.common.ro.ContentRO;
 import com.epiforum.common.ro.LoginRO;
+import com.epiforum.common.ro.MemberRO;
 import com.epiforum.common.ro.MyProfileRO;
 import com.epiforum.common.ro.PaginationRO;
 import com.epiforum.common.ro.PostRO;
 import com.epiforum.common.ro.ProfileInfoRO;
 import com.epiforum.common.ro.SignupRO;
+import com.epiforum.common.ro.TopTopicRO;
 import com.epiforum.common.ro.TopicRO;
 import com.epiforum.server.config.i18n.I18n;
 import com.epiforum.server.config.i18n.I18n.MessageKey;
@@ -333,6 +335,9 @@ public class OperationFacade {
 		}
 		TopicRO to = ROBuilder.createRO(topic);
 		to.setPosts(poRos);
+		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
+			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
+		}
 		se.setLastActivity("viewTopic");
 		return to;
 	}
@@ -350,6 +355,9 @@ public class OperationFacade {
 		Topic topic = this.topicManager.getTopicFromId(postRo.getTopicId());
 		Post post = this.postManager.createPost(postRo, topic, se.getProfile());
 		ContentPost content = this.contentPostManager.createContentPost(postRo.getContent(), post);
+		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
+			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
+		}
 		se.setLastActivity("addPost");
 		return content != null ? true : false;
 	}
@@ -370,6 +378,9 @@ public class OperationFacade {
 		if (post.getProfile().equals(se.getProfile())) {
 			content = this.contentPostManager.updateContentPost(post.getContentPost(), contentRo.getContent());
 		}
+		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
+			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
+		}
 		se.setLastActivity("updateMyPost");
 		return content != null ? true : false;
 	}
@@ -388,5 +399,35 @@ public class OperationFacade {
 			success = this.postManager.removePost(post);
 		}
 		return success;
+	}
+
+								/*	STATISTICS STUFF	*/
+
+	public Integer				numberOfMembers(HttpServletRequest request) {
+		return 0;
+	}
+	
+	public Integer				numberOfPosts(HttpServletRequest request) {
+		return 0;
+	}
+	
+	public Integer				numberOfTopics(HttpServletRequest request) {
+		return 0;
+	}
+	
+	public List<MemberRO>		connectedMembers(HttpServletRequest request) {
+		return null;
+	}
+	
+	public List<MemberRO>		topMembers(HttpServletRequest request) {
+		return null;
+	}
+	
+	public List<MemberRO>		birthdayMembers(HttpServletRequest request) {
+		return null;
+	}
+	
+	public List<TopTopicRO>		topTopics(HttpServletRequest request) {
+		return null;
 	}
 }

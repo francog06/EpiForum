@@ -47,6 +47,10 @@ public class Configuration {
 	public static String getMailNoReplyAddress() {
 		return getProperty("mail.noreply.address");
 	}
+
+	public static String getMailContactAddress() {
+		return getProperty("mail.contact.address");
+	}
 	
 	public static String getSmtpHost() {
 		return getProperty("mail.smtp.host");

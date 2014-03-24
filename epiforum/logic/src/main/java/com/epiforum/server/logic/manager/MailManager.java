@@ -34,7 +34,7 @@ public class MailManager {
 	
 	private String getNoReplyEmail() {
 		String applicationName = Normalizer.normalize(Application.getName(), Normalizer.Form.NFD) .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
-		return String.format("%s<%s>", applicationName, Application.getEmailNoreplyAddress());
+		return String.format("%s<%s>", applicationName, Application.getEmailNoReplyAddress());
 	}
 
 	public void sendMail(MailProperties mailProperties) throws AddressException, MessagingException {
