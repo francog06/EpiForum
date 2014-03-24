@@ -5,13 +5,11 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class PostRO {
+public class PostRO extends ContentRO {
 
 	private int				topicId;
 
 	private int				profileId;
-
-	private String			content;
 
 	private List<String>	tags;
 
@@ -41,20 +39,6 @@ public class PostRO {
 	 */
 	public void setProfileId(int profileId) {
 		this.profileId = profileId;
-	}
-
-	/**
-	 * @return the content
-	 */
-	public String getContent() {
-		return content;
-	}
-
-	/**
-	 * @param content the content to set
-	 */
-	public void setContent(String content) {
-		this.content = content;
 	}
 
 	/**

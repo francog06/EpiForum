@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import com.epiforum.common.ro.ChangeInfo;
+import com.epiforum.common.ro.ContentRO;
 import com.epiforum.common.ro.LoginRO;
 import com.epiforum.common.ro.MyProfileRO;
 import com.epiforum.common.ro.PaginationRO;
@@ -85,6 +86,7 @@ public class OperationFacade {
 		}
 		return false;
 	}
+
 								/*	ACCOUNT STUFF	*/
 
 	public Account				subscribe(HttpServletRequest request, SignupRO signup) throws BadCredentialException, TechnicalException, BadParametersException {
@@ -243,18 +245,18 @@ public class OperationFacade {
 		return user;
 	}
 
-	public Boolean				updateMyProfile(HttpServletRequest request, String token, MyProfileRO proRo) throws BadCredentialException, TechnicalException, BadParametersException, NumberParseException {
+	public Boolean				updateMyProfile(HttpServletRequest request, String token, MyProfileRO myPro) throws BadCredentialException, TechnicalException, BadParametersException, NumberParseException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
 		}
-		if (proRo.getNickname() == null || proRo.getNickname().trim().isEmpty()) {
+		if (myPro.getNickname() == null || myPro.getNickname().trim().isEmpty()) {
 			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_BADNICKNAME, Application.getLocale()));
 		}
 		Session se = this.sessionManager.getSession(token);
-		Profile pro = this.profileManager.getProfileFromNickname(proRo.getNickname());
+		Profile pro = this.profileManager.getProfileFromNickname(myPro.getNickname());
 		boolean match = false;
 		if (pro != null && se.getProfile().equals(pro)) {
-			pro = this.profileManager.updateMyProfile(pro, proRo);
+			pro = this.profileManager.updateMyProfile(pro, myPro);
 			if (!pro.getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
 				pro.getAccount().setIpAddress(request.getRemoteAddr().trim());
 			}
@@ -333,5 +335,58 @@ public class OperationFacade {
 		to.setPosts(poRos);
 		se.setLastActivity("viewTopic");
 		return to;
+	}
+
+								/*	POST STUFF	*/
+
+	public Boolean				addPost(HttpServletRequest request, String token, PostRO postRo) throws BadCredentialException, TechnicalException, BadParametersException {
+		if (!this.checkSession(token)) {
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
+		}
+		if (postRo.getPostId() == null || postRo.getPostId() == 0) {
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Application.getLocale()));
+		}
+		Session se = this.sessionManager.getSession(token);
+		Topic topic = this.topicManager.getTopicFromId(postRo.getTopicId());
+		Post post = this.postManager.createPost(postRo, topic, se.getProfile());
+		ContentPost content = this.contentPostManager.createContentPost(postRo.getContent(), post);
+		se.setLastActivity("addPost");
+		return content != null ? true : false;
+	}
+	
+	public Boolean				updateMyPost(HttpServletRequest request, String token, ContentRO contentRo) throws BadCredentialException, TechnicalException, BadParametersException {
+		if (!this.checkSession(token)) {
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
+		}
+		if (contentRo == null || contentRo.getPostId() == null) {
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Application.getLocale()));
+		}
+		if (contentRo.getContent() == null || contentRo.getContent().trim().isEmpty()) {
+			throw new BadParametersException(String.format(I18n.getMessage(MessageKey.ERROR_PARAMETER_REQUIRED, Application.getLocale()), "Message"));
+		}
+		Session se = this.sessionManager.getSession(token);
+		Post post = this.postManager.getPostFromId(contentRo.getPostId());
+		ContentPost content = null;
+		if (post.getProfile().equals(se.getProfile())) {
+			content = this.contentPostManager.updateContentPost(post.getContentPost(), contentRo.getContent());
+		}
+		se.setLastActivity("updateMyPost");
+		return content != null ? true : false;
+	}
+
+	public Boolean				removeMyPost(HttpServletRequest request, String token, Integer postId) throws BadCredentialException, TechnicalException, BadParametersException {
+		if (!this.checkSession(token)) {
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
+		}
+		if (postId == null || postId == 0) {
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Application.getLocale()));
+		}
+		Session se = this.sessionManager.getSession(token);
+		Post post = this.postManager.getPostFromId(postId);
+		Boolean success = false;
+		if (post.getProfile().equals(se.getProfile())) {
+			success = this.postManager.removePost(post);
+		}
+		return success;
 	}
 }
