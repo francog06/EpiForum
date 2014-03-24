@@ -45,6 +45,7 @@ public class Topic implements Serializable, ICreateListener, IUpdateListener {
 	private String			title;
 	private String			description;
 	private Boolean			locked;
+
 	private List<Post>		posts = new ArrayList<Post>(0);
 
 	public 					Topic() {

@@ -257,11 +257,11 @@ public class Profile implements Serializable, ICreateListener, IUpdateListener {
 	}
 
 	@Column(name = "thanks", nullable = false)
-	public Integer			getThanks() {
+	public Integer			getNbThanks() {
 		return this.nbThank;
 	}
 
-	public void				setThanks(Integer thanks) {
+	public void				setNbThanks(Integer thanks) {
 		this.nbThank = thanks;
 	}
 

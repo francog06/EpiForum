@@ -55,13 +55,13 @@ public class ProfileManager {
 			pro.setBirthdate(proRo.getBirthdate());
 		}
 		if (proRo.getCity() != null && !proRo.getCity().trim().isEmpty()) {
-			pro.setCity(proRo.getCity().trim());
+			pro.setCity("maps.google.com/?q=" + proRo.getCity().trim());
 		}
 		if (proRo.getFacebookPage() != null && !proRo.getFacebookPage().trim().isEmpty()) {
-			pro.setFacebookPage(proRo.getFacebookPage().trim());
+			pro.setFacebookPage("www.facebook.com/" + proRo.getFacebookPage().trim());
 		}
 		if (proRo.getTwitterPage() != null && !proRo.getTwitterPage().trim().isEmpty()) {
-			pro.setTwitterPage(proRo.getTwitterPage().trim());
+			pro.setTwitterPage("twitter.com/" + proRo.getTwitterPage().trim());
 		}
 		if (proRo.getSkypeContact() != null && !proRo.getSkypeContact().trim().isEmpty()) {
 			pro.setSkypeContact(proRo.getSkypeContact().trim());

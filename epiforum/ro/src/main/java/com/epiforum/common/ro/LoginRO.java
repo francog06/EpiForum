@@ -5,9 +5,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class LoginRO {
 
-	private String		email;
+	protected String		email;
 	
-	private String		password;
+	protected String		password;
 
 	/**
 	 * @return the email

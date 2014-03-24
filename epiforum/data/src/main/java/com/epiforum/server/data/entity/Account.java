@@ -57,8 +57,8 @@ public class Account implements Serializable, ICreateListener, IUpdateListener {
 	}
 
 	public enum Type {
-		MEMBER,
-		MODERATOR,
+		MEMBRE,
+		MODERATEUR,
 		ADMIN
 	}
 

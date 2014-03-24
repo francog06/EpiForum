@@ -1,5 +1,8 @@
 package com.epiforum.server.logic.facade;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.servlet.http.HttpServletRequest;
@@ -9,13 +12,20 @@ import org.apache.commons.lang3.RandomStringUtils;
 import com.epiforum.common.ro.ChangeInfo;
 import com.epiforum.common.ro.LoginRO;
 import com.epiforum.common.ro.MyProfileRO;
+import com.epiforum.common.ro.PaginationRO;
+import com.epiforum.common.ro.PostRO;
 import com.epiforum.common.ro.ProfileInfoRO;
 import com.epiforum.common.ro.SignupRO;
+import com.epiforum.common.ro.TopicRO;
 import com.epiforum.server.config.i18n.I18n;
 import com.epiforum.server.config.i18n.I18n.MessageKey;
 import com.epiforum.server.data.entity.Account;
+import com.epiforum.server.data.entity.Board;
+import com.epiforum.server.data.entity.ContentPost;
+import com.epiforum.server.data.entity.Post;
 import com.epiforum.server.data.entity.Profile;
 import com.epiforum.server.data.entity.Session;
+import com.epiforum.server.data.entity.Topic;
 import com.epiforum.server.logic.application.Application;
 import com.epiforum.server.logic.builder.ROBuilder;
 import com.epiforum.server.logic.exception.BadCredentialException;
@@ -24,6 +34,7 @@ import com.epiforum.server.logic.exception.TechnicalException;
 import com.epiforum.server.logic.manager.AccountManager;
 import com.epiforum.server.logic.manager.BoardManager;
 import com.epiforum.server.logic.manager.CategoryManager;
+import com.epiforum.server.logic.manager.ContentPostManager;
 import com.epiforum.server.logic.manager.MailManager;
 import com.epiforum.server.logic.manager.PostManager;
 import com.epiforum.server.logic.manager.ProfileManager;
@@ -35,28 +46,31 @@ import com.google.i18n.phonenumbers.NumberParseException;
 public class OperationFacade {
 
 	@EJB
-	private AccountManager		accountManager;
+	protected AccountManager		accountManager;
 
 	@EJB
-	private ProfileManager		profileManager;
+	protected ProfileManager		profileManager;
 
 	@EJB
-	private CategoryManager		categoryManager;
+	protected CategoryManager		categoryManager;
 	
 	@EJB
-	private BoardManager		boardManager;
+	protected BoardManager			boardManager;
 	
 	@EJB
-	private TopicManager		topicManager;
+	protected TopicManager			topicManager;
 	
 	@EJB
-	private PostManager			postManager;
+	protected PostManager			postManager;
+	
+	@EJB
+	protected ContentPostManager	contentPostManager;
 
 	@EJB
-	private SessionManager		sessionManager;
+	protected SessionManager		sessionManager;
 	
 	@EJB
-	private MailManager			mailManager;
+	protected MailManager			mailManager;
 
 								/*	MISC	*/
 
@@ -89,7 +103,7 @@ public class OperationFacade {
 		return ac;
 	}
 
-	public boolean				unsubscribe(HttpServletRequest request, String token, String email) throws BadCredentialException, BadParametersException {
+	public Boolean				unsubscribe(HttpServletRequest request, String token, String email) throws BadCredentialException, BadParametersException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
 		}
@@ -104,7 +118,7 @@ public class OperationFacade {
 		return this.accountManager.deleteAccount(ac);
 	}
 
-	public boolean				activateAccount(HttpServletRequest request, String email, String activationCode) throws TechnicalException, BadParametersException, BadCredentialException {
+	public Boolean				activateAccount(HttpServletRequest request, String email, String activationCode) throws TechnicalException, BadParametersException, BadCredentialException {
 		if (email == null || email.trim().isEmpty()) {
 			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_BADEMAIL, Application.getLocale()));
 		} else if (activationCode == null || activationCode.trim().isEmpty()) {
@@ -121,7 +135,7 @@ public class OperationFacade {
 		return false;
 	}
 	
-	public boolean				forgotPassword(HttpServletRequest request, String email) throws TechnicalException, BadParametersException, BadCredentialException {
+	public Boolean				forgotPassword(HttpServletRequest request, String email) throws TechnicalException, BadParametersException, BadCredentialException {
 		if (email == null || email.trim().isEmpty()) {
 			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_BADEMAIL, Application.getLocale()));
 		}
@@ -153,7 +167,7 @@ public class OperationFacade {
 		return se.getId();
 	}
 
-	public boolean				logout(String token) throws BadCredentialException {
+	public Boolean				logout(String token) throws BadCredentialException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_NOLOGIN, Application.getLocale()));
 		}
@@ -165,7 +179,7 @@ public class OperationFacade {
 		return false;
 	}
 
-	public boolean				changeEmail(HttpServletRequest request, String token, ChangeInfo info) throws BadCredentialException {
+	public Boolean				changeEmail(HttpServletRequest request, String token, ChangeInfo info) throws BadCredentialException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
 		}
@@ -184,14 +198,14 @@ public class OperationFacade {
 		return false;
 	}
 	
-	public boolean				changePassword(HttpServletRequest request, String token, ChangeInfo info) throws BadCredentialException, TechnicalException {
+	public Boolean				changePassword(HttpServletRequest request, String token, ChangeInfo info) throws BadCredentialException, TechnicalException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
 		}
 		Account ac = this.accountManager.getAccountFromEMail(info.getEmail());
 		Session se = this.sessionManager.getSession(token);
 		if (ac != null && se.getProfile().equals(ac.getProfile())) {
-			if (ac.getPassword().trim().equals(this.accountManager.encodePassword(info.getNewInfo().trim()))) {
+			if (ac.getPassword().trim().equals(this.accountManager.encodePassword(info.getOldInfo().trim()))) {
 				ac.setPassword(this.accountManager.encodePassword(info.getNewInfo().trim()));
 				if (!ac.getIpAddress().equals(request.getRemoteAddr().trim())) {
 					ac.setIpAddress(request.getRemoteAddr().trim());
@@ -205,7 +219,7 @@ public class OperationFacade {
 
 								/*	PROFILE STUFF	*/
 
-	public ProfileInfoRO		getProfileFromNickname(HttpServletRequest request, String token, String nickname) throws BadCredentialException, BadParametersException {
+	public ProfileInfoRO		viewProfile(HttpServletRequest request, String token, String nickname) throws BadCredentialException, BadParametersException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
 		}
@@ -222,14 +236,14 @@ public class OperationFacade {
 			// mon profil
 			user = ROBuilder.createRO(pro, se);
 		}
-		if (!pro.getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
-			pro.getAccount().setIpAddress(request.getRemoteAddr().trim());
+		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
+			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
 		}
 		se.setLastActivity("getProfileFromNickname");
 		return user;
 	}
 
-	public boolean				updateMyProfile(HttpServletRequest request, String token, MyProfileRO proRo) throws BadCredentialException, TechnicalException, BadParametersException, NumberParseException {
+	public Boolean				updateMyProfile(HttpServletRequest request, String token, MyProfileRO proRo) throws BadCredentialException, TechnicalException, BadParametersException, NumberParseException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
 		}
@@ -262,9 +276,62 @@ public class OperationFacade {
 		if (!se.getProfile().equals(pro)) {
 			return this.profileManager.addNbThank(pro);
 		}
-		if (!pro.getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
-			pro.getAccount().setIpAddress(request.getRemoteAddr().trim());
+		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
+			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
 		}
+		se.setLastActivity("thankProfile");
 		return 0;
+	}
+
+								/*	TOPIC STUFF	*/
+
+	public TopicRO				createTopic(HttpServletRequest request, String token, TopicRO topicRo) throws BadCredentialException, TechnicalException, BadParametersException {
+		if (!this.checkSession(token)) {
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
+		}
+		if (topicRo == null || topicRo.getBoardId() == 0 || topicRo.getPost() == null) {
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Application.getLocale()));
+		}
+		if (topicRo.getPost().getContent() == null || topicRo.getPost().getContent().trim().isEmpty()) {
+			throw new BadParametersException(String.format(I18n.getMessage(MessageKey.ERROR_PARAMETER_REQUIRED, Application.getLocale()), "Message"));
+		}
+		Session se = this.sessionManager.getSession(token);
+		Board board = this.boardManager.getBoardFromId(topicRo.getBoardId());
+		Topic topic = this.topicManager.createTopic(topicRo, board);
+		Post post = this.postManager.createPost(topicRo.getPost(), topic, se.getProfile());
+		ContentPost content = this.contentPostManager.createContentPost(topicRo.getPost().getContent(), post);
+		TopicRO res = ROBuilder.createRO(topic);
+		res.setPost(ROBuilder.createRO(post, se.getProfile().getId(), content.getContent()));
+		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
+			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
+		}
+		se.setLastActivity("createTopic");
+		return res;
+	}
+	
+	public TopicRO				viewTopic(HttpServletRequest request, String token, PaginationRO pagination) throws BadCredentialException, TechnicalException, BadParametersException {
+		if (!this.checkSession(token)) {
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
+		}
+		if (pagination.getId() == null || pagination.getStartIndex() == null) {
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Application.getLocale()));
+		}
+		Topic topic = this.topicManager.getTopicFromId(pagination.getId());
+		if (topic == null) {
+			return null;
+		}
+		Session se = this.sessionManager.getSession(token);
+		List<Post>  posts = this.postManager.getAllPostNotDeleted(pagination.getId(), pagination.getStartIndex());
+		List<PostRO> poRos = null;
+		if (posts != null && posts.size() > 0) {
+			poRos = new ArrayList<PostRO>();
+			for (Post post : posts) {
+				poRos.add(ROBuilder.createRO(post));
+			}
+		}
+		TopicRO to = ROBuilder.createRO(topic);
+		to.setPosts(poRos);
+		se.setLastActivity("viewTopic");
+		return to;
 	}
 }

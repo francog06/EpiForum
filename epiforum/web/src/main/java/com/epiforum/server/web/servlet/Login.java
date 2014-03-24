@@ -52,7 +52,7 @@ public class Login extends OperationResource {
 		log.setPassword(request.getParameter("password"));
 		
 		try {
-			String token = this.operationFacade.login(request, request.getHeader("Authorization"), log, Type.MEMBER);
+			String token = this.operationFacade.login(request, request.getHeader("Authorization"), log, Type.MEMBRE);
 			HttpSession session = request.getSession(true);
 			response.setHeader("Authorization", token);
 			response.sendRedirect("/web/Home");

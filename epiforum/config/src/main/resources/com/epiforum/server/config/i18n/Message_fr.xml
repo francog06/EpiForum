@@ -19,7 +19,7 @@
 	<entry key="error.credential.loged">Vous êtes déjà connecté.</entry>
 	
 	<!-- Parameter errors -->
-	<entry key="error.parameter.required">%s obligatoire.</entry>
+	<entry key="error.parameter.required">Le %s est obligatoire.</entry>
 	<entry key="error.parameter.emptyfield">Ce champ doit être renseigné.</entry>
 	<entry key="error.parameter.badstartindex">L'index de départ est incorrect.</entry>
 	<entry key="error.parameter.badterms">La recherche ne comporte aucun texte.</entry>

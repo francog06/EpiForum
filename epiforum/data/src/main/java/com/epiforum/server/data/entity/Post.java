@@ -15,6 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -29,6 +31,11 @@ import com.epiforum.server.data.listener.IUpdateListener;
 @Entity
 @Cacheable
 @Table(name = "post")
+@NamedQueries({
+	@NamedQuery(
+			name = "Post.getAllPostNotDeleted",
+			query = "SELECT po FROM Post po WHERE po.topic.id = :topicId AND po.deleted = false ORDER BY po.created")
+})
 public class Post implements Serializable, ICreateListener, IUpdateListener {
 
 	/**
@@ -48,10 +55,9 @@ public class Post implements Serializable, ICreateListener, IUpdateListener {
 	public 					Post() {
 	}
 
-	public 					Post(Topic topic, Profile profile, ContentPost contentPost) {
+	public 					Post(Topic topic, Profile profile) {
 		this.topic = topic;
 		this.profile = profile;
-		this.contentPost = contentPost;
 		this.deleted = false;
 	}
 
@@ -124,7 +130,7 @@ public class Post implements Serializable, ICreateListener, IUpdateListener {
 		this.deleted = deleted;
 	}
 
-	@OneToOne(fetch = FetchType.EAGER, mappedBy = "post")
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "post")
 	public ContentPost 		getContentPost() {
 		return this.contentPost;
 	}
