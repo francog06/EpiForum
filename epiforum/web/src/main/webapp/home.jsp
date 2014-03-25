@@ -19,143 +19,145 @@
 <link href="./assets/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet">
 <link href="./assets/css/style.css" rel="stylesheet">
+<link href="./assets/css/style-responsive.css" rel="stylesheet">
 <title>EpiForum</title>
 </head>
 <body>
 	<div class="container-fluid">
 		<!-- including header element -->
 		<jsp:include page="/header.jsp"></jsp:include>
-	<main class="clearfix">
-	<section class="clearfix centered">
-		<div class="row">
-			<jsp:include page="/leftcol.jsp"></jsp:include>
-			<div class="col-sm-8 maindiv">
-				<div class="table-responsive">
-  					<table class="table">
-  						<thead>
-  							<tr>
-  								<th>First Category</th>
-  								<th>Nb Topics</th>
-  								<th>Nb Posts</th>
-  							</tr>
-  						</thead>
-  						<tbody>
-  						<tr>
-  							<td><a target="_self" href="#"><span class="glyphicon glyphicon-folder-close"></span> First board</a>
-  								<i class="fa fa-info"></i>
-  								</td>
-  							<td>Nb topics</td>
-  							<td>Nb Posts</td>
-  						</tr>
-  						<tr>
-  							<td>Second board</td>
-  							<td>Nb topics</td>
-  							<td>Nb Posts</td>
-  						</tr>
-  						<tr>
-  							<td>Third board</td>
-  							<td>Nb topics</td>
-  							<td>Nb Posts</td>
-  						</tr>
-  						</tbody>
-  						<tfoot>
-  							<tr>
-  								<td colspan="3">View all boards</td>
-  							</tr>
-  						</tfoot>
-  					</table>
-  				</div>
-  				<div class="table-responsive">
-  					<table class="table">
-  						<thead>
-  							<tr>
-  								<th>Second Category</th>
-  								<th>Nb Topics</th>
-  								<th>Nb Posts</th>
-  							</tr>
-  						</thead>
-  						<tbody>
-  						<tr>
-  							<td><a target="_self" href="#"><span class="glyphicon glyphicon-folder-open"></span> First board</a>
-  								<i class="fa fa-info"></i>
-  							</td>
-  							<td>Nb topics</td>
-  							<td>Nb Posts</td>
-  						</tr>
-  						<tr>
-  							<td>Second board</td>
-  							<td>Nb topics</td>
-  							<td>Nb Posts</td>
-  						</tr>
-  						<tr>
-  							<td>Third board</td>
-  							<td>Nb topics</td>
-  							<td>Nb Posts</td>
-  						</tr>
-  						</tbody>
-  						<tfoot>
-  							<tr>
-  								<td colspan="3">View all boards</td>
-  							</tr>
-  						</tfoot>
-  					</table>
-  				</div>
-				<div class="table-responsive">
-  					<table class="table">
-  						<thead>
-  							<tr>
-  								<th>Third Category</th>
-  								<th>Nb Topics</th>
-  								<th>Nb Posts</th>
-  							</tr>
-  						</thead>
-  						<tbody>
-  						<tr>
-  							<td><a target="_self" href="#"><span class="glyphicon glyphicon-folder-open"></span> First board</a>
-  								<i class="fa fa-info"></i>
-  							</td>
-  							<td>Nb topics</td>
-  							<td>Nb Posts</td>
-  						</tr>
-  						<tr>
-  							<td>Second board</td>
-  							<td>Nb topics</td>
-  							<td>Nb Posts</td>
-  						</tr>
-  						<tr>
-  							<td>Third board</td>
-  							<td>Nb topics</td>
-  							<td>Nb Posts</td>
-  						</tr>
-  						</tbody>
-  						<tfoot>
-  							<tr>
-  								<td colspan="3">View all boards</td>
-  							</tr>
-  						</tfoot>
-  					</table>
-  				</div>
-  				<h3 class="darkheader">Les membres en ligne</h3>
-  				<div class="darkheadercontent">
-  				Nickname1, Nickname2, Nickname3
-  				</div>
-  				<h3 class="darkheader">Statistiques</h3>
-  				<div class="darkheadercontent">
-  				Nombre de membres: <strong>1000</strong>
-  				Nombre de posts: <strong>10000</strong>
-  				Nombre de topics: <strong>100</strong>
-  				</div>
-  				<h3 class="darkheader">Qui fete son anniversaire ?</h3>
-  				<div class="darkheadercontent">
-  				Administrator
-  				</div>
+		<main class="clearfix">
+		<section class="clearfix centered">
+			<div class="row">
+				<!-- including leftcol element -->
+				<jsp:include page="/leftcol.jsp"></jsp:include>
+				<div class="col-sm-8 maindiv">
+					<!-- including homecontent element -->
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>First Category</th>
+									<th>Nb Topics</th>
+									<th>Nb Posts</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><a target="_self" href="#"><span
+											class="glyphicon glyphicon-folder-close"></span> First board</a>
+										<i class="fa fa-info"></i></td>
+									<td>Nb topics</td>
+									<td>Nb Posts</td>
+								</tr>
+								<tr>
+									<td>Second board</td>
+									<td>Nb topics</td>
+									<td>Nb Posts</td>
+								</tr>
+								<tr>
+									<td>Third board</td>
+									<td>Nb topics</td>
+									<td>Nb Posts</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="3">View all boards</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Second Category</th>
+									<th>Nb Topics</th>
+									<th>Nb Posts</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><a target="_self" href="#"><span
+											class="glyphicon glyphicon-folder-open"></span> First board</a> <i
+										class="fa fa-info"></i></td>
+									<td>Nb topics</td>
+									<td>Nb Posts</td>
+								</tr>
+								<tr>
+									<td>Second board</td>
+									<td>Nb topics</td>
+									<td>Nb Posts</td>
+								</tr>
+								<tr>
+									<td>Third board</td>
+									<td>Nb topics</td>
+									<td>Nb Posts</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="3">View all boards</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Third Category</th>
+									<th>Nb Topics</th>
+									<th>Nb Posts</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><a target="_self" href="#"><span
+											class="glyphicon glyphicon-folder-open"></span> First board</a> <i
+										class="fa fa-info"></i></td>
+									<td>Nb topics</td>
+									<td>Nb Posts</td>
+								</tr>
+								<tr>
+									<td>Second board</td>
+									<td>Nb topics</td>
+									<td>Nb Posts</td>
+								</tr>
+								<tr>
+									<td>Third board</td>
+									<td>Nb topics</td>
+									<td>Nb Posts</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="3">View all boards</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+					<h3 class="darkheader">Les membres en ligne</h3>
+					<div class="darkheadercontent">
+						Nickname1, Nickname2, Nickname3
+					</div>
+					<h3 class="darkheader">Statistiques</h3>
+					<div class="darkheadercontent">
+						Nombre de membres: <strong>1000</strong>
+						Nombre de posts: <strong>10000</strong>
+						Nombre de topics: <strong>100</strong>
+					</div>
+					<h3 class="darkheader">Qui fete son anniversaire ?</h3>
+					<div class="darkheadercontent">Administrator</div>
+				</div>
+				<!-- including rightcol element -->
+				<jsp:include page="/rightcol.jsp"></jsp:include>
 			</div>
-			<jsp:include page="/rightcol.jsp"></jsp:include>
-		</div>
-	</section>
-	</main>
-	<!-- including footer element -->
-	<jsp:include page="/footer.html"></jsp:include>
+		</section>
+		</main>
+		<!-- including footer element -->
+		<jsp:include page="/footer.html"></jsp:include>
 	</div>
 	<!-- including common JS -->
 	<jsp:include page="/common-js.html"></jsp:include>

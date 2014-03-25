@@ -29,15 +29,17 @@ main {
 }
 
 footer {
-	background: #603CBB;
+	background: #363636;
 	width: 100%;
-	margin: 0px;
+	margin-top: 2px;
 	padding: 0px;
+	height: 34px;
+	vertical-align: bottom;
 }
 
 aside {
 	background: #C0C0C0;
-	min-width: 200px;
+	min-width: 260px;
 	bottom: auto;
 }
 
@@ -67,9 +69,7 @@ tbody {
 }
 
 tbody tr {
-	border-bottom: 1px solid #E0E0E0;
-	border-left: 1px solid #E0E0E0;
-	border-right: 1px solid #E0E0E0;
+	border: 1px solid #E0E0E0;
 }
 
 tfoot {
@@ -80,8 +80,12 @@ th, td {
 	width: 33%;
 }
 
+table.sidetable {
+	margin: 0px;
+}
+
 nav.subheader {
-	margin-bottom: 10px;	
+	margin-bottom: 4px;	
 }
 
 h3.darkheader {
@@ -104,15 +108,28 @@ div.darkheadercontent {
 }
 
 div.maindiv {
-	max-height:560px;
+	max-height:571px;
+	max-width: 999px;
 	overflow-y:scroll;
+	position: relative;
+	float: left;
 	padding: 0;
-	margin: 0;
+	margin: 0px 18px;
+}
+
+aside.leftcol {
+	float: left;
+	padding: 0;
+}
+
+aside.rightcol {
+	float: right;
+	padding: 0;
 }
 
 div.sidebarblock {
 	margin: 10px 0px;
-	height: 178px;
+	height: 177px;
 	background: #603CBB;
 }
 
@@ -150,8 +167,47 @@ div.sidebarblockcontent {
 	padding: 12px;
 }
 
-table.sidetable {
+div.copyright {
+	color:#FFFFFF;
+	text-align: center;
+	padding-top: 10px;
+}
+
+div.copyright p {
 	margin: 0px;
+	padding: 0px;
+}
+
+section.centered {
+	margin: auto;
+	padding: 0px 15px;
+}
+
+div.profilebox {
+	width: 230px;
+	height: 40px;
+	margin: 10px 0px;
+}
+
+div.profilebox a {
+	float: left;
+	position: relative;
+	display: block;
+}
+
+div.profilebox a img {
+	height: 34px !important;
+	width: 34px !important;
+	border: 1px solid #000000;
+}
+
+div.profileboxnick {
+	display: inline-block;
+	height: 40px;
+	width: 180px;
+	font-weight: bold;
+	vertical-align: middle;
+	margin-left: 14px;
 }
 
 ::selection {
@@ -162,24 +218,6 @@ table.sidetable {
 ::-moz-selection {
     background: #FFFFFF;
     color: #1F1F1F;
-}
-
-.leftcol {
-	padding: 0;
-}
-
-.rightcol {
-	padding: 0;
-}
-
-.copyright {
-	color:#FFFFFF;
-	text-align: center;
-}
-
-.centered {
-	margin: auto;
-	padding: 0px 15px;
 }
 
 .formWrap {
