@@ -13,7 +13,7 @@ import com.epiforum.server.web.beanresource.AdminResource;
 /**
  * Servlet implementation class home
  */
-@WebServlet("/home")
+@WebServlet("/admin/home")
 public class Home extends AdminResource {
 
 	private static final long serialVersionUID = 8560854450435332915L;

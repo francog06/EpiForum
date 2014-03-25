@@ -1,72 +1,163 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
+<%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <!-- METAS -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="This is the Courses home page !">
-<meta name="author" content="MORENO Igor &amp; FRANCOIS Guilaume">
+<meta name="description"
+	content="Epiforum est un forum dévelopé principalement en JAVA">
+<!-- including common metas -->
+<jsp:include page="/metas.html"></jsp:include>
 
 <!-- LINKS -->
 <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="./assets/bootstrap/css/bootstrap-theme.min.css"
+	rel="stylesheet">
+<link href="./assets/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
 <link href="./assets/css/style.css" rel="stylesheet">
-<link href="./assets/css/style-responsive.css" rel="stylesheet">
-<link href="./assets/css/bootstrap-reset.css" rel="stylesheet">
-<title>EpiOC - Home page</title>
+<title>EpiForum</title>
 </head>
 <body>
 	<div class="container-fluid">
-		<header class="clearfix">
-		<a target="_self" href="Home"><h1>Bienvenue sur Epi Open Classroom</h1></a>
-		<div class="header-links">
-			<a target="_self" href="Signup" class="btn btn-default" type="button">Inscription</a>
-			<a target="_self" href="Login" class="btn btn-default" type="button">Connection</a>
-			<c:if test="${token != null}">
-				<a target="_self" href="Logout" class="btn btn-default" type="button">Deconnection</a>
-				<a target="_self" href="Account" class="btn btn-default" type="button">Mon compte</a>
-			</c:if>
+		<!-- including header element -->
+		<jsp:include page="/header.jsp"></jsp:include>
+	<main class="clearfix">
+	<section class="clearfix centered">
+		<div class="row">
+			<jsp:include page="/leftcol.jsp"></jsp:include>
+			<div class="col-sm-8 maindiv">
+				<div class="table-responsive">
+  					<table class="table">
+  						<thead>
+  							<tr>
+  								<th>First Category</th>
+  								<th>Nb Topics</th>
+  								<th>Nb Posts</th>
+  							</tr>
+  						</thead>
+  						<tbody>
+  						<tr>
+  							<td><a target="_self" href="#"><span class="glyphicon glyphicon-folder-close"></span> First board</a>
+  								<i class="fa fa-info"></i>
+  								</td>
+  							<td>Nb topics</td>
+  							<td>Nb Posts</td>
+  						</tr>
+  						<tr>
+  							<td>Second board</td>
+  							<td>Nb topics</td>
+  							<td>Nb Posts</td>
+  						</tr>
+  						<tr>
+  							<td>Third board</td>
+  							<td>Nb topics</td>
+  							<td>Nb Posts</td>
+  						</tr>
+  						</tbody>
+  						<tfoot>
+  							<tr>
+  								<td colspan="3">View all boards</td>
+  							</tr>
+  						</tfoot>
+  					</table>
+  				</div>
+  				<div class="table-responsive">
+  					<table class="table">
+  						<thead>
+  							<tr>
+  								<th>Second Category</th>
+  								<th>Nb Topics</th>
+  								<th>Nb Posts</th>
+  							</tr>
+  						</thead>
+  						<tbody>
+  						<tr>
+  							<td><a target="_self" href="#"><span class="glyphicon glyphicon-folder-open"></span> First board</a>
+  								<i class="fa fa-info"></i>
+  							</td>
+  							<td>Nb topics</td>
+  							<td>Nb Posts</td>
+  						</tr>
+  						<tr>
+  							<td>Second board</td>
+  							<td>Nb topics</td>
+  							<td>Nb Posts</td>
+  						</tr>
+  						<tr>
+  							<td>Third board</td>
+  							<td>Nb topics</td>
+  							<td>Nb Posts</td>
+  						</tr>
+  						</tbody>
+  						<tfoot>
+  							<tr>
+  								<td colspan="3">View all boards</td>
+  							</tr>
+  						</tfoot>
+  					</table>
+  				</div>
+				<div class="table-responsive">
+  					<table class="table">
+  						<thead>
+  							<tr>
+  								<th>Third Category</th>
+  								<th>Nb Topics</th>
+  								<th>Nb Posts</th>
+  							</tr>
+  						</thead>
+  						<tbody>
+  						<tr>
+  							<td><a target="_self" href="#"><span class="glyphicon glyphicon-folder-open"></span> First board</a>
+  								<i class="fa fa-info"></i>
+  							</td>
+  							<td>Nb topics</td>
+  							<td>Nb Posts</td>
+  						</tr>
+  						<tr>
+  							<td>Second board</td>
+  							<td>Nb topics</td>
+  							<td>Nb Posts</td>
+  						</tr>
+  						<tr>
+  							<td>Third board</td>
+  							<td>Nb topics</td>
+  							<td>Nb Posts</td>
+  						</tr>
+  						</tbody>
+  						<tfoot>
+  							<tr>
+  								<td colspan="3">View all boards</td>
+  							</tr>
+  						</tfoot>
+  					</table>
+  				</div>
+  				<h3 class="darkheader">Les membres en ligne</h3>
+  				<div class="darkheadercontent">
+  				Nickname1, Nickname2, Nickname3
+  				</div>
+  				<h3 class="darkheader">Statistiques</h3>
+  				<div class="darkheadercontent">
+  				Nombre de membres: <strong>1000</strong>
+  				Nombre de posts: <strong>10000</strong>
+  				Nombre de topics: <strong>100</strong>
+  				</div>
+  				<h3 class="darkheader">Qui fete son anniversaire ?</h3>
+  				<div class="darkheadercontent">
+  				Administrator
+  				</div>
+			</div>
+			<jsp:include page="/rightcol.jsp"></jsp:include>
 		</div>
-		</header>
-		<main class="clearfix"> <section class="clearfix">
-		<h3>Les cours</h3>
-		<div class="centered">
-		<c:set var="count" value="1" scope="page" />
-			<ul class="courses-list list-inline">
-			<c:forEach items="${coRos}" var="co">
-				<li class="col3 course">
-					<div class="info-panel">
-						<a href="Course?id=${count}">
-							<div class="info-panel-image"></div>
-							<p> <c:out value="${co.title}"/> <p>
-						</a>
-					</div>
-				</li>
-			<c:set var="count" value="${count + 1}" scope="page"/>
-			</c:forEach>
-			</ul>
-		</div>
-		</section> </main>
-		<footer class="clearfix copyright">
-			<p>Copyright © 2010-2014 - EpiOpenClassRoom</p>
-		</footer>
+	</section>
+	</main>
+	<!-- including footer element -->
+	<jsp:include page="/footer.html"></jsp:include>
 	</div>
-
-	<!-- common script for all pages-->
-	<!-- js placed at the end of the document so the pages load faster -->
-	<script language="JavaScript" type="text/javascript"
-		src="./assets/js/jquery-1.11.0.js"></script>
-	<script language="JavaScript" type="text/javascript"
-		src="./assets/bootstrap/js/bootstrap.min.js" async></script>
-    <script language="JavaScript" type="text/javascript"
-    	src="./assets/js/jquery.scrollTo.min.js" async></script>
-    <script language="JavaScript" type="text/javascript"
-    	src="./assets/js/jquery.nicescroll.js" async></script>
-    <script language="JavaScript" type="text/javascript"
-    	src="./assets/js/jquery.validate.min.js" async></script>
-    <script language="JavaScript" type="text/javascript"
-    	src="./assets/js/common-scripts.js" async></script>
+	<!-- including common JS -->
+	<jsp:include page="/common-js.html"></jsp:include>
 </body>
 </html>

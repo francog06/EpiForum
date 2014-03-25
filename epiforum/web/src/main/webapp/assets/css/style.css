@@ -1,9 +1,8 @@
 /* style CSS */
 
 body {
-    color: #666;
+    color: #363636;
     background: #F0F0F0;
-    font-family: 'Open Sans', sans-serif;
     padding: 0px !important;
     margin: 0px !important;
     font-weight: 400;
@@ -13,112 +12,174 @@ div {
 	display: block;	
 }
 
+header {
+	background: #603CBB;
+	width: 100%;
+	margin: 10px 0px;
+}
+
 section {
 	display: block;
 }
 
-h1, h2, h3, h4, h5 {
-	color: #FFFFFF;
-	text-align: center;
-}
-ul li {
-    list-style: none;
-}
-a p {
-	color: #11AA11;
-	text-align: center;
-	font-size: 14px;
-	text-transform: uppercase;
-}
-
-a, a:hover, a:focus {
-    text-decoration: none;
-    outline: none;
-}
-
-::selection {
-    background: #FF6C60;
-    color: #fff;
-}
-
-::-moz-selection {
-    background: #FF6C60;
-    color: #fff;
-}
-
-#container {
-    width: 100%;
-    height: 100%;
-}
-
-header {
-	background: #F67A6E;
-	height: 120px;
-	min-height: 100px;
-	width: 80%;
-	min-width: 1200px;
-	margin: auto;
-}
-
-
-
 main {
-	background: black;
-	min-height: 460px;
-	width: 80%;
-	min-width: 1200px;
+	min-height: 480px;
+	width: 100%;
 	margin: auto;
 }
 
 footer {
-	background: #F67A6E;
-	height: 100px;
-	width: 80%;
-	min-width: 1200px;
-	margin: auto;
-	padding: 0;
+	background: #603CBB;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
 }
-.copyright {
-	color: #111111;
-	font-weight: bold;
+
+aside {
+	background: #C0C0C0;
+	min-width: 200px;
+	bottom: auto;
+}
+
+h1, h2, h3, h4, h5 {
+	color: #FFFFFF;
+}
+
+ul li {
+    list-style: none;
+}
+
+a, a:hover, a:focus {
+	color: #363636;
+    text-decoration: none;
+	text-transform: none;
+    outline: none;
 	text-align: center;
 }
 
-.header-links {
-	margin-top: 10px;
+thead {
+	background-color: #603CBB;
+	color: #FFFFFF;
+}
+
+tbody {
+	background-color: #F0F0F0;
+}
+
+tbody tr {
+	border-bottom: 1px solid #E0E0E0;
+	border-left: 1px solid #E0E0E0;
+	border-right: 1px solid #E0E0E0;
+}
+
+tfoot {
+	background-color: #E0E0E0;
+}
+
+th, td {
+	width: 33%;
+}
+
+nav.subheader {
+	margin-bottom: 10px;	
+}
+
+h3.darkheader {
+	background-color: #363636;
+	line-height: 48px;
+	padding: 0 12px;
+	color: #ffffff;
+	font-weight: normal;
+	clear: both;
+	margin: 0px;
+}
+
+div.darkheadercontent {
+	background-color: #ffffff;
+	padding: 12px;
+	border-bottom: 1px solid #E4E4E4;
+	border-left: 1px solid #E4E4E4;
+	border-right: 1px solid #E4E4E4;
+	margin-bottom: 12px;
+}
+
+div.maindiv {
+	max-height:560px;
+	overflow-y:scroll;
+	padding: 0;
+	margin: 0;
+}
+
+div.sidebarblock {
+	margin: 10px 0px;
+	height: 178px;
+	background: #603CBB;
+}
+
+.sidebarblock h3 {
+	margin-top: 0px;
+	padding-top: 20px;
+	padding-left: 10px;
+	margin-bottom: 20px;
+}
+
+.sidebarblock ul {
+	padding-left: 10px;	
+}
+
+.sidebarblock ul li {
+	float: left;
+	margin: 0px 10px;
+	list-style-type: none;
+	padding: 0px;
+}
+
+h2.sidebarblockheader {
+	background-color: #363636;
+	color: #FFFFFF;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 12px;
+	margin: 0px;
+}
+
+div.sidebarblockcontent {
+	background: #FFFFFF;
+	border: solid 1px #E4E4E4;
+	color: #363636;
+	padding: 12px;
+}
+
+table.sidetable {
+	margin: 0px;
+}
+
+::selection {
+    background: #FFFFFF;
+    color: #1F1F1F;
+}
+
+::-moz-selection {
+    background: #FFFFFF;
+    color: #1F1F1F;
+}
+
+.leftcol {
+	padding: 0;
+}
+
+.rightcol {
+	padding: 0;
+}
+
+.copyright {
+	color:#FFFFFF;
 	text-align: center;
 }
 
 .centered {
 	margin: auto;
-	padding: 0px 10px;
-	position: relative;
-}
-
-ul.courses-list {
-	margin: auto;
-	padding: 0;
-	background-color: gray;
-}
-
-li.course {
-	width: 200px;
-	height: 240px;
-	margin: 10px 20px;
-	padding: 0px;
-}
-
-ul.courses-list .info-panel {
-	height: 200px;
-}
-
-div.info-panel .info-panel-image {
-	width: 200px;
-	height: 200px;
-	border: 2px solid black;
-	border-radius: 10px;
-	background-image: url("../images/geek.png");
-	background-repeat: no-repeat;
+	padding: 0px 15px;
 }
 
 .formWrap {
@@ -209,10 +270,6 @@ h2.form-signin-heading {
     box-shadow: 0 4px #30baba;
     margin: 10px auto 10px;
     width: 80%;
-}
-
-.btn-signup a, a:hover, a:focus {
-    color: white;
 }
 
 

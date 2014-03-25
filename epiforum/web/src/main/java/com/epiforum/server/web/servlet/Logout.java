@@ -44,7 +44,7 @@ public class Logout extends OperationResource {
 		    //System.out.println(acr.getEmail() + " logged out!");
 		    session.invalidate();
 		    }
-	    response.sendRedirect("/web/Home");
+	    response.sendRedirect("home");
 	    }
 
 	/**

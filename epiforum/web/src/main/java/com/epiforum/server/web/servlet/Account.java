@@ -36,7 +36,7 @@ public class Account extends OperationResource {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		if (session == null || session.getAttribute("acr") == null) {
-			response.sendRedirect("/home");
+			response.sendRedirect("home");
 		} else {
 			String url = "/account.jsp";
 			ServletContext sc = getServletContext();
