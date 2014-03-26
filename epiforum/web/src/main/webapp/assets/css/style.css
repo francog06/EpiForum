@@ -23,9 +23,11 @@ section {
 }
 
 main {
-	min-height: 480px;
+	min-height: 571px;
 	width: 100%;
 	margin: auto;
+	height: auto !important;
+	max-height: 100%;
 }
 
 footer {
@@ -108,11 +110,11 @@ div.darkheadercontent {
 }
 
 div.maindiv {
-	max-height:571px;
+	max-height:605px;
 	max-width: 999px;
 	overflow-y:scroll;
 	position: relative;
-	float: left;
+	float: right;
 	padding: 0;
 	margin: 0px 18px;
 }

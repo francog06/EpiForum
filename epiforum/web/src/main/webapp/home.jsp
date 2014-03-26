@@ -14,10 +14,8 @@
 
 <!-- LINKS -->
 <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="./assets/bootstrap/css/bootstrap-theme.min.css"
-	rel="stylesheet">
-<link href="./assets/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet">
+<link href="./assets/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="./assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <link href="./assets/css/style.css" rel="stylesheet">
 <link href="./assets/css/style-responsive.css" rel="stylesheet">
 <title>EpiForum</title>
@@ -31,6 +29,8 @@
 			<div class="row">
 				<!-- including leftcol element -->
 				<jsp:include page="/leftcol.jsp"></jsp:include>
+				<!-- including rightcol element -->
+				<jsp:include page="/rightcol.jsp"></jsp:include>
 				<div class="col-sm-8 maindiv">
 					<!-- including homecontent element -->
 					<div class="table-responsive">
@@ -151,8 +151,6 @@
 					<h3 class="darkheader">Qui fete son anniversaire ?</h3>
 					<div class="darkheadercontent">Administrator</div>
 				</div>
-				<!-- including rightcol element -->
-				<jsp:include page="/rightcol.jsp"></jsp:include>
 			</div>
 		</section>
 		</main>
