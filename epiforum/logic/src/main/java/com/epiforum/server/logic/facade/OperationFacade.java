@@ -13,6 +13,7 @@ import com.epiforum.common.ro.ChangeInfo;
 import com.epiforum.common.ro.ContentRO;
 import com.epiforum.common.ro.LoginRO;
 import com.epiforum.common.ro.MemberRO;
+import com.epiforum.common.ro.MyLightProfileRO;
 import com.epiforum.common.ro.MyProfileRO;
 import com.epiforum.common.ro.PaginationRO;
 import com.epiforum.common.ro.PostRO;
@@ -287,6 +288,14 @@ public class OperationFacade {
 		return 0;
 	}
 
+	public MyLightProfileRO		getMyLightProfileRO(HttpServletRequest request, String token) throws BadCredentialException, BadParametersException {
+		if (!this.checkSession(token)) {
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
+		}
+		Session se = this.sessionManager.getSession(token);
+		MyLightProfileRO pro = ROBuilder.createRO(se.getProfile());
+		return pro;
+	}
 								/*	TOPIC STUFF	*/
 
 	public TopicRO				createTopic(HttpServletRequest request, String token, TopicRO topicRo) throws BadCredentialException, TechnicalException, BadParametersException {
@@ -398,6 +407,7 @@ public class OperationFacade {
 		if (post.getProfile().equals(se.getProfile())) {
 			success = this.postManager.removePost(post);
 		}
+		se.setLastActivity("removeMyPost");
 		return success;
 	}
 
@@ -419,11 +429,11 @@ public class OperationFacade {
 		return null;
 	}
 	
-	public List<MemberRO>		topMembers(HttpServletRequest request) {
+	public List<MemberRO>		birthdayMembers(HttpServletRequest request) {
 		return null;
 	}
 	
-	public List<MemberRO>		birthdayMembers(HttpServletRequest request) {
+	public List<MemberRO>		topMembers(HttpServletRequest request) {
 		return null;
 	}
 	

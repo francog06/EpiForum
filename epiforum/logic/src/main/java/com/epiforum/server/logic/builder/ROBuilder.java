@@ -3,6 +3,7 @@ package com.epiforum.server.logic.builder;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.epiforum.common.ro.MyLightProfileRO;
 import com.epiforum.common.ro.MyProfileRO;
 import com.epiforum.common.ro.PostRO;
 import com.epiforum.common.ro.RandomPasswordRO;
@@ -79,5 +80,16 @@ public class ROBuilder {
 		po.setContent(post.getContentPost().getContent());
 		po.setTags(createTagList(post.getTag()));
 		return po;
+	}
+
+	public static MyLightProfileRO		createRO(Profile profile) {
+		MyLightProfileRO pro = new MyLightProfileRO();
+		pro.setNickname(profile.getNickname());
+		pro.setFirstname(profile.getFirstname());
+		pro.setLastname(profile.getLastname());
+		pro.setBirthdate(profile.getBirthdate());
+		pro.setNbPost(profile.getNbPosts());
+		pro.setNbThank(profile.getNbThanks());
+		return pro;
 	}
 }
