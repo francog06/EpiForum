@@ -10,7 +10,6 @@ import com.epiforum.common.ro.MemberRO;
 import com.epiforum.common.ro.MyLightProfileRO;
 import com.epiforum.common.ro.MyProfileRO;
 import com.epiforum.common.ro.PostRO;
-import com.epiforum.common.ro.RandomPasswordRO;
 import com.epiforum.common.ro.TopicRO;
 import com.epiforum.server.data.entity.Board;
 import com.epiforum.server.data.entity.Category;
@@ -22,12 +21,6 @@ import com.epiforum.server.data.entity.Topic;
 public class ROBuilder {
 
 	private ROBuilder() {}
-
-	public static RandomPasswordRO		createRO(String pass) {
-		RandomPasswordRO passwordRo = new RandomPasswordRO();
-		passwordRo.setPassword(pass);
-		return passwordRo;
-	}
 
 	public static MyProfileRO			createMyProfileRO(Profile pro, Session se) {
 		MyProfileRO myPro = new MyProfileRO();
@@ -53,7 +46,34 @@ public class ROBuilder {
 		}
 		return myPro;
 	}
-	
+
+	public static MyLightProfileRO		createMyLightProfileRO(Profile profile) {
+		MyLightProfileRO pro = new MyLightProfileRO();
+		pro.setNickname(profile.getNickname());
+		pro.setFirstname(profile.getFirstname());
+		pro.setLastname(profile.getLastname());
+		pro.setBirthdate(profile.getBirthdate());
+		pro.setNbPost(profile.getNbPosts());
+		pro.setNbThank(profile.getNbThanks());
+		return pro;
+	}
+
+	public static CategoryRO			createCategoryRO(Category cat) {
+		CategoryRO catRo = new CategoryRO();
+		catRo.setId(cat.getId());
+		catRo.setTitle(cat.getTitle());
+		catRo.setDescription(cat.getDescription());
+		return catRo;
+	}
+
+	public static BoardRO				createBoardRO(Board board) {
+		BoardRO boardRo = new BoardRO();
+		boardRo.setId(board.getId());
+		boardRo.setTitle(board.getTitle());
+		boardRo.setDescription(board.getDescription());
+		return boardRo;
+	}
+
 	public static TopicRO				createTopicRO(Topic topic) {
 		TopicRO to = new TopicRO();
 		to.setId(topic.getId());
@@ -89,33 +109,6 @@ public class ROBuilder {
 		po.setProfileSignature(post.getProfile().getSignature());
 		po.setTags(createTagList(post.getTag()));
 		return po;
-	}
-
-	public static MyLightProfileRO		createMyLightProfileRO(Profile profile) {
-		MyLightProfileRO pro = new MyLightProfileRO();
-		pro.setNickname(profile.getNickname());
-		pro.setFirstname(profile.getFirstname());
-		pro.setLastname(profile.getLastname());
-		pro.setBirthdate(profile.getBirthdate());
-		pro.setNbPost(profile.getNbPosts());
-		pro.setNbThank(profile.getNbThanks());
-		return pro;
-	}
-
-	public static CategoryRO			createCategoryRO(Category cat) {
-		CategoryRO catRo = new CategoryRO();
-		catRo.setId(cat.getId());
-		catRo.setTitle(cat.getTitle());
-		catRo.setDescription(cat.getDescription());
-		return catRo;
-	}
-
-	public static BoardRO				createBoardRO(Board board) {
-		BoardRO boardRo = new BoardRO();
-		boardRo.setId(board.getId());
-		boardRo.setTitle(board.getTitle());
-		boardRo.setDescription(board.getDescription());
-		return null;
 	}
 
 	public static MemberRO				createMemberRO(Profile pro) {

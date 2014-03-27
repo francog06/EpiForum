@@ -360,33 +360,6 @@ public class OperationFacade {
 		return to;
 	}
 
-	/*TODO viewBoard*/
-	public List<TopicRO>		viewAllTopicsFromBoardId(HttpServletRequest request, String token, Integer boardId) throws BadCredentialException, BadParametersException {
-		if (!this.checkSession(token)) {
-			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
-		}
-		if (boardId == null) {
-			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Application.getLocale()));
-		}
-		Board board = this.boardManager.getBoardFromId(boardId);
-		if (board == null) {
-			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Application.getLocale()));
-		}
-		Session se = this.sessionManager.getSession(token);
-		List<TopicRO> topics = null;
-		if (board.getTopics() != null && board.getTopics().size() > 0) {
-			topics = new ArrayList<TopicRO>();
-			for (Topic topic : board.getTopics()) {
-				topics.add(ROBuilder.createTopicRO(topic));
-			}
-		}
-		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
-			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
-		}
-		se.setLastActivity("viewAllTopicsFromBoardId");
-		return topics;
-	}
-
 								/*	POST STUFF	*/
 
 	public Boolean				addPost(HttpServletRequest request, String token, PostRO postRo) throws BadCredentialException, TechnicalException, BadParametersException {
@@ -453,7 +426,7 @@ public class OperationFacade {
 
 								/*	CATEGORY STUFF	*/
 
-	public	List<CategoryRO>	viewAllCategories(HttpServletRequest request, String token) {
+	public List<CategoryRO>		viewAllCategories(HttpServletRequest request, String token) {
 		List<Category> cats = this.categoryManager.getAllCategories();
 		if (cats == null || cats.size() == 0) {
 			return null;
@@ -478,12 +451,10 @@ public class OperationFacade {
 			se.setLastActivity("viewAllCategories");
 		}
 		return catRos;
+		
 	}
 
-								/*	BOARD STUFF	*/
-
-	/*TODO viewCategory*/
-	public List<BoardRO>		viewAllBoardsFromCategoryId(HttpServletRequest request, String token, Integer categoryId) throws BadCredentialException, BadParametersException {
+	public CategoryRO			viewCategory(HttpServletRequest request, String token, Integer categoryId) throws BadCredentialException, BadParametersException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
 		}
@@ -494,6 +465,7 @@ public class OperationFacade {
 		if (cat == null) {
 			return null;
 		}
+		CategoryRO catRo = ROBuilder.createCategoryRO(cat);
 		Session se = this.sessionManager.getSession(token);
 		List<BoardRO> boards = null;
 		if (cat.getBoards() != null && cat.getBoards().size() > 0) {
@@ -501,12 +473,43 @@ public class OperationFacade {
 			for (Board board : cat.getBoards()) {
 				boards.add(ROBuilder.createBoardRO(board));
 			}
+			catRo.setBoards(boards);
 		}
 		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
 			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
 		}
 		se.setLastActivity("viewAllBoardsFromCategoryId");
-		return boards;
+		return catRo;
+	}
+
+								/*	BOARD STUFF	*/
+
+	public BoardRO				viewBoard(HttpServletRequest request, String token, Integer boardId) throws BadCredentialException, BadParametersException {
+		if (!this.checkSession(token)) {
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
+		}
+		if (boardId == null) {
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Application.getLocale()));
+		}
+		Board board = this.boardManager.getBoardFromId(boardId);
+		if (board == null) {
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Application.getLocale()));
+		}
+		BoardRO boardRo = ROBuilder.createBoardRO(board);
+		Session se = this.sessionManager.getSession(token);
+		List<TopicRO> topics = null;
+		if (board.getTopics() != null && board.getTopics().size() > 0) {
+			topics = new ArrayList<TopicRO>();
+			for (Topic topic : board.getTopics()) {
+				topics.add(ROBuilder.createTopicRO(topic));
+			}
+			boardRo.setTopics(topics);
+		}
+		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
+			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
+		}
+		se.setLastActivity("viewAllTopicsFromBoardId");
+		return boardRo;
 	}
 
 								/*	STATISTICS STUFF	*/
