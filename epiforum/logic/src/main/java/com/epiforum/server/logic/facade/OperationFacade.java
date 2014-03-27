@@ -320,6 +320,8 @@ public class OperationFacade {
 		ContentPost content = this.contentPostManager.createContentPost(topicRo.getPost().getContent(), post);
 		TopicRO res = ROBuilder.createTopicRO(topic);
 		res.setPost(ROBuilder.createPostRO(post, se.getProfile().getId(), content.getContent()));
+		topic.addNbPost();
+		se.getProfile().addNbPost();
 		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
 			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
 		}
@@ -373,6 +375,8 @@ public class OperationFacade {
 		Topic topic = this.topicManager.getTopicFromId(postRo.getTopicId());
 		Post post = this.postManager.createPost(postRo, topic, se.getProfile());
 		ContentPost content = this.contentPostManager.createContentPost(postRo.getContent(), post);
+		topic.addNbPost();
+		se.getProfile().addNbPost();
 		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
 			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
 		}
@@ -560,8 +564,8 @@ public class OperationFacade {
 		return members;
 	}
 
-	public List<MemberRO>		topMembers() {
-		List<Profile> pros = this.profileManager.getTopMembers(3);
+	public List<MemberRO>		topProfiles() {
+		List<Profile> pros = this.profileManager.getTopProfiles(3);
 		if (pros == null || pros.size() == 0) {
 			return null;
 		}
@@ -572,8 +576,15 @@ public class OperationFacade {
 		return members;
 	}
 
-	/*TODO topTopics*/
 	public List<TopTopicRO>		topTopics() {
-		return null;
+		List<Topic> topics = this.topicManager.getTopTopics(3);
+		if (topics == null || topics.size() == 0) {
+			return null;
+		}
+		List<TopTopicRO> tops = new ArrayList<TopTopicRO>();
+		for (Topic top : topics) {
+			tops.add(ROBuilder.createTopTopicRO(top));
+		}
+		return tops;
 	}
 }

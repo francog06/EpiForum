@@ -17,6 +17,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -31,6 +33,11 @@ import com.epiforum.server.data.listener.IUpdateListener;
 @Entity
 @Cacheable
 @Table(name = "topic")
+@NamedQueries({
+	@NamedQuery(
+			name = "Topic.getTopTopics",
+			query = "SELECT to FROM Topic to ORDER BY to.nbPosts DESC")
+})
 public class Topic implements Serializable, ICreateListener, IUpdateListener {
 
 	/**
@@ -45,6 +52,7 @@ public class Topic implements Serializable, ICreateListener, IUpdateListener {
 	private String			title;
 	private String			description;
 	private Boolean			locked;
+	private Integer			nbPost;
 
 	private List<Post>		posts = new ArrayList<Post>(0);
 
@@ -56,6 +64,7 @@ public class Topic implements Serializable, ICreateListener, IUpdateListener {
 		this.title = title;
 		this.description = description;
 		this.locked = locked;
+		this.nbPost = 0;
 	}
 
 	@Id
@@ -126,6 +135,15 @@ public class Topic implements Serializable, ICreateListener, IUpdateListener {
 		this.locked = locked;
 	}
 
+	@Column(name = "nbPost", nullable = false)
+	public Integer			getNbPosts() {
+		return this.nbPost;
+	}
+
+	public void				setNbPosts(Integer posts) {
+		this.nbPost = posts;
+	}
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "topic")
 	public List<Post> 		getPosts() {
 		return this.posts;
@@ -133,5 +151,10 @@ public class Topic implements Serializable, ICreateListener, IUpdateListener {
 
 	public void 			setPosts(List<Post> posts) {
 		this.posts = posts;
+	}
+	
+	public Integer			addNbPost() {
+		this.nbPost +=1;
+		return this.nbPost;
 	}
 }

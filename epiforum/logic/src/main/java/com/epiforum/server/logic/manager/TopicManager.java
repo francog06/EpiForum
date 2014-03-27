@@ -1,5 +1,7 @@
 package com.epiforum.server.logic.manager;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -33,5 +35,9 @@ public class TopicManager {
 
 	public Integer				countTopics() {
 		return this.topicDao.countTopics();
+	}
+
+	public List<Topic>			getTopTopics(Integer number) {
+		return this.topicDao.getTopTopics(number);
 	}
 }

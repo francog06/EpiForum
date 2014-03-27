@@ -108,6 +108,7 @@ CREATE TABLE IF NOT EXISTS `epiforum`.`topic` (
   `title` VARCHAR(64) NOT NULL,
   `description` VARCHAR(256) NULL DEFAULT NULL,
   `locked` BIT(1) NOT NULL,
+  `nbPost` INT(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   INDEX `fk_topic_boardId_idx` (`boardId` ASC),

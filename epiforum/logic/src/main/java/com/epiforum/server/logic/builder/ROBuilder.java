@@ -10,6 +10,7 @@ import com.epiforum.common.ro.MemberRO;
 import com.epiforum.common.ro.MyLightProfileRO;
 import com.epiforum.common.ro.MyProfileRO;
 import com.epiforum.common.ro.PostRO;
+import com.epiforum.common.ro.TopTopicRO;
 import com.epiforum.common.ro.TopicRO;
 import com.epiforum.server.data.entity.Board;
 import com.epiforum.server.data.entity.Category;
@@ -125,5 +126,13 @@ public class ROBuilder {
 		pro.setNbThank(profile.getNbThanks());
 		pro.setNbPost(profile.getNbPosts());
 		return pro;
+	}
+
+	public static TopTopicRO			createTopTopicRO(Topic topic) {
+		TopTopicRO top = new TopTopicRO();
+		top.setTitle(topic.getTitle());
+		top.setNbPost(topic.getNbPosts());
+		top.setId(topic.getId());
+		return top;
 	}
 }

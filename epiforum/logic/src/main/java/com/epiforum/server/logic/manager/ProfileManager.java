@@ -94,7 +94,7 @@ public class ProfileManager {
 		return this.profileDao.getBirthdayProfiles();
 	}
 
-	public List<Profile>		getTopMembers(Integer number) {
-		return this.profileDao.getTopMembers(number);
+	public List<Profile>		getTopProfiles(Integer number) {
+		return this.profileDao.getTopProfiles(number);
 	}
 }

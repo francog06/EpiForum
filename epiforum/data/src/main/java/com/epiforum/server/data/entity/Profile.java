@@ -40,7 +40,7 @@ import com.epiforum.server.data.listener.IUpdateListener;
 			name = "Profile.getBirthdayProfiles",
 			query = "SELECT pro FROM Profile pro WHERE pro.birthdate = :today"),
 	@NamedQuery(
-			name = "Profile.getTopMembers",
+			name = "Profile.getTopProfiles",
 			query = "SELECT pro FROM Profile pro ORDER BY pro.nbThanks DESC")
 })
 public class Profile implements Serializable, ICreateListener, IUpdateListener {

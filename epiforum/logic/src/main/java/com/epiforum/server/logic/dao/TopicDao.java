@@ -1,5 +1,7 @@
 package com.epiforum.server.logic.dao;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,5 +31,13 @@ public class TopicDao {
 	public Integer				countTopics() {
 		Query query = em.createNamedQuery("Topic.countAll");
 		return QueryUtils.getSingleResultOrNull(query);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Topic>			getTopTopics(Integer number) {
+		Query query = em.createNamedQuery("Topic.getTopTopics");
+		query.setMaxResults(number);
+		List<Topic> topics = query.getResultList();
+		return topics;
 	}
 }

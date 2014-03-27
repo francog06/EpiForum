@@ -46,8 +46,8 @@ public class ProfileDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Profile>		getTopMembers(Integer number) {
-		Query query = em.createNamedQuery("Profile.getTopMembers");
+	public List<Profile>		getTopProfiles(Integer number) {
+		Query query = em.createNamedQuery("Profile.getTopProfiles");
 		query.setMaxResults(number);
 		List<Profile> pros = query.getResultList();
 		return pros;
