@@ -35,7 +35,7 @@ public class Home extends OperationResource {
 		String url="/home.jsp";
 	    ServletContext sc = getServletContext();
 	    RequestDispatcher rd = sc.getRequestDispatcher(url);
-	    request.setAttribute("token", "");
+	    //request.setAttribute("token", "");
 	    rd.forward(request, response);
 	}
 

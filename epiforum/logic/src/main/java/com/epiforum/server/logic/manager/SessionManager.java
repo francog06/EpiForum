@@ -33,4 +33,8 @@ public class SessionManager {
 	public List<Session>	getAllExpiredSessions(Long minutes) {
 		return this.sessionDao.getAllExpiredSessions(minutes);
 	}
+	
+	public List<Session>	getAllActiveSessions(Long minutes) {
+		return this.sessionDao.getAllActiveSessions(minutes);
+	}
 }

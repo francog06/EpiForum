@@ -1,5 +1,7 @@
 package com.epiforum.server.logic.manager;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -86,5 +88,13 @@ public class ProfileManager {
 	
 	public Integer				addNbPost(Profile pro) {
 		return pro.addNbPost();
+	}
+
+	public List<Profile>		getBirthdayProfiles() {
+		return this.profileDao.getBirthdayProfiles();
+	}
+
+	public List<Profile>		getTopMembers(Integer number) {
+		return this.profileDao.getTopMembers(number);
 	}
 }

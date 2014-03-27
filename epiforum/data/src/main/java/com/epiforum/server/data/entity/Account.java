@@ -30,8 +30,11 @@ import com.epiforum.server.data.listener.IUpdateListener;
 @Table(name = "account", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 @NamedQueries({
 	@NamedQuery(
-			name = "Account.findAll",
+			name = "Account.getAll",
 			query = "SELECT ac FROM Account ac WHERE ac.status = :status"),
+	@NamedQuery(
+			name = "Account.countAccounts",
+			query = "SELECT count(ac) FROM Account ac WHERE ac.status = :status"),
 	@NamedQuery(
 			name = "Account.getAccountFromEmail", 
 			query = "SELECT ac FROM Account ac WHERE ac.email = :email"),

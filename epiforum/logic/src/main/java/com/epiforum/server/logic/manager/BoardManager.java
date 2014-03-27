@@ -1,5 +1,7 @@
 package com.epiforum.server.logic.manager;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -14,5 +16,10 @@ public class BoardManager {
 
 	public Board				getBoardFromId(Integer boardId) {
 		return this.boardDao.getBoard(boardId);
+	}
+	
+	//TODO getAllBoards
+	public List<Board>			getAllBoards() {
+		return null;
 	}
 }

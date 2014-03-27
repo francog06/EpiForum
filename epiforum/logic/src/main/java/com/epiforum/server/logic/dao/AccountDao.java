@@ -49,4 +49,11 @@ public class AccountDao {
 		Account result = (Account) QueryUtils.getSingleResultOrNull(query);
 		return result;
 	}
+	
+	public Integer				countAccounts(Account.Status status) {
+		Query query = em.createNamedQuery("Account.countAccounts");
+		query.setParameter("status", status);
+		Integer res = QueryUtils.getSingleResultOrNull(query);
+		return res;
+	}
 }

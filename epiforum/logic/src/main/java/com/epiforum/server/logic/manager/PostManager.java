@@ -48,4 +48,8 @@ public class PostManager {
 		}
 		return false;
 	}
+
+	public Integer 			countPosts() {
+		return this.postDao.countPosts();
+	}
 }

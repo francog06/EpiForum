@@ -37,6 +37,15 @@ public class SessionDao {
 		return ses;
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Session>	getAllActiveSessions(Long minutes) {
+		Query query = em.createNamedQuery("Session.getAllActiveSessions");
+		long time = new Date().getTime();
+		query.setParameter("date", new Date(time - (minutes * 60 * ONE_SECOND)));
+		List<Session> ses = query.getResultList();
+		return ses;
+	}
+
 	public void			saveSession(Session session) {
 		this.em.persist(session);
 	}

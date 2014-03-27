@@ -35,7 +35,13 @@ import com.epiforum.server.data.listener.IUpdateListener;
 @NamedQueries({
 	@NamedQuery(
 			name = "Profile.getProfileFromNickname",
-			query = "SELECT pro FROM Profile pro WHERE pro.nickname = :nickname")
+			query = "SELECT pro FROM Profile pro WHERE pro.nickname = :nickname"),
+	@NamedQuery(
+			name = "Profile.getBirthdayProfiles",
+			query = "SELECT pro FROM Profile pro WHERE pro.birthdate = :today"),
+	@NamedQuery(
+			name = "Profile.getTopMembers",
+			query = "SELECT pro FROM Profile pro ORDER BY pro.nbThanks DESC")
 })
 public class Profile implements Serializable, ICreateListener, IUpdateListener {
 

@@ -7,30 +7,32 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class TopicRO {
 
-	private int				boardId;
-	
-	private String			title;
-	
-	private String			description;
-	
-	private boolean			locked;
-	
-	private List<PostRO>	posts;
-	
-	private PostRO			post;
+	private int						id;
+
+	private String					title;
+
+	private String					description;
+
+	private boolean					locked;
+
+	private List<PostRO>			posts;
+
+	private List<LightProfileRO> 	profiles;
+
+	private PostRO					post;
 
 	/**
-	 * @return the boardId
+	 * @return the id
 	 */
-	public int getBoardId() {
-		return boardId;
+	public int getId() {
+		return id;
 	}
 
 	/**
-	 * @param boardId the boardId to set
+	 * @param id the id to set
 	 */
-	public void setBoardId(int boardId) {
-		this.boardId = boardId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	/**
@@ -87,6 +89,20 @@ public class TopicRO {
 	 */
 	public void setPosts(List<PostRO> posts) {
 		this.posts = posts;
+	}
+
+	/**
+	 * @return the profiles
+	 */
+	public List<LightProfileRO> getProfiles() {
+		return profiles;
+	}
+
+	/**
+	 * @param profiles the profiles to set
+	 */
+	public void setProfiles(List<LightProfileRO> profiles) {
+		this.profiles = profiles;
 	}
 
 	/**

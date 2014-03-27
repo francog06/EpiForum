@@ -15,6 +15,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -29,6 +31,11 @@ import com.epiforum.server.data.listener.IUpdateListener;
 @Entity
 @Cacheable
 @Table(name = "category")
+@NamedQueries({
+	@NamedQuery(
+			name = "Category.getAll",
+			query = "SELECT cat FROM Category cat")
+})
 public class Category implements Serializable, ICreateListener, IUpdateListener {
 
 	/**
@@ -111,7 +118,7 @@ public class Category implements Serializable, ICreateListener, IUpdateListener 
 		this.description = description;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
 	public List<Board> 		getBoards() {
 		return this.boards;
 	}

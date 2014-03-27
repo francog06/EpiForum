@@ -1,5 +1,8 @@
 package com.epiforum.server.logic.dao;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,23 +17,39 @@ public class ProfileDao {
 	@PersistenceContext(unitName="epiforum")
 	protected EntityManager	em;
 	
-	public Profile		getProfile(Integer profileId) {
+	public Profile				getProfile(Integer profileId) {
 		return this.em.find(Profile.class, profileId);
 	}
 
-	public void			saveProfile(Profile profile) {
+	public void					saveProfile(Profile profile) {
 		this.em.persist(profile);
 	}
 
-	/*NEVER US IT*/
-	public void			deleteProfile(Profile profile) {
+	/*NEVER USE IT*/
+	public void					deleteProfile(Profile profile) {
 		this.em.remove(profile);
 	}
 	
-	public Profile		getProfileFromNickname(String nickname) {
+	public Profile				getProfileFromNickname(String nickname) {
 		Query query = em.createNamedQuery("Profile.getProfileFromNickname");
 		query.setParameter("nickname", nickname);
 		Profile pro = (Profile) QueryUtils.getSingleResultOrNull(query);
 		return pro;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Profile>		getBirthdayProfiles() {
+		Query query = em.createNamedQuery("Profile.getBirthdayProfiles");
+		query.setParameter("today", new Date());
+		List<Profile> pros = (List<Profile>) query.getResultList();
+		return pros;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Profile>		getTopMembers(Integer number) {
+		Query query = em.createNamedQuery("Profile.getTopMembers");
+		query.setMaxResults(number);
+		List<Profile> pros = query.getResultList();
+		return pros;
 	}
 }

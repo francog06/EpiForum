@@ -93,5 +93,9 @@ public class AccountManager {
 	public boolean				deleteAccount(Account ac) {
 		ac.setStatus(Account.Status.DISABLED);
 		return false;
-	}	
+	}
+
+	public Integer				countAccounts(Account.Status status) {
+		return this.accountDao.countAccounts(status);
+	}
 }

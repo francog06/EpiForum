@@ -53,9 +53,8 @@ public class Login extends OperationResource {
 		
 		try {
 			String token = this.operationFacade.login(request, request.getHeader("Authorization"), log, Type.MEMBRE);
-			HttpSession session = request.getSession(true);
 			response.setHeader("Authorization", token);
-			response.sendRedirect("/web/Home");
+			response.sendRedirect("/web");
 		} catch (TechnicalException e) {
 			String url="/login.jsp";
 		    ServletContext sc = getServletContext();

@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+import com.epiforum.common.ro.BoardRO;
+import com.epiforum.common.ro.CategoryRO;
 import com.epiforum.common.ro.ChangeInfo;
 import com.epiforum.common.ro.ContentRO;
+import com.epiforum.common.ro.LightProfileRO;
 import com.epiforum.common.ro.LoginRO;
 import com.epiforum.common.ro.MemberRO;
 import com.epiforum.common.ro.MyLightProfileRO;
@@ -25,6 +28,7 @@ import com.epiforum.server.config.i18n.I18n;
 import com.epiforum.server.config.i18n.I18n.MessageKey;
 import com.epiforum.server.data.entity.Account;
 import com.epiforum.server.data.entity.Board;
+import com.epiforum.server.data.entity.Category;
 import com.epiforum.server.data.entity.ContentPost;
 import com.epiforum.server.data.entity.Post;
 import com.epiforum.server.data.entity.Profile;
@@ -236,15 +240,15 @@ public class OperationFacade {
 		MyProfileRO user = null;
 		if (!se.getProfile().equals(pro)) {
 			// profil d'un membre
-			user = ROBuilder.createRO(pro, null);
+			user = ROBuilder.createMyProfileRO(pro, null);
 		} else {
 			// mon profil
-			user = ROBuilder.createRO(pro, se);
+			user = ROBuilder.createMyProfileRO(pro, se);
 		}
 		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
 			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
 		}
-		se.setLastActivity("getProfileFromNickname");
+		se.setLastActivity("viewProfile");
 		return user;
 	}
 
@@ -278,13 +282,13 @@ public class OperationFacade {
 		}
 		Session se = this.sessionManager.getSession(token);
 		Profile pro = this.profileManager.getProfileFromNickname(nickname);
-		if (!se.getProfile().equals(pro)) {
-			return this.profileManager.addNbThank(pro);
-		}
 		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
 			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
 		}
 		se.setLastActivity("thankProfile");
+		if (!se.getProfile().equals(pro)) {
+			return this.profileManager.addNbThank(pro);
+		}
 		return 0;
 	}
 
@@ -293,28 +297,29 @@ public class OperationFacade {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
 		}
 		Session se = this.sessionManager.getSession(token);
-		MyLightProfileRO pro = ROBuilder.createRO(se.getProfile());
+		MyLightProfileRO pro = ROBuilder.createMyLightProfileRO(se.getProfile());
 		return pro;
 	}
+
 								/*	TOPIC STUFF	*/
 
 	public TopicRO				createTopic(HttpServletRequest request, String token, TopicRO topicRo) throws BadCredentialException, TechnicalException, BadParametersException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
 		}
-		if (topicRo == null || topicRo.getBoardId() == 0 || topicRo.getPost() == null) {
+		if (topicRo == null || topicRo.getId() == 0 || topicRo.getPost() == null) {
 			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Application.getLocale()));
 		}
 		if (topicRo.getPost().getContent() == null || topicRo.getPost().getContent().trim().isEmpty()) {
 			throw new BadParametersException(String.format(I18n.getMessage(MessageKey.ERROR_PARAMETER_REQUIRED, Application.getLocale()), "Message"));
 		}
 		Session se = this.sessionManager.getSession(token);
-		Board board = this.boardManager.getBoardFromId(topicRo.getBoardId());
+		Board board = this.boardManager.getBoardFromId(topicRo.getId());
 		Topic topic = this.topicManager.createTopic(topicRo, board);
 		Post post = this.postManager.createPost(topicRo.getPost(), topic, se.getProfile());
 		ContentPost content = this.contentPostManager.createContentPost(topicRo.getPost().getContent(), post);
-		TopicRO res = ROBuilder.createRO(topic);
-		res.setPost(ROBuilder.createRO(post, se.getProfile().getId(), content.getContent()));
+		TopicRO res = ROBuilder.createTopicRO(topic);
+		res.setPost(ROBuilder.createPostRO(post, se.getProfile().getId(), content.getContent()));
 		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
 			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
 		}
@@ -336,19 +341,50 @@ public class OperationFacade {
 		Session se = this.sessionManager.getSession(token);
 		List<Post>  posts = this.postManager.getAllPostNotDeleted(pagination.getId(), pagination.getStartIndex());
 		List<PostRO> poRos = null;
+		List<LightProfileRO> pros = null;
 		if (posts != null && posts.size() > 0) {
 			poRos = new ArrayList<PostRO>();
+			pros = new ArrayList<LightProfileRO>();
 			for (Post post : posts) {
-				poRos.add(ROBuilder.createRO(post));
+				pros.add(ROBuilder.createLightProfileRO(post.getProfile()));
+				poRos.add(ROBuilder.createPostRO(post));
 			}
 		}
-		TopicRO to = ROBuilder.createRO(topic);
+		TopicRO to = ROBuilder.createTopicRO(topic);
+		to.setProfiles(pros);
 		to.setPosts(poRos);
 		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
 			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
 		}
 		se.setLastActivity("viewTopic");
 		return to;
+	}
+
+	/*TODO viewAllTopics*/
+	public List<TopicRO>		viewAllTopicsFromBoardId(HttpServletRequest request, String token, Integer boardId) throws BadCredentialException, BadParametersException {
+		if (!this.checkSession(token)) {
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
+		}
+		if (boardId == null) {
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Application.getLocale()));
+		}
+		Board board = this.boardManager.getBoardFromId(boardId);
+		if (board == null) {
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Application.getLocale()));
+		}
+		Session se = this.sessionManager.getSession(token);
+		List<TopicRO> topics = null;
+		if (board.getTopics() != null && board.getTopics().size() > 0) {
+			topics = new ArrayList<TopicRO>();
+			for (Topic topic : board.getTopics()) {
+				topics.add(ROBuilder.createTopicRO(topic));
+			}
+		}
+		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
+			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
+		}
+		se.setLastActivity("viewAllTopicsFromBoardId");
+		return topics;
 	}
 
 								/*	POST STUFF	*/
@@ -370,6 +406,7 @@ public class OperationFacade {
 		se.setLastActivity("addPost");
 		return content != null ? true : false;
 	}
+
 	
 	public Boolean				updateMyPost(HttpServletRequest request, String token, ContentRO contentRo) throws BadCredentialException, TechnicalException, BadParametersException {
 		if (!this.checkSession(token)) {
@@ -407,37 +444,131 @@ public class OperationFacade {
 		if (post.getProfile().equals(se.getProfile())) {
 			success = this.postManager.removePost(post);
 		}
+		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
+			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
+		}
 		se.setLastActivity("removeMyPost");
 		return success;
 	}
 
+								/*	CATEGORY STUFF	*/
+
+	public	List<CategoryRO>	viewAllCategories(HttpServletRequest request, String token) {
+		List<Category> cats = this.categoryManager.getAllCategories();
+		if (cats == null || cats.size() == 0) {
+			return null;
+		}
+		Session se = this.sessionManager.getSession(token);
+		List<CategoryRO> catRos = new ArrayList<CategoryRO>();
+		for (Category cat : cats) {
+			CategoryRO catRo = ROBuilder.createCategoryRO(cat);
+			if (cat.getBoards() != null || cat.getBoards().size() > 0) {
+				List<BoardRO> boards = new ArrayList<BoardRO>();
+				for (Board board : cat.getBoards()) {
+					boards.add(ROBuilder.createBoardRO(board));
+				}
+				catRo.setBoards(boards);
+			}
+			catRos.add(catRo);
+		}
+		if (se != null) {
+			if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
+				se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
+			}
+			se.setLastActivity("viewAllCategories");
+		}
+		return catRos;
+	}
+
+								/*	BOARD STUFF	*/
+
+	public List<BoardRO>		viewAllBoardsFromCategoryId(HttpServletRequest request, String token, Integer categoryId) throws BadCredentialException, BadParametersException {
+		if (!this.checkSession(token)) {
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
+		}
+		if (categoryId == null) {
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Application.getLocale()));
+		}
+		Category cat = this.categoryManager.getCategoryFromId(categoryId);
+		if (cat == null) {
+			return null;
+		}
+		Session se = this.sessionManager.getSession(token);
+		List<BoardRO> boards= new ArrayList<BoardRO>();
+		if (cat.getBoards() != null && cat.getBoards().size() > 0) {
+			for (Board board : cat.getBoards()) {
+				boards.add(ROBuilder.createBoardRO(board));
+			}
+		}
+		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
+			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
+		}
+		se.setLastActivity("viewAllBoardsFromCategoryId");
+		return boards;
+	}
+
 								/*	STATISTICS STUFF	*/
 
-	public Integer				numberOfMembers(HttpServletRequest request) {
+	public Integer				numberOfMembers() {
+		if (this.accountManager.countAccounts(Account.Status.ACTIVATED) != null) {
+			return this.accountManager.countAccounts(Account.Status.ACTIVATED);
+		}
 		return 0;
 	}
-	
-	public Integer				numberOfPosts(HttpServletRequest request) {
+
+	public Integer				numberOfPosts() {
+		if (this.postManager.countPosts() != null) {
+			return this.postManager.countPosts();
+		}
 		return 0;
 	}
-	
-	public Integer				numberOfTopics(HttpServletRequest request) {
+
+
+	public Integer				numberOfTopics() {
+		if (this.topicManager.countTopics() != null) {
+			return this.topicManager.countTopics();
+		}
 		return 0;
 	}
-	
-	public List<MemberRO>		connectedMembers(HttpServletRequest request) {
+
+	public List<MemberRO>		connectedMembers() {
+		List<Session> ses = this.sessionManager.getAllActiveSessions(10l);
+		if (ses == null || ses.size() == 0) {
+			return null;
+		}
+		List<MemberRO> members = new ArrayList<MemberRO>();
+		for (Session se : ses) {
+			members.add(ROBuilder.createMemberRO(se.getProfile()));
+		}
 		return null;
 	}
-	
-	public List<MemberRO>		birthdayMembers(HttpServletRequest request) {
-		return null;
+
+	public List<MemberRO>		birthdayMembers() {
+		List<Profile> pros = this.profileManager.getBirthdayProfiles();
+		if (pros == null || pros.size() == 0) {
+			return null;
+		}
+		List<MemberRO> members = new ArrayList<MemberRO>();
+		for (Profile pro : pros) {
+			members.add(ROBuilder.createMemberRO(pro));
+		}
+		return members;
 	}
-	
-	public List<MemberRO>		topMembers(HttpServletRequest request) {
-		return null;
+
+	public List<MemberRO>		topMembers() {
+		List<Profile> pros = this.profileManager.getTopMembers(3);
+		if (pros == null || pros.size() == 0) {
+			return null;
+		}
+		List<MemberRO> members = new ArrayList<MemberRO>();
+		for (Profile pro : pros) {
+			members.add(ROBuilder.createMemberRO(pro));
+		}
+		return members;
 	}
-	
-	public List<TopTopicRO>		topTopics(HttpServletRequest request) {
+
+	/*TODO topTopics*/
+	public List<TopTopicRO>		topTopics() {
 		return null;
 	}
 }

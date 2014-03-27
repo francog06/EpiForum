@@ -30,7 +30,10 @@ import com.epiforum.server.data.listener.IUpdateListener;
 @NamedQueries({
 	@NamedQuery(
 			name = "Session.getAllExpiredSessions",
-			query = "SELECT se FROM Session se WHERE se.modified < :date")
+			query = "SELECT se FROM Session se WHERE se.modified < :date"),
+	@NamedQuery(
+			name = "Session.getAllActiveSessions",
+			query = "SELECT se FROM Session se WHERE se.modified > :date")
 })
 public class Session implements Serializable, ICreateListener, IUpdateListener {
 

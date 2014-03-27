@@ -33,6 +33,9 @@ import com.epiforum.server.data.listener.IUpdateListener;
 @Table(name = "post")
 @NamedQueries({
 	@NamedQuery(
+			name = "Post.countAll",
+			query = "SELECT count(po) FROM Post po"),
+	@NamedQuery(
 			name = "Post.getAllPostNotDeleted",
 			query = "SELECT po FROM Post po WHERE po.topic.id = :topicId AND po.deleted = false ORDER BY po.created")
 })
@@ -130,7 +133,7 @@ public class Post implements Serializable, ICreateListener, IUpdateListener {
 		this.deleted = deleted;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "post")
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "post")
 	public ContentPost 		getContentPost() {
 		return this.contentPost;
 	}

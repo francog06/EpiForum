@@ -11,6 +11,8 @@ public class PostRO extends ContentRO {
 
 	private int				profileId;
 
+	private String			profileSignature;
+
 	private List<String>	tags;
 
 	/**
@@ -39,6 +41,20 @@ public class PostRO extends ContentRO {
 	 */
 	public void setProfileId(int profileId) {
 		this.profileId = profileId;
+	}
+
+	/**
+	 * @return the profileSignature
+	 */
+	public String getProfileSignature() {
+		return profileSignature;
+	}
+
+	/**
+	 * @param profileSignature the profileSignature to set
+	 */
+	public void setProfileSignature(String profileSignature) {
+		this.profileSignature = profileSignature;
 	}
 
 	/**

@@ -37,17 +37,24 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label for="nickname" class="control-label col-xs-2"> Pseudo: </label>
+					<div class="col-xs-10">
+						<input class="form-control" id="nickname" name="nickname" type="text"
+							placeholder="Mon Pseudo" autofocus required />
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="firstname" class="control-label col-xs-2"> Prénom: </label>
 					<div class="col-xs-10">
 						<input class=" form-control" id="firstname" name="firstname"
-							type="text" placeholder="Mon prénom" required />
+							type="text" placeholder="Mon prénom"/>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="lastname" class="control-label col-xs-2"> Nom: </label>
 					<div class="col-xs-10">
 						<input class=" form-control" id="lastname" name="lastname"
-							type="text" placeholder="Mon nom" required />
+							type="text" placeholder="Mon nom"/>
 					</div>
 				</div>
 				<div class="form-group">
@@ -58,8 +65,8 @@
 					</div>
 				</div>
 				<a target="_blank" type="text/html"
-					href="http://localhost:8080/api/PasswordGenerator"><p
-						class="text-info text-center">je veux un <b>{mot de passe}</b> </p></a>
+					href="http://localhost:8080/web/PasswordGenerator"><p
+						class="text-info text-center">je veux un <b>{mot de passe hardcore}</b> !</p></a>
 				<button class="btn btn-lg btn-block btn-login" type="submit">Je m'inscris</button>
 			</fieldset>
 		</form>

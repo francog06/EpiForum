@@ -30,4 +30,8 @@ public class TopicManager {
 		this.topicDao.saveTopic(topic);
 		return topic;
 	}
+
+	public Integer				countTopics() {
+		return this.topicDao.countTopics();
+	}
 }
