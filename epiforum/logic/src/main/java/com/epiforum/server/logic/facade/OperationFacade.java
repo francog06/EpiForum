@@ -360,7 +360,7 @@ public class OperationFacade {
 		return to;
 	}
 
-	/*TODO viewAllTopics*/
+	/*TODO viewBoard*/
 	public List<TopicRO>		viewAllTopicsFromBoardId(HttpServletRequest request, String token, Integer boardId) throws BadCredentialException, BadParametersException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
@@ -482,6 +482,7 @@ public class OperationFacade {
 
 								/*	BOARD STUFF	*/
 
+	/*TODO viewCategory*/
 	public List<BoardRO>		viewAllBoardsFromCategoryId(HttpServletRequest request, String token, Integer categoryId) throws BadCredentialException, BadParametersException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Application.getLocale()));
@@ -494,8 +495,9 @@ public class OperationFacade {
 			return null;
 		}
 		Session se = this.sessionManager.getSession(token);
-		List<BoardRO> boards= new ArrayList<BoardRO>();
+		List<BoardRO> boards = null;
 		if (cat.getBoards() != null && cat.getBoards().size() > 0) {
+			boards = new ArrayList<BoardRO>();
 			for (Board board : cat.getBoards()) {
 				boards.add(ROBuilder.createBoardRO(board));
 			}
