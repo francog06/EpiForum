@@ -17,7 +17,7 @@
 			</form>
 		</div>
 		<ul class="nav navbar-nav navbar-right list-inline">
-			<li><a title="S'inscrire" target="_self" href="signup"><i
+			<li><a title="S'inscrire" target="_self" href="subscribe"><i
 					class="fa fa-star  fa-2x"></i> S'inscrire</a></li>
 			<li><a title="Se connecter" target="_self" href="login"><i
 					class="fa fa-sign-in  fa-2x"></i> Se connecter</a></li>

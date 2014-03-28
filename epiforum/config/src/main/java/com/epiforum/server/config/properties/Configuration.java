@@ -40,6 +40,18 @@ public class Configuration {
 		return getProperty("default.locale");
 	}
 	
+	public static String getApplicationName() {
+		return getProperty("application.name");
+	}
+	
+	public static String getApplicationColor() {
+		return getProperty("application.color");
+	}
+	
+	public static String getApplicationBackground() {
+		return getProperty("application.background");
+	}
+	
 	public static String getMailActivationAddress() {
 		return getProperty("mail.activation.address");
 	}

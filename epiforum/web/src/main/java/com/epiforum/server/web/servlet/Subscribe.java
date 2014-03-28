@@ -17,7 +17,7 @@ import com.epiforum.server.logic.exception.TechnicalException;
 import com.epiforum.server.web.beanresource.OperationResource;
 
 /**
- * Servlet implementation class Signup
+ * Servlet implementation class Subscribe
  */
 @WebServlet("/subscribe")
 public class Subscribe extends OperationResource {
@@ -36,7 +36,7 @@ public class Subscribe extends OperationResource {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url="/signup.jsp";
+		String url="/subscribe.jsp";
 	    ServletContext sc = getServletContext();
 	    RequestDispatcher rd = sc.getRequestDispatcher(url);
 	    rd.forward(request, response);
@@ -48,34 +48,32 @@ public class Subscribe extends OperationResource {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SignupRO sign = new SignupRO();
 		sign.setEmail(request.getParameter("email"));
+		sign.setNickname(request.getParameter("nickname"));
 		sign.setFirstname(request.getParameter("firstname"));
 		sign.setLastname(request.getParameter("lastname"));
 		sign.setPassword(request.getParameter("password"));
 		try {
 			this.operationFacade.subscribe(request, sign);
-			response.sendRedirect("/web/Login");
+			response.sendRedirect("/web/login");
 		} catch (BadCredentialException e) {
-			String url="/signup.jsp";
+			String url="/subscribe.jsp";
 		    ServletContext sc = getServletContext();
 		    RequestDispatcher rd = sc.getRequestDispatcher(url);
 		    request.setAttribute("error", true);
-		    response.setHeader("Cache-Control", "max-age=604800");
 		    rd.forward(request, response);
 			e.printStackTrace();
 		} catch (TechnicalException e) {
-			String url="/signup.jsp";
+			String url="/subscribe.jsp";
 		    ServletContext sc = getServletContext();
 		    RequestDispatcher rd = sc.getRequestDispatcher(url);
 		    request.setAttribute("error", true);
-		    response.setHeader("Cache-Control", "max-age=604800");
 		    rd.forward(request, response);
 			e.printStackTrace();
 		} catch (BadParametersException e) {
-			String url="/signup.jsp";
+			String url="/subscribe.jsp";
 		    ServletContext sc = getServletContext();
 		    RequestDispatcher rd = sc.getRequestDispatcher(url);
 		    request.setAttribute("error", true);
-		    response.setHeader("Cache-Control", "max-age=604800");
 		    rd.forward(request, response);
 			e.printStackTrace();
 		}

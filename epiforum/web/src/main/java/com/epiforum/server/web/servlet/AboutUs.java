@@ -12,9 +12,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/aboutus")
 public class AboutUs extends OperationResource {
-	private static final long serialVersionUID = 1L;
 
-    /**
+	private static final long serialVersionUID = 5035364178907976814L;
+
+	/**
      * Default constructor. 
      */
     public AboutUs() {

@@ -11,9 +11,9 @@ import org.apache.commons.lang3.RandomStringUtils;
 import com.epiforum.common.ro.SignupRO;
 import com.epiforum.server.config.i18n.I18n;
 import com.epiforum.server.config.i18n.I18n.MessageKey;
+import com.epiforum.server.config.properties.Configuration;
 import com.epiforum.server.data.entity.Account;
 import com.epiforum.server.data.entity.Account.Type;
-import com.epiforum.server.logic.application.Application;
 import com.epiforum.server.logic.dao.AccountDao;
 import com.epiforum.server.logic.exception.BadCredentialException;
 import com.epiforum.server.logic.exception.BadParametersException;
@@ -40,7 +40,7 @@ public class AccountManager {
 			md.digest(hash, 0, PASSWORD_LEN);
 			return new sun.misc.BASE64Encoder().encode(hash);
 		} catch (Exception exc) {
-			throw new TechnicalException(I18n.getMessage(MessageKey.ERROR_SERVER_DEFAULT, Application.getLocale()));
+			throw new TechnicalException(I18n.getMessage(MessageKey.ERROR_SERVER_DEFAULT, Configuration.getDefaultLocale()));
 		}
 	}
 
@@ -55,16 +55,12 @@ public class AccountManager {
 
 	public Account				createAccount(HttpServletRequest request, SignupRO signup) throws BadParametersException, TechnicalException {
 		if (emailIsValid(signup.getEmail().trim()) == false) {
-			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_BADEMAIL, Application.getLocale()));
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_BADEMAIL, Configuration.getDefaultLocale()));
 		} else if (emailIsUsed(signup.getEmail().trim()) == true) {
-			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_EMAILALREADYUSED, Application.getLocale()));
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_EMAILALREADYUSED, Configuration.getDefaultLocale()));
 		}
-		Account ac = new Account();
-		ac.setEmail(signup.getEmail().trim());
-		ac.setPassword(this.encodePassword(signup.getPassword().trim()));
-		ac.setStatus(Account.Status.PENDING);
-		ac.setActivationCode(RandomStringUtils.randomAlphanumeric(16));
-		ac.setIpAddress(request.getRemoteAddr().trim());
+		Account ac = new Account(Account.Status.PENDING, Account.Type.MEMBRE, signup.getEmail().trim(), 
+			this.encodePassword(signup.getPassword().trim()), RandomStringUtils.randomAlphanumeric(16), request.getRemoteAddr().trim());
 		this.accountDao.saveAccount(ac);
 		return ac;
 	}
@@ -73,12 +69,12 @@ public class AccountManager {
 		return this.accountDao.getAccountFromEmail(email);
 	}
 
-	public Account				loginWithEmailAndPassword(String email, String password, Type type) throws BadCredentialException {
-		Account ac = this.accountDao.getAccountFromEmailAndPassword(email, password, type);
+	public Account				loginWithEmailAndPassword(String email, String password, Type type) throws BadCredentialException, TechnicalException {
+		Account ac = this.accountDao.getAccountFromEmailAndPassword(email, this.encodePassword(password), type);
 		if (ac == null) {
-			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_DEFAULT, Application.getLocale()));
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_DEFAULT, Configuration.getDefaultLocale()));
 		} else if (ac.getStatus() != Account.Status.ACTIVATED) {
-			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_ACCOUNT, Application.getLocale()));
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_ACCOUNT, Configuration.getDefaultLocale()));
 		}
 		System.out.println(email + " logged in !");
 		return ac;

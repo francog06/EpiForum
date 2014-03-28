@@ -19,7 +19,7 @@
 <body>
 	<div class="container-fluid">
 		<form role="form" class="cmxform form-horizontal form-signin formWrap"
-			id="loginForm" method="POST" action="Login">
+			id="loginForm" method="POST" action="login">
 			<h2 class="form-signin-heading">Connection</h2>
 			<c:if test="${error == true}">
 			<div id="loginError" class="alert alert-danger">

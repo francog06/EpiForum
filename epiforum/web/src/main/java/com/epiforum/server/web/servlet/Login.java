@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.epiforum.common.ro.LoginRO;
 import com.epiforum.server.data.entity.Account.Type;
@@ -19,7 +20,7 @@ import com.epiforum.server.web.beanresource.OperationResource;
 /**
  * Servlet implementation class Login
  */
-@WebServlet(urlPatterns = { "/login" })
+@WebServlet("/login")
 public class Login extends OperationResource {
 
 	private static final long serialVersionUID = -3767190736704822106L;
@@ -36,6 +37,10 @@ public class Login extends OperationResource {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (request.getParameter("Authorization") != null) {
+			System.out.println(request.getParameter("Authorization"));
+			response.sendRedirect("/web");
+		}
 		String url="/login.jsp";
 	    ServletContext sc = getServletContext();
 	    RequestDispatcher rd = sc.getRequestDispatcher(url);
@@ -46,13 +51,14 @@ public class Login extends OperationResource {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String token = (String) session.getAttribute("Authorization");
 		LoginRO log = new LoginRO();
 		log.setEmail(request.getParameter("email"));
 		log.setPassword(request.getParameter("password"));
-		
 		try {
-			String token = this.operationFacade.login(request, request.getHeader("Authorization"), log, Type.MEMBRE);
-			response.setHeader("Authorization", token);
+			token = this.operationFacade.login(request, token, log, Type.MEMBRE);
+			session.setAttribute("Authorization", token);
 			response.sendRedirect("/web");
 		} catch (TechnicalException e) {
 			String url="/login.jsp";

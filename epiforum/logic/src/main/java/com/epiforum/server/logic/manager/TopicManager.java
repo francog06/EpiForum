@@ -8,9 +8,9 @@ import javax.ejb.Stateless;
 import com.epiforum.common.ro.TopicRO;
 import com.epiforum.server.config.i18n.I18n;
 import com.epiforum.server.config.i18n.I18n.MessageKey;
+import com.epiforum.server.config.properties.Configuration;
 import com.epiforum.server.data.entity.Board;
 import com.epiforum.server.data.entity.Topic;
-import com.epiforum.server.logic.application.Application;
 import com.epiforum.server.logic.dao.TopicDao;
 import com.epiforum.server.logic.exception.BadParametersException;
 
@@ -26,7 +26,7 @@ public class TopicManager {
 
 	public Topic				createTopic(TopicRO topicRo, Board board) throws BadParametersException {
 		if (topicRo.getTitle() == null || topicRo.getTitle().trim().isEmpty()) {
-			throw new BadParametersException(String.format(I18n.getMessage(MessageKey.ERROR_PARAMETER_REQUIRED, Application.getLocale()), "Titre"));
+			throw new BadParametersException(String.format(I18n.getMessage(MessageKey.ERROR_PARAMETER_REQUIRED, Configuration.getDefaultLocale()), "Titre"));
 		}
 		Topic topic = new Topic(board, topicRo.getTitle().trim(), topicRo.getDescription().trim(), topicRo.getLocked());
 		this.topicDao.saveTopic(topic);

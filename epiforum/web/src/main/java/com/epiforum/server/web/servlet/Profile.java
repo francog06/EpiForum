@@ -12,9 +12,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/profile")
 public class Profile extends OperationResource {
-	private static final long serialVersionUID = 1L;
 
-    /**
+	private static final long serialVersionUID = 4772665337688756828L;
+
+	/**
      * Default constructor. 
      */
     public Profile() {

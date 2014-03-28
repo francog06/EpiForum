@@ -7,9 +7,9 @@ import javax.ejb.Stateless;
 
 import com.epiforum.common.ro.MyProfileRO;
 import com.epiforum.common.ro.SignupRO;
+import com.epiforum.server.config.properties.Configuration;
 import com.epiforum.server.data.entity.Account;
 import com.epiforum.server.data.entity.Profile;
-import com.epiforum.server.logic.application.Application;
 import com.epiforum.server.logic.dao.ProfileDao;
 import com.epiforum.server.logic.utils.PhoneValidator;
 import com.google.i18n.phonenumbers.NumberParseException;
@@ -75,7 +75,7 @@ public class ProfileManager {
 			pro.setSignature(proRo.getSignature().trim());
 		}
 		if (proRo.getPhone() != null && !proRo.getPhone().trim().isEmpty()) {
-			if (PhoneValidator.isPhoneNumber(proRo.getPhone().trim(), Application.getCountryCode())) {
+			if (PhoneValidator.isPhoneNumber(proRo.getPhone().trim(), Configuration.getDefaultCountryCode())) {
 				pro.setPhone(proRo.getPhone().trim());
 			}
 		}

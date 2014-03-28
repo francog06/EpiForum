@@ -15,12 +15,12 @@
 <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="./assets/css/style.css" rel="stylesheet">
 <link href="./assets/css/style-responsive.css" rel="stylesheet">
-<title>EpiOC - Signup page</title>
+<title>EpiForum</title>
 </head>
 <body>
 	<div class="container-fluid">
 		<form role="form" class="cmxform form-horizontal form-signin formWrap"
-			id="signupForm" method="POST" action="Signup">
+			id="signupForm" method="POST" action="subscribe">
 			<h2 class="form-signin-heading">Inscription</h2>
 			<c:if test="${error == true}">
 			<div id="loginError" class="alert alert-danger">
@@ -30,36 +30,36 @@
              </c:if>
 			<fieldset>
 				<div class="form-group">
-					<label for="email" class="control-label col-xs-2"> Email: </label>
-					<div class="col-xs-10">
+					<label for="email" class="control-label col-xs-4"> Email: </label>
+					<div class="col-xs-8">
 						<input class="form-control" id="email" name="email" type="email"
 							placeholder="Mon email" autofocus required />
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="nickname" class="control-label col-xs-2"> Pseudo: </label>
-					<div class="col-xs-10">
+					<label for="nickname" class="control-label col-xs-4"> Pseudo: </label>
+					<div class="col-xs-8">
 						<input class="form-control" id="nickname" name="nickname" type="text"
 							placeholder="Mon Pseudo" autofocus required />
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="firstname" class="control-label col-xs-2"> Prénom: </label>
-					<div class="col-xs-10">
+					<label for="firstname" class="control-label col-xs-4"> Prénom: </label>
+					<div class="col-xs-8">
 						<input class=" form-control" id="firstname" name="firstname"
 							type="text" placeholder="Mon prénom"/>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="lastname" class="control-label col-xs-2"> Nom: </label>
-					<div class="col-xs-10">
+					<label for="lastname" class="control-label col-xs-4"> Nom: </label>
+					<div class="col-xs-8">
 						<input class=" form-control" id="lastname" name="lastname"
 							type="text" placeholder="Mon nom"/>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="password" class="control-label col-xs-2"> Mot de passe: </label>
-					<div class="col-xs-10">
+					<label for="password" class="control-label col-xs-4"> Mot de passe: </label>
+					<div class="col-xs-8">
 						<input class="form-control " id="password" name="password"
 							type="password" placeholder="Mon mot de passe" required />
 					</div>
