@@ -1,4 +1,4 @@
--- POPULATE CATEGORIES
+profile-- POPULATE CATEGORIES
 INSERT INTO category (created, modified, title, description)
 VALUES 
 (NOW(), NOW(), "EpiForum", "Vous trouverez ici les news, les annonces, de l'aide, les suggestions et une place sur le canapé"),

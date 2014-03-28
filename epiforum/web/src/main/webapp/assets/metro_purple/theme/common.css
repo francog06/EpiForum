@@ -231,7 +231,7 @@ p.right {
 	display: block;
 	position: relative;
 	font-size: 1.231em;
-	text-transform: lowercase;
+	text-transform: none;
 }
 #header li a:hover {
 	background-color: #352E39;
