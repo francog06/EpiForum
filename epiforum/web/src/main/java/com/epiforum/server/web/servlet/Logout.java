@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.epiforum.common.ro.AccountRO;
 import com.epiforum.server.logic.exception.BadCredentialException;
 import com.epiforum.server.web.beanresource.OperationResource;
 
@@ -33,16 +32,15 @@ public class Logout extends OperationResource {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		AccountRO acr = (AccountRO)session.getAttribute("acr");
-	    if (acr != null) {
+		HttpSession se = request.getSession(false);
+		if (se != null) {
+			String token = (String) se.getAttribute("Authorization");
 		    try {
-				this.operationFacade.logout(request.getHeader("Authorization"));
+				this.operationFacade.logout(token);
 			} catch (BadCredentialException e) {
 				e.printStackTrace();
 			}
-		    //System.out.println(acr.getEmail() + " logged out!");
-		    session.invalidate();
+		    se.invalidate();
 		    }
 	    response.sendRedirect("home");
 	    }

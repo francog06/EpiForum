@@ -37,14 +37,15 @@ public class Login extends OperationResource {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getParameter("Authorization") != null) {
-			System.out.println(request.getParameter("Authorization"));
+		HttpSession se = request.getSession(false);
+		if (se == null) {
+			String url="/login.jsp";
+			ServletContext sc = getServletContext();
+			RequestDispatcher rd = sc.getRequestDispatcher(url);
+			rd.forward(request, response);
+		} else {
 			response.sendRedirect("/web");
-		}
-		String url="/login.jsp";
-	    ServletContext sc = getServletContext();
-	    RequestDispatcher rd = sc.getRequestDispatcher(url);
-	    rd.forward(request, response);
+		} 
 	}
 
 	/**

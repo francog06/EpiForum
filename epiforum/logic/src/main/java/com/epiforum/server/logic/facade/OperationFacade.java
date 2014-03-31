@@ -175,6 +175,7 @@ public class OperationFacade {
 		}
 		Session se= new Session(this.generateStrongString(), ac.getProfile(), "Login");
 		this.sessionManager.createSession(se);
+		System.out.println(ac.getProfile().getNickname() + " logged in !");
 		return se.getId();
 	}
 
@@ -182,9 +183,10 @@ public class OperationFacade {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_NOLOGIN, Configuration.getDefaultLocale()));
 		}
-		Session session = this.sessionManager.getSession(token);
-		if (session != null) {
-			this.sessionManager.removeSession(session);
+		Session se = this.sessionManager.getSession(token);
+		if (se != null) {
+			System.out.println(se.getProfile().getNickname() + " logged out !");
+			this.sessionManager.removeSession(se);
 			return true;
 		}
 		return false;
@@ -542,7 +544,7 @@ public class OperationFacade {
 		return 0;
 	}
 
-	public List<MemberRO>		connectedMembers() {
+	public List<MemberRO>		connectedProfiles() {
 		List<Session> ses = this.sessionManager.getAllActiveSessions(10l);
 		if (ses == null || ses.size() == 0) {
 			return null;
@@ -554,7 +556,7 @@ public class OperationFacade {
 		return null;
 	}
 
-	public List<MemberRO>		birthdayMembers() {
+	public List<MemberRO>		birthdayProfiles() {
 		List<Profile> pros = this.profileManager.getBirthdayProfiles();
 		if (pros == null || pros.size() == 0) {
 			return null;

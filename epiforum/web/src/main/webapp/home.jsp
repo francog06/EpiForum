@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <!-- METAS -->
-<meta name="description"
-	content="Epiforum est un forum dévelopé principalement en JAVA">
 <!-- including common metas -->
 <jsp:include page="/metas.html"></jsp:include>
+<meta name="description"
+	content="Epiforum est un forum dévelopé principalement en JAVA">
 
 <!-- LINKS -->
 <link media="print" type="text/css" rel="stylesheet"
@@ -61,20 +61,25 @@
 			<div id="above-headerbar">
 
 				<ul class="user-links">
-					<!-- IF S_REGISTER_ENABLED <li><a href="{U_REGISTER}">{L_REGISTER}</a>&nbsp;&nbsp;|</li>ENDIF -->
-					<li><a href="logout" class="login-window" title="Login"
+					<c:if test="${Authorization == null}">
+					<li><a href="logout" class="login-window" title="Subscribe"
 						accesskey="x">S'inscrire</a></li>
-					<li><a href="logout" class="login-window" title="Login"
-						accesskey="x">Logout</a></li>
 					<li><a href="#login-box" class="login-window" title="Login"
-						accesskey="x">Login</a></li>
+						accesskey="x">Se Connecter</a></li>
+					</c:if>
+					<c:if test="${Authorization != null}">
+					<li><a href="logout" class="login-window" title="logout"
+						accesskey="x">Se desinscrire</a></li>
+					<li><a href="logout" class="login-window" title="logout"
+						accesskey="x">Se deconnecter</a></li>
+					</c:if>
 				</ul>
 
 				<div id="login-box" class="login-popup">
 					<a href="#" class="close"><img
 						src="./assets/metro_purple/theme/images/close_popup.png"
 						class="close-button" title="Close" alt="Close" /></a>
-					<div id="login-text">Login</div>
+					<div id="login-text">Se connecter</div>
 
 					<fieldset>
 						<div class="navbar_username_outer">
@@ -129,18 +134,20 @@
 				<div class="tabs-outer">
 					<a class="toggleMenuButton" title="Menu" href="javascript:void(0);"></a>
 					<ul class="tabs">
-						<li id="news-link" style="width:"><a href="">
-						 <span>Mon compte</span>
+						<li id="members-link"><a title="" href="#">
+								<span>A propos</span>
 						</a></li>
-						<li id="sample-link" style="width:"><a title="" href="#">
-								<span>A propos de nous</span>
+						<li id="faq-link"><a title="" href="#">
+								<span>Feedback</span>
 						</a></li>
-						<li id="contacts-link" style="width:"><a title="" href="#">
-								<span>Contactez nous</span>
-						</a></li>
-						<li id="contacts-link" style="width:"><a title="" href="#">
+						<li id="sample-link"><a title="" href="#">
 								<span >Faire un don</span>
 						</a></li>
+						<c:if test="${Authorization != null}">
+						<li id="news-link"><a href="">
+						 <span>Mon compte</span>
+						</a></li>
+						</c:if>
 					</ul>
 				</div>
 			</div>
@@ -358,9 +365,10 @@
 			</div>
 
 			<!--  MY PROFILE  -->
+			<c:if test="${Authorization != null}">
 			<div id="sidebar">
 				<div class="sidebar-block">
-					<h2 class="sidebar-block-header">Top des membres</h2>
+					<h2 class="sidebar-block-header">Résumé</h2>
 					<div class="sidebar-block-content">
 						<div class="container-fluid">
 							<div class="profilebox">
@@ -377,7 +385,7 @@
 										mon compte</a>
 								</div>
 							</div>
-							<h3 class="darkheader">Résumé</h3>
+							<%-- <h3 class="darkheader">Résumé</h3> --%>
 							<div class="darkheadercontent">
 								<p>Guillaume Francois</p>
 								<p>
@@ -397,6 +405,7 @@
 					</div>
 				</div>
 			</div>
+			</c:if>
 			<!--  TOP THANKS  -->
 			<div id="sidebar">
 				<div class="sidebar-block">

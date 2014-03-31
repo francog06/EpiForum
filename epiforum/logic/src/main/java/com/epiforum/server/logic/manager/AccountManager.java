@@ -76,7 +76,6 @@ public class AccountManager {
 		} else if (ac.getStatus() != Account.Status.ACTIVATED) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_ACCOUNT, Configuration.getDefaultLocale()));
 		}
-		System.out.println(email + " logged in !");
 		return ac;
 	}
 
