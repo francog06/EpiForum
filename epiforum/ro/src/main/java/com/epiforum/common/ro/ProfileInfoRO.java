@@ -7,6 +7,8 @@ public class ProfileInfoRO extends MyLightProfileRO {
 	
 	protected String			type;
 
+	protected String			status;
+
 	protected String			phone;
 
 	protected String			facebookPage;
@@ -32,6 +34,18 @@ public class ProfileInfoRO extends MyLightProfileRO {
 	 */
 	public void setType(String type) {
 		this.type = type;
+	}
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	/**
 	 * @return the phone
