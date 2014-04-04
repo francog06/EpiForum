@@ -5,11 +5,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class MemberRO {
 
-	private String		nickname;
+	protected String			nickname;
 
-	private int			nbThank;
+	protected Integer			nbThank;
 
-	private int			type;
+	protected Integer			type;
 
 	/**
 	 * @return the nickname
@@ -28,28 +28,28 @@ public class MemberRO {
 	/**
 	 * @return the nbThank
 	 */
-	public int getNbThank() {
+	public Integer getNbThank() {
 		return nbThank;
 	}
 
 	/**
 	 * @param nbThank the nbThank to set
 	 */
-	public void setNbThank(int nbThank) {
+	public void setNbThank(Integer nbThank) {
 		this.nbThank = nbThank;
 	}
 
 	/**
 	 * @return the type
 	 */
-	public int getType() {
+	public Integer getType() {
 		return type;
 	}
 
 	/**
 	 * @param type the type to set
 	 */
-	public void setType(int type) {
+	public void setType(Integer type) {
 		this.type = type;
 	}
 }

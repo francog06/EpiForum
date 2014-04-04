@@ -10,15 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ContactUs
  */
-@WebServlet("/contactus")
-public class ContactUs extends OperationResource {
+@WebServlet("/feedback")
+public class Feedback extends OperationResource {
 
 	private static final long serialVersionUID = 20823267537443448L;
 
 	/**
      * Default constructor. 
      */
-    public ContactUs() {
+    public Feedback() {
         // TODO Auto-generated constructor stub
     }
 

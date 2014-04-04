@@ -53,7 +53,7 @@ public class AccountDao {
 	public Integer				countAccounts(Account.Status status) {
 		Query query = em.createNamedQuery("Account.countAccounts");
 		query.setParameter("status", status);
-		Integer res = QueryUtils.getSingleResultOrNull(query);
+		Integer res = ((Long)query.getSingleResult()).intValue();
 		return res;
 	}
 }

@@ -38,13 +38,13 @@ public class Login extends OperationResource {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession se = request.getSession(false);
-		if (se == null) {
+		if (se == null || se.getAttribute("Authorization") == null) {
 			String url="/login.jsp";
 			ServletContext sc = getServletContext();
 			RequestDispatcher rd = sc.getRequestDispatcher(url);
 			rd.forward(request, response);
 		} else {
-			response.sendRedirect("/web");
+			response.sendRedirect("/web/home");
 		} 
 	}
 

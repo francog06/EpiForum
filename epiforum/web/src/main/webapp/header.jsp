@@ -1,38 +1,85 @@
-<header class="clearfix" style="padding: 0px; margin: 0px;">
-	<a target="_self" href="home"><h2 style="margin-top: 10px; margin-bottom: 10px;">Bienvenue sur EpiForum</h2></a>
-</header>
-<nav class="navbar navbar-default navbar-static-top subheader" role="navigation">
-	<div class="container-fluid">
-		<div class="col-sm-3">
-			<form class="navbar-form" role="search">
-				<div class="input-group">
-					<input type="text" class="form-control"
-						placeholder="Trouvez des topics ou des membres"> <span
-						class="input-group-btn">
-						<button class="btn btn-default" type="submit">
-							<i class="fa fa-search"></i>
-						</button>
-					</span>
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
+<%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<div id="page-header">
+	<div id="above-headerbar">
+		<ul class="user-links">
+			<c:if test="${Authorization != null}">
+				<li><a href="unsubscribe" title="Se desinscrire" accesskey="x">Se desinscrire</a></li>
+				<li><a href="logout" title="Se deconnecter" accesskey="x">Se deconnecter</a></li>
+			</c:if>
+			<c:if test="${Authorization == null}">
+				<li><a href="subscribe" title="S'inscrire" accesskey="x">S'inscrire</a></li>
+				<li><a href="#login-box" class="login-window"
+					title="Se Connecter" accesskey="x">Se connecter</a></li>
+			</c:if>
+		</ul>
+		<div id="login-box" class="login-popup">
+			<a href="#" class="close"><img
+				src="./assets/metro_purple/theme/images/close_popup.png"
+				class="close-button" title="Close" alt="Close" /></a>
+			<div id="login-text">Se connecter</div>
+			<fieldset>
+				<div class="navbar_username_outer">
+					<label for="username">Email:</label>&nbsp;<br/>
+					<input type="text" name="username" id="navbar_username" size="10"
+						class="inputbox" title="Email" />
 				</div>
-			</form>
+				<div class="navbar_password_outer">
+					<label for="password">Mot de passe:</label>&nbsp;<br/>
+					<input type="password" name="password" id="navbar_password" size="10"
+						class="inputbox" title="Mot de passe" />
+				</div>
+				<div class="login-buttons">
+					<input type="submit" name="login" value="Se connecter" class="button2"/>
+					<label id="autologin_label" for="autologin">Connexion Automatique
+						<input type="checkbox" name="autologin" id="autologin"/>
+					</label>
+				</div>
+			</fieldset>
+			<a class="register-link" href="SubscribeView.html"> S'inscrire</a>
 		</div>
-		<ul class="nav navbar-nav navbar-right list-inline">
-			<li><a title="S'inscrire" target="_self" href="subscribe"><i
-					class="fa fa-star  fa-2x"></i> S'inscrire</a></li>
-			<li><a title="Se connecter" target="_self" href="login"><i
-					class="fa fa-sign-in  fa-2x"></i> Se connecter</a></li>
-			<li><a title="A propos de nous" target="_self" href="aboutus"><i
-					class="fa fa-flag  fa-2x"></i> A propos de nous</a></li>
-			<li><a title="Contactez nous" target="_self" href="contactus"><i
-					class="fa fa-flag  fa-2x"></i> Contactez nous</a></li>
-			<li><a title="Faire un don" target="_self" href="donate"><i
-					class="fa fa-star  fa-2x"></i> Faire un don</a></li>
-			<%-- <c:if test="${token != null}"> --%>
-			<li><a title="Deconnection" target="_self" href="logout"><i
-					class="fa fa-sign-out  fa-2x"></i> Deconnection</a></li>
-			<li><a title="Mon compte" target="_self" href="account"><i
-					class="fa fa-user  fa-2x"></i> Mon compte</a></li>
-			<!-- </c:if> -->
+		<div class="search-box">
+			<fieldset>
+				<div class="search-box-inner">
+					<input class="button2" type="submit" value="Search"> <input
+						id="keywords" class="inputbox search" type="text"
+						onblur="if(this.value=='')this.value='Search…';"
+						onclick="if(this.value=='Search…')this.value='';"
+						value="Cherchez des messages ou des membres"
+						title="Trouvez des messages ou des membres" maxlength="64" name="keywords">
+				</div>
+				<input type="hidden" value="12" name="style">
+			</fieldset>
+		</div>
+	</div>
+	<div id="header">
+		<a id="logo" title="Accueil" style="color: White; font-size: 50px"
+			href="home">EpiForum</a>
+		<div class="tabs-outer">
+			<a class="toggleMenuButton" title="Menu" href="javascript:void(0);"></a>
+			<ul class="tabs">
+				<li id="members-link"><a title="A propos de EpiForum" href="aboutus"><span>A propos</span>
+				</a></li>
+				<li id="faq-link"><a title="Retours utilisateur" href="feedback"><span>Feedback</span>
+				</a></li>
+				<li id="sample-link"><a title="Soutenez notre projet !" href="donate"><span>Faire un don</span>
+				</a></li>
+				<c:if test="${Authorization != null}">
+					<li id="news-link"><a title="Modifier mes informations" href="account"><span>Mon compte</span></a>
+					</li>
+				</c:if>
+			</ul>
+		</div>
+	</div>
+	<div id="subheader-menu">
+		<ul class="links left">
+			<li id="submenu-mark-read"><a href="home" accesskey="m">Welcome</a></li>
 		</ul>
 	</div>
-</nav>
+	<div id="breadcrumbs">
+		<a class="icon-home" href="home" accesskey="h">Home</a>
+	</div>
+</div>

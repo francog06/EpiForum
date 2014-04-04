@@ -9,7 +9,7 @@
 <!-- METAS -->
 <jsp:include page="/metas.html"></jsp:include>
 <meta name="description"
-	content="Epiforum: page de connexion">
+	content="Epiforum: page d'une categorie">
 
 <!-- LINKS -->
 <link media="print" type="text/css" rel="stylesheet"
@@ -45,39 +45,25 @@
 <link type="text/css" rel="stylesheet"
 	href="./assets/font-awesome/css/font-awesome.min.css">
 
-<title>Connexion</title>
+<title>${category.title}</title>
 </head>
 <body>
 	<div id="wrap">
 		<!-- HEADER -->
 		<jsp:include page="/header.jsp"></jsp:include>
-		
+
 		<div id="page-body">
-		<form action="login" method="post" id="login">
-				<div class="panel">
-					<div class="inner"><span class="corners-top"><span></span></span>
-						<div class="content">
-							<h2>Veuillez vous connecter</h2>
-							<fieldset class="fields1">
-								<dl>
-									<dt><label for="email">Email:</label></dt>
-									<dd><input type="text" tabindex="1" name="email" id="email"
-										size="25" placeholder="exemple@mail.com" class="inputbox autowidth" required/></dd>
-								</dl>
-								<dl>
-									<dt><label for="password">Mot de passe:</label></dt>
-									<dd><input type="password" tabindex="2" id="password" name="password"
-										size="25" class="inputbox autowidth" required/></dd>
-								</dl>
-								<dl>
-									<dd><input type="submit" name="login" tabindex="6" value="Login" class="button1"/></dd>
-								</dl>
-							</fieldset>
-						</div>
-						<span class="corners-bottom"><span></span></span>
-					</div>
-				</div>
-			</form>
+			<div id="page-body-inner">
+				<!-- CATEGORY CONTENT BEGIN -->
+				
+			<!-- STATS -->
+			<jsp:include page="/stats.jsp"></jsp:include>
+
+			</div>
+			<!-- CATEGORY CONTENT END -->
+			<!--  SIDEBAR  -->
+			<jsp:include page="/sidebar.jsp"></jsp:include>
+
 		</div>
 		<!-- FOOTER -->
 		<jsp:include page="/footer.html"></jsp:include>

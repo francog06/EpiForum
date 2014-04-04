@@ -1,11 +1,14 @@
 package com.epiforum.server.web.servlet;
 
 import com.epiforum.server.web.beanresource.OperationResource;
+
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Profile
@@ -26,7 +29,12 @@ public class Profile extends OperationResource {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		HttpSession se = request.getSession(false);
+		if (se == null) {
+			response.sendRedirect("home");
+		} else {
+			
+		}
 	}
 
 	/**

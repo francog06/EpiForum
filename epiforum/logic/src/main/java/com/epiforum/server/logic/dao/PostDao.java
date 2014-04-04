@@ -8,7 +8,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.epiforum.server.data.entity.Post;
-import com.epiforum.server.logic.utils.QueryUtils;
 
 @Stateless
 public class PostDao {
@@ -40,6 +39,6 @@ public class PostDao {
 
 	public Integer				countPosts() {
 		Query query = em.createNamedQuery("Post.countAll");
-		return (Integer) QueryUtils.getSingleResultOrNull(query);
+		return ((Long)query.getSingleResult()).intValue();
 	}
 }

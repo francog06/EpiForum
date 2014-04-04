@@ -1,5 +1,74 @@
-<!-- js placed at the end of the document so the pages load faster -->
-<script language="JavaScript" type="text/javascript"
-	src="./assets/js/jquery-1.11.0.min.js"></script>
-<script language="JavaScript" type="text/javascript"
-	src="./assets/bootstrap/js/bootstrap.min.js" async></script>
+<script type="text/javascript"
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript"
+	src="./assets/metro_purple/template/styleswitcher.js" async></script>
+<script type="text/javascript"
+	src="./assets/metro_purple/template/forum_fn.js" async></script>
+<script type="text/javascript" async>
+		$(document).ready(function() {
+			$('a.login-window').click(function() {
+
+				// Getting the variable's value from a link 
+				var loginBox = this.hash;
+
+				//Fade in the Popup and add close button
+				$(loginBox).fadeIn(300);
+
+				//Set the center alignment padding + border
+				var popMargTop = ($(loginBox).height() + 24) / 2;
+				var popMargLeft = ($(loginBox).width() + 24) / 2;
+
+				$(loginBox).css({
+					'margin-top' : -popMargTop,
+					'margin-left' : -popMargLeft
+				});
+
+				// Add the mask to body
+				$('body').append('<div id="mask"></div>');
+				$('#mask').fadeIn(300);
+
+				return false;
+			});
+
+			// When clicking on the button close or the mask layer the popup closed
+			$('a.close, #mask').live('click', function() {
+				$('#mask , .login-popup').fadeOut(300, function() {
+					$('#mask').remove();
+				});
+				return false;
+			});
+
+			$('#navbar_username').focus(function() {
+				$('#navbar_username').parent().addClass('active');
+			});
+			$('#navbar_username').blur(function() {
+				$('#navbar_username').parent().removeClass('active');
+			});
+			$('#navbar_password').focus(function() {
+				$('#navbar_password').parent().addClass('active');
+			});
+			$('#navbar_password').blur(function() {
+				$('#navbar_password').parent().removeClass('active');
+			});
+
+		});
+	</script>
+
+<script type="text/javascript" async>
+		$(document).ready(function() {
+			$(".toggleMenuButton").click(function() {
+				$(".tabs").slideToggle("fast");
+				$(".toggleMenuButton").toggleClass("active");
+			})
+
+			$(window).resize(function() {
+				//small-screen
+				if (window.innerWidth < 767) {
+					$(".tabs").css('display', '');
+					$('.toggleMenuButton').removeClass('active');
+				}
+				//end small-screen
+			}).resize(); // trigger resize event
+
+		});
+</script>

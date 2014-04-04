@@ -7,7 +7,6 @@
 <html>
 <head>
 <!-- METAS -->
-<!-- including common metas -->
 <jsp:include page="/metas.html"></jsp:include>
 <meta name="description"
 	content="Epiforum est un forum dévelopé principalement en JAVA">
@@ -43,613 +42,69 @@
 	href="./assets/metro_purple/theme/responsive.css">
 <link type="text/css" rel="stylesheet"
 	href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600&subset=latin,cyrillic'>
-
-<!--   <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="./assets/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-<link href="./assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-<link href="./assets/css/style.css" rel="stylesheet">
-<link href="./assets/css/style-responsive.css" rel="stylesheet"> -->
+<link type="text/css" rel="stylesheet"
+	href="./assets/font-awesome/css/font-awesome.min.css">
 
 <title>EpiForum</title>
 </head>
 <body>
-
 	<div id="wrap">
-
-		<div id="page-header">
-
-			<div id="above-headerbar">
-
-				<ul class="user-links">
-					<c:if test="${Authorization == null}">
-					<li><a href="logout" class="login-window" title="Subscribe"
-						accesskey="x">S'inscrire</a></li>
-					<li><a href="#login-box" class="login-window" title="Login"
-						accesskey="x">Se Connecter</a></li>
-					</c:if>
-					<c:if test="${Authorization != null}">
-					<li><a href="logout" class="login-window" title="logout"
-						accesskey="x">Se desinscrire</a></li>
-					<li><a href="logout" class="login-window" title="logout"
-						accesskey="x">Se deconnecter</a></li>
-					</c:if>
-				</ul>
-
-				<div id="login-box" class="login-popup">
-					<a href="#" class="close"><img
-						src="./assets/metro_purple/theme/images/close_popup.png"
-						class="close-button" title="Close" alt="Close" /></a>
-					<div id="login-text">Se connecter</div>
-
-					<fieldset>
-						<div class="navbar_username_outer">
-							<label for="username">{L_USERNAME}:</label>&nbsp;<br />
-							<input type="text" name="username" id="navbar_username" size="10"
-								class="inputbox" title="{L_USERNAME}" />
-						</div>
-
-						<div class="navbar_password_outer">
-							<label for="password">{L_PASSWORD}:</label>&nbsp;<br />
-							<input type="password" name="password" id="navbar_password"
-								size="10" class="inputbox" title="{L_PASSWORD}" />
-						</div>
-
-						<div class="login-buttons">
-							<input type="submit" name="login" value="{L_LOGIN}"
-								class="button2" /> {S_LOGIN_REDIRECT}
-							<!-- IF S_AUTOLOGIN_ENABLED -->
-							<label id="autologin_label" for="autologin">{L_LOG_ME_IN}
-								<input type="checkbox" name="autologin" id="autologin" />
-							</label>
-							<!-- ENDIF -->
-						</div>
-					</fieldset>
-					<!-- IF S_REGISTER_ENABLED -->
-					<a class="register-link" href="{U_REGISTER}">{L_REGISTER}</a>
-					<!-- ENDIF -->
-
-				</div>
-
-
-				<div class="search-box">
-					<fieldset>
-						<div class="search-box-inner">
-							<input class="button2" type="submit" value="Search"> <input
-								id="keywords" class="inputbox search" type="text"
-								onblur="if(this.value=='')this.value='Search…';"
-								onclick="if(this.value=='Search…')this.value='';"
-								value="Trouvez des topics ou des membres"
-								title="Search for keywords" maxlength="350" name="keywords">
-						</div>
-						<input type="hidden" value="12" name="style">
-					</fieldset>
-				</div>
-			</div>
-
-			<div id="header">
-
-				<a id="logo" title="Board index"
-					style="color: White; font-size: 50px" href="./index.php?style=12">
-					EpiForum </a>
-				<div class="tabs-outer">
-					<a class="toggleMenuButton" title="Menu" href="javascript:void(0);"></a>
-					<ul class="tabs">
-						<li id="members-link"><a title="" href="#">
-								<span>A propos</span>
-						</a></li>
-						<li id="faq-link"><a title="" href="#">
-								<span>Feedback</span>
-						</a></li>
-						<li id="sample-link"><a title="" href="#">
-								<span >Faire un don</span>
-						</a></li>
-						<c:if test="${Authorization != null}">
-						<li id="news-link"><a href="">
-						 <span>Mon compte</span>
-						</a></li>
-						</c:if>
-					</ul>
-				</div>
-			</div>
-			<div id="subheader-menu">
-				<!-- IF S_DISPLAY_SEARCH or (S_USER_LOGGED_IN and not S_IS_BOT) -->
-				<ul class="links left">
-					<!-- IF not S_IS_BOT and U_MARK_FORUMS -->
-					<li id="submenu-mark-read"><a href="{U_MARK_FORUMS}"
-						accesskey="m"> Hey</a></li>
-					<!-- ENDIF -->
-				</ul>
-			</div>
-			<div id="breadcrumbs">
-				<a class="icon-home" href="{U_INDEX}" accesskey="h">Home</a> <img
-					class="navbit-arrow"
-					src="./assets/metro_purple/theme/images/navbit-arrow-right.png"
-					alt="" />&nbsp;
-			</div>
-		</div>
-		<!--  END HEADER -->
+		<!-- HEADER -->
+		<jsp:include page="/header.jsp"></jsp:include>
 
 		<div id="page-body">
-			<!--  MAIN BODY -->
-
-
 			<div id="page-body-inner">
+				<!-- HOME CONTENT BEGIN -->
+
+				<c:if test="${cats != null}">
+				<c:forEach var="cat" items="${cats}">
 				<div class="forabg">
 					<ul class="topiclist">
 						<li class="header">
 							<dl class="icon">
-								<dt>
-									<a href="./viewforum.php?style=12&f=1">Voitures</a>
+								<dt title="${cat.description}">
+									<a href="category?id=${cat.id}">${cat.title}</a>
 								</dt>
-								<dd class="topics">Topics</dd>
-								<dd class="posts">Posts</dd>
-								<dd class="lastpost">
-									<span>Last post</span>
-								</dd>
+								<dd class="lastpost">Dèrnière mise à jour</dd>
 							</dl>
 						</li>
 					</ul>
+
+					<c:if test="${cat.boards != null}">
+					<c:forEach var="board" items="${cat.boards}">
 					<ul class="topiclist forums">
 						<li class="row">
-							<dl class="icon"
-								style="background-image: url(./assets/metro_purple/imageset/forum_read.png); background-repeat: no-repeat;">
-								<dt title="No unread posts">
-									<a class="forumtitle" href="./viewforum.php?style=12&f=2">Mercedes</a>
-									<br> Parlez des différentes classes de la célèbre marque.
-								</dt>
-								<dd class="topics">
-									4
-									<dfn>Topics</dfn>
-								</dd>
-								<dd class="posts">
-									7
-									<dfn>Posts</dfn>
-								</dd>
-								<dd class="lastpost">
-									<span> <dfn>Last post</dfn> by <a
-										class="username-coloured" style="color: #AA0000;"
-										href="./memberlist.php?style=12&mode=viewprofile&u=2">Franco</a>
-										<a href="./viewtopic.php?style=12&f=2&p=17#p17"> <img
-											width="12" height="10" title="View the latest post"
-											alt="View the latest post"
-											src="./assets/metro_purple/imageset/icon_topic_latest.png">
-									</a> Wed Mar 05, 2014 10:53 am
-									</span>
-								</dd>
-							</dl>
-						</li>
-
-						<li class="row">
-							<dl class="icon"
-								style="background-image: url(./assets/metro_purple/imageset/forum_read.png); background-repeat: no-repeat;">
-								<dt title="No unread posts">
-									<a class="forumtitle" href="./viewforum.php?style=12&f=4">Your
-										second forum</a> <br> Description of your second forum
-								</dt>
-								<dd class="topics">
-									2
-									<dfn>Topics</dfn>
-								</dd>
-								<dd class="posts">
-									2
-									<dfn>Posts</dfn>
-								</dd>
-								<dd class="lastpost">
-									<span> <dfn>Last post</dfn>by <a
-										class="username-coloured" style="color: #AA0000;"
-										href="./memberlist.php?style=12&mode=viewprofile&u=2">Igy</a>
-										<a href="./viewtopic.php?style=12&f=4&p=5#p5"> <img
-											width="12" height="10" title="View the latest post"
-											alt="View the latest post"
-											src="./assets/metro_purple/imageset/icon_topic_latest.png">
-									</a> Mon Apr 15, 2013 7:31 pm
-									</span>
-								</dd>
-							</dl>
-						</li>
-					</ul>
-				</div>
-				<!--  END FIRST CATEGORY -->
-
-				<div class="forabg">
-					<ul class="topiclist">
-						<li class="header">
 							<dl class="icon">
-								<dt>
-									<a href="./viewforum.php?style=12&f=1">Sport</a>
+								<dt title="${board.description}">
+									<a class="forumtitle" href="board?id=${board.id}">${board.title}</a>
 								</dt>
-								<dd class="topics">Topics</dd>
-								<dd class="posts">Posts</dd>
-								<dd class="lastpost">
-									<span>Last post</span>
+								<dd class="lastpost">${board.modified}
+									<dfn>Dèrnière mise à jour</dfn>
 								</dd>
 							</dl>
 						</li>
 					</ul>
-					<ul class="topiclist forums">
-						<li class="row">
-							<dl class="icon"
-								style="background-image: url(./assets/metro_purple/imageset/forum_read.png); background-repeat: no-repeat;">
-								<dt title="No unread posts">
-									<a class="forumtitle" href="./viewforum.php?style=12&f=2">Football</a>
-									<br> Pronostics, commentaires, avant/apres match, parlez
-									de tout!!
-								</dt>
-								<dd class="topics">
-									4
-									<dfn>Topics</dfn>
-								</dd>
-								<dd class="posts">
-									7
-									<dfn>Posts</dfn>
-								</dd>
-								<dd class="lastpost">
-									<span> <dfn>Last post</dfn> by <a
-										class="username-coloured" style="color: #AA0000;"
-										href="./memberlist.php?style=12&mode=viewprofile&u=2">PixelGoose</a>
-										<a href="./viewtopic.php?style=12&f=2&p=17#p17"> <img
-											width="12" height="10" title="View the latest post"
-											alt="View the latest post"
-											src="./assets/metro_purple/imageset/icon_topic_latest.png">
-									</a> Wed Mar 05, 2014 10:53 am
-									</span>
-								</dd>
-							</dl>
-						</li>
-
-						<li class="row">
-							<dl class="icon"
-								style="background-image: url(./assets/metro_purple/imageset/forum_read.png); background-repeat: no-repeat;">
-								<dt title="No unread posts">
-									<a class="forumtitle" href="./viewforum.php?style=12&f=4">Your
-										second forum</a> <br> Description of your second forum
-								</dt>
-								<dd class="topics">
-									2
-									<dfn>Topics</dfn>
-								</dd>
-								<dd class="posts">
-									2
-									<dfn>Posts</dfn>
-								</dd>
-								<dd class="lastpost">
-									<span> <dfn>Last post</dfn>by <a
-										class="username-coloured" style="color: #AA0000;"
-										href="./memberlist.php?style=12&mode=viewprofile&u=2">PixelGoose</a>
-										<a href="./viewtopic.php?style=12&f=4&p=5#p5"> <img
-											width="12" height="10" title="View the latest post"
-											alt="View the latest post"
-											src="./assets/metro_purple/imageset/icon_topic_latest.png">
-									</a> Mon Apr 15, 2013 7:31 pm
-									</span>
-								</dd>
-							</dl>
-						</li>
-					</ul>
-
+					</c:forEach>
+					</c:if>
 				</div>
-				<!--  end second category -->
+				</c:forEach>
+				</c:if>
 
-
-				<h3 class="dark-header">Qui est en ligne</h3>
-				<div class="dark-header-content">
-					In total there are <strong>4</strong> users online :: 0 registered,
-					0 hidden and 4 guests (based on users active over the past 5
-					minutes) <br> Most users ever online was <strong>51</strong>
-					on Wed Mar 05, 2014 2:21 pm <br> <br> Registered users:
-					No registered users <br> <em> Legend: <a
-						href="./memberlist.php?style=12&mode=group&g=5"
-						style="color: #AA0000">Administrators</a> , <a
-						href="./memberlist.php?style=12&mode=group&g=4"
-						style="color: #00AA00">Global moderators</a>
-					</em>
-				</div>
-
-				<h3 class="dark-header">Statistiques</h3>
-				<div class="dark-header-content">
-					Total posts <strong>16</strong> • Total topics <strong>13</strong>
-					• Total members <strong>4</strong> • Our newest member <strong>
-						<a href="./memberlist.php?style=12&mode=viewprofile&u=56">Emmanuel
-							Ouyahia</a>
-					</strong>
-				</div>
-
-				<h3 class="dark-header">Anniversaire</h3>
-				<div class="dark-header-content">
-					Heureux anniversaire a <strong> <a
-						href="./memberlist.php?style=12&mode=viewprofile&u=56">Hector
-							Hombre </a>
-					</strong>
-				</div>
+				<!-- STATS -->
+				<jsp:include page="/stats.jsp"></jsp:include>
 
 			</div>
-
-			<!--  MY PROFILE  -->
-			<c:if test="${Authorization != null}">
-			<div id="sidebar">
-				<div class="sidebar-block">
-					<h2 class="sidebar-block-header">Résumé</h2>
-					<div class="sidebar-block-content">
-						<div class="container-fluid">
-							<div class="profilebox">
-								<a><img width="32px" height="32px"
-									style="float: left; margin-right: 5%"
-									alt="Guillomef06 profile picture"
-									src="http://localhost:8080/web/assets/images/small/guillomef06_idprofile_date.jpg">
-								</a>
-								<div class="profileboxnick" style="margin-bottom: 5%">
-									<a target="_self"
-										href="http://localhost:8080/web/profile?nick=guillomef06">Guillomef06</a>
-									<br> <a target="_self"
-										href="http://localhost:8080/web/editmyprofile/">Modifier
-										mon compte</a>
-								</div>
-							</div>
-							<%-- <h3 class="darkheader">Résumé</h3> --%>
-							<div class="darkheadercontent">
-								<p>Guillaume Francois</p>
-								<p>
-									Date d'inscription: <strong>1 Mars 2014</strong>
-								</p>
-								<p>
-									Anniversaire: <strong>25 Fevrier</strong>
-								</p>
-								<p>
-									Messages: <strong>10</strong>
-								</p>
-								<p>
-									Remerciements recus: <strong>100</strong>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			</c:if>
-			<!--  TOP THANKS  -->
-			<div id="sidebar">
-				<div class="sidebar-block">
-					<h2 class="sidebar-block-header">Top des membres</h2>
-					<div class="sidebar-block-content">Franco 10 thks</div>
-					<div class="sidebar-block-content">Igy 7 thks</div>
-					<div class="sidebar-block-content">Hector 2 thks</div>
-				</div>
-			</div>
-
-			<!--  TOP TOPICS  -->
-			<div id="sidebar">
-				<div class="sidebar-block">
-					<h2 class="sidebar-block-header">Top des Topics</h2>
-					<div class="sidebar-block-content">C# - 45</div>
-					<div class="sidebar-block-content">Ruby Audio - 40</div>
-					<div class="sidebar-block-content">C++ Boost Server Problem
-						-32</div>
-				</div>
-			</div>
-
-
-
-
-
+			<!-- HOME CONTENT END -->
+			<!--  SIDEBAR  -->
+			<jsp:include page="/sidebar.jsp"></jsp:include>
 
 		</div>
-		<!--  END PAGE BODY -->
-
-	</div>
-
-
-	<script type="text/javascript"
-		src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-	<script type="text/javascript"
-		src="./assets/metro_purple/template/styleswitcher.js" async></script>
-	<script type="text/javascript"
-		src="./assets/metro_purple/template/forum_fn.js" async></script>
-	<script type="text/javascript" async>
-		$(document).ready(function() {
-			$('a.login-window').click(function() {
-
-				// Getting the variable's value from a link 
-				var loginBox = this.hash;
-
-				//Fade in the Popup and add close button
-				$(loginBox).fadeIn(300);
-
-				//Set the center alignment padding + border
-				var popMargTop = ($(loginBox).height() + 24) / 2;
-				var popMargLeft = ($(loginBox).width() + 24) / 2;
-
-				$(loginBox).css({
-					'margin-top' : -popMargTop,
-					'margin-left' : -popMargLeft
-				});
-
-				// Add the mask to body
-				$('body').append('<div id="mask"></div>');
-				$('#mask').fadeIn(300);
-
-				return false;
-			});
-
-			// When clicking on the button close or the mask layer the popup closed
-			$('a.close, #mask').live('click', function() {
-				$('#mask , .login-popup').fadeOut(300, function() {
-					$('#mask').remove();
-				});
-				return false;
-			});
-
-			$('#navbar_username').focus(function() {
-				$('#navbar_username').parent().addClass('active');
-			});
-			$('#navbar_username').blur(function() {
-				$('#navbar_username').parent().removeClass('active');
-			});
-			$('#navbar_password').focus(function() {
-				$('#navbar_password').parent().addClass('active');
-			});
-			$('#navbar_password').blur(function() {
-				$('#navbar_password').parent().removeClass('active');
-			});
-
-		});
-	</script>
-
-	<script type="text/javascript" async>
-		$(document).ready(function() {
-			$(".toggleMenuButton").click(function() {
-				$(".tabs").slideToggle("fast");
-				$(".toggleMenuButton").toggleClass("active");
-			})
-
-			$(window).resize(function() {
-				//small-screen
-				if (window.innerWidth < 767) {
-					$(".tabs").css('display', '');
-					$('.toggleMenuButton').removeClass('active');
-				}
-				//end small-screen
-			}).resize(); // trigger resize event
-
-		});
-	</script>
-
-	<%-- <div class="container-fluid">
-		 including header element 
-		<jsp:include page="/header.jsp"></jsp:include>
-		<main class="clearfix">
-		<section class="clearfix centered">
-			<div class="row">
-				including leftcol element 
-				<jsp:include page="/leftcol.jsp"></jsp:include>
-				including rightcol element 
-				<jsp:include page="/rightcol.jsp"></jsp:include>
-				<div class="col-sm-8 maindiv">
-					including homecontent element
-					<div class="table-responsive">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>First  Category</th>
-									<th>Nb Topics</th>
-									<th>Nb Posts</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><a target="_self" href="#"><span
-											class="glyphicon glyphicon-folder-close"></span> First board</a>
-										<i class="fa fa-info"></i></td>
-									<td>Nb topics</td>
-									<td>Nb Posts</td>
-								</tr>
-								<tr>
-									<td>Second board</td>
-									<td>Nb topics</td>
-									<td>Nb Posts</td>
-								</tr>
-								<tr>
-									<td>Third board</td>
-									<td>Nb topics</td>
-									<td>Nb Posts</td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<td colspan="3">View all boards</td>
-								</tr>
-							</tfoot>
-						</table>
-					</div>
-					<div class="table-responsive">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>Second Category</th>
-									<th>Nb Topics</th>
-									<th>Nb Posts</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><a target="_self" href="#"><span
-											class="glyphicon glyphicon-folder-open"></span> First board</a> <i
-										class="fa fa-info"></i></td>
-									<td>Nb topics</td>
-									<td>Nb Posts</td>
-								</tr>
-								<tr>
-									<td>Second board</td>
-									<td>Nb topics</td>
-									<td>Nb Posts</td>
-								</tr>
-								<tr>
-									<td>Third board</td>
-									<td>Nb topics</td>
-									<td>Nb Posts</td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<td colspan="3">View all boards</td>
-								</tr>
-							</tfoot>
-						</table>
-					</div>
-					<div class="table-responsive">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>Third Category</th>
-									<th>Nb Topics</th>
-									<th>Nb Posts</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><a target="_self" href="#"><span
-											class="glyphicon glyphicon-folder-open"></span> First board</a> <i
-										class="fa fa-info"></i></td>
-									<td>Nb topics</td>
-									<td>Nb Posts</td>
-								</tr>
-								<tr>
-									<td>Second board</td>
-									<td>Nb topics</td>
-									<td>Nb Posts</td>
-								</tr>
-								<tr>
-									<td>Third board</td>
-									<td>Nb topics</td>
-									<td>Nb Posts</td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<td colspan="3">View all boards</td>
-								</tr>
-							</tfoot>
-						</table>
-					</div>
-					<h3 class="darkheader">Les membres en ligne</h3>
-					<div class="darkheadercontent">
-						Nickname1, Nickname2, Nickname3
-					</div>
-					<h3 class="darkheader">Statistiques</h3>
-					<div class="darkheadercontent">
-						Nombre de membres: <strong>1000</strong>
-						Nombre de posts: <strong>10000</strong>
-						Nombre de topics: <strong>100</strong>
-					</div>
-					<h3 class="darkheader">Qui fete son anniversaire ?</h3>
-					<div class="darkheadercontent">Administrator</div>
-				</div>
-			</div>
-		</section>
-		</main>
-		 including footer element 
+		<!-- FOOTER -->
 		<jsp:include page="/footer.html"></jsp:include>
+
 	</div>
-  	including common JS 
-	<jsp:include page="/common-js.html"></jsp:include> --%>
+<!-- JAVASCRIPTS -->
+<jsp:include page="/common-js.html"></jsp:include>
+
 </body>
 </html>

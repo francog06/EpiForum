@@ -1,7 +1,10 @@
 package com.epiforum.server.logic.builder;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import com.epiforum.common.ro.BoardRO;
 import com.epiforum.common.ro.CategoryRO;
@@ -48,12 +51,15 @@ public class ROBuilder {
 		return myPro;
 	}
 
-	public static MyLightProfileRO		createMyLightProfileRO(Profile profile) {
+	public static MyLightProfileRO		createMyLightProfileRO(Profile profile) throws ParseException {
 		MyLightProfileRO pro = new MyLightProfileRO();
+		SimpleDateFormat parser = new SimpleDateFormat("yyy-MM-dd HH:mm:ss", Locale.FRENCH);
+		pro.setCreated((parser.parse(profile.getCreated().toString())));
 		pro.setNickname(profile.getNickname());
 		pro.setFirstname(profile.getFirstname());
 		pro.setLastname(profile.getLastname());
-		pro.setBirthdate(profile.getBirthdate());
+		parser = new SimpleDateFormat("yyy-MM-dd", Locale.FRENCH);
+		pro.setBirthdate(parser.parse(profile.getBirthdate().toString()));
 		pro.setNbPost(profile.getNbPosts());
 		pro.setNbThank(profile.getNbThanks());
 		return pro;
@@ -62,14 +68,17 @@ public class ROBuilder {
 	public static CategoryRO			createCategoryRO(Category cat) {
 		CategoryRO catRo = new CategoryRO();
 		catRo.setId(cat.getId());
+		catRo.setModified(cat.getModified());
 		catRo.setTitle(cat.getTitle());
 		catRo.setDescription(cat.getDescription());
 		return catRo;
 	}
 
-	public static BoardRO				createBoardRO(Board board) {
+	public static BoardRO				createBoardRO(Board board) throws ParseException {
 		BoardRO boardRo = new BoardRO();
+		SimpleDateFormat parser = new SimpleDateFormat("yyy-MM-dd HH:mm:ss", Locale.FRENCH);
 		boardRo.setId(board.getId());
+		boardRo.setModified(parser.parse (board.getModified().toString()));
 		boardRo.setTitle(board.getTitle());
 		boardRo.setDescription(board.getDescription());
 		return boardRo;

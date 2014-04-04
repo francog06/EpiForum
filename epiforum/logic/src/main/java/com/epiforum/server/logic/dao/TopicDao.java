@@ -8,7 +8,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.epiforum.server.data.entity.Topic;
-import com.epiforum.server.logic.utils.QueryUtils;
 
 @Stateless
 public class TopicDao {
@@ -30,7 +29,7 @@ public class TopicDao {
 
 	public Integer				countTopics() {
 		Query query = em.createNamedQuery("Topic.countAll");
-		return QueryUtils.getSingleResultOrNull(query);
+		return ((Long)query.getSingleResult()).intValue();
 	}
 
 	@SuppressWarnings("unchecked")

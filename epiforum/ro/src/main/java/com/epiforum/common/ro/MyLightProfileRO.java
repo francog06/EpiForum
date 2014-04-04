@@ -5,33 +5,16 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class MyLightProfileRO {
+public class MyLightProfileRO extends LightProfileRO {
 
-	protected String			nickname;
 
 	protected String			firstname;
 
 	protected String			lastname;
 
 	protected Date				birthdate;
-
-	protected Integer			nbPost;
-
-	protected Integer			nbThank;
-
-	/**
-	 * @return the nickname
-	 */
-	public String getNickname() {
-		return nickname;
-	}
-
-	/**
-	 * @param nickname the nickname to set
-	 */
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
+	
+	protected Date				created;
 
 	/**
 	 * @return the firstname
@@ -76,30 +59,16 @@ public class MyLightProfileRO {
 	}
 
 	/**
-	 * @return the nbPost
+	 * @return the created
 	 */
-	public Integer getNbPost() {
-		return nbPost;
+	public Date getCreated() {
+		return created;
 	}
 
 	/**
-	 * @param nbPost the nbPost to set
+	 * @param created the created to set
 	 */
-	public void setNbPost(Integer nbPost) {
-		this.nbPost = nbPost;
-	}
-
-	/**
-	 * @return the nbThank
-	 */
-	public Integer getNbThank() {
-		return nbThank;
-	}
-
-	/**
-	 * @param nbThank the nbThank to set
-	 */
-	public void setNbThank(Integer nbThank) {
-		this.nbThank = nbThank;
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 }

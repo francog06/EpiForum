@@ -5,23 +5,23 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class TopTopicRO {
 
-	private int			id;
+	private Integer			id;
 
-	private String		title;
+	private String			title;
 
-	private int			nbPost;
+	private Integer			nbPost;
 
 	/**
 	 * @return the topicId
 	 */
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	/**
 	 * @param topicId the topicId to set
 	 */
-	public void setId(int topicId) {
+	public void setId(Integer topicId) {
 		this.id = topicId;
 	}
 
@@ -42,14 +42,14 @@ public class TopTopicRO {
 	/**
 	 * @return the nbPost
 	 */
-	public int getNbPost() {
+	public Integer getNbPost() {
 		return nbPost;
 	}
 
 	/**
 	 * @param nbPost the nbPost to set
 	 */
-	public void setNbPost(int nbPost) {
+	public void setNbPost(Integer nbPost) {
 		this.nbPost = nbPost;
 	}
 }

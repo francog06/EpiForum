@@ -1,5 +1,6 @@
 package com.epiforum.server.logic.facade;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -296,7 +297,7 @@ public class OperationFacade {
 		return 0;
 	}
 
-	public MyLightProfileRO		getMyLightProfileRO(HttpServletRequest request, String token) throws BadCredentialException, BadParametersException {
+	public MyLightProfileRO		getMyLightProfileRO(HttpServletRequest request, String token) throws BadCredentialException, BadParametersException, ParseException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Configuration.getDefaultLocale()));
 		}
@@ -434,12 +435,15 @@ public class OperationFacade {
 
 								/*	CATEGORY STUFF	*/
 
-	public List<CategoryRO>		viewAllCategories(HttpServletRequest request, String token) {
+	public List<CategoryRO>		viewAllCategories(HttpServletRequest request, String token) throws ParseException {
+		Session se = null;
 		List<Category> cats = this.categoryManager.getAllCategories();
 		if (cats == null || cats.size() == 0) {
 			return null;
 		}
-		Session se = this.sessionManager.getSession(token);
+		if (token != null && token.trim().isEmpty() == false) {
+			se = this.sessionManager.getSession(token);
+		}
 		List<CategoryRO> catRos = new ArrayList<CategoryRO>();
 		for (Category cat : cats) {
 			CategoryRO catRo = ROBuilder.createCategoryRO(cat);
@@ -462,7 +466,7 @@ public class OperationFacade {
 		
 	}
 
-	public CategoryRO			viewCategory(HttpServletRequest request, String token, Integer categoryId) throws BadCredentialException, BadParametersException {
+	public CategoryRO			viewCategory(HttpServletRequest request, String token, Integer categoryId) throws BadCredentialException, BadParametersException, ParseException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Configuration.getDefaultLocale()));
 		}
@@ -492,7 +496,7 @@ public class OperationFacade {
 
 								/*	BOARD STUFF	*/
 
-	public BoardRO				viewBoard(HttpServletRequest request, String token, Integer boardId) throws BadCredentialException, BadParametersException {
+	public BoardRO				viewBoard(HttpServletRequest request, String token, Integer boardId) throws BadCredentialException, BadParametersException, ParseException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Configuration.getDefaultLocale()));
 		}
@@ -553,7 +557,7 @@ public class OperationFacade {
 		for (Session se : ses) {
 			members.add(ROBuilder.createMemberRO(se.getProfile()));
 		}
-		return null;
+		return members;
 	}
 
 	public List<MemberRO>		birthdayProfiles() {

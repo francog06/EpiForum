@@ -905,9 +905,8 @@ img.close-button {
 #login-text {
 	font: 24px 'Open Sans',sans-serif;
 	color: #603CBB;
-	text-transform: lowercase;
 	padding: 0 32px;
-	margin-bottom: 12px;
+	margin-bottom: 11px;
 }
 .login-popup fieldset { 
 	border:none; 

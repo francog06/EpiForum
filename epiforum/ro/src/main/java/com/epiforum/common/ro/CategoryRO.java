@@ -1,5 +1,6 @@
 package com.epiforum.common.ro;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -9,10 +10,12 @@ public class CategoryRO {
 
 	private Integer				id;
 
+	private Date				modified;
+
 	private String				title;
-	
+
 	private String				description;
-	
+
 	private List<BoardRO>		boards;
 
 	/**
@@ -27,6 +30,20 @@ public class CategoryRO {
 	 */
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the modified
+	 */
+	public Date getModified() {
+		return modified;
+	}
+
+	/**
+	 * @param modified the modified to set
+	 */
+	public void setModified(Date modified) {
+		this.modified = modified;
 	}
 
 	/**

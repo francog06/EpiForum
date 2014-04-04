@@ -1,5 +1,6 @@
 package com.epiforum.common.ro;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -8,6 +9,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class BoardRO {
 
 	private Integer				id;
+
+	private Date				modified;
 
 	private String				title;
 
@@ -27,6 +30,20 @@ public class BoardRO {
 	 */
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the modified
+	 */
+	public Date getModified() {
+		return modified;
+	}
+
+	/**
+	 * @param modified the modified to set
+	 */
+	public void setModified(Date modified) {
+		this.modified = modified;
 	}
 
 	/**

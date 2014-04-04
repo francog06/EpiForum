@@ -5,11 +5,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class LightProfileRO {
 
-	private String			nickname;
+	protected String			nickname;
 
-	private Integer			nbPost;
+	protected Integer			nbPost;
 
-	private Integer			nbThank;
+	protected Integer			nbThank;
 
 	/**
 	 * @return the nickname

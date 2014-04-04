@@ -34,7 +34,7 @@ import com.epiforum.server.data.listener.IUpdateListener;
 @NamedQueries({
 	@NamedQuery(
 			name = "Post.countAll",
-			query = "SELECT count(po) FROM Post po"),
+			query = "SELECT count(po) FROM Post po WHERE po.deleted = false"),
 	@NamedQuery(
 			name = "Post.getAllPostNotDeleted",
 			query = "SELECT po FROM Post po WHERE po.topic.id = :topicId AND po.deleted = false ORDER BY po.created")
