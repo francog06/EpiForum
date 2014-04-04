@@ -8,7 +8,7 @@
 <head>
 <!-- METAS -->
 <jsp:include page="/metas.html"></jsp:include>
-<meta name="description" content="Epiforum: page d'un profil">
+<meta name="description" content="Epiforum: page du profil utilisateur">
 
 <!-- LINKS -->
 <link media="print" type="text/css" rel="stylesheet"
@@ -44,7 +44,10 @@
 <link type="text/css" rel="stylesheet"
 	href="./assets/font-awesome/css/font-awesome.min.css">
 
-<title>${pro.nickname}</title>
+<link type="text/css" rel="stylesheet"
+	href="./assets/css/profil.css">
+
+<title>Profil de ${profile.nickname}</title>
 </head>
 <body>
 	<div id="wrap">
@@ -55,184 +58,82 @@
 			<div id="page-body-inner">
 				<!-- PROFILE CONTENT BEGIN -->
 
-				<form action="" method="post" id="login">
-					<div class="panel">
-						<div class="inner">
-							<span class="corners-top"><span></span></span>
-							<div class="content">
-								<h2>Résumé</h2>
-								<div>
-									<img style="margin-left: 2%; margin-right: 2%; float: left"
-										src="./assets/images/original/Guillomef06.jpg">
-								</div>
-								<fieldset class="fields1" style="margin-left: 5%">
-									<dl>
-										<dt>
-											<label for="username">Prenom:</label>
-										</dt>
-										<dd>
-											<input type="text" tabindex="1" name="username" id="username"
-												size="55" value="Goku" disabled class="inputbox autowidth" />
-										</dd>
-										<dl>
-											<dt>
-												<label for="username">Nom:</label>
-											</dt>
-											<dd>
-												<input type="text" tabindex="1" name="username"
-													id="username" size="55" value="Son" disabled
-													class="inputbox autowidth" />
-											</dd>
-										</dl>
-										<dl>
-											<dt>
-												<label for="username">Pseudo:</label>
-											</dt>
-											<dd>
-												<input type="text" tabindex="1" name="username"
-													id="username" size="55" value="Chichi" disabled
-													class="inputbox autowidth" />
-											</dd>
-										</dl>
-										<dl>
-											<dt>
-												<label for="username">Type Membre:</label>
-											</dt>
-											<dd>
-												<input type="text" tabindex="1" name="username"
-													id="username" size="55" value="User" disabled
-													class="inputbox autowidth" />
-											</dd>
-										</dl>
-										<dl>
-											<dt>
-												<label for="username">Date d'inscription:</label>
-											</dt>
-											<dd>
-												<input type="text" tabindex="1" name="username"
-													id="username" size="55" value="1 Mars 2014  " disabled
-													class="inputbox autowidth" />
-											</dd>
-										</dl>
-										<dl>
-											<dt>
-												<label for="username">Anniversaire:</label>
-											</dt>
-											<dd>
-												<input type="text" tabindex="1" name="username"
-													id="username" size="55" value="25 Fevrier" disabled
-													class="inputbox autowidth" />
-											</dd>
-										</dl>
-										<dl>
-											<dt>
-												<label for="username">Messages:</label>
-											</dt>
-											<dd>
-												<input type="text" tabindex="1" name="username"
-													id="username" size="55" value="10" disabled
-													class="inputbox autowidth" />
-											</dd>
-										</dl>
-										<dl>
-											<dt>
-												<label for="username">Remerciements recus:</label>
-											</dt>
-											<dd>
-												<input type="text" tabindex="1" name="username"
-													id="username" size="55" value="100" disabled
-													class="inputbox autowidth" />
-											</dd>
-										</dl>
-
-										<dl>
-											<dt>
-												<label for="username">Telephone:</label>
-											</dt>
-											<dd>
-												<input type="text" tabindex="1" name="username"
-													id="username" size="55" value="+33647962578" disabled
-													class="inputbox autowidth" />
-											</dd>
-										</dl>
-										<dl>
-											<dt>
-												<label for="username">Facebook:</label>
-											</dt>
-											<dd>
-												<input type="text" tabindex="1" name="username"
-													id="username" size="55"
-													value="DBZ" disabled
-													class="inputbox autowidth" />
-											</dd>
-										</dl>
-
-										<dl>
-											<dt>
-												<label for="username">Twitter:</label>
-											</dt>
-											<dd>
-												<input type="text" tabindex="1" name="username"
-													id="username" size="55" value="GokySan_InDaPlace" disabled
-													class="inputbox autowidth" />
-											</dd>
-										</dl>
-										<dl>
-											<dt>
-												<label for="username">Skype:</label>
-											</dt>
-											<dd>
-												<input type="text" tabindex="1" name="username"
-													id="username" size="55" value="GokuSan_Hardocre" disabled
-													class="inputbox autowidth" />
-											</dd>
-										</dl>
-										<dl>
-											<dt>
-												<label for="username">Genre:</label>
-											</dt>
-											<dd>
-												<input type="checkbox" name="option1" disabled value="Femme">
-												Femme <input type="checkbox" name="option2" disabled
-													value="Garcon" checked> Garcon
-											</dd>
-										</dl>
-
-										<dl>
-											<dt>
-												<label for="username">Ville:</label>
-											</dt>
-											<dd>
-												<input type="text" tabindex="1" name="username"
-													id="username" size="55" value="Nice" disabled
-													class="inputbox autowidth" />
-											</dd>
-										</dl>
-										<dl>
-											<dt>
-												<label for="username">Description:</label>
-											</dt>
-											<textarea value="" disabled size=""
-												style="height: 59px; width: 97%" class=""> Salut je suis epitShiTien croise avec SupinfoShitance, manque d'amioru!!!</textarea>
-										</dl>
-										<dl>
-											<dt>&nbsp;</dt>
-											<dd>
-												<!--	<input type="submit" name="login" tabindex="6" value="Login" class="button1" /></dd> -->
-										</dl>
-								</fieldset>
-								<dl>
-									<dt>
-										<label for="password">Signature:</label>
-									</dt>
-									<textarea value="" disabled size=""
-										style="height: 96px; width: 97%;" class=""> Ouech nique sa mere le maire!!!</textarea>
-								</dl>
+				<div class="panel">
+					<div class="inner">
+						<span class="corners-top"><span></span></span>
+						<div class="content">
+							<h2>Profil de ${profile.nickname}</h2>
+							<div class="img_profil">
+								<img class="img_profil_src" width="128px" height="128px" alt="${profile.nickname}"
+									src="http://localhost:8080/web/assets/images/original/${profile.nickname}.jpg">
 							</div>
-							<span class="corners-bottom"><span></span></span>
+							<div class="div_top_profil">
+								<label class="profile_font">
+									<i class="fa fa-user"></i></label>
+								<strong class="profile_font">${profile.nickname}</strong>
+								<a href="https://www.facebook.com/${profile.facebookPage}"
+									title="www.facebook.com/${profile.facebookPage}" target="_blank">
+									<i class="fa fa-facebook fa-3x social-icon facebook-color"></i></a>
+								<a href="https://twitter.com/${profile.twitterPage}"
+									title="twitter.com/${profile.twitterPage}" target="_blank">
+									<i class="fa fa-twitter fa-3x social-icon twitter-color"></i></a>
+								<a href="skype:${profile.skypeContact}?call" title="Skype: ${profile.skypeContact}">
+									<i class="fa fa-skype fa-3x social-icon skype-color"></i></a>
+								<br><br>
+								<label class="profile_font">
+									<c:if test="${profile.gender eq true}">
+									<i class="fa fa-male"></i>
+								</label>
+								<strong class="profile_font">Homme</strong>
+								</c:if>
+								<c:if test="${profile.gender eq false}">
+									<i class="fa fa-female"></i>
+								</label>
+								<strong class="profile_font">Femme</strong>
+								</c:if>
+								<br><br>
+								<label class="profile_font">
+									<i class="fa fa-map-marker"></i>
+								</label>
+								<a href="https://maps.google.com/?q=${profile.city}" target="_blank" style="font-size: 20px">${profile.city}</a>
+								<br><hr>
+							</div>
+							<div class="div_bottom_left">
+								<label>Rang:</label>
+								<c:if test="${profile.type eq 'MEMBRE'}"><strong>Membre</strong>
+								</c:if>
+								<c:if test="${profile.type eq 'MODERATEUR'}"><strong>Modérateur</strong>
+								</c:if>
+								<c:if test="${profile.type eq 'ADMIN'}"><strong>Admin</strong>
+								</c:if>
+								<br><br>
+								<label>Date d'inscription:</label><strong>${profile.created}</strong>
+								<br><br>
+								<label>Anniversaire:</label><strong>${profile.birthdate}</strong>
+								<br><br>
+								<label>Messages:</label><strong>${profile.nbPost}</strong>
+								<br><br>
+								<label>Remerciements recus:</label><strong>${profile.nbThank}</strong>
+							</div>
+							<fieldset class="fields1 div_bottom_right">
+								<label class="profile_font">Prenom:</label>
+									<strong class="profile_font">${profile.firstname}</strong>
+								<br><br>
+								<label class="profile_font">Nom:</label>
+									<strong class="profile_font">${profile.lastname}</strong>
+								<br><br>
+								<label class="profile_font">Telephone:</label>
+									<strong class="profile_font">${profile.phone}</strong>
+								<br><br>
+								<label class="profile_font">Description:</label>
+									<strong class="profile_font">${profile.description}</strong>
+								<br><br>
+								<label class="profile_font">Signature:</label>
+									<strong class="profile_font">${profile.signature}</strong>
 						</div>
+						<span class="corners-bottom"><span></span></span>
 					</div>
-				</form>
+				</div>
 
 				<!-- STATS -->
 				<jsp:include page="/stats.jsp"></jsp:include>

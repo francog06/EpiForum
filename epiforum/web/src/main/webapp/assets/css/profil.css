@@ -1,0 +1,57 @@
+/* General CSS MYACCOUNT VIEW
+---------------------------------------- */
+
+.img_profil {
+	float:left;
+	min-width: 200px;
+	min-height:160px;
+}
+
+.img_profil_src {
+	width:128px;
+	height:128px;
+ 	margin-left:10%;
+  	float:left;
+}
+
+.div_top_profil {
+	width:76%;
+	min-height: 160px;
+	margin-left: 200px;
+	padding-left: 2%;
+}
+
+.profile_font {
+	font-size:20px;
+}
+
+.img_icon_grey {
+	color:grey;
+}
+
+.div_bottom_left {
+	float:left;
+	max-width: 200px;
+}
+
+.div_bottom_right {
+	min-height: 200px;
+	border-left: 1px solid grey; 
+	padding-left: 2%;
+}
+
+i.social-icon {
+	margin-left: 10%;
+}
+
+i.facebook-color {
+	color: #4A66A4;
+}
+
+i.twitter-color {
+	color: #55AAEE;
+}
+
+i.skype-color {
+	color: #3399FF;
+}

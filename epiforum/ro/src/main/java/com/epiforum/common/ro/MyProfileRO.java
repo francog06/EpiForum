@@ -5,11 +5,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class MyProfileRO extends ProfileInfoRO {
 
-	private String			email;
+	protected String			email;
 
-	private String			ipAddress;
+	protected String			ipAddress;
 
-	private String			signature;
+	protected String			signature;
 
 	/**
 	 * @return the email

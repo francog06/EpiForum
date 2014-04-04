@@ -4,6 +4,9 @@ import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import lombok.ToString;
+
+@ToString(callSuper=true)
 @XmlRootElement
 public class MyLightProfileRO extends LightProfileRO {
 
@@ -13,7 +16,7 @@ public class MyLightProfileRO extends LightProfileRO {
 	protected String			lastname;
 
 	protected Date				birthdate;
-	
+
 	protected Date				created;
 
 	/**

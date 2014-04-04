@@ -21,7 +21,6 @@ import com.epiforum.common.ro.MyLightProfileRO;
 import com.epiforum.common.ro.MyProfileRO;
 import com.epiforum.common.ro.PaginationRO;
 import com.epiforum.common.ro.PostRO;
-import com.epiforum.common.ro.ProfileInfoRO;
 import com.epiforum.common.ro.SignupRO;
 import com.epiforum.common.ro.TopTopicRO;
 import com.epiforum.common.ro.TopicRO;
@@ -233,7 +232,7 @@ public class OperationFacade {
 
 								/*	PROFILE STUFF	*/
 
-	public ProfileInfoRO		viewProfile(HttpServletRequest request, String token, String nickname) throws BadCredentialException, BadParametersException {
+	public MyProfileRO			viewProfile(HttpServletRequest request, String token, String nickname) throws BadCredentialException, BadParametersException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Configuration.getDefaultLocale()));
 		}
@@ -243,12 +242,14 @@ public class OperationFacade {
 		Session se = this.sessionManager.getSession(token);
 		Profile pro = this.profileManager.getProfileFromNickname(nickname);
 		MyProfileRO user = null;
-		if (!se.getProfile().equals(pro)) {
-			// profil d'un membre
-			user = ROBuilder.createMyProfileRO(pro, null);
-		} else {
-			// mon profil
-			user = ROBuilder.createMyProfileRO(pro, se);
+		if (pro != null) {
+			if (!se.getProfile().equals(pro)) {
+				// profil d'un membre
+				user = ROBuilder.createMyProfileRO(pro, null);
+			} else {
+				// mon profil
+				user = ROBuilder.createMyProfileRO(pro, se);
+			}
 		}
 		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
 			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());

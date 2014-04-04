@@ -1,7 +1,12 @@
 package com.epiforum.common.ro;
 
+import java.util.Date;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
+import lombok.ToString;
+
+@ToString(callSuper=true)
 @XmlRootElement
 public class ProfileInfoRO extends MyLightProfileRO {
 	
@@ -46,6 +51,18 @@ public class ProfileInfoRO extends MyLightProfileRO {
 	 */
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	/**
+	 * @return the created
+	 */
+	public Date getCreated() {
+		return created;
+	}
+	/**
+	 * @param created the created to set
+	 */
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 	/**
 	 * @return the phone

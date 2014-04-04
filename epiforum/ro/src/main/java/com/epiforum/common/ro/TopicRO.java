@@ -1,5 +1,6 @@
 package com.epiforum.common.ro;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -7,7 +8,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class TopicRO {
 
-	private int						id;
+	private Integer					id;
+
+	private Date					modified;
 
 	private String					title;
 
@@ -20,19 +23,35 @@ public class TopicRO {
 	private List<LightProfileRO> 	profiles;
 
 	private PostRO					post;
+	
+	private Integer					nbPost;
 
 	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the modified
+	 */
+	public Date getModified() {
+		return modified;
+	}
+
+	/**
+	 * @param modified the modified to set
+	 */
+	public void setModified(Date modified) {
+		this.modified = modified;
 	}
 
 	/**
@@ -117,5 +136,19 @@ public class TopicRO {
 	 */
 	public void setPost(PostRO post) {
 		this.post = post;
+	}
+
+	/**
+	 * @return the nbPost
+	 */
+	public Integer getNbPost() {
+		return nbPost;
+	}
+
+	/**
+	 * @param nbPost the nbPost to set
+	 */
+	public void setNbPost(Integer nbPost) {
+		this.nbPost = nbPost;
 	}
 }

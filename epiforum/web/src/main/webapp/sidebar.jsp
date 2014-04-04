@@ -18,7 +18,7 @@
 						<div class="profileboxnick" style="margin-bottom: 5%">
 							<a target="_self"
 								href="http://localhost:8080/web/profile?nick=${myPro.nickname}">${myPro.nickname}</a>
-							<br> <a target="_self" href="EditAccountView.html">Modifier mon compte</a>
+							<br> <a target="_self" href="myaccount">Modifier mon compte</a>
 						</div>
 					</div>
 					<div class="darkheadercontent">

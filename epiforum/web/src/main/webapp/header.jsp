@@ -12,13 +12,12 @@
 			</c:if>
 			<c:if test="${Authorization == null}">
 				<li><a href="subscribe" title="S'inscrire" accesskey="x">S'inscrire</a></li>
-				<li><a href="#login-box" class="login-window"
-					title="Se Connecter" accesskey="x">Se connecter</a></li>
+				<li><a href="login"	title="Se Connecter" accesskey="x">Se connecter</a></li>
 			</c:if>
 		</ul>
-		<div id="login-box" class="login-popup">
-			<a href="#" class="close"><img
-				src="./assets/metro_purple/theme/images/close_popup.png"
+		<%-- <div id="login-box" class="login-popup">
+			<a href="#" class="close">
+			<img src="./assets/metro_purple/theme/images/close_popup.png"
 				class="close-button" title="Close" alt="Close" /></a>
 			<div id="login-text">Se connecter</div>
 			<fieldset>
@@ -40,7 +39,7 @@
 				</div>
 			</fieldset>
 			<a class="register-link" href="SubscribeView.html"> S'inscrire</a>
-		</div>
+		</div> --%>
 		<div class="search-box">
 			<fieldset>
 				<div class="search-box-inner">
@@ -48,16 +47,14 @@
 						id="keywords" class="inputbox search" type="text"
 						onblur="if(this.value=='')this.value='Search…';"
 						onclick="if(this.value=='Search…')this.value='';"
-						value="Cherchez des messages ou des membres"
-						title="Trouvez des messages ou des membres" maxlength="64" name="keywords">
+						placeholder="Cherchez des messages ou des membres"
+						title="Trouvez des messages ou des membres" maxlength="128" name="keywords">
 				</div>
-				<input type="hidden" value="12" name="style">
 			</fieldset>
 		</div>
 	</div>
 	<div id="header">
-		<a id="logo" title="Accueil" style="color: White; font-size: 50px"
-			href="home">EpiForum</a>
+		<a id="logo" title="Accueil" style="color: White; font-size: 50px" href="home">EpiForum</a>
 		<div class="tabs-outer">
 			<a class="toggleMenuButton" title="Menu" href="javascript:void(0);"></a>
 			<ul class="tabs">
@@ -67,10 +64,6 @@
 				</a></li>
 				<li id="sample-link"><a title="Soutenez notre projet !" href="donate"><span>Faire un don</span>
 				</a></li>
-				<c:if test="${Authorization != null}">
-					<li id="news-link"><a title="Modifier mes informations" href="account"><span>Mon compte</span></a>
-					</li>
-				</c:if>
 			</ul>
 		</div>
 	</div>

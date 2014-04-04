@@ -28,25 +28,24 @@ public class ROBuilder {
 
 	public static MyProfileRO			createMyProfileRO(Profile pro, Session se) {
 		MyProfileRO myPro = new MyProfileRO();
-		if (se == null) {
-			myPro.setType(pro.getAccount().getType().toString());
-			myPro.setFirstname(pro.getFirstname());
-			myPro.setLastname(pro.getLastname());
-			myPro.setNickname(pro.getNickname());
-			myPro.setPhone(pro.getPhone());
-			myPro.setFacebookPage(pro.getFacebookPage());
-			myPro.setTwitterPage(pro.getTwitterPage());
-			myPro.setCity(pro.getCity());
-			myPro.setSkypeContact(pro.getSkypeContact());
-			myPro.setDescription(pro.getDescription());
-			myPro.setGender(pro.getGender());
-			myPro.setBirthdate(pro.getBirthdate());
-			myPro.setNbPost(pro.getNbPosts());
-			myPro.setNbThank(pro.getNbThanks());
-		} else {
-			myPro.setSignature(pro.getSignature());
+		myPro.setType(pro.getAccount().getType().toString());
+		myPro.setCreated(pro.getCreated());
+		myPro.setFirstname(pro.getFirstname());
+		myPro.setLastname(pro.getLastname());
+		myPro.setNickname(pro.getNickname());
+		myPro.setPhone(pro.getPhone());
+		myPro.setFacebookPage(pro.getFacebookPage());
+		myPro.setTwitterPage(pro.getTwitterPage());
+		myPro.setCity(pro.getCity());
+		myPro.setSkypeContact(pro.getSkypeContact());
+		myPro.setDescription(pro.getDescription());
+		myPro.setGender(pro.getGender());
+		myPro.setBirthdate(pro.getBirthdate());
+		myPro.setNbPost(pro.getNbPosts());
+		myPro.setNbThank(pro.getNbThanks());
+		myPro.setSignature(pro.getSignature());
+		if (se != null) {
 			myPro.setEmail(pro.getAccount().getEmail());
-			myPro.setIpAddress(pro.getAccount().getIpAddress());
 		}
 		return myPro;
 	}
@@ -87,7 +86,9 @@ public class ROBuilder {
 	public static TopicRO				createTopicRO(Topic topic) {
 		TopicRO to = new TopicRO();
 		to.setId(topic.getId());
+		to.setModified(topic.getModified());
 		to.setTitle(topic.getTitle());
+		to.setNbPost(topic.getNbPosts());
 		to.setDescription(topic.getDescription());
 		to.setLocked(topic.isLocked());
 		return to;

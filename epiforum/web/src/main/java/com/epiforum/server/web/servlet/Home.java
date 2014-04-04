@@ -43,20 +43,9 @@ public class Home extends OperationResource {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession se = request.getSession(false);
 		String token = null;
-		MyLightProfileRO myPro = null;
 		if (se != null) {
 			token = (String) se.getAttribute("Authorization");
 	    	request.setAttribute("Authorization", token);
-			try {
-				myPro = this.operationFacade.getMyLightProfileRO(request, token);
-				request.setAttribute("myPro", myPro);
-			} catch (BadCredentialException e) {
-				e.printStackTrace();
-			} catch (BadParametersException e) {
-				e.printStackTrace();
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
 	    }
 		/* CATEGORIES */
 		List<CategoryRO> cats = null;
@@ -83,6 +72,19 @@ public class Home extends OperationResource {
 		request.setAttribute("birthdayMembers", birthdayMembers);
 
 		/* SIDEBAR */
+		MyLightProfileRO myPro = null;
+		if (token != null) {
+			try {
+				myPro = this.operationFacade.getMyLightProfileRO(request, token);
+				request.setAttribute("myPro", myPro);
+			} catch (BadCredentialException e) {
+				e.printStackTrace();
+			} catch (BadParametersException e) {
+				e.printStackTrace();
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
 		List<MemberRO> topMembers = this.operationFacade.topProfiles();
 		request.setAttribute("topMembers", topMembers);
 		List<TopTopicRO> topTopics = this.operationFacade.topTopics();
