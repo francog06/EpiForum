@@ -40,4 +40,8 @@ public class TopicManager {
 	public List<Topic>			getTopTopics(Integer number) {
 		return this.topicDao.getTopTopics(number);
 	}
+	
+	public void					removeTopic(Topic topic) {
+		this.topicDao.deleteTopic(topic);
+	}
 }

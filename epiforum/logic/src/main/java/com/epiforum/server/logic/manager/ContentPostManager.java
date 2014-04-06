@@ -27,4 +27,8 @@ public class ContentPostManager {
 		contentPost.setContent("EDIT: " + content);
 		return contentPost;
 	}
+
+	public void					removeContentPost(ContentPost contentPost) {
+		this.contentPostDao.deleteContentPost(contentPost);
+	}
 }

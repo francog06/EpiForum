@@ -46,21 +46,21 @@
 			</c:forEach>
 		</c:if>
 		<c:if test="${topMembers == null}">
-		<div class="sidebar-block-content">Aucun membres remercié</div>
+		<div class="sidebar-block-content">Aucun membres remerciés</div>
 		</c:if>
 	</div>
 </div>
 
 <div id="sidebar">
 	<div class="sidebar-block">
-		<h2 class="sidebar-block-header">Top des Topics</h2>
+		<h2 class="sidebar-block-header">Top des sujets</h2>
 		<c:if test="${topTopics != null}">
 			<c:forEach var="topTopic" items="${topTopics}">
 				<div class="sidebar-block-content">${topTopic.title} - ${topTopic.nbPost}</div>
 			</c:forEach>
 		</c:if>
 		<c:if test="${topTopics == null}">
-		<div class="sidebar-block-content">Aucun sujets n'existe</div>
+		<div class="sidebar-block-content">Aucun sujets n'existent</div>
 		</c:if>
 	</div>
 </div>

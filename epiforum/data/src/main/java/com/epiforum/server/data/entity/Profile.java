@@ -309,4 +309,11 @@ public class Profile implements Serializable, ICreateListener, IUpdateListener {
 		this.nbPost +=1;
 		return this.nbPost;
 	}
+	
+	public Integer			reduceNbPost() {
+		if (this.nbPost > 0) {
+			this.nbPost -=1;
+		}
+		return this.nbPost;
+	}
 }

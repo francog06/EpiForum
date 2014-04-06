@@ -440,7 +440,12 @@ public class OperationFacade {
 		Post post = this.postManager.getPostFromId(postId);
 		Boolean success = false;
 		if (post.getProfile().equals(se.getProfile())) {
+			post.getTopic().reduceNbPost();
+			post.getProfile().reduceNbPost();
 			success = this.postManager.removePost(post);
+			if (post.getTopic().getNbPosts() == 0) {
+				this.topicManager.removeTopic(post.getTopic());
+			}
 		}
 		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
 			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
