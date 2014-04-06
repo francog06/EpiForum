@@ -10,11 +10,14 @@
 			<div class="sidebar-block-content">
 				<div class="container-fluid">
 					<div class="profilebox">
-						<a><img width="32px" height="32px"
-							style="float: left; margin-right: 5%"
-							alt="photo de profil de ${myPro.nickname}"
-							src="assets/images/small/${myPro.nickname}.jpg">
-						</a>
+						<c:if test="${myPro.picture eq true}">
+						<img width="32px" height="32px" style="float: left; margin-right: 5%"
+							alt="Photo de profil de ${myPro.nickname}" src="assets/images/small/${myPro.nickname}.jpg">
+						</c:if>
+						<c:if test="${myPro.picture eq false}">
+						<img width="32px" height="32px" style="float: left; margin-right: 5%"
+							alt="Photo de profil de ${myPro.nickname}" src="assets/images/small/default.jpg">
+						</c:if>
 						<div class="profileboxnick" style="margin-bottom: 5%">
 							<a target="_self"
 								href="profile?nick=${myPro.nickname}">${myPro.nickname}</a>
@@ -45,12 +48,12 @@
 <div id="sidebar">
 	<div class="sidebar-block">
 		<h2 class="sidebar-block-header">Top des membres</h2>
-		<c:if test="${topMembers != null }">
+		<c:if test="${topMembers != null}">
 			<c:forEach var="topMember" items="${topMembers}">
 				<div class="sidebar-block-content">${topMember.nickname} - ${topMember.nbThank}</div>
 			</c:forEach>
 		</c:if>
-		<c:if test="${topMembers == null }">
+		<c:if test="${topMembers == null}">
 		<div class="sidebar-block-content">Aucun membres remercié</div>
 		</c:if>
 	</div>
@@ -59,12 +62,12 @@
 <div id="sidebar">
 	<div class="sidebar-block">
 		<h2 class="sidebar-block-header">Top des Topics</h2>
-		<c:if test="${topTopics != null }">
+		<c:if test="${topTopics != null}">
 			<c:forEach var="topTopic" items="${topTopics}">
 				<div class="sidebar-block-content">${topTopic.title} - ${topTopic.nbPost}</div>
 			</c:forEach>
 		</c:if>
-		<c:if test="${topTopics == null }">
+		<c:if test="${topTopics == null}">
 		<div class="sidebar-block-content">Aucun sujets n'existe</div>
 		</c:if>
 	</div>

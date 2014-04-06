@@ -12,8 +12,7 @@
 
 <!-- LINKS -->
 <jsp:include page="/common-css.html"></jsp:include>
-<link type="text/css" rel="stylesheet"
-	href="assets/css/profil.css">
+<link type="text/css" rel="stylesheet" href="assets/css/profil.css">
 
 <title>Profil de ${profile.nickname}</title>
 </head>
@@ -32,21 +31,41 @@
 						<div class="content">
 							<h2>Profil de ${profile.nickname}</h2>
 							<div class="img_profil">
-								<img class="img_profil_src" width="128px" height="128px" alt="${profile.nickname}"
-									src="http://localhost:8080/web/assets/images/original/${profile.nickname}.jpg">
+								<c:if test="${profile.picture eq true}">
+								<img class="img_profil_src" width="128px" height="128px" alt="Photo de profil de ${profile.nickname}"
+									src="assets/images/original/${profile.nickname}.jpg">
+								</c:if>
+								<c:if test="${profile.picture eq false}">
+								<img class="img_profil_src" width="128px" height="128px" alt="Photo de profil de ${profile.nickname}"
+									src="assets/images/original/default.jpg">
+								</c:if>
 							</div>
 							<div class="div_top_profil">
-								<label class="profile_font">
-									<i class="fa fa-user"></i></label>
-								<strong class="profile_font">${profile.nickname}</strong>
-								<a href="https://www.facebook.com/${profile.facebookPage}"
+								<label class="profile_font"><i class="fa fa-user"></i></label>
+									<strong class="profile_font">${profile.nickname}</strong>
+								<c:if test="${profile.facebookPage ne null}">
+									<a href="https://www.facebook.com/${profile.facebookPage}"
 									title="www.facebook.com/${profile.facebookPage}" target="_blank">
 									<i class="fa fa-facebook fa-3x social-icon facebook-color"></i></a>
-								<a href="https://twitter.com/${profile.twitterPage}"
+								</c:if>
+								<c:if test="${profile.facebookPage eq null}">
+									<i title="Pas de profil facebook" class="fa fa-facebook fa-3x img_icon_grey social-icon"></i>
+								</c:if>
+								<c:if test="${profile.twitterPage ne null}">
+									<a href="https://twitter.com/${profile.twitterPage}"
 									title="twitter.com/${profile.twitterPage}" target="_blank">
 									<i class="fa fa-twitter fa-3x social-icon twitter-color"></i></a>
+								</c:if>
+								<c:if test="${profile.twitterPage eq null}">
+									<i title="Pas de profil twitter" class="fa fa-twitter fa-3x social-icon img_icon_grey"></i></a>
+								</c:if>
+								<c:if test="${profile.skypeContact ne null}">
 								<a href="skype:${profile.skypeContact}?call" title="Skype: ${profile.skypeContact}">
 									<i class="fa fa-skype fa-3x social-icon skype-color"></i></a>
+								</c:if>
+								<c:if test="${profile.skypeContact eq null}">
+									<i title="Pas de compte skype" class="fa fa-skype fa-3x social-icon img_icon_grey"></i></a>
+								</c:if>
 								<br><br>
 								<label class="profile_font">
 									<c:if test="${profile.gender eq true}">

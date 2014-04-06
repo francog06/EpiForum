@@ -34,8 +34,8 @@
 <div class="dark-header-content">
 	<c:if test="${birthdayMembers != null}">
 		Nous souhaitons un joyeux anniversaire à: 
-		<c:forEach var="bMember" items="birthdayMembers">
-			<a href="profile?nick=${bMember.nickname}">${bMember.nickname}</a>, 
+		<c:forEach var="bMember" items="${birthdayMembers}">
+			<a href="profile?nick=${bMember.nickname}">${bMember.nickname}</a>  
 		</c:forEach>
 	</c:if>
 	<c:if test="${birthdayMembers == null}">

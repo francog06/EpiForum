@@ -119,8 +119,7 @@ public class MailManager {
 		mainTemplate = mainTemplate.replace("{subjectText}", subject);
 		mainTemplate = mainTemplate.replace("{textColor}", Configuration.getApplicationColor());
 		mainTemplate = mainTemplate.replace("{backgroundColor}", Configuration.getApplicationBackground());
-		mainTemplate = mainTemplate.replace("{pictureUrl}", String.format("%simg/logo/%s-email.png", Configuration.getWebServerUrl(), Configuration.getApplicationName()));
-		
+		/*mainTemplate = mainTemplate.replace("{pictureUrl}", String.format("%simg/logo/%s-email.png", Configuration.getWebServerUrl(), Configuration.getApplicationName()));*/		
 		return mainTemplate;
 	}
 

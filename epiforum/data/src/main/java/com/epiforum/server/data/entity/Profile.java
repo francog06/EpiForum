@@ -38,7 +38,7 @@ import com.epiforum.server.data.listener.IUpdateListener;
 			query = "SELECT pro FROM Profile pro WHERE pro.nickname = :nickname"),
 	@NamedQuery(
 			name = "Profile.getBirthdayProfiles",
-			query = "SELECT pro FROM Profile pro WHERE pro.birthdate = :today AND pro.account.status = :status"),
+			query = "SELECT pro FROM Profile pro WHERE pro.birthdate is not null AND pro.account.status = :status"),
 	@NamedQuery(
 			name = "Profile.getTopProfiles",
 			query = "SELECT pro FROM Profile pro WHERE pro.account.status = :status ORDER BY pro.nbThanks DESC")
@@ -65,6 +65,7 @@ public class Profile implements Serializable, ICreateListener, IUpdateListener {
 	private String			description;
 	private String			signature;
 	private Boolean			gender;
+	private Boolean			picture;
 	private Date			birthdate;
 	private Integer			nbPost;
 	private Integer			nbThank;
@@ -79,6 +80,7 @@ public class Profile implements Serializable, ICreateListener, IUpdateListener {
 	public 					Profile(Account account, String nickname) {
 		this.account = account;
 		this.nickname = nickname;
+		this.picture = false;
 		this.nbPost = 0;
 		this.nbThank = 0;
 	}
@@ -235,12 +237,21 @@ public class Profile implements Serializable, ICreateListener, IUpdateListener {
 	}
 
 	@Column(name = "gender", columnDefinition = "BIT")
-	public Boolean			getGender() {
+	public Boolean			isGender() {
 		return this.gender;
 	}
 
 	public void				setGender(Boolean gender) {
 		this.gender = gender;
+	}
+	
+	@Column(name = "picture", columnDefinition = "BIT")
+	public Boolean			isPicture() {
+		return this.picture;
+	}
+	
+	public void				setPicture(Boolean picture) {
+		this.picture = picture;
 	}
 
 	@Temporal(TemporalType.DATE)

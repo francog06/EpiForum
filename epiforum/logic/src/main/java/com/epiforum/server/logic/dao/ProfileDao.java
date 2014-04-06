@@ -1,5 +1,6 @@
 package com.epiforum.server.logic.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -7,6 +8,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 import com.epiforum.server.data.entity.Account;
 import com.epiforum.server.data.entity.Profile;
@@ -42,9 +45,20 @@ public class ProfileDao {
 	public List<Profile>		getBirthdayProfiles() {
 		Query query = em.createNamedQuery("Profile.getBirthdayProfiles");
 		query.setParameter("status", Account.Status.ACTIVATED);
-		query.setParameter("today", new Date());
 		List<Profile> pros = (List<Profile>) query.getResultList();
-		return pros;
+		if (pros != null && pros.size() > 0) {
+			Date today = new Date();
+			List<Profile> res = new ArrayList<Profile>();
+			for (Profile pro : pros) {
+				if (pro.getBirthdate() != null && DateFormatUtils.format(today, "MM-dd").equals(DateFormatUtils.format(pro.getBirthdate(), "MM-dd"))) {
+					res.add(pro);
+				}
+			}
+			if (res.size() > 0) {
+				return res;
+			}
+		}
+		return null;
 	}
 
 	@SuppressWarnings("unchecked")

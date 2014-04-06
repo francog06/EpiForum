@@ -1,11 +1,16 @@
 package com.epiforum.common.ro;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class PostRO extends ContentRO {
+
+	private Integer			id;
+
+	private Date			modified;
 
 	private Integer			topicId;
 
@@ -85,5 +90,33 @@ public class PostRO extends ContentRO {
 	 */
 	public void setProfile(LightProfileRO profile) {
 		this.profile = profile;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the modified
+	 */
+	public Date getModified() {
+		return modified;
+	}
+
+	/**
+	 * @param modified the modified to set
+	 */
+	public void setModified(Date modified) {
+		this.modified = modified;
 	}
 }

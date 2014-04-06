@@ -58,19 +58,10 @@
 							<span title="${topic.description}">${topic.title}</span>
 							<c:if test="${post.tags ne null}">
 							<c:forEach var="tag" items="${post.tags}">
-								<span style="color: black; background-color: #DFDFDF; margin-left: 20px">${tag}</span>
+								<span style="color: black; background-color: #AADDFF; margin-left: 20px">${tag}</span>
 							</c:forEach>
 							</c:if>
-							<c:if test="${myPro.type eq 'MODERATEUR'}">
-							<form action="deleteTopic" name="deleteTopic" method="GET" style="display:inline">
-								<input type="hidden" name="tid" value="${topic.id}"/>
-								<input type="button" style="float:right" title="Supprimer le sujet" class="color_forum" value="Supprimer"/> 
-							</form>
-							<form action="updatetopic" name="updatetopic" method="GET">
-								<input type="hidden" name="tip" value="${topic.id}"/>
-								<input type="button" style="float:right" title="Modifier le sujet" class="color_forum" value="Modifier"/>
-							</form>
-							</c:if>
+							<span style="color: #666; margin-left: 20px; float: right;">${post.modified}</span>
 						</h3>
 						<div class="content">
 							<span>${post.content}</span>
@@ -78,17 +69,34 @@
 						<div class="content">
 							<span>${post.profileSignature}</span>
 						</div>
-						<hr style="width:132%"> 
-						<strong class="profile_font" style="color:black;">Remercier <i style="color:#603CBB" class="fa fa-thumbs-o-up fa-1x"></i></strong>
-						<strong class="profile_font" style="color:black;float:right;margin-left:3%">Citer <i style="color:#603CBB" class="fa fa-quote-right fa-1x"></i></strong>
-						<a title="Répondre" href="replytopic?tid=${topic.id}">
-							<strong class="profile_font" style="float:right;color:black">Répondre <i style="color:#603CBB" class="fa fa-reply fa-1x"></i></strong>
+						<hr style="width:132%">
+						<a title="Remercier ${post.profile.nickname}" href="thankprofile?nick=${post.profile.nickname}&tid=${topic.id}">
+							<strong class="profile_font" style="color: black;">Remercier <i style="color:#603CBB" class="fa fa-thumbs-o-up fa-1x"></i></strong>
 						</a>
+						<strong class="profile_font" style="color: black; float: right; margin-left: 3%">Citer <i style="color:#603CBB" class="fa fa-quote-right fa-1x"></i></strong>
+						<a title="Répondre" href="replytopic?tid=${topic.id}">
+							<strong class="profile_font" style="color: black; float: right; margin-left: 3%">Répondre <i style="color:#603CBB" class="fa fa-reply fa-1x"></i></strong>
+						</a>
+						<c:if test="${myPro.nickname eq post.profile.nickname}">
+							<a title="Modifier" href="updatepost?pid=${post.id}">
+								<strong class="profile_font" style="color: black; float: right; margin-left: 3%">Modifier <i style="color:#603CBB" class="fa fa-pencil-square-o fa-1x"></i></strong>
+							</a>
+							<a title="Supprimer" href="deletepost?pid=${post.id}">
+								<strong class="profile_font" style="color: black; float: right; margin-left: 3%">Supprimer <i style="color:#603CBB" class="fa fa-times fa-1x"></i></strong>
+							</a>
+						</c:if>
 					</div> 
 					<dl id="profile3" class="postprofile">
 						<dt style="float: right; max-width: 75px; margin-top:16px">
 							<a class="username-coloured" href="profile?nick=${post.profile.nickname}">${post.profile.nickname}</a>
-							<img style="float: right;" width="64" height="64" alt="photo de profil de ${post.profile.nickname}" src="assets/images/medium/${post.profile.nickname}.jpg">
+							<c:if test="${post.profile.picture eq true}">
+							<img style="float: right;" width="64" height="64" alt="photo de profil de ${post.profile.nickname}"
+								src="assets/images/medium/${post.profile.nickname}.jpg">
+							</c:if>
+							<c:if test="${post.profile.picture eq false}">
+							<img style="float: right;" width="64" height="64" alt="photo de profil de ${post.profile.nickname}"
+								src="assets/images/medium/default.jpg">
+							</c:if>
 						</dt>
 						<br/>
 						<div class="darkheadercontent" style="float: right; width: 100%">

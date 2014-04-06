@@ -12,9 +12,7 @@
 
 <!-- LINKS -->
 <jsp:include page="/common-css.html"></jsp:include>
-
-<link type="text/css" rel="stylesheet"
-	href="./assets/css/profil.css">
+<link type="text/css" rel="stylesheet"href="./assets/css/profil.css">
 
 <title>Modifier mon compte</title>
 </head>
@@ -33,8 +31,14 @@
 						<div class="content">
 							<h2>Modifier mon compte</h2>
 							<div>
+								<c:if test="${myPro.picture eq true}">
 								<img style="margin-left: 2%; margin-right: 2%; float: left"
-									src="http://localhost:8080/web/assets/images/original/${myPro.nickname}.jpg">
+									src="assets/images/original/${myPro.nickname}.jpg">
+								</c:if>
+								<c:if test="${myPro.picture eq false}">
+								<img style="margin-left: 2%; margin-right: 2%; float: left"
+									src="assets/images/original/default.jpg">
+								</c:if>
 							</div>
 							<fieldset class="fields1" style="margin-left: 5%">
 								<form action="myaccount" method="POST" id="editAccountEmail">

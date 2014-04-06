@@ -48,6 +48,9 @@ public class ReplyTopic extends OperationResource {
 			String token = (String) se.getAttribute("Authorization");
 			request.setAttribute("Authorization", token);
 			Integer topicId = Integer.parseInt(request.getParameter("tid"));
+			if (topicId == null || topicId == 0) {
+				throw new ServletException("Une erreur est survenue.");
+			}
 			request.setAttribute("topicId", topicId);
 
 			/* STATS */

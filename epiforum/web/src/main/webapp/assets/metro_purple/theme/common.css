@@ -919,7 +919,7 @@ img.close-button {
 ---------------------------------------- */
 
 #sidebar {
-	float: left;
+	float: right;
 	width: 252px;
 	margin-bottom: 12px;
 }
@@ -927,6 +927,7 @@ img.close-button {
 	float: left;
 	width: 916px;
 	margin-right: 12px;
+	min-height: 720px;
 }
 .no-sidebar#page-body-inner {
 	width: 100%;

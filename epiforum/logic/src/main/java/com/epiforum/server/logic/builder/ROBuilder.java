@@ -39,7 +39,8 @@ public class ROBuilder {
 		myPro.setCity(pro.getCity());
 		myPro.setSkypeContact(pro.getSkypeContact());
 		myPro.setDescription(pro.getDescription());
-		myPro.setGender(pro.getGender());
+		myPro.setGender(pro.isGender());
+		myPro.setPicture(pro.isPicture());
 		myPro.setBirthdate(pro.getBirthdate());
 		myPro.setNbPost(pro.getNbPosts());
 		myPro.setNbThank(pro.getNbThanks());
@@ -57,6 +58,7 @@ public class ROBuilder {
 		pro.setType(profile.getAccount().getType().toString());
 		pro.setNickname(profile.getNickname());
 		pro.setFirstname(profile.getFirstname());
+		pro.setPicture(profile.isPicture());
 		pro.setLastname(profile.getLastname());
 		if (profile.getBirthdate() != null) {
 			parser = new SimpleDateFormat("yyy-MM-dd", Locale.FRENCH);
@@ -120,6 +122,8 @@ public class ROBuilder {
 
 	public static PostRO				createPostRO(Post post) {
 		PostRO po = new PostRO();
+		po.setId(post.getId());
+		po.setModified(post.getModified());
 		po.setProfileId(post.getProfile().getId());
 		po.setContent(post.getContentPost().getContent());
 		po.setProfileSignature(post.getProfile().getSignature());
@@ -139,6 +143,7 @@ public class ROBuilder {
 	public static LightProfileRO		createLightProfileRO(Profile profile) {
 		LightProfileRO pro = new LightProfileRO();
 		pro.setNickname(profile.getNickname());
+		pro.setPicture(profile.isPicture());
 		pro.setNbThank(profile.getNbThanks());
 		pro.setNbPost(profile.getNbPosts());
 		return pro;

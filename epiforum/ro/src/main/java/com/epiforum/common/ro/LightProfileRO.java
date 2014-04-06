@@ -11,6 +11,8 @@ public class LightProfileRO {
 
 	protected Integer			nbThank;
 
+	protected Boolean			picture;
+
 	/**
 	 * @return the nickname
 	 */
@@ -51,5 +53,19 @@ public class LightProfileRO {
 	 */
 	public void setNbThank(Integer nbThank) {
 		this.nbThank = nbThank;
+	}
+
+	/**
+	 * @return the picture
+	 */
+	public Boolean getPicture() {
+		return picture;
+	}
+
+	/**
+	 * @param picture the picture to set
+	 */
+	public void setPicture(Boolean picture) {
+		this.picture = picture;
 	}
 }

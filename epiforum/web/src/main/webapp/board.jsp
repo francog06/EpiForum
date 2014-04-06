@@ -8,8 +8,7 @@
 <head>
 <!-- METAS -->
 <jsp:include page="/metas.html"></jsp:include>
-<meta name="description"
-	content="Epiforum: page d'une catégorie">
+<meta name="description" content="Epiforum: page d'une catégorie">
 
 <!-- LINKS -->
 <jsp:include page="/common-css.html"></jsp:include>

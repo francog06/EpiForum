@@ -278,7 +278,7 @@ public class OperationFacade {
 		return match;
 	}
 	
-	public Integer				thankProfile(HttpServletRequest request, String token, String nickname) throws BadCredentialException, TechnicalException, BadParametersException {
+	public Boolean				thankProfile(HttpServletRequest request, String token, String nickname) throws BadCredentialException, TechnicalException, BadParametersException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Configuration.getDefaultLocale()));
 		}
@@ -292,9 +292,10 @@ public class OperationFacade {
 		}
 		se.setLastActivity("thankProfile");
 		if (!se.getProfile().equals(pro)) {
-			return this.profileManager.addNbThank(pro);
+			this.profileManager.addNbThank(pro);
+			return true;
 		}
-		return 0;
+		return false;
 	}
 
 	public MyLightProfileRO		getMyLightProfileRO(HttpServletRequest request, String token) throws BadCredentialException, BadParametersException, ParseException {
