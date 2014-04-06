@@ -30,7 +30,7 @@ public class PostDao {
 	@SuppressWarnings("unchecked")
 	public List<Post>			getAllPostNotDeleted(Integer topicId, Integer startIndex) {
 		Query query = em.createNamedQuery("Post.getAllPostNotDeleted");
-		query.setMaxResults(10);
+		query.setMaxResults(5);
 		query.setFirstResult(startIndex);
 		query.setParameter("topicId", topicId);
 		List<Post> posts = (List<Post>) query.getResultList();

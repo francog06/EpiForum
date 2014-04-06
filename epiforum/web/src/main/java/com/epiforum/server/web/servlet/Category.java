@@ -33,7 +33,6 @@ public class Category extends OperationResource {
 	 */
 	public Category() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -42,6 +41,7 @@ public class Category extends OperationResource {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession se = request.getSession(false);
+		request.setCharacterEncoding("UTF-8");
 		if (se == null || se.getAttribute("Authorization") == null) {
 			response.sendRedirect("home");
 		} else {

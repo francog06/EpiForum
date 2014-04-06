@@ -7,25 +7,27 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class PostRO extends ContentRO {
 
-	private int				topicId;
+	private Integer			topicId;
 
-	private int				profileId;
+	private Integer			profileId;
 
 	private String			profileSignature;
+
+	private LightProfileRO 	profile;
 
 	private List<String>	tags;
 
 	/**
 	 * @return the topicId
 	 */
-	public int getTopicId() {
+	public Integer getTopicId() {
 		return topicId;
 	}
 
 	/**
 	 * @param topicId the topicId to set
 	 */
-	public void setTopicId(int topicId) {
+	public void setTopicId(Integer topicId) {
 		this.topicId = topicId;
 	}
 
@@ -69,5 +71,19 @@ public class PostRO extends ContentRO {
 	 */
 	public void setTags(List<String> tags) {
 		this.tags = tags;
+	}
+
+	/**
+	 * @return the profile
+	 */
+	public LightProfileRO getProfile() {
+		return profile;
+	}
+
+	/**
+	 * @param profile the profile to set
+	 */
+	public void setProfile(LightProfileRO profile) {
+		this.profile = profile;
 	}
 }

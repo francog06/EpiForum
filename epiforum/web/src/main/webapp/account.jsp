@@ -11,40 +11,10 @@
 <meta name="description" content="Epiforum: page du compte utilisateur">
 
 <!-- LINKS -->
-<link media="print" type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/print.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/normal.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/medium.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/large.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/common.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/common.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/links.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/content.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/buttons.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/cp.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/forms.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/tweaks.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/colours.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/responsive.css">
-<link type="text/css" rel="stylesheet"
-	href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600&subset=latin,cyrillic'>
-<link type="text/css" rel="stylesheet"
-	href="./assets/font-awesome/css/font-awesome.min.css">
+<jsp:include page="/common-css.html"></jsp:include>
 
-<link type="text/css" rel="stylesheet" href="./assets/css/profil.css">
+<link type="text/css" rel="stylesheet"
+	href="./assets/css/profil.css">
 
 <title>Modifier mon compte</title>
 </head>
@@ -73,22 +43,34 @@
 											<label for="email">Email:</label>
 										</dt>
 										<dd>
+											<input type="hidden" name="hemail" value="${profile.email}"/>
 											<input type="text" tabindex="1" name="email" id="email"
 												size="55" class="inputbox autowidth" placeholder="${profile.email}" required/>
 										</dd>
 									</dl>
-									<input type="submit" name="EditAccount" tabindex="6"
+									<dl>
+										<dt>
+											<label for="newemail">Nouveau email:</label>
+										</dt>
+										<dd>
+											<input type="text" tabindex="1" name="newemail" id="newemail"
+												size="55" class="inputbox autowidth" />
+										</dd>
+									</dl>
+									<input type="submit" name="EditAccountEmail" tabindex="6"
 											style="width: 55%" size="50" value="Sauvegarder"
 											class="button1 autowidth" />
 								</form>
+								<br/><br/>
 								<form action="myaccount" method="POST" id="editAccountMdp">
 									<dl>
 										<dt>
-											<label for="oldpass">Mot de passe:</label>
+											<label for="pass">Mot de passe:</label>
 										</dt>
 										<dd>
-											<input type="password" tabindex="2" id="oldpass"
-												name="oldpass" size="55" class="inputbox autowidth" placeholder="Mon mot de passe"/>
+											<input type="hidden" name="hemail" value="${profile.email}"/>
+											<input type="password" tabindex="2" id="pass"
+												name="pass" size="55" class="inputbox autowidth" placeholder="Mon mot de passe"/>
 										</dd>
 									</dl>
 									<dl>
@@ -100,115 +82,92 @@
 												name="newpass" size="55" class="inputbox autowidth" />
 										</dd>
 									</dl>
-									<input type="submit" name="EditAccount" tabindex="6"
+									<input type="submit" name="EditAccountMdp" tabindex="6"
 											style="width: 55%" size="50" value="Sauvegarder"
 											class="button1 autowidth" />
 								</form>
+								<br/><br/>
 								<form action="myaccount" method="POST" id="editAccountAll">
 									<dl>
-										<dt>
-											<label for="prenom">Prenom:</label>
-										</dt>
+										<dt><label for="prenom">Prenom:</label></dt>
 										<dd>
-											<input type="text" tabindex="1" name="prenom" id="prenom"
+											<input type="text" tabindex="1" name="prenom" id="prenom" 
 												size="55" class="inputbox autowidth" placeholder="${profile.firstname}"/>
 										</dd>
 										<dl>
-											<dt>
-												<label for="nom">Nom:</label>
-											</dt>
+											<dt><label for="nom">Nom:</label></dt>
 											<dd>
-												<input type="text" tabindex="1" name="nom" id="nom"
+												<input type="text" tabindex="1" name="nom" id="nom" 
 													size="55" class="inputbox autowidth" placeholder="${profile.lastname}"/>
 											</dd>
 										</dl>
 										<dl>
-											<dt>
-												<label for="pseudo">Pseudo:</label>
-											</dt>
+											<dt><label for="pseudo">Pseudo:</label></dt>
 											<dd>
-												<input type="text" tabindex="1" name="pseudo" id="pseudo"
-													size="55" class="inputbox autowidth" placeholder="${profile.nickname}" required/>
+												<input type="text" tabindex="1" name="pseudo" id="pseudo" 
+													size="55" class="inputbox autowidth" value="${profile.nickname}" required/>
 											</dd>
 										</dl>
 										<dl>
-											<dt>
-												<label for="birth">Anniversaire:</label>
-											</dt>
+											<dt><label for="anniv">Anniversaire:</label></dt>
 											<dd>
-												<input type="text" tabindex="1" name="birth" id="birth"
-													size="55" class="inputbox autowidth" placeholder="${profile.birthdate}"/>
+												<input type="text" tabindex="1" name="anniv" id="anniv" 
+													size="55" class="inputbox autowidth"  placeholder="${profile.birthdate}"/>
 											</dd>
 										</dl>
 										<dl>
-											<dt>
-												<label for="telephone">Telephone:</label>
-											</dt>
+											<dt><label for="telephone">Telephone:</label></dt>
 											<dd>
-												<input type="text" tabindex="1" name="telephone"
+												<input type="text" tabindex="1" name="telephone" title="Exemple: 0600000000" 
 													id="telephone" size="55" class="inputbox autowidth" placeholder="${profile.phone}"/>
 											</dd>
 										</dl>
 										<dl>
-											<dt>
-												<label for="facebook">Facebook:</label>
-											</dt>
+											<dt><label for="facebook">Facebook:</label></dt>
 											<dd>
-												<input type="text" tabindex="1" name="facebook"
+												<input type="text" tabindex="1" name="facebook" title="Exemple: jonathan.clus" 
 													id="facebook" size="55" class="inputbox autowidth" placeholder="${profile.facebookPage}"/>
 											</dd>
 										</dl>
 										<dl>
-											<dt>
-												<label for="twitter">Twitter:</label>
-											</dt>
+											<dt><label for="twitter">Twitter:</label></dt>
 											<dd>
-												<input type="text" tabindex="1" name="twitter" id="twitter"
+												<input type="text" tabindex="1" name="twitter" id="twitter" title="Exemple: majditoumi" 
 													size="55" class="inputbox autowidth" placeholder="${profile.twitterPage}"/>
 											</dd>
 										</dl>
 										<dl>
-											<dt>
-												<label for="skype">Skype:</label>
-											</dt>
+											<dt><label for="skype">Skype:</label></dt>
 											<dd>
 												<input type="text" tabindex="1" name="skype" id="skype"
 													size="55" class="inputbox autowidth" placeholder="${profile.skypeContact}"/>
 											</dd>
 										</dl>
 										<dl>
-											<dt>
-												<label for="genre">Genre:</label>
-											</dt>
+											<dt><label for="genre">Genre:</label></dt>
 											<dd>
-												<input type="checkbox" id="genre_femme" name="genre_femme" value="Femme">Femme
-												<input type="checkbox" id="genre_male" name="genre_male" value="Garcon" checked> Garcon
+												<input type="radio" id="genre_femme" name="genre_femme" value="Femme">Femme
+												<input type="radio" id="genre_homme" name="genre_homme" value="Garcon">Homme
 											</dd>
 										</dl>
 										<dl>
-											<dt>
-												<label for="city">Ville:</label>
-											</dt>
+											<dt><label for="ville">Ville:</label></dt>
 											<dd>
-												<input type="text" tabindex="1" name="city" id="city"
+												<input type="text" tabindex="1" name="ville" id="ville" title="Exemple: Paris" 
 													size="55" class="inputbox autowidth" placeholder="${profile.city}"/>
 											</dd>
 										</dl>
 										<dl>
-											<dt>
-												<label for="description">Description:</label>
-											</dt>
+											<dt><label for="description">Description:</label></dt>
 											<textarea name="description" style="height: 96px; width: 97%"
-												placeholder="${profile.description}"></textarea>
+												placeholder="${profile.description}" ></textarea>
 										</dl>
 										<dl>
-											<dt>
-												<label for="password">Signature:</label>
-											</dt>
+											<dt><label for="signature">Signature:</label></dt>
 											<textarea name="signature" style="height: 96px; width: 97%;"
-												placeholder="${profile.signature}"></textarea>
+												placeholder="${profile.signature}" ></textarea>
 										</dl>
-										<input type="submit" name="EditAccount" tabindex="6"
+										<input type="submit" name="EditAccountAll" tabindex="6"
 											style="width: 55%" size="50" value="Sauvegarder"
 											class="button1 autowidth" />
 								</form>
@@ -231,6 +190,7 @@
 		<jsp:include page="/footer.html"></jsp:include>
 
 	</div>
+
 	<!-- JAVASCRIPTS -->
 	<jsp:include page="/common-js.html"></jsp:include>
 

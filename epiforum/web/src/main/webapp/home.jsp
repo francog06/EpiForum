@@ -12,38 +12,7 @@
 	content="Epiforum est un forum dévelopé principalement en JAVA">
 
 <!-- LINKS -->
-<link media="print" type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/print.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/normal.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/medium.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/large.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/common.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/common.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/links.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/content.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/buttons.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/cp.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/forms.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/tweaks.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/colours.css">
-<link type="text/css" rel="stylesheet"
-	href="./assets/metro_purple/theme/responsive.css">
-<link type="text/css" rel="stylesheet"
-	href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600&subset=latin,cyrillic'>
-<link type="text/css" rel="stylesheet"
-	href="./assets/font-awesome/css/font-awesome.min.css">
+<jsp:include page="/common-css.html"></jsp:include>
 
 <title>EpiForum</title>
 </head>
@@ -63,9 +32,8 @@
 						<li class="header">
 							<dl class="icon">
 								<dt title="${cat.description}">
-									<a href="category?id=${cat.id}">${cat.title}</a>
-								</dt>
-								<dd class="lastpost">Dèrnière mise à jour</dd>
+									<a href="category?id=${cat.id}">${cat.title}</a></dt>
+								<dd class="lastpost"><span>Dèrnière mise à jour</span></dd>
 							</dl>
 						</li>
 					</ul>
@@ -78,7 +46,7 @@
 								<dt title="${board.description}">
 									<a class="forumtitle" href="board?id=${board.id}">${board.title}</a>
 								</dt>
-								<dd class="lastpost">${board.modified}
+								<dd class="lastpost"><span>${board.modified}</span>
 									<dfn>Dèrnière mise à jour</dfn>
 								</dd>
 							</dl>

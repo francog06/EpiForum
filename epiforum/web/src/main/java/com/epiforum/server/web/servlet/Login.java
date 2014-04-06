@@ -30,7 +30,6 @@ public class Login extends OperationResource {
      */
     public Login() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -38,6 +37,7 @@ public class Login extends OperationResource {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession se = request.getSession(false);
+		request.setCharacterEncoding("UTF-8");
 		if (se == null || se.getAttribute("Authorization") == null) {
 			String url="/login.jsp";
 			ServletContext sc = getServletContext();
@@ -53,6 +53,7 @@ public class Login extends OperationResource {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		request.setCharacterEncoding("UTF-8");
 		String token = (String) session.getAttribute("Authorization");
 		LoginRO log = new LoginRO();
 		log.setEmail(request.getParameter("email"));
@@ -60,7 +61,7 @@ public class Login extends OperationResource {
 		try {
 			token = this.operationFacade.login(request, token, log, Type.MEMBRE);
 			session.setAttribute("Authorization", token);
-			response.sendRedirect("/web");
+			response.sendRedirect("/web/home");
 		} catch (TechnicalException e) {
 			String url="/login.jsp";
 		    ServletContext sc = getServletContext();

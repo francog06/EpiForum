@@ -29,13 +29,13 @@ public class Subscribe extends OperationResource {
      */
     public Subscribe() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String url="/subscribe.jsp";
 	    ServletContext sc = getServletContext();
 	    RequestDispatcher rd = sc.getRequestDispatcher(url);
@@ -46,6 +46,7 @@ public class Subscribe extends OperationResource {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		SignupRO sign = new SignupRO();
 		sign.setEmail(request.getParameter("email"));
 		sign.setNickname(request.getParameter("nickname"));
@@ -78,5 +79,4 @@ public class Subscribe extends OperationResource {
 			e.printStackTrace();
 		}
 	}
-
 }

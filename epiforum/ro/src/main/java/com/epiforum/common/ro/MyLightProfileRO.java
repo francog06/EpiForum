@@ -10,6 +10,7 @@ import lombok.ToString;
 @XmlRootElement
 public class MyLightProfileRO extends LightProfileRO {
 
+	protected String			type;
 
 	protected String			firstname;
 
@@ -18,6 +19,20 @@ public class MyLightProfileRO extends LightProfileRO {
 	protected Date				birthdate;
 
 	protected Date				created;
+
+	/**
+	 * @return the type
+	 */
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	/**
 	 * @return the firstname

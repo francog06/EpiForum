@@ -34,7 +34,6 @@ public class Home extends OperationResource {
      */
     public Home() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -42,6 +41,7 @@ public class Home extends OperationResource {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession se = request.getSession(false);
+		request.setCharacterEncoding("UTF-8");
 		String token = null;
 		if (se != null) {
 			token = (String) se.getAttribute("Authorization");

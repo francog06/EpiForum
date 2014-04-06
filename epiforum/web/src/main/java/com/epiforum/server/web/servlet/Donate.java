@@ -19,7 +19,6 @@ public class Donate extends OperationResource {
      * Default constructor. 
      */
     public Donate() {
-        // TODO Auto-generated constructor stub
     }
 
 	/**

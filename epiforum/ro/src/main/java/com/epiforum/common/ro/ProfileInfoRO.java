@@ -9,8 +9,6 @@ import lombok.ToString;
 @ToString(callSuper=true)
 @XmlRootElement
 public class ProfileInfoRO extends MyLightProfileRO {
-	
-	protected String			type;
 
 	protected String			status;
 
@@ -28,18 +26,6 @@ public class ProfileInfoRO extends MyLightProfileRO {
 
 	protected Boolean			gender;
 
-	/**
-	 * @return the type
-	 */
-	public String getType() {
-		return type;
-	}
-	/**
-	 * @param type the type to set
-	 */
-	public void setType(String type) {
-		this.type = type;
-	}
 	/**
 	 * @return the status
 	 */

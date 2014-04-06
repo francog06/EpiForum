@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import com.epiforum.server.data.entity.Account;
 import com.epiforum.server.data.entity.Profile;
 import com.epiforum.server.logic.utils.QueryUtils;
 
@@ -40,6 +41,7 @@ public class ProfileDao {
 	@SuppressWarnings("unchecked")
 	public List<Profile>		getBirthdayProfiles() {
 		Query query = em.createNamedQuery("Profile.getBirthdayProfiles");
+		query.setParameter("status", Account.Status.ACTIVATED);
 		query.setParameter("today", new Date());
 		List<Profile> pros = (List<Profile>) query.getResultList();
 		return pros;
@@ -48,6 +50,7 @@ public class ProfileDao {
 	@SuppressWarnings("unchecked")
 	public List<Profile>		getTopProfiles(Integer number) {
 		Query query = em.createNamedQuery("Profile.getTopProfiles");
+		query.setParameter("status", Account.Status.ACTIVATED);
 		query.setMaxResults(number);
 		List<Profile> pros = query.getResultList();
 		return pros;

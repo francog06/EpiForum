@@ -52,7 +52,7 @@
 		<jsp:include page="/header.jsp"></jsp:include>
 
 		<div id="page-body">
-			<form action="subscribe" method="post" id="login">
+			<form action="subscribe" method="POST" id="login">
 				<div class="panel">
 					<div class="inner">
 						<span class="corners-top"><span></span></span>
@@ -61,42 +61,42 @@
 							<fieldset class="fields1">
 								<dl>
 									<dt>
-										<span style="color: red"> *<span><label
-												for="email"> Email</label>
+										<span style="color: red"> *<span>
+										<label for="email"> Email</label>
 									</dt>
 									<dd>
 										<input type="text" tabindex="1" name="email" id="email"
-											size="35" value="" class="inputbox autowidth" required/>
+											size="35" class="inputbox autowidth" placeholder="example@company.com" required/>
 									</dd>
 								</dl>
 								<dl>
 									<dt>
-										<span style="color: red"> *<span><label
-												for="password"> Mot de passe</label>
+										<span style="color: red"> *<span>
+										<label for="password"> Mot de passe</label>
 									</dt>
 									<dd>
-										<input type="password" tabindex="2" id="password"
-											name="password" size="35" class="inputbox autowidth" required/>
+										<input type="password" tabindex="2" id="password" name="password"
+											size="35" class="inputbox autowidth" required/>
 									</dd>
 								</dl>
 								<dl>
 									<dt>
-										<span style="color: red"> *<span><label
-												for="password"> Resaisisez le mot de passe</label>
+										<span style="color: red"> *<span>
+										<label for="password"> Resaisisez le mot de passe</label>
 									</dt>
 									<dd>
-										<input type="password" tabindex="2" id="password"
-											name="password" size="35" class="inputbox autowidth" required/>
+										<input type="password" tabindex="2" id="password" name="password"
+											size="35" class="inputbox autowidth" required/>
 									</dd>
 								</dl>
 								<dl>
 									<dt>
-										<span style="color: red"> *<span><label
-												for="nickname"> Pseudonyme</label>
+										<span style="color: red"> *<span>
+										<label for="nickname"> Pseudonyme</label>
 									</dt>
 									<dd>
 										<input type="text" tabindex="1" name="nickname" id="nickname"
-											size="35" value="" class="inputbox autowidth" required/>
+											size="35" class="inputbox autowidth" required/>
 									</dd>
 								</dl>
 								<dl>
@@ -104,8 +104,8 @@
 										<label for="firstname">Prenom:</label>
 									</dt>
 									<dd>
-										<input type="text" tabindex="1" name="firstname"
-											id="firstname" size="35" value="" class="inputbox autowidth" />
+										<input type="text" tabindex="1" name="firstname" id="firstname"
+											size="35" class="inputbox autowidth"/>
 									</dd>
 								</dl>
 								<dl>
@@ -114,7 +114,7 @@
 									</dt>
 									<dd>
 										<input type="text" tabindex="1" name="lastname" id="lastname"
-											size="35" value="" class="inputbox autowidth" />
+											size="35" class="inputbox autowidth"/>
 									</dd>
 								</dl>
 								<dl>

@@ -20,8 +20,6 @@ public class TopicRO {
 
 	private List<PostRO>			posts;
 
-	private List<LightProfileRO> 	profiles;
-
 	private PostRO					post;
 	
 	private Integer					nbPost;
@@ -108,20 +106,6 @@ public class TopicRO {
 	 */
 	public void setPosts(List<PostRO> posts) {
 		this.posts = posts;
-	}
-
-	/**
-	 * @return the profiles
-	 */
-	public List<LightProfileRO> getProfiles() {
-		return profiles;
-	}
-
-	/**
-	 * @param profiles the profiles to set
-	 */
-	public void setProfiles(List<LightProfileRO> profiles) {
-		this.profiles = profiles;
 	}
 
 	/**

@@ -25,7 +25,6 @@ public class Logout extends OperationResource {
      */
     public Logout() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -33,6 +32,7 @@ public class Logout extends OperationResource {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession se = request.getSession(false);
+		request.setCharacterEncoding("UTF-8");
 		if (se != null) {
 			String token = (String) se.getAttribute("Authorization");
 		    try {
@@ -49,7 +49,5 @@ public class Logout extends OperationResource {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
-
 }

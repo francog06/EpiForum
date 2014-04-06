@@ -24,9 +24,9 @@ public class PostManager {
 	public Post				createPost(PostRO postRo, Topic topic, Profile profile) {
 		Post post = new Post(topic, profile);
 		if (postRo.getTags() != null && !postRo.getTags().isEmpty()) {
-			String tag = null;
+			String tag = "";
 			for (String elem : postRo.getTags()) {
-				elem = elem.replaceAll("!@#$%^&*{}[]:<>,./?|\\_-=+*", "");
+				elem = elem.replaceAll("[^a-zA-Z]", "");
 				if (!elem.trim().isEmpty()) {
 					tag += "#"+ elem;
 				}

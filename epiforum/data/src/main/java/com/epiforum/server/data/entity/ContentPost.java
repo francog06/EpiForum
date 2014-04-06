@@ -34,6 +34,7 @@ public class ContentPost implements Serializable {
 	}
 
 	public 					ContentPost(Post post, String content) {
+		this.postId = post.getId();
 		this.post = post;
 		this.content = content;
 	}

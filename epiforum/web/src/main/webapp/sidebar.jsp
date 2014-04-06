@@ -12,12 +12,12 @@
 					<div class="profilebox">
 						<a><img width="32px" height="32px"
 							style="float: left; margin-right: 5%"
-							alt="${myPro.nickname} profile picture"
-							src="http://localhost:8080/web/assets/images/small/${myPro.nickname}.jpg">
+							alt="photo de profil de ${myPro.nickname}"
+							src="assets/images/small/${myPro.nickname}.jpg">
 						</a>
 						<div class="profileboxnick" style="margin-bottom: 5%">
 							<a target="_self"
-								href="http://localhost:8080/web/profile?nick=${myPro.nickname}">${myPro.nickname}</a>
+								href="profile?nick=${myPro.nickname}">${myPro.nickname}</a>
 							<br> <a target="_self" href="myaccount">Modifier mon compte</a>
 						</div>
 					</div>
@@ -61,7 +61,7 @@
 		<h2 class="sidebar-block-header">Top des Topics</h2>
 		<c:if test="${topTopics != null }">
 			<c:forEach var="topTopic" items="${topTopics}">
-				<div class="sidebar-block-content">${topTopic.title} - ${topMember.nbPost}</div>
+				<div class="sidebar-block-content">${topTopic.title} - ${topTopic.nbPost}</div>
 			</c:forEach>
 		</c:if>
 		<c:if test="${topTopics == null }">

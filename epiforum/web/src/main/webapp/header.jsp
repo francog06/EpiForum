@@ -15,31 +15,6 @@
 				<li><a href="login"	title="Se Connecter" accesskey="x">Se connecter</a></li>
 			</c:if>
 		</ul>
-		<%-- <div id="login-box" class="login-popup">
-			<a href="#" class="close">
-			<img src="./assets/metro_purple/theme/images/close_popup.png"
-				class="close-button" title="Close" alt="Close" /></a>
-			<div id="login-text">Se connecter</div>
-			<fieldset>
-				<div class="navbar_username_outer">
-					<label for="username">Email:</label>&nbsp;<br/>
-					<input type="text" name="username" id="navbar_username" size="10"
-						class="inputbox" title="Email" />
-				</div>
-				<div class="navbar_password_outer">
-					<label for="password">Mot de passe:</label>&nbsp;<br/>
-					<input type="password" name="password" id="navbar_password" size="10"
-						class="inputbox" title="Mot de passe" />
-				</div>
-				<div class="login-buttons">
-					<input type="submit" name="login" value="Se connecter" class="button2"/>
-					<label id="autologin_label" for="autologin">Connexion Automatique
-						<input type="checkbox" name="autologin" id="autologin"/>
-					</label>
-				</div>
-			</fieldset>
-			<a class="register-link" href="SubscribeView.html"> S'inscrire</a>
-		</div> --%>
 		<div class="search-box">
 			<fieldset>
 				<div class="search-box-inner">
@@ -69,10 +44,7 @@
 	</div>
 	<div id="subheader-menu">
 		<ul class="links left">
-			<li id="submenu-mark-read"><a href="home" accesskey="m">Welcome</a></li>
+			<li id="submenu-mark-read"><a href="home" accesskey="m">Home</a></li>
 		</ul>
-	</div>
-	<div id="breadcrumbs">
-		<a class="icon-home" href="home" accesskey="h">Home</a>
 	</div>
 </div>

@@ -31,11 +31,12 @@ public class Topic extends OperationResource {
 
 	private static final long serialVersionUID = 5608630646217466952L;
 
+	private final Integer PAGINATION = 5;
 	/**
      * Default constructor. 
      */
     public Topic() {
-        // TODO Auto-generated constructor stub
+        super();
     }
 
 	/**
@@ -43,16 +44,20 @@ public class Topic extends OperationResource {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession se = request.getSession(false);
+		request.setCharacterEncoding("UTF-8");
 		if (se == null || se.getAttribute("Authorization") == null) {
 			response.sendRedirect("home");
 		} else {
 			String token = (String) se.getAttribute("Authorization");
 			request.setAttribute("Authorization", token);
 			Integer topicId = Integer.parseInt(request.getParameter("id"));
-			if (topicId == null || topicId == 0) {
+			Integer page = Integer.parseInt(request.getParameter("page"));
+			if (topicId == null || topicId == 0 || page == null || page == 0) {
 				throw new ServletException("Une erreur est survenue.");
 			}
-
+			
+			request.setAttribute("page", page);
+			
 			/* STATS */
 			Integer nbMembers = this.operationFacade.numberOfMembers();
 			request.setAttribute("nbMembers", nbMembers);
@@ -87,8 +92,13 @@ public class Topic extends OperationResource {
 			try {
 				PaginationRO pagination = new PaginationRO();
 				pagination.setId(topicId);
-				pagination.setStartIndex(0);
+				pagination.setStartIndex((page * PAGINATION) - PAGINATION);
 				TopicRO topic = this.operationFacade.viewTopic(request, token, pagination);
+				if (topic.getPosts().size() < PAGINATION) {
+					request.setAttribute("lastpage", true);
+				} else {
+					request.setAttribute("lastpage", false);
+				}
 				request.setAttribute("topic", topic);
 			} catch (BadCredentialException e) {
 				e.printStackTrace();
@@ -108,7 +118,5 @@ public class Topic extends OperationResource {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
-
 }

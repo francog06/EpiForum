@@ -54,11 +54,14 @@ public class ROBuilder {
 		MyLightProfileRO pro = new MyLightProfileRO();
 		SimpleDateFormat parser = new SimpleDateFormat("yyy-MM-dd HH:mm:ss", Locale.FRENCH);
 		pro.setCreated((parser.parse(profile.getCreated().toString())));
+		pro.setType(profile.getAccount().getType().toString());
 		pro.setNickname(profile.getNickname());
 		pro.setFirstname(profile.getFirstname());
 		pro.setLastname(profile.getLastname());
-		parser = new SimpleDateFormat("yyy-MM-dd", Locale.FRENCH);
-		pro.setBirthdate(parser.parse(profile.getBirthdate().toString()));
+		if (profile.getBirthdate() != null) {
+			parser = new SimpleDateFormat("yyy-MM-dd", Locale.FRENCH);
+			pro.setBirthdate(parser.parse(profile.getBirthdate().toString()));
+		}
 		pro.setNbPost(profile.getNbPosts());
 		pro.setNbThank(profile.getNbThanks());
 		return pro;
@@ -98,7 +101,9 @@ public class ROBuilder {
 		if (tagl != null && !tagl.trim().isEmpty()) {
 			List<String> tags = new ArrayList<String>();
 			for (String tag : tagl.split("#")) {
-				tags.add("#" + tag);
+				if (!tag.trim().isEmpty()) {
+					tags.add("#" + tag);
+				}
 			}
 			return tags;
 		}
@@ -118,6 +123,7 @@ public class ROBuilder {
 		po.setProfileId(post.getProfile().getId());
 		po.setContent(post.getContentPost().getContent());
 		po.setProfileSignature(post.getProfile().getSignature());
+		po.setProfile(createLightProfileRO(post.getProfile()));
 		po.setTags(createTagList(post.getTag()));
 		return po;
 	}

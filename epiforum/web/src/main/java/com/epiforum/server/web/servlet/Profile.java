@@ -33,7 +33,7 @@ public class Profile extends OperationResource {
      * Default constructor. 
      */
     public Profile() {
-        // TODO Auto-generated constructor stub
+    	super();
     }
 
 	/**
@@ -41,6 +41,7 @@ public class Profile extends OperationResource {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession se = request.getSession(false);
+		request.setCharacterEncoding("UTF-8");
 		if (se == null || se.getAttribute("Authorization") == null) {
 			response.sendRedirect("home");
 		} else {

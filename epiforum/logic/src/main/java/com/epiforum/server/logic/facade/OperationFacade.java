@@ -14,7 +14,6 @@ import com.epiforum.common.ro.BoardRO;
 import com.epiforum.common.ro.CategoryRO;
 import com.epiforum.common.ro.ChangeInfo;
 import com.epiforum.common.ro.ContentRO;
-import com.epiforum.common.ro.LightProfileRO;
 import com.epiforum.common.ro.LoginRO;
 import com.epiforum.common.ro.MemberRO;
 import com.epiforum.common.ro.MyLightProfileRO;
@@ -349,17 +348,13 @@ public class OperationFacade {
 		Session se = this.sessionManager.getSession(token);
 		List<Post>  posts = this.postManager.getAllPostNotDeleted(pagination.getId(), pagination.getStartIndex());
 		List<PostRO> poRos = null;
-		List<LightProfileRO> pros = null;
 		if (posts != null && posts.size() > 0) {
 			poRos = new ArrayList<PostRO>();
-			pros = new ArrayList<LightProfileRO>();
 			for (Post post : posts) {
-				pros.add(ROBuilder.createLightProfileRO(post.getProfile()));
 				poRos.add(ROBuilder.createPostRO(post));
 			}
 		}
 		TopicRO to = ROBuilder.createTopicRO(topic);
-		to.setProfiles(pros);
 		to.setPosts(poRos);
 		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
 			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
@@ -374,7 +369,7 @@ public class OperationFacade {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Configuration.getDefaultLocale()));
 		}
-		if (postRo.getPostId() == null || postRo.getPostId() == 0) {
+		if (postRo.getTopicId() == null || postRo.getTopicId() == 0) {
 			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Configuration.getDefaultLocale()));
 		}
 		Session se = this.sessionManager.getSession(token);

@@ -9,13 +9,13 @@
 		Il y a <strong>${cMemberSize}</strong> membres en ligne.<br>
 		<c:forEach var="coMember" items="${connectedMembers}">
 		<c:if test="${coMember.type eq 0}">
-			<a style="color: #111199" href="/web/profile?nick=${coMember.nickname}">${coMember.nickname}</a> 
+			<a style="color: #111199" href="profile?nick=${coMember.nickname}">${coMember.nickname}</a> 
 		</c:if>
 		<c:if test="${coMember.type eq 1}">
-			<a style="color: #119911" href="/web/profile?nick=${coMember.nickname}">${coMember.nickname}</a> 
+			<a style="color: #119911" href="profile?nick=${coMember.nickname}">${coMember.nickname}</a> 
 		</c:if>
 		<c:if test="${coMember.type eq 2}">
-			<a style="color: #991111" href="/web/profile?nick=${coMember.nickname}">${coMember.nickname}</a> 
+			<a style="color: #991111" href="profile?nick=${coMember.nickname}">${coMember.nickname}</a> 
 		</c:if>
 		</c:forEach>
 	</c:if>
@@ -35,7 +35,7 @@
 	<c:if test="${birthdayMembers != null}">
 		Nous souhaitons un joyeux anniversaire à: 
 		<c:forEach var="bMember" items="birthdayMembers">
-			<a href="/profile?nick=${bMember.nickname}">${bMember.nickname}</a>, 
+			<a href="profile?nick=${bMember.nickname}">${bMember.nickname}</a>, 
 		</c:forEach>
 	</c:if>
 	<c:if test="${birthdayMembers == null}">
