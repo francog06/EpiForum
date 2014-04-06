@@ -26,18 +26,10 @@
 					</div>
 					<div class="darkheadercontent">
 						<p>${myPro.firstname} ${myPro.lastname}</p>
-						<p>
-							Date d'inscription: <strong>${myPro.created}</strong>
-						</p>
-						<p>
-							Anniversaire: <strong>${myPro.birthdate}</strong>
-						</p>
-						<p>
-							Messages: <strong>${myPro.nbPost}</strong>
-						</p>
-						<p>
-							Remerciements recus: <strong>${myPro.nbThank}</strong>
-						</p>
+						<p>Date d'inscription: <strong>${myPro.created}</strong></p>
+						<p>Anniversaire: <strong>${myPro.birthdate}</strong></p>
+						<p>Messages: <strong>${myPro.nbPost}</strong></p>
+						<p>Remerciements: <strong>${myPro.nbThank}</strong></p>
 					</div>
 				</div>
 			</div>

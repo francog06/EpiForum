@@ -19,7 +19,7 @@ public class AboutUs extends OperationResource {
      * Default constructor. 
      */
     public AboutUs() {
-        // TODO Auto-generated constructor stub
+        super();
     }
 
 	/**

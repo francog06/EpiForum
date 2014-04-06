@@ -19,6 +19,7 @@ public class Donate extends OperationResource {
      * Default constructor. 
      */
     public Donate() {
+    	super();
     }
 
 	/**

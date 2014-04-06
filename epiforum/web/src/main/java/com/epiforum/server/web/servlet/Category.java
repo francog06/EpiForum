@@ -26,7 +26,8 @@ import com.epiforum.server.web.beanresource.OperationResource;
  */
 @WebServlet("/category")
 public class Category extends OperationResource {
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 6166524188540461014L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()

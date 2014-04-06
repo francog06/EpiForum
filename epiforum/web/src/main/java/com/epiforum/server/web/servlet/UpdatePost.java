@@ -1,41 +1,40 @@
 package com.epiforum.server.web.servlet;
 
-import com.epiforum.common.ro.MemberRO;
-import com.epiforum.common.ro.MyLightProfileRO;
-import com.epiforum.common.ro.PostRO;
-import com.epiforum.common.ro.TopTopicRO;
-import com.epiforum.common.ro.TopicRO;
-import com.epiforum.server.logic.exception.BadCredentialException;
-import com.epiforum.server.logic.exception.BadParametersException;
-import com.epiforum.server.logic.exception.TechnicalException;
-import com.epiforum.server.web.beanresource.OperationResource;
-
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class CreateTopic
- */
-@WebServlet("/createtopic")
-public class CreateTopic extends OperationResource {
+import com.epiforum.common.ro.ContentRO;
+import com.epiforum.common.ro.MemberRO;
+import com.epiforum.common.ro.MyLightProfileRO;
+import com.epiforum.common.ro.PostRO;
+import com.epiforum.common.ro.TopTopicRO;
+import com.epiforum.server.logic.exception.BadCredentialException;
+import com.epiforum.server.logic.exception.BadParametersException;
+import com.epiforum.server.web.beanresource.OperationResource;
 
-	private static final long serialVersionUID = 6252451652179709550L;
+/**
+ * Servlet implementation class UpdatePost
+ */
+@WebServlet("/updatepost")
+public class UpdatePost extends OperationResource {
+
+	private static final long serialVersionUID = -3192154940172472565L;
 
 	/**
-     * Default constructor.
+     * Default constructor. 
      */
-    public CreateTopic() {
-        super();
+    public UpdatePost() {
+    	super();
     }
 
 	/**
@@ -49,12 +48,22 @@ public class CreateTopic extends OperationResource {
 		} else {
 			String token = (String) se.getAttribute("Authorization");
 			request.setAttribute("Authorization", token);
-			Integer boardId = Integer.parseInt(request.getParameter("bid"));
-			if (boardId == null || boardId == 0) {
+			
+			Integer postId = Integer.parseInt(request.getParameter("pid"));
+			if (postId == null || postId == 0) {
 				throw new ServletException("Une erreur est survenue.");
 			}
-			request.setAttribute("boardId", boardId);
+			request.setAttribute("postId", postId);
 
+			try {
+				PostRO post = this.operationFacade.getMyPost(request, token, postId);
+				request.setAttribute("post", post);
+			} catch (BadCredentialException e1) {
+				e1.printStackTrace();
+			} catch (BadParametersException e1) {
+				e1.printStackTrace();
+			}
+			
 			/* STATS */
 			Integer nbMembers = this.operationFacade.numberOfMembers();
 			request.setAttribute("nbMembers", nbMembers);
@@ -81,16 +90,15 @@ public class CreateTopic extends OperationResource {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-
 			List<MemberRO> topMembers = this.operationFacade.topProfiles();
 			request.setAttribute("topMembers", topMembers);
 			List<TopTopicRO> topTopics = this.operationFacade.topTopics();
 			request.setAttribute("topTopics", topTopics);
-
-			String url = "/createTopic.jsp";
+			
+			String url = "/updatePost.jsp";
 			ServletContext sc = getServletContext();
 			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response);			
+			rd.forward(request, response);
 		}
 	}
 
@@ -104,48 +112,18 @@ public class CreateTopic extends OperationResource {
 			response.sendRedirect("home");
 		} else {
 			String token = (String) se.getAttribute("Authorization");
-			if (request.getParameter("create") != null) {
-				if (request.getParameter("title") == null || request.getParameter("title").trim().isEmpty()) {
-					throw new  ServletException("Le titre est necessaire pour la création d'un sujet !");
-				}
-
-				TopicRO topic = new TopicRO();
-				topic.setId(Integer.parseInt(request.getParameter("boardId")));
-				topic.setTitle(request.getParameter("title").trim());
-
-				if (request.getParameter("description") != null) {
-					topic.setDescription(request.getParameter("description").trim());
-				}
-
-				if (request.getParameter("message") == null || request.getParameter("message").trim().isEmpty()) {
-					throw new  ServletException("Le message est necessaire pour la création d'un sujet !");
-				}
-
-				PostRO post = new PostRO();
-				post.setContent(request.getParameter("message").trim());
-				List<String> tags = new ArrayList<String>();
-				if (request.getParameter("tag_one") != null && !request.getParameter("tag_one").trim().isEmpty()) {
-					tags.add(request.getParameter("tag_one").trim());
-				}
-				if (request.getParameter("tag_two") != null && !request.getParameter("tag_two").trim().isEmpty()) {
-					tags.add(request.getParameter("tag_two").trim());
-				}
-				if (request.getParameter("tag_three") != null && !request.getParameter("tag_three").trim().isEmpty()) {
-					tags.add(request.getParameter("tag_three").trim());
-				}
-				post.setTags(tags);
-				topic.setPost(post);
-				
+			if (request.getParameter("message") != null && request.getParameter("postId") != null) {
+				ContentRO content = new ContentRO();
+				content.setPostId((Integer.parseInt(request.getParameter("postId"))));
+				content.setContent(request.getParameter("message"));
 				try {
-					this.operationFacade.createTopic(request, token, topic);
+					this.operationFacade.updateMyPost(request, token, content);
+					response.sendRedirect("home");
 				} catch (BadCredentialException e) {
-					e.printStackTrace();
-				} catch (TechnicalException e) {
 					e.printStackTrace();
 				} catch (BadParametersException e) {
 					e.printStackTrace();
 				}
-				response.sendRedirect("/web/board?id=" + topic.getId());
 			}
 		}
 	}

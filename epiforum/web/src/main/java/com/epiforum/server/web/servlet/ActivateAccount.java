@@ -18,13 +18,14 @@ import com.epiforum.server.web.beanresource.OperationResource;
  */
 @WebServlet("/activateAccount")
 public class ActivateAccount extends OperationResource {
-	private static final long serialVersionUID = 1L;
 
-    /**
+	private static final long serialVersionUID = -5262199239918628424L;
+
+	/**
      * Default constructor. 
      */
     public ActivateAccount() {
-        // TODO Auto-generated constructor stub
+        super();
     }
 
 	/**

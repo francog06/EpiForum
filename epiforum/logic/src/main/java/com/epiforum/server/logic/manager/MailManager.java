@@ -170,7 +170,7 @@ public class MailManager {
 
 	public void sendForgotPasswordEmail(String email, String nickname, String password) throws TechnicalException {
 		try {
-			InputStream forgotPasswordInputStream = getClass().getResourceAsStream("/com/cubbyhole/server/logic/mail/template/forgotPassword.html");
+			InputStream forgotPasswordInputStream = getClass().getResourceAsStream("/com/epiforum/server/logic/mail/template/forgotPassword.html");
 			StringWriter forgotPasswordAccountWriter = new StringWriter();
 			IOUtils.copy(forgotPasswordInputStream, forgotPasswordAccountWriter);
 			String forgotPasswordTemplate = forgotPasswordAccountWriter.toString();

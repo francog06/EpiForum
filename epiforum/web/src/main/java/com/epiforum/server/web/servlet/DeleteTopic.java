@@ -12,9 +12,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/deletetopic")
 public class DeleteTopic extends OperationResource {
-	private static final long serialVersionUID = 1L;
 
-    /**
+	private static final long serialVersionUID = -5735677978374836892L;
+
+	/**
      * Default constructor. 
      */
     public DeleteTopic() {

@@ -27,9 +27,10 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet("/replytopic")
 public class ReplyTopic extends OperationResource {
-	private static final long serialVersionUID = 1L;
 
-    /**
+	private static final long serialVersionUID = 7228304377523452099L;
+
+	/**
      * Default constructor. 
      */
     public ReplyTopic() {

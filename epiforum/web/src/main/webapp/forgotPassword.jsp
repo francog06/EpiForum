@@ -8,13 +8,12 @@
 <head>
 <!-- METAS -->
 <jsp:include page="/metas.html"></jsp:include>
-<meta name="description"
-	content="Epiforum: page de connexion">
+<meta name="description" content="Epiforum: page d'oublie de mot de passe">
 
 <!-- LINKS -->
 <jsp:include page="/common-css.html"></jsp:include>
 
-<title>Connexion</title>
+<title>Oublie de mot de passe</title>
 </head>
 <body>
 	<div id="wrap">
@@ -22,26 +21,20 @@
 		<jsp:include page="/header.jsp"></jsp:include>
 		
 		<div id="page-body">
-		<form action="login" method="post" id="login">
+			<form action="forgotpassword" method="POST" id="login">
 				<div class="panel">
 					<div class="inner"><span class="corners-top"><span></span></span>
 						<div class="content">
-							<h2>Veuillez vous connecter</h2>
+							<h2>Veuillez saisir votre email</h2>
 							<fieldset class="fields1">
 								<dl>
 									<dt><label for="email">Email:</label></dt>
 									<dd><input type="text" tabindex="1" name="email" id="email"
-										size="25" placeholder="exemple@mail.com" class="inputbox autowidth" required/></dd>
+										size="55" class="inputbox autowidth" required/></dd>
 								</dl>
 								<dl>
-									<dt><label for="password">Mot de passe:</label></dt>
-									<dd><input type="password" tabindex="2" id="password" name="password"
-										size="25" class="inputbox autowidth" required/></dd>
+									<input type="submit" name="forgotPassword" tabindex="6" value="Envoyez" class="button1"/>
 								</dl>
-								<dl>
-									<dd><input type="submit" name="login" tabindex="6" value="Login" class="button1"/></dd>
-								</dl>
-								<a title="Oublie de mot de passe" href="forgotpassword">J'ai oublié mon mot de passe !</a>
 							</fieldset>
 						</div>
 						<span class="corners-bottom"></span>
@@ -49,6 +42,7 @@
 				</div>
 			</form>
 		</div>
+
 		<!-- FOOTER -->
 		<jsp:include page="/footer.html"></jsp:include>
 

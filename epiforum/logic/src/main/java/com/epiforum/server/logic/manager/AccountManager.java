@@ -87,7 +87,7 @@ public class AccountManager {
 
 	public boolean				deleteAccount(Account ac) {
 		ac.setStatus(Account.Status.DISABLED);
-		return false;
+		return true;
 	}
 
 	public Integer				countAccounts(Account.Status status) {

@@ -44,7 +44,7 @@ public class Login extends OperationResource {
 			RequestDispatcher rd = sc.getRequestDispatcher(url);
 			rd.forward(request, response);
 		} else {
-			response.sendRedirect("/web/home");
+			response.sendRedirect("home");
 		} 
 	}
 

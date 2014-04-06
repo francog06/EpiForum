@@ -386,8 +386,27 @@ public class OperationFacade {
 		return content != null ? true : false;
 	}
 
-	
-	public Boolean				updateMyPost(HttpServletRequest request, String token, ContentRO contentRo) throws BadCredentialException, TechnicalException, BadParametersException {
+	public PostRO				getMyPost(HttpServletRequest request, String token, Integer postId) throws BadCredentialException, BadParametersException {
+		if (!this.checkSession(token)) {
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Configuration.getDefaultLocale()));
+		}
+		if (postId == null || postId == 0) {
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Configuration.getDefaultLocale()));
+		}
+		Session se = this.sessionManager.getSession(token);
+		Post post = this.postManager.getPostFromId(postId);
+		PostRO po = null;
+		if (post != null && post.getProfile().equals(se.getProfile())) {
+			po = ROBuilder.createPostRO(post);
+		}
+		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
+			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
+		}
+		se.setLastActivity("getMyPost");
+		return po;
+	}
+
+	public Boolean				updateMyPost(HttpServletRequest request, String token, ContentRO contentRo) throws BadCredentialException, BadParametersException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Configuration.getDefaultLocale()));
 		}
