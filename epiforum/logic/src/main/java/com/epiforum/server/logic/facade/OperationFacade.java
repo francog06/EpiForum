@@ -317,7 +317,7 @@ public class OperationFacade {
 
 								/*	TOPIC STUFF	*/
 
-	public TopicRO				createTopic(HttpServletRequest request, String token, TopicRO topicRo) throws BadCredentialException, TechnicalException, BadParametersException {
+	public Boolean				createTopic(HttpServletRequest request, String token, TopicRO topicRo) throws BadCredentialException, TechnicalException, BadParametersException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Configuration.getDefaultLocale()));
 		}
@@ -332,15 +332,13 @@ public class OperationFacade {
 		Topic topic = this.topicManager.createTopic(topicRo, board);
 		Post post = this.postManager.createPost(topicRo.getPost(), topic, se.getProfile());
 		ContentPost content = this.contentPostManager.createContentPost(topicRo.getPost().getContent(), post);
-		TopicRO res = ROBuilder.createTopicRO(topic);
-		res.setPost(ROBuilder.createPostRO(post, se.getProfile().getId(), content.getContent()));
 		topic.addNbPost();
 		se.getProfile().addNbPost();
 		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
 			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
 		}
 		se.setLastActivity("createTopic");
-		return res;
+		return true;
 	}
 	
 	public TopicRO				viewTopic(HttpServletRequest request, String token, PaginationRO pagination) throws BadCredentialException, TechnicalException, BadParametersException {

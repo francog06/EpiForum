@@ -28,12 +28,12 @@
 				<div class="topic-actions">
 					<div class="buttons">
 						<div class="reply-icon">
-							<c:if test="${topic.locked eq false}">
+							<c:if test="${topic.locked eq false or myPro.type ne 'MEMBRE'}">
 								<a title="Répondre" target="_self" href="replytopic?tid=${topic.id}">
 									<img width="114px" height="34px" src="assets/metro_purple/imageset/en/button_topic_reply.png"/>
 								</a>
 							</c:if>
-							<c:if test="${topic.locked eq true}">
+							<c:if test="${topic.locked eq true and myPro.type eq 'MEMBRE'}">
 								<img width="97px" height="35px" src="assets/metro_purple/imageset/en/button_topic_locked.png"/>
 							</c:if>
 						</div>
@@ -75,7 +75,7 @@
 						<a title="Remercier ${post.profile.nickname}" href="thankprofile?nick=${post.profile.nickname}&tid=${topic.id}">
 							<strong class="profile_font" style="color: black;">Remercier <i style="color:#603CBB" class="fa fa-thumbs-o-up fa-1x"></i></strong>
 						</a>
-						<c:if test="${topic.locked eq false}">
+						<c:if test="${topic.locked eq false or myPro.type ne 'MEMBRE'}">
 						<strong class="profile_font" style="color: black; float: right; margin-left: 3%">Citer <i style="color:#603CBB" class="fa fa-quote-right fa-1x"></i></strong>
 						<a title="Répondre" href="replytopic?tid=${topic.id}">
 							<strong class="profile_font" style="color: black; float: right; margin-left: 3%">Répondre <i style="color:#603CBB" class="fa fa-reply fa-1x"></i></strong>
@@ -114,12 +114,12 @@
 				<div class="topic-actions">
 					<div class="buttons">
 						<div class="reply-icon">
-							<c:if test="${topic.locked eq false}">
+							<c:if test="${topic.locked eq false or myPro.type ne 'MEMBRE'}">
 								<a title="Répondre" target="_self" href="replytopic?tid=${topic.id}">
 									<img width="114px" height="34px" src="assets/metro_purple/imageset/en/button_topic_reply.png"/>
 								</a>
 							</c:if>
-							<c:if test="${topic.locked eq true}">
+							<c:if test="${topic.locked eq true and myPro.type eq 'MEMBRE'}">
 								<img width="97px" height="35px" src="assets/metro_purple/imageset/en/button_topic_locked.png"/>
 							</c:if>
 						</div>

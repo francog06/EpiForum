@@ -26,6 +26,33 @@ public class ROBuilder {
 
 	private ROBuilder() {}
 
+	public static LightProfileRO		createLightProfileRO(Profile profile) {
+		LightProfileRO pro = new LightProfileRO();
+		pro.setNickname(profile.getNickname());
+		pro.setPicture(profile.isPicture());
+		pro.setNbThank(profile.getNbThanks());
+		pro.setNbPost(profile.getNbPosts());
+		return pro;
+	}
+
+	public static MyLightProfileRO		createMyLightProfileRO(Profile profile) throws ParseException {
+		MyLightProfileRO pro = new MyLightProfileRO();
+		SimpleDateFormat parser = new SimpleDateFormat("yyy-MM-dd HH:mm:ss", Locale.FRENCH);
+		pro.setCreated((parser.parse(profile.getCreated().toString())));
+		pro.setType(profile.getAccount().getType().toString());
+		pro.setNickname(profile.getNickname());
+		pro.setFirstname(profile.getFirstname());
+		pro.setPicture(profile.isPicture());
+		pro.setLastname(profile.getLastname());
+		if (profile.getBirthdate() != null) {
+			parser = new SimpleDateFormat("yyy-MM-dd", Locale.FRENCH);
+			pro.setBirthdate(parser.parse(profile.getBirthdate().toString()));
+		}
+		pro.setNbPost(profile.getNbPosts());
+		pro.setNbThank(profile.getNbThanks());
+		return pro;
+	}
+
 	public static MyProfileRO			createMyProfileRO(Profile pro, Session se) {
 		MyProfileRO myPro = new MyProfileRO();
 		myPro.setType(pro.getAccount().getType().toString());
@@ -49,24 +76,6 @@ public class ROBuilder {
 			myPro.setEmail(pro.getAccount().getEmail());
 		}
 		return myPro;
-	}
-
-	public static MyLightProfileRO		createMyLightProfileRO(Profile profile) throws ParseException {
-		MyLightProfileRO pro = new MyLightProfileRO();
-		SimpleDateFormat parser = new SimpleDateFormat("yyy-MM-dd HH:mm:ss", Locale.FRENCH);
-		pro.setCreated((parser.parse(profile.getCreated().toString())));
-		pro.setType(profile.getAccount().getType().toString());
-		pro.setNickname(profile.getNickname());
-		pro.setFirstname(profile.getFirstname());
-		pro.setPicture(profile.isPicture());
-		pro.setLastname(profile.getLastname());
-		if (profile.getBirthdate() != null) {
-			parser = new SimpleDateFormat("yyy-MM-dd", Locale.FRENCH);
-			pro.setBirthdate(parser.parse(profile.getBirthdate().toString()));
-		}
-		pro.setNbPost(profile.getNbPosts());
-		pro.setNbThank(profile.getNbThanks());
-		return pro;
 	}
 
 	public static CategoryRO			createCategoryRO(Category cat) {
@@ -112,14 +121,6 @@ public class ROBuilder {
 		return null;
 	}
 
-	public static PostRO				createPostRO(Post post, Integer profileId, String content) {
-		PostRO po = new PostRO();
-		po.setProfileId(profileId);
-		po.setContent(content);
-		po.setTags(createTagList(post.getTag()));
-		return po;
-	}
-
 	public static PostRO				createPostRO(Post post) {
 		PostRO po = new PostRO();
 		po.setId(post.getId());
@@ -138,15 +139,6 @@ public class ROBuilder {
 		member.setNbThank(pro.getNbThanks());
 		member.setType(pro.getAccount().getType().ordinal());
 		return member;
-	}
-
-	public static LightProfileRO		createLightProfileRO(Profile profile) {
-		LightProfileRO pro = new LightProfileRO();
-		pro.setNickname(profile.getNickname());
-		pro.setPicture(profile.isPicture());
-		pro.setNbThank(profile.getNbThanks());
-		pro.setNbPost(profile.getNbPosts());
-		return pro;
 	}
 
 	public static TopTopicRO			createTopTopicRO(Topic topic) {
