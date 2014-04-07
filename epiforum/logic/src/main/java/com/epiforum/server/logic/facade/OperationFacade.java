@@ -28,6 +28,7 @@ import com.epiforum.server.config.i18n.I18n.MessageKey;
 import com.epiforum.server.config.properties.Configuration;
 import com.epiforum.server.data.entity.Account;
 import com.epiforum.server.data.entity.Account.Status;
+import com.epiforum.server.data.entity.Account.Type;
 import com.epiforum.server.data.entity.Board;
 import com.epiforum.server.data.entity.Category;
 import com.epiforum.server.data.entity.ContentPost;
@@ -382,6 +383,9 @@ public class OperationFacade {
 		}
 		Session se = this.sessionManager.getSession(token);
 		Topic topic = this.topicManager.getTopicFromId(postRo.getTopicId());
+		if (topic.isLocked() == true && se.getProfile().getAccount().getType() == Type.MEMBRE) {
+			return false;
+		}
 		Post post = this.postManager.createPost(postRo, topic, se.getProfile());
 		ContentPost content = this.contentPostManager.createContentPost(postRo.getContent(), post);
 		topic.addNbPost();
