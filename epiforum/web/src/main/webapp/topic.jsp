@@ -28,24 +28,26 @@
 				<div class="topic-actions">
 					<div class="buttons">
 						<div class="reply-icon">
-							<c:if test="${topic.locked == false}">
+							<c:if test="${topic.locked eq false}">
 								<a title="Répondre" target="_self" href="replytopic?tid=${topic.id}">
-									<img width="114px" height="34px src="assets/metro_purple/imageset/en/button_topic_reply.png"/>
+									<img width="114px" height="34px" src="assets/metro_purple/imageset/en/button_topic_reply.png"/>
 								</a>
 							</c:if>
-							<c:if test="${topic.locked == true}">
+							<c:if test="${topic.locked eq true}">
 								<img width="97px" height="35px" src="assets/metro_purple/imageset/en/button_topic_locked.png"/>
 							</c:if>
 						</div>
 					</div>
 					<div class="pagination">
 						<c:if test="${page > 1}">
-							<a href="topic?id=${topic.id}&page=${page - 1}" title="Page precedente"><strong>
-								<i class="fa fa-arrow-left fa-2x"></i></strong></a>
+							<a href="topic?id=${topic.id}&page=${page - 1}" target="_self" title="Page precedente">
+								<strong><i class="fa fa-arrow-left fa-2x"></i></strong>
+							</a>
 						</c:if>
 						<c:if test="${lastpage ne true}">
-						<a href="topic?id=${topic.id}&page=${page + 1}" title="Page suivante"><strong>
-							<i class="fa fa-arrow-right fa-2x"></i></strong></a>
+						<a href="topic?id=${topic.id}&page=${page + 1}" target="_self" title="Page suivante">
+							<strong><i class="fa fa-arrow-right fa-2x"></i></strong>
+						</a>
 						</c:if>
    					</div>
 				</div>
@@ -69,14 +71,16 @@
 						<div class="content">
 							<span>${post.profileSignature}</span>
 						</div>
-						<hr style="width:132%">
+						<hr>
 						<a title="Remercier ${post.profile.nickname}" href="thankprofile?nick=${post.profile.nickname}&tid=${topic.id}">
 							<strong class="profile_font" style="color: black;">Remercier <i style="color:#603CBB" class="fa fa-thumbs-o-up fa-1x"></i></strong>
 						</a>
+						<c:if test="${topic.locked eq false}">
 						<strong class="profile_font" style="color: black; float: right; margin-left: 3%">Citer <i style="color:#603CBB" class="fa fa-quote-right fa-1x"></i></strong>
 						<a title="Répondre" href="replytopic?tid=${topic.id}">
 							<strong class="profile_font" style="color: black; float: right; margin-left: 3%">Répondre <i style="color:#603CBB" class="fa fa-reply fa-1x"></i></strong>
 						</a>
+						</c:if>
 						<c:if test="${myPro.nickname eq post.profile.nickname}">
 							<a title="Modifier" href="updatepost?pid=${post.id}">
 								<strong class="profile_font" style="color: black; float: right; margin-left: 3%">Modifier <i style="color:#603CBB" class="fa fa-pencil-square-o fa-1x"></i></strong>
@@ -110,12 +114,12 @@
 				<div class="topic-actions">
 					<div class="buttons">
 						<div class="reply-icon">
-							<c:if test="${topic.locked == false}">
+							<c:if test="${topic.locked eq false}">
 								<a title="Répondre" target="_self" href="replytopic?tid=${topic.id}">
 									<img width="114px" height="34px" src="assets/metro_purple/imageset/en/button_topic_reply.png"/>
 								</a>
 							</c:if>
-							<c:if test="${topic.locked == true}">
+							<c:if test="${topic.locked eq true}">
 								<img width="97px" height="35px" src="assets/metro_purple/imageset/en/button_topic_locked.png"/>
 							</c:if>
 						</div>

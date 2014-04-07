@@ -16,7 +16,7 @@ public class TopicRO {
 
 	private String					description;
 
-	private boolean					locked;
+	private Boolean					locked;
 
 	private List<PostRO>			posts;
 

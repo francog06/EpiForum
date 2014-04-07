@@ -174,6 +174,12 @@ public class OperationFacade {
 			ac.setIpAddress(request.getRemoteAddr().trim());
 		}
 		Session se= new Session(this.generateStrongString(), ac.getProfile(), "Login");
+		List<Session> oldSessions = ac.getProfile().getSessions();
+		if (oldSessions != null && oldSessions.size() > 0) {
+			for (Session oldse : oldSessions) {
+				this.sessionManager.removeSession(oldse);
+			}
+		}
 		this.sessionManager.createSession(se);
 		System.out.println(ac.getProfile().getNickname() + " logged in !");
 		return se.getId();
