@@ -27,6 +27,7 @@ import com.epiforum.server.config.i18n.I18n;
 import com.epiforum.server.config.i18n.I18n.MessageKey;
 import com.epiforum.server.config.properties.Configuration;
 import com.epiforum.server.data.entity.Account;
+import com.epiforum.server.data.entity.Account.Status;
 import com.epiforum.server.data.entity.Board;
 import com.epiforum.server.data.entity.Category;
 import com.epiforum.server.data.entity.ContentPost;
@@ -291,7 +292,7 @@ public class OperationFacade {
 			se.getProfile().getAccount().setIpAddress(request.getRemoteAddr().trim());
 		}
 		se.setLastActivity("thankProfile");
-		if (!se.getProfile().equals(pro)) {
+		if (!se.getProfile().equals(pro) && pro.getAccount().getStatus() == Status.ACTIVATED) {
 			this.profileManager.addNbThank(pro);
 			return true;
 		}

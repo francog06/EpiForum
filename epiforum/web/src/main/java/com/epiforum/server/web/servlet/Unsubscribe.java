@@ -59,6 +59,8 @@ public class Unsubscribe extends OperationResource {
 
 			try {
 				this.operationFacade.unsubscribe(request, token, email);
+				se.invalidate();
+				response.sendRedirect("home");
 			} catch (BadCredentialException e) {
 				e.printStackTrace();
 			} catch (BadParametersException e) {

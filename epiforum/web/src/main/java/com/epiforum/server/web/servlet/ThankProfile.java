@@ -58,5 +58,4 @@ public class ThankProfile extends OperationResource {
 			}
 		}
 	}
-
 }

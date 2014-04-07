@@ -110,7 +110,6 @@ public class Account extends OperationResource {
 			response.sendRedirect("home");
 		} else {
 			String token = (String) se.getAttribute("Authorization");
-			Boolean success = false;
 			/* CHANGE EMAIL */
 			if (request.getParameter("EditAccountEmail") != null && request.getParameter("email") != null && request.getParameter("newemail") != null) {
 				ChangeInfo inf = new ChangeInfo();
@@ -118,7 +117,8 @@ public class Account extends OperationResource {
 				inf.setOldInfo(request.getParameter("email").trim());
 				inf.setNewInfo(request.getParameter("newemail").trim());
 				try {
-					success = this.operationFacade.changeEmail(request, token, inf);
+					this.operationFacade.changeEmail(request, token, inf);
+					response.sendRedirect("home");
 				} catch (BadCredentialException e) {
 					e.printStackTrace();
 				}
@@ -131,7 +131,8 @@ public class Account extends OperationResource {
 				inf.setOldInfo(request.getParameter("pass").trim());
 				inf.setNewInfo(request.getParameter("newpass").trim());
 				try {
-					success = this.operationFacade.changePassword(request, token, inf);
+					this.operationFacade.changePassword(request, token, inf);
+					response.sendRedirect("home");
 				} catch (BadCredentialException e) {
 					e.printStackTrace();
 				} catch (TechnicalException e) {
@@ -166,8 +167,8 @@ public class Account extends OperationResource {
 				myPro.setDescription(request.getParameter("description") != null ? request.getParameter("description").trim() : "");
 				myPro.setSignature(request.getParameter("signature") != null ? request.getParameter("signature").trim() : "");
 				try {
-					success = this.operationFacade.updateMyProfile(request, token, myPro);
-					response.sendRedirect("/web/home");
+					this.operationFacade.updateMyProfile(request, token, myPro);
+					response.sendRedirect("home");
 				} catch (BadCredentialException e) {
 					e.printStackTrace();
 				} catch (TechnicalException e) {

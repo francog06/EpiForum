@@ -97,10 +97,4 @@ public class Profile extends OperationResource {
 		    rd.forward(request, response);
 		}
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
 }

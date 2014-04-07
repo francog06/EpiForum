@@ -44,10 +44,4 @@ public class Logout extends OperationResource {
 		    }
 	    response.sendRedirect("home");
 	    }
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
 }

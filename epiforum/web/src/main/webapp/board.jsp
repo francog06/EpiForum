@@ -28,8 +28,8 @@
 				<div class="topic-actions">
 					<div class="buttons">
 						<div class="post-icon" title="Créer un nouveau sujet">
-							<a href="createtopic?bid=${board.id}"> <img
-								src="assets/metro_purple/imageset/en/button_topic_new.png">
+							<a title="Créer un sujet" target="_self" href="createtopic?bid=${board.id}">
+								<img width="114px" height="36px" src="assets/metro_purple/imageset/en/button_topic_new.png">
 							</a>
 						</div>
 					</div>
@@ -55,6 +55,29 @@
 										<i class="fa fa-lock fa-2x color_forum" title="Sujet vérrouillé" style="margin-right:1%"></i>
 										</c:if>
 										<a class="topictitle" href="topic?id=${topic.id}&page=1">${topic.title}</a>
+										<br/>
+										<c:if test="${myPro.type eq 'MODERATEUR'}">
+										<form action="deletetopic?tid=${topic.id}" name="deleteTopic" method="GET" style="display: inline;">
+											<input type="submit" class="button1" title="Supprimer ce sujet" class="color_forum" value="Supprimer"/> 
+										</form>
+										<form action="updatetopic?tid=${topic.id}" name="updateTopic" method="GET" style="display: inline;">
+											<input type="submit" class="button1" title="Modifier ce sujet" class="color_forum" value="Modifier"/>
+										</form>
+										<form action="mergeopic?tid=${topic.id}" name="mergeTopic" method="GET" style="display: inline;">
+											<input type="submit" class="button1" title="Fusionner ce sujet" class="color_forum" value="Fusionner"/> 
+										</form>
+										<form action="movetopic?tid=${topic.id}" name="moveTopic" method="GET" style="display: inline;">
+											<input type="submit" class="button1" title="Déplacer ce sujet" class="color_forum" value="Déplacer"/> 
+										</form>
+										<form action="updatetopic?tid=${topic.id}" name="lockTopic" method="post" style="display: inline;">
+											<c:if test="${topic.locked eq false}">
+											<input type="submit" name="lockTopic" id="lockTopic" class="button1" title="Verrouiller ce sujet" value="Verrouiller"/>
+											</c:if>
+											<c:if test="${topic.locked eq true}">
+											<input type="submit" name="unlockTopic" id="unlockTopic" class="button1" title="Deverrouiller ce sujet" value="Deverrouiller"/>
+											</c:if>
+										</form>
+										</c:if>
 									</dt>
 								<dd class="posts"><span>${topic.nbPost}</span>
 									<dfn>Messages</dfn>

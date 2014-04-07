@@ -37,7 +37,7 @@ public class ActivateAccount extends OperationResource {
 			String activationCode = request.getParameter("c");
 			try {
 				this.operationFacade.activateAccount(request, email.trim(), activationCode.trim());
-				response.sendRedirect("/web/login");
+				response.sendRedirect("login");
 			} catch (TechnicalException e) {
 				e.printStackTrace();
 			} catch (BadParametersException e) {
@@ -47,12 +47,4 @@ public class ActivateAccount extends OperationResource {
 			}
 		}
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
 }

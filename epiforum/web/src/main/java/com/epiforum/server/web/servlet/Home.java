@@ -95,10 +95,4 @@ public class Home extends OperationResource {
 	    RequestDispatcher rd = sc.getRequestDispatcher(url);
 	    rd.forward(request, response);
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
 }
