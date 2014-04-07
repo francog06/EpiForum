@@ -1,18 +1,15 @@
 /* General Markup Styles
 ---------------------------------------- */
-
 * {
 	/* Reset browsers default margin, padding and font sizes */
 	margin: 0;
 	padding: 0;
 }
-
 html {
 	/*font-size: 0.813em;*/
 	/* Always show a scrollbar for short pages - stops the jump when the scrollbar appears. non-IE browsers */
 	height: 101%;
 }
-
 body {
 	/* Text-Sizing with ems: http://www.clagnut.com/blog/348/ */
 	font-family: 'Open Sans', sans-serif;
@@ -23,7 +20,6 @@ body {
 	margin: 0;
 	padding: 12px 0;
 }
-
 h1 {
 	/* Forum name */
 	font-family: 'Open Sans', sans-serif;
@@ -34,7 +30,6 @@ h1 {
 	font-size: 2em;
 	letter-spacing: -1px;
 }
-
 h2 {
 	/* Forum header titles */
 	font-family: 'Open Sans', sans-serif;
@@ -44,7 +39,6 @@ h2 {
 	margin: 0.8em 0 0.2em 0;
 	letter-spacing: -1px;
 }
-
 h2.solo {
 	margin-bottom: 1em;
 }
@@ -57,18 +51,15 @@ h3 {
 	font-size: 1.077em;
 	color: #989898;
 }
-
 h4 {
 	/* Forum and topic list titles */
 	font-family: 'Open Sans', sans-serif;
 	font-size: 1.3em;
 }
-
 p {
 	line-height: 1.3em;
 	margin-bottom: 1.5em;
 }
-
 img {
 	border-width: 0;
     height: auto;
@@ -84,27 +75,22 @@ hr {
 	display: block;
 	clear: both;
 }
-
 hr.dashed {
 	border-top: 1px solid #E4E4E4;
 	margin: 10px 0;
 }
-
 hr.divider {
 	display: none;
 }
-
 p.right {
 	text-align: right;
 }
-
 /* Main blocks
 ---------------------------------------- */
 #wrap {
 	width: 1180px;
 	margin: 0 auto;
 }
-
 #simple-wrap {
 	padding: 6px 12px;
 	background-color: #fff;
@@ -118,16 +104,12 @@ p.right {
 	clear: both;
 	overflow: hidden;
 }
-
 #page-footer {
 	clear: both;
 }
-
 #page-footer h3 {
 	margin-top: 20px;
 }
-
-
 /* Search box
 --------------------------------------------- */
 .search-box {
@@ -149,7 +131,6 @@ p.right {
     width: 300px;
 	background-color: #FFF;
 }
-
 .search-box input {
 	border: 1px solid #b0b0b0;
 }
@@ -163,12 +144,10 @@ p.right {
 .search-box input.button1 {
 	padding: 1px 5px;
 }
-
 .search-box li {
 	text-align: right;
 	margin-top: 4px;
 }
-
 .search-box img {
 	vertical-align: middle;
 	margin-right: 3px;
@@ -186,15 +165,11 @@ p.right {
 	float: left;
 	width: 70%;
 }
-
 #site-description h1 {
 	margin-right: 0;
 }
-
-
 /* Header and tabs
 ---------------------------------------- */
-
 #above-headerbar {
 	height: 36px;
 	margin-bottom: 12px;
@@ -271,7 +246,6 @@ p.right {
 	background-repeat: no-repeat;
 	background-position: left top;	
 }
-
 #subheader-menu {
 	background-color: #352E39;
 	height: 34px;
@@ -295,7 +269,6 @@ p.right {
 #subheader-menu .links li a {
 	color: #ffffff;
 }
-
 #breadcrumbs {
 	margin-bottom: 12px;
 }
@@ -311,20 +284,17 @@ p.right {
 	margin-bottom: 4px;
 	padding: 0 5px;
 }
-
 .navbar {
 	padding: 12px 0;
 	border-top: solid 1px #E4E4E4;
 	border-bottom: solid 1px #E4E4E4;
 	margin-bottom: 12px;
 }
-
 .forabg {
 	background: #b1b1b1 none repeat-x 0 0;
 	margin-bottom: 12px;
 	clear: both;
 }
-
 .forumbg {
 	background: #b1b1b1 none repeat-x 0 0;
 	margin-bottom: 12px;
@@ -371,32 +341,23 @@ p.right {
 .post:target .content {
 	color: #000000;
 }
-
 .post:target h3 a {
 	color: #000000;
 }
-
 .bg1	{ background-color: #f7f7f7;}
 .bg2	{ background-color: #f2f2f2; }
 .bg3	{ background-color: #ebebeb; }
-
 .rowbg {
 	margin: 5px 5px 2px 5px;
 }
-
 .ucprowbg {
 	background-color: #e2e2e2;
 }
-
 .fieldsbg {
 	background-color: #eaeaea;
 }
-
-
-
 /* Horizontal lists
 ----------------------------------------*/
-
 .user-links {
 	float: right;
 }
@@ -409,20 +370,16 @@ p.right {
 .user-links li:last-child {
 	margin-right: 0px;
 }
-
 .user-links {
 	/*font-size: 1.077em;*/
 }
 .user-links, .user-links a {
 	line-height: 31px;
 }
-
-
 ul.linklist {
 	display: block;
 	margin: 0;
 }
-
 ul.linklist li {
 	display: block;
 	list-style-type: none;
@@ -431,28 +388,24 @@ ul.linklist li {
 	margin-right: 5px;
 	line-height: 2.2em;
 }
-
 ul.linklist li.rightside, p.rightside {
 	float: right;
 	margin-right: 0;
 	margin-left: 5px;
 	text-align: right;
 }
-
 ul.navlinks {
 	padding-bottom: 1px;
 	margin-bottom: 1px;
 	border-bottom: 1px solid #FFFFFF;
 	font-weight: bold;
 }
-
 ul.leftside {
 	float: left;
 	margin-left: 0;
 	margin-right: 5px;
 	text-align: left;
 }
-
 ul.rightside {
 	float: right;
 	margin-left: 5px;
@@ -468,7 +421,6 @@ ul.rightside {
 .thread-icons li {
 	float: left;
 }
-
 /* Table styles
 ----------------------------------------*/
 table.table1 {
@@ -478,35 +430,28 @@ table.table1 {
 #ucp-main table.table1 {
 	padding: 2px;
 }
-
 table.table1 thead th {
 	font-weight: normal;
 	color: #FFFFFF;
 	line-height: 1.3em;
 }
-
 table.table1 thead th span {
 	padding-left: 7px;
 }
-
 table.table1 tbody tr {
 	border: 1px solid #E4E4E4;
 }
-
 table.table1 tbody tr:hover, table.table1 tbody tr.hover {
 	background-color: #f6f6f6;
 	color: #000;
 }
-
 table.table1 td {
 	color: #6a6a6a;
 }
-
 table.table1 tbody td {
 	padding: 5px;
 	border-top: 1px solid #E4E4E4;
 }
-
 table.table1 tbody th {
 	padding: 5px;
 	border-bottom: 1px solid #E4E4E4;
@@ -514,7 +459,6 @@ table.table1 tbody th {
 	color: #333333;
 	background-color: #FFFFFF;
 }
-
 /* Specific column styles */
 table.table1 .name		{ text-align: left; }
 table.table1 .posts		{ text-align: center !important; width: 7%; }
@@ -525,16 +469,13 @@ table.table1 .info		{ text-align: left; width: 30%; }
 table.table1 .info div	{ width: 100%; white-space: normal; overflow: hidden; }
 table.table1 .autocol	{ line-height: 2em; white-space: nowrap; }
 table.table1 thead .autocol { padding-left: 1em; }
-
 table.table1 span.rank-img {
 	float: right;
 	width: auto;
 }
-
 table.info td {
 	padding: 3px;
 }
-
 table.info tbody th {
 	padding: 3px;
 	text-align: right;
@@ -542,16 +483,12 @@ table.info tbody th {
 	color: #000000;
 	font-weight: normal;
 }
-
 .forumbg table.table1 {
 	margin: 0;
 }
-
 .forumbg-table > .inner {
 	margin: 0 -1px;
 }
-
-
 /* Misc layout styles
 ---------------------------------------- */
 /* column[1-2] styles are containers for two column layouts 
@@ -561,30 +498,25 @@ table.info tbody th {
 	clear: left;
 	width: 49%;
 }
-
 .column2 {
 	float: right;
 	clear: right;
 	width: 49%;
 }
-
 /* General classes for placing floating blocks */
 .left-box {
 	float: left;
 	width: auto;
 	text-align: left;
 }
-
 .right-box {
 	float: right;
 	width: auto;
 	text-align: right;
 }
-
 dl.details {
 	/*font-size: 1.1em;*/
 }
-
 dl.details dt {
 	float: left;
 	clear: left;
@@ -593,7 +525,6 @@ dl.details dt {
 	color: #000000;
 	display: block;
 }
-
 dl.details dd {
 	margin-left: 0;
 	padding-left: 5px;
@@ -601,7 +532,6 @@ dl.details dd {
 	float: left;
 	width: 65%;
 }
-
 .dark-header {
 	background-color: #352E39;
 	line-height: 48px;
@@ -630,19 +560,15 @@ dl.details dd {
 	margin-top: 5px;
 	float: right;
 }
-
 .pagination span.page-sep {
 	display: none;
 }
-
 li.pagination {
 	margin-top: 0;
 }
-
 .pagination strong, .pagination b {
 	font-weight: normal;
 }
-
 .pagination span strong {
 	padding: 2px 6px;
 	margin: 0 1px;
@@ -652,7 +578,6 @@ li.pagination {
 	border: 1px solid #bfbfbf;
 	font-size: 0.9em;
 }
-
 .pagination span a, .pagination span a:link, .pagination span a:visited, .pagination span a:active {
 	font-weight: normal;
 	text-decoration: none;
@@ -664,18 +589,15 @@ li.pagination {
 	font-size: 0.9em;
 	line-height: 1.5em;
 }
-
 .pagination span a:hover {
 	border-color: #d2d2d2;
 	background-color: #d2d2d2;
 	color: #FFF;
 	text-decoration: none;
 }
-
 .pagination img {
 	vertical-align: middle;
 }
-
 /* Pagination in viewforum for multipage topics */
 .row .pagination {
 	display: block;
@@ -686,11 +608,9 @@ li.pagination {
 	font-size: 0.9em;
 	background: none 0 50% no-repeat;
 }
-
 .row .pagination span a, li.pagination span a {
 	background-color: #FFFFFF;
 }
-
 .row .pagination span a:hover, li.pagination span a:hover {
 	background-color: #d2d2d2;
 }
@@ -705,35 +625,28 @@ li.pagination {
 	margin-top: 10px;
 	text-align: right;
 }
-
 .copyright {
 	padding: 5px;
 	text-align: center;
 	color: #555555;
 }
-
 .small {
 	font-size: 0.9em !important;
 }
-
 .titlespace {
 	margin-bottom: 15px;
 }
-
 .headerspace {
 	margin-top: 12px;
 }
-
 .error {
 	color: #bcbcbc;
 	font-weight: bold;
 	font-size: 1em;
 }
-
 .reported {
 	background-color: #f7f7f7;
 }
-
 li.reported:hover {
 	background-color: #ececec;
 }
@@ -744,21 +657,17 @@ div.rules {
 	padding: 12px;
 	margin: 12px 0;
 }
-
 div.rules ul, div.rules ol {
 	margin-left: 20px;
 }
-
 p.rules {
 	background-color: #ececec;
 	background-image: none;
 	padding: 5px;
 }
-
 p.rules img {
 	vertical-align: middle;
 }
-
 p.rules a {
 	vertical-align: middle;
 	clear: both;
@@ -917,7 +826,10 @@ img.close-button {
 
 /* Sidebar blocks
 ---------------------------------------- */
-
+.rightside {
+	float: right;
+	width: 252px;
+}
 #sidebar {
 	float: right;
 	width: 252px;
@@ -927,7 +839,6 @@ img.close-button {
 	float: left;
 	width: 916px;
 	margin-right: 12px;
-	min-height: 720px;
 }
 .no-sidebar#page-body-inner {
 	width: 100%;
@@ -962,13 +873,8 @@ img.close-button {
 	list-style-position: inside;
 	margin-bottom: 1.5em;
 }
-
-
-
-
 /* Prefooter blocks
 ---------------------------------------- */
-
 .prefooter-blocks {
 	margin-bottom: 12px;
 	overflow: hidden;

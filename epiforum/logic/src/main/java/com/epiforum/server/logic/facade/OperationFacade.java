@@ -95,6 +95,13 @@ public class OperationFacade {
 		return false;
 	}
 
+	public boolean				checkAccountType(Session se, Account.Type type) {
+		if (se.getProfile().getAccount().getType().ordinal() >= type.ordinal()) {
+			return true;
+		}
+		return false;
+	}
+
 								/*	ACCOUNT STUFF	*/
 
 	public void					subscribe(HttpServletRequest request, SignupRO signup) throws BadCredentialException, TechnicalException, BadParametersException {
@@ -321,17 +328,15 @@ public class OperationFacade {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Configuration.getDefaultLocale()));
 		}
-		if (topicRo == null || topicRo.getId() == 0 || topicRo.getPost() == null) {
-			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Configuration.getDefaultLocale()));
-		}
-		if (topicRo.getPost().getContent() == null || topicRo.getPost().getContent().trim().isEmpty()) {
+		if (topicRo == null || topicRo.getPost() == null || topicRo.getPost().getContent() == null ||
+				topicRo.getPost().getContent().trim().isEmpty()) {
 			throw new BadParametersException(String.format(I18n.getMessage(MessageKey.ERROR_PARAMETER_REQUIRED, Configuration.getDefaultLocale()), "Message"));
 		}
 		Session se = this.sessionManager.getSession(token);
 		Board board = this.boardManager.getBoardFromId(topicRo.getId());
 		Topic topic = this.topicManager.createTopic(topicRo, board);
 		Post post = this.postManager.createPost(topicRo.getPost(), topic, se.getProfile());
-		ContentPost content = this.contentPostManager.createContentPost(topicRo.getPost().getContent(), post);
+		this.contentPostManager.createContentPost(topicRo.getPost().getContent(), post);
 		topic.addNbPost();
 		se.getProfile().addNbPost();
 		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {
@@ -381,7 +386,7 @@ public class OperationFacade {
 		}
 		Session se = this.sessionManager.getSession(token);
 		Topic topic = this.topicManager.getTopicFromId(postRo.getTopicId());
-		if (topic.isLocked() == true && se.getProfile().getAccount().getType() == Type.MEMBRE) {
+		if (topic.getLocked() == true && se.getProfile().getAccount().getType() == Type.MEMBRE) {
 			return false;
 		}
 		Post post = this.postManager.createPost(postRo, topic, se.getProfile());

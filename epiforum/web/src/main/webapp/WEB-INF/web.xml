@@ -4,13 +4,13 @@
     <welcome-file>home</welcome-file>
   </welcome-file-list>
   <error-page>
-      <exception-type>java.lang.Throwable</exception-type>
-      <location>/error500.jsp</location>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/error500.jsp</location>
   </error-page>
   <error-page>
-      <error-code>404</error-code>
-      <location>/error404.jsp</location>
-      </error-page>
+    <error-code>404</error-code>
+    <location>/error404.jsp</location>
+  </error-page>
   <filter>
     <filter-name>ExpiresFilter</filter-name>
     <filter-class>org.apache.catalina.filters.ExpiresFilter</filter-class>

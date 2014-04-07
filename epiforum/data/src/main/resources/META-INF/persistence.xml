@@ -4,14 +4,6 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:jboss/datasources/epiforumDS</jta-data-source>
 		<mapping-file>META-INF/orm.xml</mapping-file>
-		<class>com.epiforum.server.data.entity.Account</class>
-		<class>com.epiforum.server.data.entity.Board</class>
-		<class>com.epiforum.server.data.entity.Category</class>
-		<class>com.epiforum.server.data.entity.ContentPost</class>
-		<class>com.epiforum.server.data.entity.Post</class>
-		<class>com.epiforum.server.data.entity.Profile</class>
-		<class>com.epiforum.server.data.entity.Session</class>
-		<class>com.epiforum.server.data.entity.Topic</class>
 		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
 		<validation-mode>AUTO</validation-mode>
 		<properties>

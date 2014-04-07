@@ -38,9 +38,6 @@ import com.epiforum.server.data.listener.IUpdateListener;
 })
 public class Category implements Serializable, ICreateListener, IUpdateListener {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1189649397837586451L;
 
 	private Integer			id;

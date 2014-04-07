@@ -112,7 +112,7 @@ public class CreateTopic extends OperationResource {
 				TopicRO topic = new TopicRO();
 				topic.setId(Integer.parseInt(request.getParameter("boardId")));
 				topic.setTitle(request.getParameter("title").trim());
-
+				topic.setLocked(false);
 				if (request.getParameter("description") != null) {
 					topic.setDescription(request.getParameter("description").trim());
 				}
@@ -138,6 +138,7 @@ public class CreateTopic extends OperationResource {
 				
 				try {
 					this.operationFacade.createTopic(request, token, topic);
+					response.sendRedirect("board?id=" + topic.getId());
 				} catch (BadCredentialException e) {
 					e.printStackTrace();
 				} catch (TechnicalException e) {
@@ -145,7 +146,6 @@ public class CreateTopic extends OperationResource {
 				} catch (BadParametersException e) {
 					e.printStackTrace();
 				}
-				response.sendRedirect("/web/board?id=" + topic.getId());
 			}
 		}
 	}

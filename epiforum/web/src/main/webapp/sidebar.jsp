@@ -3,6 +3,7 @@
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<div class="rightside">
 <c:if test="${Authorization != null}">
 	<div id="sidebar">
 		<div class="sidebar-block">
@@ -37,30 +38,31 @@
 	</div>
 </c:if>
 
-<div id="sidebar">
-	<div class="sidebar-block">
-		<h2 class="sidebar-block-header">Top des membres</h2>
-		<c:if test="${topMembers != null}">
-			<c:forEach var="topMember" items="${topMembers}">
-				<div class="sidebar-block-content">${topMember.nickname} - ${topMember.nbThank}</div>
-			</c:forEach>
-		</c:if>
-		<c:if test="${topMembers == null}">
-		<div class="sidebar-block-content">Aucun membres remerciés</div>
-		</c:if>
+	<div id="sidebar">
+		<div class="sidebar-block">
+			<h2 class="sidebar-block-header">Top des membres</h2>
+			<c:if test="${topMembers != null}">
+				<c:forEach var="topMember" items="${topMembers}">
+					<div class="sidebar-block-content">${topMember.nickname} - ${topMember.nbThank}</div>
+				</c:forEach>
+			</c:if>
+			<c:if test="${topMembers == null}">
+			<div class="sidebar-block-content">Aucun membres remerciés</div>
+			</c:if>
+		</div>
 	</div>
-</div>
 
-<div id="sidebar">
-	<div class="sidebar-block">
-		<h2 class="sidebar-block-header">Top des sujets</h2>
-		<c:if test="${topTopics != null}">
-			<c:forEach var="topTopic" items="${topTopics}">
-				<div class="sidebar-block-content">${topTopic.title} - ${topTopic.nbPost}</div>
-			</c:forEach>
-		</c:if>
-		<c:if test="${topTopics == null}">
-		<div class="sidebar-block-content">Aucun sujets n'existent</div>
-		</c:if>
+	<div id="sidebar">
+		<div class="sidebar-block">
+			<h2 class="sidebar-block-header">Top des sujets</h2>
+			<c:if test="${topTopics != null}">
+				<c:forEach var="topTopic" items="${topTopics}">
+					<div class="sidebar-block-content">${topTopic.title} - ${topTopic.nbPost}</div>
+				</c:forEach>
+			</c:if>
+			<c:if test="${topTopics == null}">
+			<div class="sidebar-block-content">Aucun sujets n'existent</div>
+			</c:if>
+		</div>
 	</div>
 </div>

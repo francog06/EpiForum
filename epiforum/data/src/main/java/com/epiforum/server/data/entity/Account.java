@@ -48,9 +48,6 @@ import com.epiforum.server.data.listener.IUpdateListener;
 })
 public class Account implements Serializable, ICreateListener, IUpdateListener {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8865866543120431776L;
 
 	public enum Status {

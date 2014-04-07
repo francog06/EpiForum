@@ -41,9 +41,6 @@ import com.epiforum.server.data.listener.IUpdateListener;
 })
 public class Post implements Serializable, ICreateListener, IUpdateListener {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1522885153822140621L;
 
 	private Integer			id;

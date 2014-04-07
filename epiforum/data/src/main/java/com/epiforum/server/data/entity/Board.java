@@ -33,9 +33,6 @@ import com.epiforum.server.data.listener.IUpdateListener;
 @Table(name = "board")
 public class Board implements Serializable, ICreateListener, IUpdateListener {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2578757668147679579L;
 
 	private Integer			id;

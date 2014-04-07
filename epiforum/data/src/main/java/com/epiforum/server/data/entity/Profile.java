@@ -45,9 +45,6 @@ import com.epiforum.server.data.listener.IUpdateListener;
 })
 public class Profile implements Serializable, ICreateListener, IUpdateListener {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1760141895956098813L;
 
 	private Integer			id;

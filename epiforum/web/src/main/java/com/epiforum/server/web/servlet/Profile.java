@@ -53,6 +53,9 @@ public class Profile extends OperationResource {
 			}
 			try {
 				MyProfileRO profile = this.operationFacade.viewProfile(request, token, nickname);
+				if (profile == null) {
+					throw new ServletException("Une erreur est survenue.");
+				}
 				request.setAttribute("profile", profile);
 			} catch (BadCredentialException e) {
 				e.printStackTrace();

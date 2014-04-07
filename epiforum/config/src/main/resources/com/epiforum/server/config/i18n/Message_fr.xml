@@ -9,6 +9,7 @@
 	<entry key="error.parameter.default">Paramètre invalide.</entry>
 
 	<!-- Credential errors -->
+	<entry key="error.credential.forbiden">Vous n'avez pas le droit d'effectuer cette action.</entry>
 	<entry key="error.credential.default">Email ou mot de passe invalide.</entry>
 	<entry key="error.credential.account">Votre compte n'est pas activé.</entry>
 	<entry key="error.credential.email">Email invalide.</entry>

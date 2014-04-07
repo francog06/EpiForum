@@ -13,5 +13,5 @@ public abstract class AdminResource extends HttpServlet {
 	private static final long		serialVersionUID = -2846518367098535070L;
 	
 	@EJB
-	private AdminstrationFacade		adminFacade;
+	protected AdminstrationFacade	adminFacade;
 }

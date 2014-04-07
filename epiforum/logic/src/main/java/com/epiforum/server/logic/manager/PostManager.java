@@ -41,6 +41,11 @@ public class PostManager {
 		return this.postDao.getAllPostNotDeleted(topicId, startIndex);
 	}
 	
+	/*NEVER USE IT*/
+	public void				deletePost(Post post) {
+		this.postDao.deletePost(post);
+	}
+	
 	public boolean			removePost(Post post) {
 		if (post.isDeleted() == false) {
 			post.setDeleted(true);

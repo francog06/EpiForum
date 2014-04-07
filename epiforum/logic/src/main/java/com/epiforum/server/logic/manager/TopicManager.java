@@ -32,6 +32,23 @@ public class TopicManager {
 		this.topicDao.saveTopic(topic);
 		return topic;
 	}
+	
+	public Boolean				updateTopic(TopicRO topicRo, Topic topic) {
+		boolean modified = false;
+		if (topicRo.getTitle() != null && !topicRo.getTitle().trim().isEmpty()) {
+			topic.setTitle(topicRo.getTitle().trim());
+			modified = true;
+		}
+		if (topicRo.getDescription() != null && !topicRo.getDescription().trim().isEmpty()) {
+			topic.setDescription(topicRo.getDescription().trim());
+			modified = true;
+		}
+		if (topicRo.getLocked() != null) {
+			topic.setLocked(topicRo.getLocked());
+			modified = true;
+		}
+		return modified;
+	}
 
 	public Integer				countTopics() {
 		return this.topicDao.countTopics();

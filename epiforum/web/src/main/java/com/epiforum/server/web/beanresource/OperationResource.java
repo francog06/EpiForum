@@ -5,6 +5,9 @@ import javax.servlet.http.HttpServlet;
 
 import com.epiforum.server.logic.facade.OperationFacade;
 
+/**
+ * Servlet implementation class OperationResource
+ */
 public abstract class OperationResource extends HttpServlet {
 
 	private static final long		serialVersionUID = -2268430199067367626L;

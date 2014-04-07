@@ -100,6 +100,10 @@
         float: none;
         margin-right: 0;
     }
+    .rightside {
+    	float: none;
+    	width: 100%;
+    }
     #sidebar {
         float: none;
         width: 100%;
@@ -237,8 +241,6 @@
     #header #logo img {
         height: auto;
     }
-
-
     #subheader-menu {
         height: auto;
         overflow: hidden;

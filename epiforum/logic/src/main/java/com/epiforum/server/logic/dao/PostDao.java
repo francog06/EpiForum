@@ -23,6 +23,7 @@ public class PostDao {
 		this.em.persist(post);
 	}
 	
+	/*NEVER USE IT*/
 	public void					deletePost(Post post) {
 		this.em.remove(post);
 	}

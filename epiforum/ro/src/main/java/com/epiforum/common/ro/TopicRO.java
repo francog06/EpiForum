@@ -83,14 +83,14 @@ public class TopicRO {
 	/**
 	 * @return the locked
 	 */
-	public boolean getLocked() {
+	public Boolean getLocked() {
 		return locked;
 	}
 
 	/**
 	 * @param locked the locked to set
 	 */
-	public void setLocked(boolean locked) {
+	public void setLocked(Boolean locked) {
 		this.locked = locked;
 	}
 

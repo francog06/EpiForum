@@ -126,7 +126,7 @@
 				<jsp:include page="/stats.jsp"></jsp:include>
 
 			</div>
-			<!-- PROFILE CONTENT END -->
+
 			<!--  SIDEBAR  -->
 			<jsp:include page="/sidebar.jsp"></jsp:include>
 

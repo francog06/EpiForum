@@ -57,19 +57,24 @@
 										<a class="topictitle" href="topic?id=${topic.id}&page=1">${topic.title}</a>
 										<br/>
 										<c:if test="${myPro.type eq 'MODERATEUR'}">
-										<form action="deletetopic?tid=${topic.id}" name="deleteTopic" method="GET" style="display: inline;">
+										<form action="deletetopic" name="deleteTopic" method="GET" style="display: inline;">
+											<input type="hidden" name="tid" id="tid" value="${topic.id}"/>
 											<input type="submit" class="button1" title="Supprimer ce sujet" class="color_forum" value="Supprimer"/> 
 										</form>
-										<form action="updatetopic?tid=${topic.id}" name="updateTopic" method="GET" style="display: inline;">
+										<form action="updatetopic" name="updateTopic" method="GET" style="display: inline;">
+											<input type="hidden" name="tid" id="tid" value="${topic.id}"/>
 											<input type="submit" class="button1" title="Modifier ce sujet" class="color_forum" value="Modifier"/>
 										</form>
-										<form action="mergeopic?tid=${topic.id}" name="mergeTopic" method="GET" style="display: inline;">
+										<form action="mergeopic" name="mergeTopic" method="GET" style="display: inline;">
+											<input type="hidden" name="tid" id="tid" value="${topic.id}"/>
 											<input type="submit" class="button1" title="Fusionner ce sujet" class="color_forum" value="Fusionner"/> 
 										</form>
-										<form action="movetopic?tid=${topic.id}" name="moveTopic" method="GET" style="display: inline;">
+										<form action="movetopic" name="moveTopic" method="GET" style="display: inline;">
+											<input type="hidden" name="tid" id="tid" value="${topic.id}"/>
 											<input type="submit" class="button1" title="Déplacer ce sujet" class="color_forum" value="Déplacer"/> 
 										</form>
-										<form action="updatetopic?tid=${topic.id}" name="lockTopic" method="post" style="display: inline;">
+										<form action="updatetopic" name="lockTopic" method="POST" style="display: inline;">
+											<input type="hidden" name="topicId" id="topicId" value="${topic.id}"/>
 											<c:if test="${topic.locked eq false}">
 											<input type="submit" name="lockTopic" id="lockTopic" class="button1" title="Verrouiller ce sujet" value="Verrouiller"/>
 											</c:if>

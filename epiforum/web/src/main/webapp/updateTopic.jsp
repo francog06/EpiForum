@@ -8,13 +8,13 @@
 <head>
 <!-- METAS -->
 <jsp:include page="/metas.html"></jsp:include>
-<meta name="description" content="Epiforum: créer un sujet">
+<meta name="description" content="Epiforum: modifier un sujet">
 
 <!-- LINKS -->
 <jsp:include page="/common-css.html"></jsp:include>
 <link type="text/css" rel="stylesheet" href="assets/css/board.css">
 
-<title>Créer un sujet</title>
+<title>Modifier un sujet</title>
 </head>
 <body>
 	<div id="wrap">
@@ -23,54 +23,40 @@
 
 		<div id="page-body">
 			<div id="page-body-inner">
-			<!-- CREATE TOPIC CONTENT BEGIN -->
-			
-				<h2>Creation d'un sujet</h2>
+				<!-- UPDATE TOPIC CONTENT BEGIN -->
+
+				<h2>Modification du sujet</h2>
 				<div class="panel">
-					<div class="inner"><span class="corners-top"><span></span></span>
+					<div class="inner">
+						<span class="corners-top"></span>
 						<div class="content">
-							<form action="createtopic" method="POST" id="create">
+							<form action="updatetopic" method="POST" id="update">
 								<fieldset class="fields1">
 									<dl>
 										<dt><label for="title">Titre</label></dt>
 										<dd><input type="text" tabindex="1" name="title" id="title" maxlength="64"
-											size="65" class="inputbox autowidth" placeholder="Titre du sujet" required/></dd>
+												size="65" class="inputbox autowidth" value="${topic.title}" required/></dd>
 									</dl>
-									<br/>
+									<br />
 									<dl>
 										<dt><label for="description">Description</label></dt>
 										<textarea tabindex="2" id="description" name="description" maxlength="256"
-											style="height: 96px; width: 68%" placeholder="Description du sujet"></textarea>
+											style="height: 96px; width: 68%" placeholder="${topic.description}"></textarea>
 									</dl>
-									<br/>
+									<br> <input type="hidden" name="topicId" value="${topic.id}" />
 									<dl>
-										<dt><label for="message">Message</label></dt>
-										<textarea tabindex="3" id="message" name="message"
-											style="height: 96px; width: 68%" placeholder="Votre message" required></textarea>
-									</dl>
-									<br>
-									<dl>
-										<dt><label>Tags</label></dt>
-										<dd><input type="text" tabindex="4" name="tag_one" id="tag_one"
-											size="15" maxlength="20" class="inputbox autowidth" />
-										<input type="text" tabindex="5" name="tag_two" id="tag_two"
-											size="15" maxlength="20" class="inputbox autowidth" />
-										<input type="text" tabindex="6" name="tag_three" id="tag_three"
-											size="15" maxlength="20" class="inputbox autowidth" /></dd>
-									</dl>
-									<br>
-									<input type="hidden" name="boardId" value="${boardId}"/>
-									<dl>
-										<dd><input type="submit" id="create" name="create"
-											tabindex="7" value="Envoyer" class="button1"/></dd>
+										<dd>
+											<input type="submit" id="update" name="update" tabindex="6"
+												value="Envoyer" class="button1" />
+										</dd>
 									</dl>
 								</fieldset>
 							</form>
 						</div>
-						<span class="corners-bottom"><span></span></span>
+						<span class="corners-bottom"></span>
 					</div>
 				</div>
-				
+
 				<!-- STATS -->
 				<jsp:include page="/stats.jsp"></jsp:include>
 

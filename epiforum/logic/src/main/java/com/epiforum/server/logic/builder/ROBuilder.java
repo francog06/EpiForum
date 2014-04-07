@@ -104,7 +104,7 @@ public class ROBuilder {
 		to.setTitle(topic.getTitle());
 		to.setNbPost(topic.getNbPosts());
 		to.setDescription(topic.getDescription());
-		to.setLocked(topic.isLocked());
+		to.setLocked(topic.getLocked());
 		return to;
 	}
 

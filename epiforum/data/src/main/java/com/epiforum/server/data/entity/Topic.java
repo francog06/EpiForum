@@ -43,9 +43,6 @@ import com.epiforum.server.data.listener.IUpdateListener;
 })
 public class Topic implements Serializable, ICreateListener, IUpdateListener {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1893330622797626402L;
 
 	private Integer			id;
@@ -130,7 +127,7 @@ public class Topic implements Serializable, ICreateListener, IUpdateListener {
 	}
 
 	@Column(name = "locked", nullable = false, columnDefinition = "BIT")
-	public boolean 			isLocked() {
+	public boolean 			getLocked() {
 		return this.locked;
 	}
 

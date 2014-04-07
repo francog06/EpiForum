@@ -21,22 +21,21 @@ import com.epiforum.common.ro.TopicRO;
 import com.epiforum.server.logic.exception.BadCredentialException;
 import com.epiforum.server.logic.exception.BadParametersException;
 import com.epiforum.server.logic.exception.TechnicalException;
-import com.epiforum.server.web.beanresource.OperationResource;
+import com.epiforum.server.web.beanresource.ModerationResource;
 
 /**
- * Servlet implementation class Topic
+ * Servlet implementation class UpdateTopic
  */
-@WebServlet("/topic")
-public class Topic extends OperationResource {
+@WebServlet("/updatetopic")
+public class UpdateTopic extends ModerationResource {
 
-	private static final long serialVersionUID = 5608630646217466952L;
+	private static final long serialVersionUID = 2570067786009769716L;
 
-	private final Integer PAGINATION = 5;
 	/**
      * Default constructor. 
      */
-    public Topic() {
-        super();
+    public UpdateTopic() {
+    	super();
     }
 
 	/**
@@ -49,33 +48,29 @@ public class Topic extends OperationResource {
 			response.sendRedirect("home");
 		} else {
 			String token = (String) se.getAttribute("Authorization");
-			request.setAttribute("Authorization", token);
-			Integer topicId = Integer.parseInt(request.getParameter("id"));
-			Integer page = Integer.parseInt(request.getParameter("page"));
-			if (topicId == null || topicId == 0 || page == null || page == 0) {
+			Integer topicId = Integer.parseInt(request.getParameter("tid"));
+			if (topicId == null || topicId == 0) {
 				throw new ServletException("Une erreur est survenue.");
 			}
 			
-			request.setAttribute("page", page);
-			
 			/* STATS */
-			Integer nbMembers = this.operationFacade.numberOfMembers();
+			Integer nbMembers = this.moderationFacade.numberOfMembers();
 			request.setAttribute("nbMembers", nbMembers);
-			Integer nbTopics = this.operationFacade.numberOfTopics();
+			Integer nbTopics = this.moderationFacade.numberOfTopics();
 			request.setAttribute("nbTopics", nbTopics);
-			Integer nbPosts = this.operationFacade.numberOfPosts();
+			Integer nbPosts = this.moderationFacade.numberOfPosts();
 			request.setAttribute("nbPosts", nbPosts);
-			List<MemberRO> connectedMembers = this.operationFacade.connectedProfiles();
+			List<MemberRO> connectedMembers = this.moderationFacade.connectedProfiles();
 			request.setAttribute("connectedMembers", connectedMembers);
 			Integer cMemberSize = connectedMembers == null ? 0 : connectedMembers.size();
 			request.setAttribute("cMemberSize", cMemberSize);
-			List<MemberRO> birthdayMembers = this.operationFacade.birthdayProfiles();
+			List<MemberRO> birthdayMembers = this.moderationFacade.birthdayProfiles();
 			request.setAttribute("birthdayMembers", birthdayMembers);
 
 			/* SIDEBAR */
 			MyLightProfileRO myPro = null;
 			try {
-				myPro = this.operationFacade.getMyLightProfileRO(request, token);
+				myPro = this.moderationFacade.getMyLightProfileRO(request, token);
 				request.setAttribute("myPro", myPro);
 			} catch (BadCredentialException e) {
 				e.printStackTrace();
@@ -84,33 +79,68 @@ public class Topic extends OperationResource {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			List<MemberRO> topMembers = this.operationFacade.topProfiles();
+			List<MemberRO> topMembers = this.moderationFacade.topProfiles();
 			request.setAttribute("topMembers", topMembers);
-			List<TopTopicRO> topTopics = this.operationFacade.topTopics();
+			List<TopTopicRO> topTopics = this.moderationFacade.topTopics();
 			request.setAttribute("topTopics", topTopics);
 			
 			try {
 				PaginationRO pagination = new PaginationRO();
 				pagination.setId(topicId);
-				pagination.setStartIndex((page * PAGINATION) - PAGINATION);
-				TopicRO topic = this.operationFacade.viewTopic(request, token, pagination);
-				if (topic.getPosts().size() < PAGINATION) {
-					request.setAttribute("lastpage", true);
-				} else {
-					request.setAttribute("lastpage", false);
-				}
+				pagination.setStartIndex(0);
+				TopicRO topic = this.moderationFacade.viewTopic(request, token, pagination);
 				request.setAttribute("topic", topic);
+			} catch (BadCredentialException e) {
+				e.printStackTrace();
+			} catch (TechnicalException e) {
+				e.printStackTrace();
+			} catch (BadParametersException e) {
+				e.printStackTrace();
+			}
+			
+			String url = "/updateTopic.jsp";
+			ServletContext sc = getServletContext();
+			RequestDispatcher rd = sc.getRequestDispatcher(url);
+			rd.forward(request, response);
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession se = request.getSession(false);
+		request.setCharacterEncoding("UTF-8");
+		if (se == null || se.getAttribute("Authorization") == null) {
+			response.sendRedirect("home");
+		} else {
+			String token = (String) se.getAttribute("Authorization");
+			TopicRO topic = new TopicRO();
+			topic.setId(Integer.parseInt(request.getParameter("topicId")));
+			if (request.getParameter("update") != null) {
+				if (request.getParameter("title") == null || request.getParameter("title").trim().isEmpty()) {
+					throw new  ServletException("Le titre est necessaire pour la création d'un sujet !");
+				}
+				topic.setTitle(request.getParameter("title").trim());
+			}			
+
+			if (request.getParameter("description") != null) {
+				topic.setDescription(request.getParameter("description").trim());
+			}
+			if (request.getParameter("lockTopic") != null) {
+				topic.setLocked(true);
+			} else if (request.getParameter("unlockTopic") != null) {
+				topic.setLocked(false);
+			}
+			
+			try {
+				this.moderationFacade.updateTopic(request, token, topic);
+				response.sendRedirect("home");
 			} catch (BadCredentialException e) {
 				e.printStackTrace();
 			} catch (BadParametersException e) {
 				e.printStackTrace();
-			} catch (TechnicalException e) {
-				e.printStackTrace();
 			}
-			String url = "/topic.jsp";
-			ServletContext sc = getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			rd.forward(request, response);
 		}
 	}
 }

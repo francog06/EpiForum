@@ -37,9 +37,6 @@ import com.epiforum.server.data.listener.IUpdateListener;
 })
 public class Session implements Serializable, ICreateListener, IUpdateListener {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 5990093883800676416L;
 
 	private String			id;
