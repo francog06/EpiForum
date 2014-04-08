@@ -10,6 +10,8 @@ public class TopicRO {
 
 	private Integer					id;
 
+	private Integer					topicId;
+
 	private Date					modified;
 
 	private String					title;
@@ -36,6 +38,20 @@ public class TopicRO {
 	 */
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the topicId
+	 */
+	public Integer getTopicId() {
+		return topicId;
+	}
+
+	/**
+	 * @param topicId the topicId to set
+	 */
+	public void setTopicId(Integer topicId) {
+		this.topicId = topicId;
 	}
 
 	/**

@@ -8,6 +8,7 @@ import java.util.Locale;
 
 import com.epiforum.common.ro.BoardRO;
 import com.epiforum.common.ro.CategoryRO;
+import com.epiforum.common.ro.ContentRO;
 import com.epiforum.common.ro.LightProfileRO;
 import com.epiforum.common.ro.MemberRO;
 import com.epiforum.common.ro.MyLightProfileRO;
@@ -124,7 +125,7 @@ public class ROBuilder {
 	public static PostRO				createPostRO(Post post) {
 		PostRO po = new PostRO();
 		po.setId(post.getId());
-		po.setModified(post.getModified());
+		po.setModified(post.getCreated());
 		po.setProfileId(post.getProfile().getId());
 		po.setContent(post.getContentPost().getContent());
 		po.setProfileSignature(post.getProfile().getSignature());
@@ -147,5 +148,19 @@ public class ROBuilder {
 		top.setNbPost(topic.getNbPosts());
 		top.setId(topic.getId());
 		return top;
+	}
+
+	public static ContentRO				createContentRO(Topic top) {
+		ContentRO lightTopic = new ContentRO();
+		lightTopic.setPostId(top.getId());
+		lightTopic.setContent(top.getTitle());
+		return lightTopic;
+	}
+
+	public static ContentRO				createContentRO(Board bor) {
+		ContentRO lightTopic = new ContentRO();
+		lightTopic.setPostId(bor.getId());
+		lightTopic.setContent(bor.getTitle());
+		return lightTopic;
 	}
 }

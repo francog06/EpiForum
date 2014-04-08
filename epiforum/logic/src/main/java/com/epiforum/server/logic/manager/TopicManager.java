@@ -54,6 +54,10 @@ public class TopicManager {
 		return this.topicDao.countTopics();
 	}
 
+	public List<Topic>			getAllTopicsFromBoardId(Integer boardId) {
+		return this.topicDao.getAllTopicsFromBoardId(boardId);
+	}
+
 	public List<Topic>			getTopTopics(Integer number) {
 		return this.topicDao.getTopTopics(number);
 	}

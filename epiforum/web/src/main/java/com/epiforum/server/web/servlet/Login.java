@@ -61,20 +61,10 @@ public class Login extends OperationResource {
 		try {
 			token = this.operationFacade.login(request, token, log, Type.MEMBRE);
 			session.setAttribute("Authorization", token);
-			response.sendRedirect("/web/home");
+			response.sendRedirect("home");
 		} catch (TechnicalException e) {
-			String url="/login.jsp";
-		    ServletContext sc = getServletContext();
-		    RequestDispatcher rd = sc.getRequestDispatcher(url);
-		    request.setAttribute("error", true);
-		    rd.forward(request, response);
 			e.printStackTrace();
 		} catch (BadCredentialException e) {
-			String url="/login.jsp";
-		    ServletContext sc = getServletContext();
-		    RequestDispatcher rd = sc.getRequestDispatcher(url);
-		    request.setAttribute("error", true);
-		    rd.forward(request, response);
 			e.printStackTrace();
 		}
 	}

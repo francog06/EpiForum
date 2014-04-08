@@ -1,8 +1,11 @@
 package com.epiforum.server.logic.dao;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import com.epiforum.server.data.entity.Board;
 
@@ -22,5 +25,13 @@ public class BoardDao {
 	
 	public void					deleteBoard(Board board) {
 		this.em.remove(board);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Board>			getAllBoardsFromCategoryId(Integer categoryId) {
+		Query query = this.em.createNamedQuery("Board.getAllBoardsFromCategoryId");
+		query.setParameter("categoryId", categoryId);
+		List<Board> boards = (List<Board>) query.getResultList();
+		return boards;
 	}
 }

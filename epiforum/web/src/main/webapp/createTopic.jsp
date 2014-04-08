@@ -62,7 +62,7 @@
 									<input type="hidden" name="boardId" value="${boardId}"/>
 									<dl>
 										<dd><input type="submit" id="create" name="create"
-											tabindex="7" value="Envoyer" class="button1"/></dd>
+											tabindex="7" value="Valider" class="button1"/></dd>
 									</dl>
 								</fieldset>
 							</form>

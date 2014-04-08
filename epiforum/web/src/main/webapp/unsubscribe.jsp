@@ -33,7 +33,7 @@
 										size="55" class="inputbox autowidth" required/></dd>
 								</dl>
 								<dl>
-									<input type="submit" name="unsubscribe" tabindex="6" value="Envoyez" class="button1"/>
+									<input type="submit" name="unsubscribe" tabindex="6" value="Valider" class="button1"/>
 								</dl>
 							</fieldset>
 						</div>

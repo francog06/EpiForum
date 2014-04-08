@@ -65,13 +65,15 @@
 											<input type="hidden" name="tid" id="tid" value="${topic.id}"/>
 											<input type="submit" class="button1" title="Modifier ce sujet" class="color_forum" value="Modifier"/>
 										</form>
-										<form action="mergeopic" name="mergeTopic" method="GET" style="display: inline;">
+										<form action="mergetopic" name="mergeTopic" method="GET" style="display: inline;">
 											<input type="hidden" name="tid" id="tid" value="${topic.id}"/>
-											<input type="submit" class="button1" title="Fusionner ce sujet" class="color_forum" value="Fusionner"/> 
+											<input type="submit" class="button1" title="Fusionner ce sujet avec un autre sujet"
+												class="color_forum" value="Fusionner"/> 
 										</form>
 										<form action="movetopic" name="moveTopic" method="GET" style="display: inline;">
 											<input type="hidden" name="tid" id="tid" value="${topic.id}"/>
-											<input type="submit" class="button1" title="Déplacer ce sujet" class="color_forum" value="Déplacer"/> 
+											<input type="submit" class="button1" title="Déplacer ce sujet dans une autre catégorie"
+												class="color_forum" value="Déplacer"/> 
 										</form>
 										<form action="updatetopic" name="lockTopic" method="POST" style="display: inline;">
 											<input type="hidden" name="topicId" id="topicId" value="${topic.id}"/>

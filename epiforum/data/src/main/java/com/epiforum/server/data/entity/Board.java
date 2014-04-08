@@ -17,6 +17,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -31,6 +33,11 @@ import com.epiforum.server.data.listener.IUpdateListener;
 @Entity
 @Cacheable
 @Table(name = "board")
+@NamedQueries({
+	@NamedQuery(
+			name = "Board.getAllBoardsFromCategoryId",
+			query = "SELECT bo FROM Board bo WHERE bo.category.id = :categoryId")
+})
 public class Board implements Serializable, ICreateListener, IUpdateListener {
 
 	private static final long serialVersionUID = -2578757668147679579L;

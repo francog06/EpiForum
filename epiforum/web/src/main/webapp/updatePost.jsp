@@ -36,7 +36,7 @@
 									</dl>
 									<dl>
 										<input type="hidden" name="postId" value="${postId}"/>
-										<input type="submit" id="updatePost" name="updatePost" tabindex="6" value="Envoyer" class="button1"/>
+										<input type="submit" id="updatePost" name="updatePost" tabindex="6" value="Valider" class="button1"/>
 									</dl>
 								</fieldset>
 							</div>

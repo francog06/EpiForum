@@ -39,7 +39,10 @@ import com.epiforum.server.data.listener.IUpdateListener;
 			query = "SELECT to FROM Topic to ORDER BY to.nbPosts DESC"),
 	@NamedQuery(
 			name = "Topic.countAll",
-			query = "SELECT COUNT(to) FROM Topic to")
+			query = "SELECT COUNT(to) FROM Topic to"),
+	@NamedQuery(
+			name = "Topic.getAllTopicsFromBoardId",
+			query = "SELECT to FROM Topic to WHERE to.board.id = :boardId")
 })
 public class Topic implements Serializable, ICreateListener, IUpdateListener {
 

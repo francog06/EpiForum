@@ -23,7 +23,6 @@ public class Home extends AdminResource {
      */
     public Home() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

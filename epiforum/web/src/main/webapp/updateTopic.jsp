@@ -43,11 +43,11 @@
 										<textarea tabindex="2" id="description" name="description" maxlength="256"
 											style="height: 96px; width: 68%" placeholder="${topic.description}"></textarea>
 									</dl>
-									<br> <input type="hidden" name="topicId" value="${topic.id}" />
+									<input type="hidden" name="topicId" value="${topic.id}" />
 									<dl>
 										<dd>
 											<input type="submit" id="update" name="update" tabindex="6"
-												value="Envoyer" class="button1" />
+												value="Valider" class="button1" />
 										</dd>
 									</dl>
 								</fieldset>

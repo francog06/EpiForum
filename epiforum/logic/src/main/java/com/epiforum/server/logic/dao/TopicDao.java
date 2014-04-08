@@ -39,4 +39,12 @@ public class TopicDao {
 		List<Topic> topics = query.getResultList();
 		return topics;
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<Topic>			getAllTopicsFromBoardId(Integer boardId) {
+		Query query = em.createNamedQuery("Topic.getAllTopicsFromBoardId");
+		query.setParameter("boardId", boardId);
+		List<Topic> topics = (List<Topic>) query.getResultList();
+		return topics;
+	}
 }
