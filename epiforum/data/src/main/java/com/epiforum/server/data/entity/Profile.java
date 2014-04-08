@@ -34,6 +34,9 @@ import com.epiforum.server.data.listener.IUpdateListener;
 @Table(name = "profile", uniqueConstraints = @UniqueConstraint(columnNames = "nickname"))
 @NamedQueries({
 	@NamedQuery(
+			name = "Profile.getAllActiveProfiles",
+			query = "SELECT pro FROM Profile pro WHERE pro.account.status = :status AND pro.account.type = :type"),
+	@NamedQuery(
 			name = "Profile.getProfileFromNickname",
 			query = "SELECT pro FROM Profile pro WHERE pro.nickname = :nickname"),
 	@NamedQuery(

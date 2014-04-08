@@ -3,9 +3,6 @@
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html>
-<html>
-<head>
 <!-- METAS -->
 <jsp:include page="/metas.html"></jsp:include>
 <meta name="description" content="Epiforum: modifier un sujet">

@@ -32,6 +32,10 @@ public class ProfileManager {
 		return null;
 	}
 
+	public List<Profile>		getAllActiveProfiles() {
+		return this.profileDao.getAllActiveProfiles();
+	}
+
 	public Profile				getProfileFromNickname(String nickname) {
 		return this.profileDao.getProfileFromNickname(nickname);
 	}

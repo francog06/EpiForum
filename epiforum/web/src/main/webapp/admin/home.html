@@ -1,0 +1,102 @@
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
+<%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!-- METAS -->
+<jsp:include page="/admin/metas.html"></jsp:include>
+	<meta name="description" content="Epiforum: page de connexion">
+<!-- LINKS -->
+<jsp:include page="/admin/common-css.html"></jsp:include>
+
+	<title>EpiForum</title>
+</head>
+
+    <body style="background-color:white">
+
+ <section id="container" class="">
+      <!--header start-->
+      <header class="header white-bg">
+          <div class="sidebar-toggle-box">
+          </div>
+          <!--logo start-->
+          <a href="#" class="logo" style="font-size:40px;margin-right:70px">Epi<span>Forum</span> - Admin</a>
+          <!--logo end--><br>
+
+                <ul class="breadcrumb" style="font-size:20px;">
+                          <li><a href="home.html" style="color:black;font-weight:bold"><i class="icon-home"></i> Home </a></li>
+                          <li><a href="CategoryViewAdmin.html"> Catégories</a></li>
+                          <li><a href="BoardViewAdmin.html">Sous-Catégories</a></li>
+                          <li><a href="ProfilViewAdmin.html">Profils</a></li>
+                </ul>
+
+   </header>
+
+
+</section>
+                       
+<hr>
+
+<section class="wrapper" >
+            <div class="row">
+                <div class="col-lg-4" style="min-height:590px">
+                    <aside class="profile-nav alt green-border">
+                        <section class="panel">
+                            <div class="user-heading alt green-bg">
+                                <a href="#">
+                                <img src="img/profile-avatar.jpg" alt="">
+                                </a>
+                                <h1>Jonathan Smith</h1>
+                                <p>jsmith@flatlab.com</p>
+                            </div>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li>
+                                    <a href="CategoryViewAdmin.html">
+                                    <i class="icon-file"></i>
+                                    Catégorie
+                                    <span class="label label-primary pull-right r-activity">Créer/Modif/Supp</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="BoardViewAdmin.html">
+                                    <i class="icon-file"></i>
+                                    Sous-Catégories
+                                    <span class="label label-info pull-right r-activity">Créer/Modif/Supp</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="ProfilViewAdmin.html">
+                                    <i class="icon-file"></i>
+                                    Profils
+                                    <span class="label label-warning pull-right r-activity">Modifier/Suppr</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
+                    </aside>
+                    <div class="panel">
+                        <div class="panel-body">
+                            <div class="bio-desk">
+                                <p>Je ne sais pas quoi mettre!!</p>
+                                <p>Tu veux que je te la mette?</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+          <footer class="follower-foot" style="background-color:black">
+              <ul>
+                  <li style="color:white"> 
+                      <h5> Guillaume Francois</h5>
+                      <p>Dev Java</p>
+                  </li>
+                  <li style="color:white">
+                      <h5>Igor Moreno Semedo</h5>
+                      <p>Dev Web</p>
+                  </li>
+              </ul>
+          </footer>
+</section>
+      
+</body>
+</html>

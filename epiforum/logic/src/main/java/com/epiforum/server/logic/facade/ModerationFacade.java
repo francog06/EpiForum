@@ -30,7 +30,7 @@ public class ModerationFacade extends OperationFacade {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Configuration.getDefaultLocale()));
 		}
 		if (topicRo == null || topicRo.getId() == null) {
-			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Configuration.getDefaultLocale()));
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_REQUIRED, Configuration.getDefaultLocale()));
 		}
 		Session se = this.sessionManager.getSession(token);
 		if (!this.checkAccountType(se, Type.MODERATEUR)) {
@@ -53,7 +53,7 @@ public class ModerationFacade extends OperationFacade {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Configuration.getDefaultLocale()));
 		}
 		if (topicId == null || topicId == 0) {
-			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Configuration.getDefaultLocale()));
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_REQUIRED, Configuration.getDefaultLocale()));
 		}
 		Session se = this.sessionManager.getSession(token);
 		if (!this.checkAccountType(se, Type.MODERATEUR)) {
@@ -65,14 +65,8 @@ public class ModerationFacade extends OperationFacade {
 		}
 		se.setLastActivity("deleteTopic");
 		Topic topic = this.topicManager.getTopicFromId(topicId);
-		if (topic != null) {
-			List<Post> posts = topic.getPosts();
-			for (Post post : posts) {
-				this.contentPostManager.removeContentPost(post.getContentPost());
-				/*NEVER USE IT*/
-				this.postManager.deletePost(post);
-			}
-			this.topicManager.removeTopic(topic);
+		if (topic != null && topic.getPosts() == null || topic.getPosts().size() == 0) {
+			this.topicManager.deleteTopic(topic);
 			return true;
 		}
 		return false;
@@ -83,7 +77,7 @@ public class ModerationFacade extends OperationFacade {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Configuration.getDefaultLocale()));
 		}
 		if (topicId == null || topicId == 0) {
-			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Configuration.getDefaultLocale()));
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_REQUIRED, Configuration.getDefaultLocale()));
 		}
 		Session se = this.sessionManager.getSession(token);
 		if (!this.checkAccountType(se, Type.MODERATEUR)) {
@@ -107,7 +101,7 @@ public class ModerationFacade extends OperationFacade {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Configuration.getDefaultLocale()));
 		}
 		if (boardId == null || boardId == 0 || topicId == null || topicId == 0) {
-			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Configuration.getDefaultLocale()));
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_REQUIRED, Configuration.getDefaultLocale()));
 		}
 		Session se = this.sessionManager.getSession(token);
 		if (!this.checkAccountType(se, Type.MODERATEUR)) {
@@ -132,7 +126,7 @@ public class ModerationFacade extends OperationFacade {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Configuration.getDefaultLocale()));
 		}
 		if (topicId == null || topicId == 0) {
-			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Configuration.getDefaultLocale()));
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_REQUIRED, Configuration.getDefaultLocale()));
 		}
 		Session se = this.sessionManager.getSession(token);
 		if (!this.checkAccountType(se, Type.MODERATEUR)) {
@@ -156,7 +150,7 @@ public class ModerationFacade extends OperationFacade {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Configuration.getDefaultLocale()));
 		}
 		if (fTopic == null || fTopic == 0 || sTopic == null || sTopic == 0 || fTopic == sTopic) {
-			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_DEFAULT, Configuration.getDefaultLocale()));
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_REQUIRED, Configuration.getDefaultLocale()));
 		}
 		Session se = this.sessionManager.getSession(token);
 		if (!this.checkAccountType(se, Type.MODERATEUR)) {
@@ -173,7 +167,7 @@ public class ModerationFacade extends OperationFacade {
 			for (Post post : toMerge.getPosts()) {
 				post.setTopic(topic);
 			}
-			this.topicManager.removeTopic(toMerge);
+			this.topicManager.deleteTopic(toMerge);
 			return true;
 		}
 		return false;

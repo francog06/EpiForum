@@ -131,7 +131,7 @@ public class OperationFacade {
 		if (!se.getProfile().equals(ac.getProfile())) {
 			return false;
 		}
-		return this.accountManager.deleteAccount(ac);
+		return this.accountManager.removeAccount(ac);
 	}
 
 	public Boolean				activateAccount(HttpServletRequest request, String nickname, String activationCode) throws TechnicalException, BadParametersException, BadCredentialException {
@@ -458,7 +458,7 @@ public class OperationFacade {
 			post.getProfile().reduceNbPost();
 			success = this.postManager.removePost(post);
 			if (post.getTopic().getNbPosts() == 0) {
-				this.topicManager.removeTopic(post.getTopic());
+				this.topicManager.deleteTopic(post.getTopic());
 			}
 		}
 		if (!se.getProfile().getAccount().getIpAddress().equals(request.getRemoteAddr().trim())) {

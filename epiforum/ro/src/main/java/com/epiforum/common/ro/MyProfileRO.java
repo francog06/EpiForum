@@ -2,9 +2,6 @@ package com.epiforum.common.ro;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import lombok.ToString;
-
-@ToString(callSuper=true)
 @XmlRootElement
 public class MyProfileRO extends ProfileInfoRO {
 

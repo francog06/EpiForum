@@ -85,7 +85,7 @@ public class AccountManager {
 		return newPass;
 	}
 
-	public boolean				deleteAccount(Account ac) {
+	public boolean				removeAccount(Account ac) {
 		ac.setStatus(Account.Status.DISABLED);
 		return true;
 	}

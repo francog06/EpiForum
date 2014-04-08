@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="Mosaddek">
+        <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+        <link rel="shortcut icon" href="img/favicon.html">
+        <title>FlatLab - Flat & Responsive Bootstrap Admin Template</title>
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-reset.css" rel="stylesheet">
+        <!--external css-->
+        <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom styles for this template -->
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/style-responsive.css" rel="stylesheet" />
+        <link href="css/admin.css" rel="stylesheet">
+
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+        <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+
+
+    <body style="background-color:white">
+
+ <section id="container" class="">
+      <!--header start-->
+      <header class="header white-bg">
+          <div class="sidebar-toggle-box">
+          </div>
+          <!--logo start-->
+          <a href="#" class="logo" style="font-size:40px;margin-right:70px">Epi<span>Forum</span> - Admin</a>
+          <!--logo end--><br>
+
+                <ul class="breadcrumb" style="font-size:20px;">
+                          <li><a href="home.html"><i class="icon-home"></i> Home </a></li>
+                          <li><a href="CategoryViewAdmin.html" style="color:black;font-weight:bold"> Catégories</a></li>
+                          <li><a href="BoardViewAdmin.html">Sous-Catégories</a></li>
+                          <li><a href="ProfilViewAdmin.html">Profils</a></li>
+                </ul>
+
+   </header>
+
+
+</section>
+                       
+<hr>
+<br>
+    <section class="wrapper" >
+      <!-- CREER -->   
+             <header class="panel-heading">
+              <strong> Créer </strong>
+          </header>
+          <section class="panel" style="margin-bottom:10px">
+              <header class="panel-heading">
+                 Remplir les champs
+              </header>
+              <div class="panel-body">
+                  <form role="form"  id="CreateCategory" action="CreateCategory"class="form-horizontal tasi-form">
+                      <div class="form-group has-success">
+                          <label class="col-lg-2 control-label"> <strong> Nom de la Catégorie </strong> </label>
+                            <div class="col-lg-10" >
+                         <select  id="CreateCatName" name="CreateCatName"  class="form-control black-color-input"> 
+                            <option value="volvo"  >PRemiere Category</option>
+                            <option value="saab">Deuxieme</option>
+                            <option value="mercedes">Troisième</option>
+                        </select> 
+                      </div>
+                      </div>
+
+                        <div class="form-group has-success">
+                            <label class="col-lg-2 control-label"> <strong>Description de la Catégorie </strong></label>
+                            <div class="col-lg-10">
+                                <input type="text"   placeholder="" id="CreateCatDescription" name="CreateCatDescription" class="black-color-input form-control">
+                            </div>
+                        </div>
+                      
+                      <div class="form-group">
+                          <div class="col-lg-offset-2 col-lg-10">
+                              <button class="btn btn-danger" type="submit">Créer</button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </section>
+
+          <!-- MODIF -->
+          <header class="panel-heading">
+              <strong> Modifier </strong>
+          </header>
+          <section class="panel">
+              <header class="panel-heading">
+                 Remplir les champs
+              </header>
+              <div class="panel-body">
+                  <form role="form" id="EditCategory" action="EditCategory" class="form-horizontal tasi-form">
+                      <div class="form-group has-success">
+                          <label class="col-lg-2 control-label"> <strong>Nom de la Catégorie </strong></label>
+                       <div class="col-lg-10">
+                        <select  id="editCategoryName" name="editCategoryName" class=" black-color-input form-control"> 
+                            <option value="volvo"  >PRemiere Category</option>
+                            <option value="saab">Deuxieme</option>
+                            <option value="mercedes">Troisième</option>
+                        </select>
+                      </div>
+                    </div>
+                       <div class="form-group has-success">
+                            <label class="col-lg-2 control-label"> <strong>  Nouveau nom de la Catégorie </strong></label>
+                            <div class="col-lg-10 " >
+                                <input type="text"  placeholder="" id="EditCatName" name="EditCatName" class="form-control black-color-input">
+                            </div>
+                        </div>
+                       <div class="form-group has-success">
+                            <label class="col-lg-2 control-label"> <strong> Nouvelle description de la Catégorie </strong> </label>
+                            <div class="col-lg-10" >
+                                <input type="text"  placeholder="" id="EditCatDescription" name="EditCatDescription" class="form-control black-color-input" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-danger" type="submit">Modifier</button>
+                            </div>
+                        </div>
+                     </form>
+                          </div>
+              </section>
+
+          <header class="panel-heading">
+              <strong> Supprimer </strong>
+          </header>
+          <section class="panel">
+              <header class="panel-heading">
+                 Remplir les champs
+              </header>
+              <div class="panel-body">
+                  <form role="form"  id="DelCategory" action="DelCategory" class="form-horizontal tasi-form">
+                      <div class="form-group has-success">
+                          <label class="col-lg-2 control-label"> <strong> Nom de la Catégorie </strong></label>
+                          <!--<div class="col-lg-10">
+                              <input type="text" placeholder="" id="f-name" class="form-control">
+                          </div> -->
+                         <!-- TU PRENDS SELON UNE LISTE NON ? -->
+                          <div class="col-lg-10 " >
+                        <select  id="DelCategoryName" name="DelCategoryName" class="black-color-input form-control "> 
+                            <option value="volvo"   >PRemiere Category</option>
+                            <option value="saab">Deuxieme</option>
+                            <option value="mercedes">Troisième</option>
+                        </select> 
+                      </div>
+                      </div>
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-danger" type="submit">Supprimer</button>
+                            </div>
+                        </div>
+                              </form>
+                          </div>
+              </section>
+
+
+
+
+        <footer class="follower-foot" style="background-color:black">
+              <ul>
+                  <li style="color:white"> 
+                      <h5> Guillaume Francois</h5>
+                      <p>Dev Java</p>
+                  </li>
+                  <li style="color:white">
+                      <h5>Igor Moreno Semedo</h5>
+                      <p>Dev Web</p>
+                  </li>
+              </ul>
+          </footer>
+  </section>
+      
+</body>
+</html>

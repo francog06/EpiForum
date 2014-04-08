@@ -45,7 +45,7 @@ public class Login extends OperationResource {
 			rd.forward(request, response);
 		} else {
 			response.sendRedirect("home");
-		} 
+		}
 	}
 
 	/**

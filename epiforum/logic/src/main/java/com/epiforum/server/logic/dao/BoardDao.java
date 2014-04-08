@@ -34,4 +34,11 @@ public class BoardDao {
 		List<Board> boards = (List<Board>) query.getResultList();
 		return boards;
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<Board>			getAllBoards() {
+		Query query = em.createNamedQuery("Board.getAll");
+		List<Board> boards = (List<Board>) query.getResultList();
+		return boards;
+	}
 }

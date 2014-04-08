@@ -35,6 +35,9 @@ import com.epiforum.server.data.listener.IUpdateListener;
 @Table(name = "board")
 @NamedQueries({
 	@NamedQuery(
+			name = "Board.getAll",
+			query = "SELECT bo FROM Board bo"),
+	@NamedQuery(
 			name = "Board.getAllBoardsFromCategoryId",
 			query = "SELECT bo FROM Board bo WHERE bo.category.id = :categoryId")
 })
@@ -54,21 +57,15 @@ public class Board implements Serializable, ICreateListener, IUpdateListener {
 	public 					Board() {
 	}
 
-	public 					Board(Category category, Date created, Date modified, String title) {
+	public 					Board(Category category, String title) {
 		this.category = category;
-		this.created = created;
-		this.modified = modified;
 		this.title = title;
 	}
 
-	public 					Board(Category category, Date created, Date modified, String title,
-			String description, List<Topic> topics) {
+	public 					Board(Category category, String title, String description) {
 		this.category = category;
-		this.created = created;
-		this.modified = modified;
 		this.title = title;
 		this.description = description;
-		this.topics = topics;
 	}
 
 	@Id

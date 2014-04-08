@@ -1,8 +1,5 @@
 <%@ page isErrorPage="true" language="java" contentType="text/html" pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html>
-<head>
 <!-- METAS -->
 <jsp:include page="/metas.html"></jsp:include>
 <meta name="description" content="Epiforum: page d'erreur">

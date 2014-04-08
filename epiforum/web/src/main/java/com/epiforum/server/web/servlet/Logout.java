@@ -36,12 +36,12 @@ public class Logout extends OperationResource {
 		if (se != null) {
 			String token = (String) se.getAttribute("Authorization");
 		    try {
-				this.operationFacade.logout(token);
+		    	this.operationFacade.logout(token);
 			} catch (BadCredentialException e) {
 				e.printStackTrace();
 			}
 		    se.invalidate();
-		    }
-	    response.sendRedirect("home");
-	    }
+		}
+		response.sendRedirect("home");
+	}
 }

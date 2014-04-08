@@ -62,7 +62,7 @@ public class TopicManager {
 		return this.topicDao.getTopTopics(number);
 	}
 	
-	public void					removeTopic(Topic topic) {
+	public void					deleteTopic(Topic topic) {
 		this.topicDao.deleteTopic(topic);
 	}
 }

@@ -3,9 +3,6 @@
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html>
-<html>
-<head>
 <!-- METAS -->
 <jsp:include page="/metas.html"></jsp:include>
 <meta name="description"
@@ -24,13 +21,13 @@
 		<div id="page-body">
 		<form action="login" method="post" id="login">
 				<div class="panel">
-					<div class="inner"><span class="corners-top"><span></span></span>
+					<div class="inner"><span class="corners-top"></span>
 						<div class="content">
 							<h2>Veuillez vous connecter</h2>
 							<fieldset class="fields1">
 								<dl>
 									<dt><label for="email">Email:</label></dt>
-									<dd><input type="text" tabindex="1" name="email" id="email"
+									<dd><input type="email" tabindex="1" name="email" id="email"
 										size="25" placeholder="exemple@mail.com" class="inputbox autowidth" required/></dd>
 								</dl>
 								<dl>
@@ -41,8 +38,8 @@
 								<dl>
 									<dd><input type="submit" name="login" tabindex="6" value="Login" class="button1"/></dd>
 								</dl>
-								<a title="Oublie de mot de passe" href="forgotpassword">J'ai oublié mon mot de passe !</a>
 							</fieldset>
+							<a title="Oublie de mot de passe" href="forgotpassword">J'ai oublié mon mot de passe !</a>
 						</div>
 						<span class="corners-bottom"></span>
 					</div>

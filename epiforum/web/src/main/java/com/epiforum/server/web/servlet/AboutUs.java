@@ -1,11 +1,16 @@
 package com.epiforum.server.web.servlet;
 
-import com.epiforum.server.web.beanresource.OperationResource;
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.epiforum.server.web.beanresource.OperationResource;
 
 /**
  * Servlet implementation class AboutUs
@@ -26,6 +31,10 @@ public class AboutUs extends OperationResource {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		String url="/aboutus.jsp";
+	    ServletContext sc = getServletContext();
+	    RequestDispatcher rd = sc.getRequestDispatcher(url);
+	    rd.forward(request, response);
 	}
 }

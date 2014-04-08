@@ -66,7 +66,16 @@ public class ProfileDao {
 		Query query = em.createNamedQuery("Profile.getTopProfiles");
 		query.setParameter("status", Account.Status.ACTIVATED);
 		query.setMaxResults(number);
-		List<Profile> pros = query.getResultList();
+		List<Profile> pros = (List<Profile>) query.getResultList();
+		return pros;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Profile>		getAllActiveProfiles() {
+		Query query = em.createNamedQuery("Profile.getAllActiveProfiles");
+		query.setParameter("status", Account.Status.ACTIVATED);
+		query.setParameter("type", Account.Type.MEMBRE);
+		List<Profile> pros = (List<Profile>) query.getResultList();
 		return pros;
 	}
 }

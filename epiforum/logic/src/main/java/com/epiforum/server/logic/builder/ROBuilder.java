@@ -163,4 +163,11 @@ public class ROBuilder {
 		lightTopic.setContent(bor.getTitle());
 		return lightTopic;
 	}
+
+	public static ContentRO				createContentRO(Category cat) {
+		ContentRO lightTopic = new ContentRO();
+		lightTopic.setPostId(cat.getId());
+		lightTopic.setContent(cat.getTitle());
+		return lightTopic;
+	}
 }

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="Mosaddek">
+        <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+        <link rel="shortcut icon" href="img/favicon.html">
+        <title>FlatLab - Flat & Responsive Bootstrap Admin Template</title>
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-reset.css" rel="stylesheet">
+        <!--external css-->
+        <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom styles for this template -->
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/style-responsive.css" rel="stylesheet" />
+        <link href="css/admin.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+        <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+
+
+    <body style="background-color:white">
+
+
+ <section id="container" class="">
+      <!--header start-->
+      <header class="header white-bg">
+          <div class="sidebar-toggle-box">
+          </div>
+          <!--logo start-->
+          <a href="#" class="logo" style="font-size:40px;margin-right:70px">Epi<span>Forum</span> - Admin</a>
+          <!--logo end--><br>
+
+                <ul class="breadcrumb" style="font-size:20px;">
+                          <li><a href="home.html"><i class="icon-home"></i> Home </a></li>
+                          <li><a href="CategoryViewAdmin.html" > Catégories</a></li>
+                          <li><a href="BoardViewAdmin.html" >Sous-Catégories</a></li>
+                          <li><a href="ProfilViewAdmin.html" style="color:black;font-weight:bold">Profils</a></li>
+                </ul>
+   </header>
+</section>
+                       
+<hr>
+<br>
+<section class="wrapper" >
+
+  <!-- MODIF-->
+          <header class="panel-heading">
+              <strong> Modifier </strong>
+          </header>
+          <section class="panel">
+              <header class="panel-heading">
+                 Remplir les champs
+              </header>
+              <div class="panel-body">
+                  <form role="form" id="EditProfil" action="EditProfil" class="form-horizontal tasi-form">
+                      <div class="form-group has-success">
+                          <label class="col-lg-2 control-label">Nom du profil</label>
+                          <div class="col-lg-10">
+                         <select  class="form-control black-color-input" id="EditProfilName" name="EditProfilName"> 
+                            <option value="" selected></option>
+                            <option value="volvo"  style="color:black;margin-bottom:2px" >Premiere Category</option>
+                            <option value="saab">Deuxieme</option>
+                            <option value="mercedes">Troisième</option>
+                        </select> 
+                      </div>
+                      </div>
+
+                    <div id="Modif-Check">
+                      <div class="form-group has-success">
+                          <label class="col-lg-2 control-label">Email</label>
+                       <div class="col-lg-10">
+                              <input type="text" placeholder="" id="EditProfilEmail" name="EditProfilEmail" class="form-control black-color-input">
+                          </div>
+                    </div> 
+                     <div class="form-group has-success">
+                          <label class="col-lg-2 control-label">Mot de Passe</label>
+                       <div class="col-lg-10">
+                              <input type="text" placeholder="" id="EditProfilPass" name="EditProfilPass" class="form-control black-color-input">
+                          </div>
+                    </div>
+
+                      <div class="form-group has-success">
+                          <label class="col-lg-2 control-label">Prénom</label>
+                       <div class="col-lg-10">
+                              <input type="text" placeholder="" id="EditProfilFirstname" name="EditProfilFirstname"  class="form-control black-color-input">
+                          </div>
+                    </div>                      
+                    <div class="form-group has-success">
+                          <label class="col-lg-2 control-label">Nom</label>
+                       <div class="col-lg-10">
+                              <input type="text" placeholder="" id="EditProfilLastname" name="EditProfilLastname" class="form-control black-color-input">
+                          </div>
+                    </div>                      
+                    <div class="form-group has-success">
+                          <label class="col-lg-2 control-label">Pseudonyme</label>
+                       <div class="col-lg-10">
+                              <input type="text" placeholder="" id="EditProfilPseudo" name="EditProfilPseudo" class="form-control black-color-input">
+                          </div>
+                    </div>                      
+                    <div class="form-group has-success">
+                          <label class="col-lg-2 control-label">Anniversaire</label>
+                       <div class="col-lg-10">
+                              <input type="text" placeholder="" id="EditProfilBirth" name="EditProfilBirth" class="form-control black-color-input">
+                          </div>
+                         <!-- TU PRENDS SELON UNE LISTE NON ? -->
+                    </div>                      <div class="form-group has-success">
+                          <label class="col-lg-2 control-label">Téléphone</label>
+                       <div class="col-lg-10">
+                              <input type="text" placeholder="" id="EditProfilPhone" name="EditProfilPhone" class="form-control black-color-input">
+                          </div>
+                    </div>                      
+                    <div class="form-group has-success">
+                          <label class="col-lg-2 control-label">Facebook</label>
+                       <div class="col-lg-10">
+                              <input type="text" placeholder="" id="EditProfilFacebook" name="EditProfilFacebook" class="form-control black-color-input">
+                          </div>
+
+                    </div>                      
+                    <div class="form-group has-success">
+                          <label class="col-lg-2 control-label">Twitter</label>
+                       <div class="col-lg-10">
+                              <input type="text" placeholder="" id="EditProfilTwitter" name="EditProfilTwitter" class="form-control black-color-input">
+                          </div>
+                    </div>                      
+                    <div class="form-group has-success">
+                          <label class="col-lg-2 control-label">Skype</label>
+                       <div class="col-lg-10">
+                              <input type="text" placeholder="" id="EditProfilSkype" name="EditProfilSkype" class="form-control black-color-input">
+                          </div>
+                    </div>          
+                      <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">Genre</label>
+                          <div class="col-lg-10">
+                            <input type="checkbox" id="EditGenderFemale" name="EditGenderFemale"  value="Femme"> Femme 
+                            <input type="checkbox" id="EditGenderMale" name="EditGenderMale" value="Garcon" checked> Garcon
+                          </div>
+                      </div>
+                    <div class="form-group has-success">
+                          <label class="col-lg-2 control-label">Ville</label>
+                       <div class="col-lg-10">
+                              <input type="text" placeholder="" id="EditProfilCity" name="EditProfilCity" class="form-control black-color-input">
+                          </div>
+                    </div> 
+                    <div class="form-group has-success">
+                          <label class="col-lg-2 control-label">Description</label>
+                       <div class="col-lg-10">
+                              <input type="text" placeholder="" id="EditProfilDescription" name="EditProfilDescription" class="form-control black-color-input">
+                          </div>
+                    </div>           
+
+                    <div class="form-group has-success">
+                          <label class="col-lg-2 control-label">Signature</label>
+                            <div class="col-lg-10">
+                              <input type="text" placeholder="" id="EditProfilSignature" name="EditProfilSignature" class="form-control black-color-input">
+                            </div>
+                    </div>        
+
+                    <div class="form-group has-success">
+                          <label class="col-lg-2 control-label">Type</label>
+                            <div class="col-lg-10">
+                              <input type="text" placeholder="" id="EditProfilTYpe" name="EditProfilTYpe" class="form-control black-color-input">
+                            </div>
+                    </div>        
+                    <div class="form-group has-success">
+                          <label class="col-lg-2 control-label">Activity</label>
+                            <div class="col-lg-10">
+                              <input type="text" placeholder="" id="EditProfilActivity" name="EditProfilActivity" class="form-control black-color-input">
+                            </div>
+                    </div>        
+
+
+              </div>     
+              <br>  
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-danger" type="submit">Modifier</button>
+                            </div>
+                        </div>
+                              </form>
+                          </div>
+              </section>
+
+          <header class="panel-heading">
+              <strong> Supprimer </strong>
+          </header>
+          <section class="panel">
+              <header class="panel-heading">
+                 Saisir le profil pour le supprimer
+              </header>
+              <div class="panel-body">
+                  <form role="form"  id="DelCategory" action="DelCategory" class="form-horizontal tasi-form">
+                      <div class="form-group has-success">
+                          <label class="col-lg-2 control-label" style="margin-bottom:2px"> Nom du profil</label>
+                          <div class="col-lg-10">
+                         <select  class="form-control"> 
+                            <option value="volvo"  style="color:black" >PRemiere Category</option>
+                            <option value="saab">Deuxieme</option>
+                            <option value="mercedes">Troisième</option>
+                        </select>
+                      </div>
+
+
+                      </div>
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-danger" type="submit">Supprimer</button>
+                            </div>
+                        </div>
+                              </form>
+                          </div>
+              </section>
+
+          <footer class="follower-foot" style="background-color:black">
+              <ul>
+                  <li style="color:white"> 
+                      <h5> Guillaume Francois</h5>
+                      <p>Dev Java</p>
+                  </li>
+                  <li style="color:white">
+                      <h5>Igor Moreno Semedo</h5>
+                      <p>Dev Web</p>
+                  </li>
+              </ul>
+          </footer>
+</section>
+      
+
+
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery.sparkline.js" type="text/javascript"></script>
+    <script src="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+    <script src="js/owl.carousel.js" ></script>
+    <script src="js/jquery.customSelect.min.js" ></script>
+
+
+
+
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery..min.js"></script>
+    <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script type="text/javascript" src="assets/gritter/js/jquery.gritter.js"></script>
+
+
+    <!--common script for all pages-->
+
+    <!--script for this page only-->
+    <script src="js/gritter.js" type="text/javascript"></script>
+
+
+  <script type="text/javascript" async>
+    $(document).ready(function() {
+
+          $("#Modif-Check").hide();
+          $("#EditProfilName").change(function() {
+              if ($('#EditProfilName').val() == "")
+          $("#Modif-Check").css('display', 'none');
+        else
+          $("#Modif-Check").css('display', '');
+
+
+      });
+    });
+
+  
+    
+  </script>
+
+
+</body>
+</html>

@@ -51,19 +51,13 @@ public class Category implements Serializable, ICreateListener, IUpdateListener 
 	public 					Category() {
 	}
 
-	public 					Category(Date created, Date modified, String title) {
-		this.created = created;
-		this.modified = modified;
+	public 					Category(String title) {
 		this.title = title;
 	}
 
-	public 					Category(Date created, Date modified, String title,
-			String description, List<Board> boards) {
-		this.created = created;
-		this.modified = modified;
+	public 					Category(Date created, Date modified, String title, String description) {
 		this.title = title;
 		this.description = description;
-		this.boards = boards;
 	}
 
 	@Id
