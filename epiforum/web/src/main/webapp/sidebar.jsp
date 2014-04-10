@@ -22,7 +22,8 @@
 						<div class="profileboxnick" style="margin-bottom: 5%">
 							<a target="_self"
 								href="profile?nick=${myPro.nickname}">${myPro.nickname}</a>
-							<br> <a target="_self" href="myaccount">Modifier mon compte</a>
+							<br>
+							<a target="_self" href="myaccount">Modifier mon compte</a>
 						</div>
 					</div>
 					<div class="darkheadercontent">

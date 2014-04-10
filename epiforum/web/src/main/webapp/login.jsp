@@ -17,13 +17,15 @@
 	<div id="wrap">
 		<!-- HEADER -->
 		<jsp:include page="/header.jsp"></jsp:include>
-		
+
 		<div id="page-body">
-		<form action="login" method="post" id="login">
-				<div class="panel">
-					<div class="inner"><span class="corners-top"></span>
-						<div class="content">
-							<h2>Veuillez vous connecter</h2>
+		
+			<h2>Connexion</h2>
+			<div class="panel">
+				<div class="inner">
+					<span class="corners-top"></span>
+					<div class="content">
+						<form action="login" method="POST" id="login">
 							<fieldset class="fields1">
 								<dl>
 									<dt><label for="email">Email:</label></dt>
@@ -39,12 +41,12 @@
 									<dd><input type="submit" name="login" tabindex="6" value="Login" class="button1"/></dd>
 								</dl>
 							</fieldset>
-							<a title="Oublie de mot de passe" href="forgotpassword">J'ai oublié mon mot de passe !</a>
-						</div>
-						<span class="corners-bottom"></span>
+						</form>
+						<a title="Oublie de mot de passe" href="forgotpassword">J'ai oublié mon mot de passe !</a>
 					</div>
+					<span class="corners-bottom"></span>
 				</div>
-			</form>
+			</div>
 		</div>
 		<!-- FOOTER -->
 		<jsp:include page="/footer.html"></jsp:include>

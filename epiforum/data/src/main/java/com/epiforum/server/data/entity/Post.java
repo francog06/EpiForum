@@ -37,7 +37,10 @@ import com.epiforum.server.data.listener.IUpdateListener;
 			query = "SELECT count(po) FROM Post po WHERE po.deleted = false"),
 	@NamedQuery(
 			name = "Post.getAllPostNotDeleted",
-			query = "SELECT po FROM Post po WHERE po.topic.id = :topicId AND po.deleted = false ORDER BY po.created")
+			query = "SELECT po FROM Post po WHERE po.topic.id = :topicId AND po.deleted = false ORDER BY po.created"),
+	@NamedQuery(
+			name = "Post.getTopicsFromTag",
+			query = "SELECT DISTINCT po.topic FROM Post po WHERE po.tag LIKE :search")
 })
 public class Post implements Serializable, ICreateListener, IUpdateListener {
 

@@ -150,8 +150,8 @@
 										<dl>
 											<dt><label for="genre">Genre:</label></dt>
 											<dd>
-												<input type="radio" id="genre_femme" name="genre_femme" value="Femme">Femme
-												<input type="radio" id="genre_homme" name="genre_homme" value="Garcon">Homme
+												<input type="radio" id="genre" name="genre" value="Femme">Femme
+												<input type="radio" id="genre" name="genre" value="Homme">Homme
 											</dd>
 										</dl>
 										<dl>

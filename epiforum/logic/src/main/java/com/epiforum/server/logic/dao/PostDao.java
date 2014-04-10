@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.epiforum.server.data.entity.Post;
+import com.epiforum.server.data.entity.Topic;
 
 @Stateless
 public class PostDao {
@@ -41,5 +42,13 @@ public class PostDao {
 	public Integer				countPosts() {
 		Query query = em.createNamedQuery("Post.countAll");
 		return ((Long)query.getSingleResult()).intValue();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Topic>			getTopicsFromTag(String tag) {
+		Query query = em.createNamedQuery("Post.getTopicsFromTag");
+		query.setParameter("search", "%" + "#" + tag + "%");
+		List<Topic> topics = (List<Topic>) query.getResultList();
+		return topics;
 	}
 }

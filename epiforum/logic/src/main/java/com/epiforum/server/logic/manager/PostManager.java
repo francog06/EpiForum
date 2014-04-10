@@ -57,4 +57,8 @@ public class PostManager {
 	public Integer 			countPosts() {
 		return this.postDao.countPosts();
 	}
+
+	public List<Topic>			getTopicsFromTag(String tag) {
+		return this.postDao.getTopicsFromTag(tag);
+	}
 }

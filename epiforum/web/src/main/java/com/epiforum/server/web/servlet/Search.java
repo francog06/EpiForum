@@ -2,6 +2,7 @@ package com.epiforum.server.web.servlet;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -15,31 +16,31 @@ import javax.servlet.http.HttpSession;
 
 import com.epiforum.common.ro.MemberRO;
 import com.epiforum.common.ro.MyLightProfileRO;
-import com.epiforum.common.ro.MyProfileRO;
 import com.epiforum.common.ro.TopTopicRO;
+import com.epiforum.common.ro.TopicRO;
 import com.epiforum.server.logic.exception.BadCredentialException;
 import com.epiforum.server.logic.exception.BadParametersException;
 import com.epiforum.server.web.beanresource.OperationResource;
 
 /**
- * Servlet implementation class Profile
+ * Servlet implementation class Search
  */
-@WebServlet("/profile")
-public class Profile extends OperationResource {
+@WebServlet("/search")
+public class Search extends OperationResource {
 
-	private static final long serialVersionUID = 4772665337688756828L;
+	private static final long serialVersionUID = 7220536747853936541L;
 
 	/**
      * Default constructor. 
      */
-    public Profile() {
-    	super();
+    public Search() {
+        super();
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession se = request.getSession(false);
 		request.setCharacterEncoding("UTF-8");
 		if (se == null || se.getAttribute("Authorization") == null) {
@@ -47,24 +48,7 @@ public class Profile extends OperationResource {
 		} else {
 			String token = (String) se.getAttribute("Authorization");
 			request.setAttribute("Authorization", token);
-			String nickname = request.getParameter("nick");
-			if (nickname == null || nickname.trim().isEmpty()) {
-				throw new ServletException("Une erreur est survenue.");
-			}
-			try {
-				MyProfileRO profile = this.operationFacade.viewProfile(request, token, nickname);
-				if (profile == null) {
-					throw new ServletException("Une erreur est survenue.");
-				}
-				request.setAttribute("profile", profile);
-			} catch (BadCredentialException e) {
-				e.printStackTrace();
-			} catch (BadParametersException e) {
-				e.printStackTrace();
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-
+			
 			/* STATS */
 			Integer nbMembers = this.operationFacade.numberOfMembers();
 			request.setAttribute("nbMembers", nbMembers);
@@ -91,15 +75,28 @@ public class Profile extends OperationResource {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
+
 			List<MemberRO> topMembers = this.operationFacade.topProfiles();
 			request.setAttribute("topMembers", topMembers);
 			List<TopTopicRO> topTopics = this.operationFacade.topTopics();
 			request.setAttribute("topTopics", topTopics);
 			
-			String url="/profile.jsp";
-		    ServletContext sc = getServletContext();
-		    RequestDispatcher rd = sc.getRequestDispatcher(url);
-		    rd.forward(request, response);
+			String stag = request.getParameter("tags");
+			List<String> tags = new ArrayList<String>();
+			for (String tag : stag.split(" #")) {
+				tags.add(tag);
+			}
+			try {
+				List<TopicRO> topics = this.operationFacade.searchTopicFromTags(request, token, tags);
+				request.setAttribute("topics", topics);
+			} catch (BadCredentialException e) {
+				e.printStackTrace();
+			}
+
+			String url = "/search.jsp";
+			ServletContext sc = getServletContext();
+			RequestDispatcher rd = sc.getRequestDispatcher(url);
+			rd.forward(request, response);
 		}
 	}
 }

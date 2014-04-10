@@ -91,6 +91,8 @@ public class Account extends OperationResource {
 				e.printStackTrace();
 			} catch (BadParametersException e) {
 				e.printStackTrace();
+			} catch (ParseException e) {
+				e.printStackTrace();
 			}
 
 			String url = "/account.jsp";
@@ -158,10 +160,12 @@ public class Account extends OperationResource {
 				myPro.setFacebookPage(request.getParameter("facebook") != null ? request.getParameter("facebook").trim() : "");
 				myPro.setTwitterPage(request.getParameter("twitter") != null ? request.getParameter("twitter").trim() : "");
 				myPro.setSkypeContact(request.getParameter("skype") != null ? request.getParameter("skype").trim() : "");
-				if (request.getParameter("genre_femme") != null) {
-					myPro.setGender(false);
-				} else if (request.getParameter("genre_homme") != null){
-					myPro.setGender(true);
+				if (request.getParameter("genre") != null) {
+					if (request.getParameter("genre") == "Femme") {
+						myPro.setGender(false);
+					} else {
+						myPro.setGender(true);
+					}
 				}
 				myPro.setCity(request.getParameter("ville") != null ? request.getParameter("ville").trim() : "");
 				myPro.setDescription(request.getParameter("description") != null ? request.getParameter("description").trim() : "");

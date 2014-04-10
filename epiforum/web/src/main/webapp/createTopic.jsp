@@ -24,7 +24,7 @@
 			
 				<h2>Creation d'un sujet</h2>
 				<div class="panel">
-					<div class="inner"><span class="corners-top"><span></span></span>
+					<div class="inner"><span class="corners-top"></span>
 						<div class="content">
 							<form action="createtopic" method="POST" id="create">
 								<fieldset class="fields1">
@@ -64,7 +64,7 @@
 								</fieldset>
 							</form>
 						</div>
-						<span class="corners-bottom"><span></span></span>
+						<span class="corners-bottom"></span>
 					</div>
 				</div>
 				

@@ -21,54 +21,34 @@
 			<div id="page-body-inner">
 				<!-- FEEDBACK CONTENT BEGIN -->
 
-				<h2>FeedBack: posez nous votre question</h2>
-				<form action="" method="post" id="login">
+					<h2>FeedBack</h2>
 					<div class="panel">
 						<div class="inner">
-							<span class="corners-top"><span></span></span>
+							<span class="corners-top"></span>
 							<div class="content">
-								<h2>Veuillez completer les champs</h2>
-								<fieldset class="fields1">
-									<dl>
-										<dt>
-											<label for="username">Titre:</label>
-										</dt>
-										<dd>
-											<input type="text" tabindex="1" name="username" id="username"
-												size="55" value="" class="inputbox autowidth" />
-										</dd>
-									</dl>
-									<br>
-									<dl>
-										<dt>
-											<label for="username">Email ou Pseudo:</label>
-										</dt>
-										<dd>
-											<input type="text" tabindex="1" name="username" id="username"
-												size="55" value="" class="inputbox autowidth" />
-										</dd>
-									</dl>
-									<br>
-									<dl>
-										<dt>
-											<label for="password">Question:</label>
-										</dt>
-										<textarea value="" size=""
-											style="height: 226px; width: 438px;" class=""> </textarea>
-									</dl>
-									<dl>
-										<dt>&nbsp;</dt>
-										<dd>
-											<input type="submit" name="login" style="margin-left: 53%"
-												tabindex="6" value="Envoyer" class="button1" />
-										</dd>
-									</dl>
-								</fieldset>
+								<form action="feedback" method="post" id="login">
+									<fieldset class="fields1">
+										<dl>
+											<dt><label for="nickname">Pseudo:</label></dt>
+											<dd><input type="text" tabindex="1" name="nickname" maxlength="64"
+													class="inputbox autowidth" required autofocus/></dd>
+										</dl>
+										<dl>
+											<dt><label for="message">Message:</label></dt>
+											<dd><textarea tabindex="2" name="message" maxlength="256"
+												style="height: 226px; width: 438px;"></textarea></dd>
+										</dl>
+										<dl>
+											<dd><input type="submit" name="login" style="margin-left: 53%"
+													tabindex="6" value="Envoyer" class="button1" /></dd>
+										</dl>
+									</fieldset>
+								</form>
 							</div>
-							<span class="corners-bottom"><span></span></span>
+							<span class="corners-bottom"></span>
 						</div>
 					</div>
-				</form>
+
 				<!-- STATS -->
 				<jsp:include page="/stats.jsp"></jsp:include>
 

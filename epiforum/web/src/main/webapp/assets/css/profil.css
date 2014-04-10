@@ -36,12 +36,13 @@
 
 .div_bottom_right {
 	min-height: 200px;
-	border-left: 1px solid grey; 
+	float: left;
+	border-left: 1px solid #E4E4E4; 
 	padding-left: 2%;
 }
 
 .social-icon {
-	margin-left: 10%;
+	margin-left: 5%;
 }
 
 .facebook-color {

@@ -16,16 +16,16 @@
 			</c:if>
 		</ul>
 		<div class="search-box">
-			<fieldset>
-				<div class="search-box-inner">
-					<input class="button2" type="submit" value="Search"> <input
-						id="keywords" class="inputbox search" type="text"
-						onblur="if(this.value=='')this.value='Search…';"
-						onclick="if(this.value=='Search…')this.value='';"
-						placeholder="Cherchez des messages ou des membres"
-						title="Trouvez des messages ou des membres" maxlength="128" name="keywords">
-				</div>
-			</fieldset>
+			<form action="search" method="POST" id="search">
+				<fieldset>
+					<div class="search-box-inner">
+						<input class="button2" type="submit" name="Search" value="Search"/>
+						<input id="keywords" class="inputbox search" type="text" name="tags"
+							onblur="if(this.value=='')this.value='EpiForum';" placeholder="Tag"
+							title="Trouvez des sujet grâce aux tags" maxlength="64" name="keywords"/>
+					</div>
+				</fieldset>
+			</form>
 		</div>
 	</div>
 	<div id="header">

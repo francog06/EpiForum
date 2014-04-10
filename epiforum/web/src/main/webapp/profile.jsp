@@ -24,7 +24,7 @@
 
 				<div class="panel">
 					<div class="inner">
-						<span class="corners-top"><span></span></span>
+						<span class="corners-top"></span>
 						<div class="content">
 							<h2>Profil de ${profile.nickname}</h2>
 							<div class="img_profil">
@@ -43,25 +43,25 @@
 								<c:if test="${profile.facebookPage ne null}">
 									<a href="https://www.facebook.com/${profile.facebookPage}"
 									title="www.facebook.com/${profile.facebookPage}" target="_blank">
-									<i class="fa fa-facebook fa-3x social-icon facebook-color"></i></a>
+									<i class="fa fa-facebook fa-2x social-icon facebook-color"></i></a>
 								</c:if>
 								<c:if test="${profile.facebookPage eq null}">
-									<i title="Pas de profil facebook" class="fa fa-facebook fa-3x img_icon_grey social-icon"></i>
+									<i title="Pas de profil facebook" class="fa fa-facebook fa-2x img_icon_grey social-icon"></i>
 								</c:if>
 								<c:if test="${profile.twitterPage ne null}">
 									<a href="https://twitter.com/${profile.twitterPage}"
 									title="twitter.com/${profile.twitterPage}" target="_blank">
-									<i class="fa fa-twitter fa-3x social-icon twitter-color"></i></a>
+									<i class="fa fa-twitter fa-2x social-icon twitter-color"></i></a>
 								</c:if>
 								<c:if test="${profile.twitterPage eq null}">
-									<i title="Pas de profil twitter" class="fa fa-twitter fa-3x social-icon img_icon_grey"></i></a>
+									<i title="Pas de profil twitter" class="fa fa-twitter fa-2x social-icon img_icon_grey"></i></a>
 								</c:if>
 								<c:if test="${profile.skypeContact ne null}">
 								<a href="skype:${profile.skypeContact}?call" title="Skype: ${profile.skypeContact}">
-									<i class="fa fa-skype fa-3x social-icon skype-color"></i></a>
+									<i class="fa fa-skype fa-2x social-icon skype-color"></i></a>
 								</c:if>
 								<c:if test="${profile.skypeContact eq null}">
-									<i title="Pas de compte skype" class="fa fa-skype fa-3x social-icon img_icon_grey"></i></a>
+									<i title="Pas de compte skype" class="fa fa-skype fa-2x social-icon img_icon_grey"></i></a>
 								</c:if>
 								<br><br>
 								<label class="profile_font">
@@ -99,23 +99,19 @@
 								<br><br>
 								<label>Remerciements recus:</label><strong>${profile.nbThank}</strong>
 							</div>
-							<fieldset class="fields1 div_bottom_right">
-								<label class="profile_font">Prenom:</label>
-									<strong class="profile_font">${profile.firstname}</strong>
+							<div class="div_bottom_right">
+								<label>Prenom:</label><strong>${profile.firstname}</strong>
 								<br><br>
-								<label class="profile_font">Nom:</label>
-									<strong class="profile_font">${profile.lastname}</strong>
+								<label>Nom:</label><strong>${profile.lastname}</strong>
 								<br><br>
-								<label class="profile_font">Telephone:</label>
-									<strong class="profile_font">${profile.phone}</strong>
+								<label>Telephone:</label><strong>${profile.phone}</strong>
 								<br><br>
-								<label class="profile_font">Description:</label>
-									<strong class="profile_font">${profile.description}</strong>
+								<label>Description:</label><strong>${profile.description}</strong>
 								<br><br>
-								<label class="profile_font">Signature:</label>
-									<strong class="profile_font">${profile.signature}</strong>
+								<label>Signature:</label><strong>${profile.signature}</strong>
+							</div>
 						</div>
-						<span class="corners-bottom"><span></span></span>
+						<span class="corners-bottom"></span>
 					</div>
 				</div>
 

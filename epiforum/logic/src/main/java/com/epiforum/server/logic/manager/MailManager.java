@@ -234,4 +234,21 @@ public class MailManager {
 			throw new TechnicalException(exc);
 		}
 	}
+	
+	public void sendFeedbackMail(String nickname, String message) throws TechnicalException {
+		try {
+			String content = String.format("L'utilisateur %s vous à écrit\nVoici le message:\n%s", nickname, message);
+
+			MailProperties mailProperties = new MailProperties();
+			mailProperties.setFrom(this.getNoReplyEmail());
+			mailProperties.getTo().add(Configuration.getMailAdminAddress());
+			mailProperties.setSubject("EpiForum - Feedback");
+			mailProperties.setContent(content);
+
+			sendMail(mailProperties);
+			System.out.println(String.format("MailManager.sendFeedbackMail - nickname: %s", nickname));
+		} catch (Exception exc) {
+			throw new TechnicalException(exc);
+		}
+	}
 }

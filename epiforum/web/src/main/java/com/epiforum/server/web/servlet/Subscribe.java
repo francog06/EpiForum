@@ -60,21 +60,21 @@ public class Subscribe extends OperationResource {
 			String url="/subscribe.jsp";
 		    ServletContext sc = getServletContext();
 		    RequestDispatcher rd = sc.getRequestDispatcher(url);
-		    request.setAttribute("error", true);
+		    request.setAttribute("error", e.getMessage());
 		    rd.forward(request, response);
 			e.printStackTrace();
 		} catch (TechnicalException e) {
 			String url="/subscribe.jsp";
 		    ServletContext sc = getServletContext();
 		    RequestDispatcher rd = sc.getRequestDispatcher(url);
-		    request.setAttribute("error", true);
+		    request.setAttribute("error", e.getMessage());
 		    rd.forward(request, response);
 			e.printStackTrace();
 		} catch (BadParametersException e) {
 			String url="/subscribe.jsp";
 		    ServletContext sc = getServletContext();
 		    RequestDispatcher rd = sc.getRequestDispatcher(url);
-		    request.setAttribute("error", true);
+		    request.setAttribute("error", e.getMessage());
 		    rd.forward(request, response);
 			e.printStackTrace();
 		}

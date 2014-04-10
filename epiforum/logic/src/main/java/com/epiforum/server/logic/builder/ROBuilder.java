@@ -1,10 +1,8 @@
 package com.epiforum.server.logic.builder;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import com.epiforum.common.ro.BoardRO;
 import com.epiforum.common.ro.CategoryRO;
@@ -38,23 +36,21 @@ public class ROBuilder {
 
 	public static MyLightProfileRO		createMyLightProfileRO(Profile profile) throws ParseException {
 		MyLightProfileRO pro = new MyLightProfileRO();
-		SimpleDateFormat parser = new SimpleDateFormat("yyy-MM-dd HH:mm:ss", Locale.FRENCH);
-		pro.setCreated((parser.parse(profile.getCreated().toString())));
+		pro.setCreated(profile.getCreated());
 		pro.setType(profile.getAccount().getType().toString());
 		pro.setNickname(profile.getNickname());
 		pro.setFirstname(profile.getFirstname());
 		pro.setPicture(profile.isPicture());
 		pro.setLastname(profile.getLastname());
 		if (profile.getBirthdate() != null) {
-			parser = new SimpleDateFormat("yyy-MM-dd", Locale.FRENCH);
-			pro.setBirthdate(parser.parse(profile.getBirthdate().toString()));
+			pro.setBirthdate(profile.getBirthdate());
 		}
 		pro.setNbPost(profile.getNbPosts());
 		pro.setNbThank(profile.getNbThanks());
 		return pro;
 	}
 
-	public static MyProfileRO			createMyProfileRO(Profile pro, Session se) {
+	public static MyProfileRO			createMyProfileRO(Profile pro, Session se) throws ParseException {
 		MyProfileRO myPro = new MyProfileRO();
 		myPro.setType(pro.getAccount().getType().toString());
 		myPro.setCreated(pro.getCreated());
@@ -90,9 +86,8 @@ public class ROBuilder {
 
 	public static BoardRO				createBoardRO(Board board) throws ParseException {
 		BoardRO boardRo = new BoardRO();
-		SimpleDateFormat parser = new SimpleDateFormat("yyy-MM-dd HH:mm:ss", Locale.FRENCH);
 		boardRo.setId(board.getId());
-		boardRo.setModified(parser.parse (board.getModified().toString()));
+		boardRo.setModified(board.getModified());
 		boardRo.setTitle(board.getTitle());
 		boardRo.setDescription(board.getDescription());
 		return boardRo;

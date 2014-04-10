@@ -18,12 +18,16 @@
 		<jsp:include page="/header.jsp"></jsp:include>
 
 		<div id="page-body">
-			<form action="subscribe" method="POST" id="login">
-				<div class="panel">
-					<div class="inner">
-						<span class="corners-top"><span></span></span>
-						<div class="content">
-							<h2>Veuillez completer ce formulaire pour vous inscrire</h2>
+
+			<h2>Inscription</h2>
+			<div class="panel">
+				<div class="inner">
+					<span class="corners-top"></span>
+					<div class="content">
+						<c:if test="${error != null}">
+						<p style="color: red">${error}</p>
+						</c:if>
+						<form action="subscribe" method="POST" id="subscribe">
 							<fieldset class="fields1">
 								<dl>
 									<dt>
@@ -31,8 +35,8 @@
 										<label for="email"> Email</label>
 									</dt>
 									<dd>
-										<input type="text" tabindex="1" name="email" id="email"
-											size="35" class="inputbox autowidth" placeholder="example@company.com" required/>
+										<input type="text" tabindex="1" name="email" id="email" size="35"
+											class="inputbox autowidth" placeholder="example@company.com" required autofocus/>
 									</dd>
 								</dl>
 								<dl>
@@ -51,7 +55,7 @@
 										<label for="password"> Resaisisez le mot de passe</label>
 									</dt>
 									<dd>
-										<input type="password" tabindex="2" id="password" name="password"
+										<input type="password" tabindex="3" id="password" name="password"
 											size="35" class="inputbox autowidth" required/>
 									</dd>
 								</dl>
@@ -61,7 +65,7 @@
 										<label for="nickname"> Pseudonyme</label>
 									</dt>
 									<dd>
-										<input type="text" tabindex="1" name="nickname" id="nickname"
+										<input type="text" tabindex="4" name="nickname" id="nickname"
 											size="35" class="inputbox autowidth" required/>
 									</dd>
 								</dl>
@@ -70,7 +74,7 @@
 										<label for="firstname">Prenom:</label>
 									</dt>
 									<dd>
-										<input type="text" tabindex="1" name="firstname" id="firstname"
+										<input type="text" tabindex="5" name="firstname" id="firstname"
 											size="35" class="inputbox autowidth"/>
 									</dd>
 								</dl>
@@ -79,23 +83,22 @@
 										<label for="lastname">Nom:</label>
 									</dt>
 									<dd>
-										<input type="text" tabindex="1" name="lastname" id="lastname"
+										<input type="text" tabindex="6" name="lastname" id="lastname"
 											size="35" class="inputbox autowidth"/>
 									</dd>
 								</dl>
 								<dl>
-									<dt>&nbsp;</dt>
 									<dd>
-										<input type="submit" name="login" tabindex="6"
-											value="Inscription" class="button1" />
+										<input type="submit" name="subscribe" tabindex="7"
+											value="Inscription" class="button1"/>
 									</dd>
 								</dl>
 							</fieldset>
-						</div>
-						<span class="corners-bottom"><span></span></span>
+						</form>
 					</div>
+					<span class="corners-bottom"></span>
 				</div>
-			</form>
+			</div>
 		</div>
 		<!-- FOOTER -->
 		<jsp:include page="/footer.html"></jsp:include>

@@ -52,6 +52,10 @@ public class Configuration {
 		return getProperty("application.background");
 	}
 	
+	public static String getMailAdminAddress() {
+		return getProperty("mail.admin.address");
+	}
+
 	public static String getMailActivationAddress() {
 		return getProperty("mail.activation.address");
 	}

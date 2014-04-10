@@ -102,6 +102,33 @@ public class OperationFacade {
 		return false;
 	}
 
+	public void					feedback(String nickname, String message) throws BadParametersException, TechnicalException {
+		if (nickname == null || nickname.trim().isEmpty() ||
+				message == null || message.trim().isEmpty()) {
+			throw new BadParametersException(I18n.getMessage(MessageKey.ERROR_PARAMETER_REQUIRED, Configuration.getDefaultLocale()));
+		}
+		this.mailManager.sendFeedbackMail(nickname.trim(), message.trim());
+	}
+
+	public List<TopicRO>		searchTopicFromTags(HttpServletRequest request, String token, List<String> tags) throws BadCredentialException {
+		if (!this.checkSession(token)) {
+			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Configuration.getDefaultLocale()));
+		}
+		if (tags != null && tags.size() > 0) {
+			List<Topic> topics = new ArrayList<Topic>();
+			for (String tag : tags) {
+				topics.addAll(this.postManager.getTopicsFromTag(tag));
+			}
+			if (topics != null && topics.size() > 0) {
+				List<TopicRO> tops = new ArrayList<TopicRO>();
+				for(Topic topic : topics) {
+					tops.add(ROBuilder.createTopicRO(topic));
+				}
+				return tops;
+			}
+		}
+		return null;
+	}
 								/*	ACCOUNT STUFF	*/
 
 	public void					subscribe(HttpServletRequest request, SignupRO signup) throws BadCredentialException, TechnicalException, BadParametersException {
@@ -246,7 +273,7 @@ public class OperationFacade {
 
 								/*	PROFILE STUFF	*/
 
-	public MyProfileRO			viewProfile(HttpServletRequest request, String token, String nickname) throws BadCredentialException, BadParametersException {
+	public MyProfileRO			viewProfile(HttpServletRequest request, String token, String nickname) throws BadCredentialException, BadParametersException, ParseException {
 		if (!this.checkSession(token)) {
 			throw new BadCredentialException(I18n.getMessage(MessageKey.ERROR_CREDENTIAL_LOGIN, Configuration.getDefaultLocale()));
 		}
